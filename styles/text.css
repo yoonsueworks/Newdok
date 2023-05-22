@@ -1,0 +1,13 @@
+@tailwind utilities;
+
+@variants {
+  .text-heading {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .text-subtitle {
+    font-size: 1.5rem;
+    font-weight: medium;
+  }
+}

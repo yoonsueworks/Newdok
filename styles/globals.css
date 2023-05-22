@@ -1,9 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700;800&display=swap");
+@import "text.css";
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
+  font-family: "Pretendard-Regular", "Wix Madefor Display", sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: aliceblue;
+  padding: 0;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  position: fixed;
+  width: 430px;
+  height: 95vh;
+  overflow: auto;
+  border: 1px solid black;
+  background-color: antiquewhite;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    width: 100vw;
+    max-width: 430px;
+    min-width: 320px;
+    justify-content: flex-start; /* Align content to the top */
+    height: 100vh; /* Remove fixed height to allow content to expand vertically */
+  }
 }
 
 a {
@@ -13,4 +67,39 @@ a {
 
 * {
   box-sizing: border-box;
+}
+input,
+textarea {
+  outline: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 99px;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-design {
+  overflow-y: overlay;
+}
+
+.scrollbar-design::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-design::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 99px;
 }
