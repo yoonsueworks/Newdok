@@ -1,11 +1,17 @@
+import { useEffect } from "react";
 import Nav from "../components/Nav";
+import { useRouter } from "next/router";
 
 export default function Layout({ children }) {
+  const router = useRouter();
+  const pathname = router.pathname;
+
+  useEffect(() => {}, [pathname]);
+
   return (
     <>
-      <Nav />
-      <div>{children}</div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      {pathname === "main" && <Nav />}
+      {children}
     </>
   );
 }
