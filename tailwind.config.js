@@ -20,7 +20,7 @@ module.exports = {
         3: "0.75rem",
         3.25: "0.8125rem",
         3.5: "0.875rem",
-        4: "1rem",
+        4: "1rem", //16
         5: "1.25rem",
         6: "1.5rem",
         7: "1.75rem",
@@ -33,6 +33,9 @@ module.exports = {
         16: "4rem", //64
         20: "5rem", //80
         31.25: "7.8125rem", //500
+      },
+      height: {
+        420: "26.25rem",
       },
       colors: {
         "beige-10": "#F7EFE5",
