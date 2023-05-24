@@ -1,3 +1,42 @@
-export default function About() {
-  return <div>main</div>;
+import { useEffect, useState } from "react";
+
+import Header from "../../components/Header";
+import S from "./index.module.scss";
+
+import Industry from "./components/Industry";
+import Recommended from "./components/recommended";
+
+const TABS = [
+  { id: 1, name: "추천 뉴스레터", comp: <Recommended /> },
+  { id: 2, name: "산업별 뉴스레터", comp: <Industry /> },
+];
+
+export default function Main() {
+  // const [datas, setDatas] = useState([])
+  const [clickedTab, setClickedTab] = useState(1);
+
+  const changeTab = (id) => {
+    setClickedTab(id);
+  };
+  const clickedId = Number.parseInt(clickedTab);
+
+  // useEffect(() => {
+  //   fetch("/data/newsletters.json")
+  //     .then((res) => res.json())
+  //     .then((res) => setInterests(res));
+  // }, []);
+
+  return (
+    <div className="flex flex-col bg-beige-10 h-full w-full">
+      <Header
+        tabs={TABS}
+        changeTab={changeTab}
+        clickedTab={clickedTab}
+        clickedId={clickedId}
+      />
+      <div id={S.subsequent} className="w-full">
+        {TABS[clickedId - 1].comp}
+      </div>
+    </div>
+  );
 }
