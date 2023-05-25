@@ -12,9 +12,9 @@ export default function Card() {
           id={S.gradient}
           width="300"
           height="300"
-          alt=""
+          alt="image"
           src="/images/thumbnail_sample.png"
-          className=""
+          priority
         />
       </div>
       <div className="h-fit px-6 pt-4 grid gap-y-3">

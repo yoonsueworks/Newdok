@@ -10,6 +10,7 @@ export default function ListedItem() {
             alt=";t"
             src="/images/thumbnail_sample.png"
             fill
+            sizes="100"
             style={{
               objectFit: "cover",
               borderRadius: 50,
