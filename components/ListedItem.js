@@ -1,9 +1,16 @@
+import { useContext } from "react";
+import { GlobalContext } from "../pages/_app";
+
 import Image from "next/image";
 import Tags from "./Tags";
 
 export default function ListedItem() {
+  const { setOpenModal } = useContext(GlobalContext);
   return (
-    <li className="bg-white p-6 h-max w-full border border-solid border-1 border-warmgray-20 rounded-2xl  cursor-pointer">
+    <li
+      onClick={() => setOpenModal(true)}
+      className="bg-white p-6 h-max w-full border border-solid border-1 border-warmgray-20 rounded-2xl  cursor-pointer "
+    >
       <div className="flex gap-x-4">
         <div className="w-58 h-58 rounded-full flex-shrink-0 border border-solid border-1 border-warmgray-20 relative">
           <Image

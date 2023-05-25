@@ -1,9 +1,14 @@
+import { useContext } from "react";
+import { GlobalContext } from "../../../_app";
+
 import Image from "next/image";
 import S from "./Card.module.scss";
 
 export default function Card() {
+  const { setOpenModal } = useContext(GlobalContext);
   return (
     <div
+      onClick={() => setOpenModal(true)}
       id={S.card}
       className="h-[300px] w-[289px] inline-block bg-white flex flex-col border border-solid border-1 border-warmgray-20 cursor-pointer"
     >

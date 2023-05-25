@@ -2,7 +2,11 @@ export default function Button(props) {
   const { func, mode, state, size } = props;
 
   const sizeCSS =
-    size === "big" ? "py-4 headline rounded-2xl" : "py-3.25 title rounded-lg";
+    size === "big"
+      ? "py-4 headline rounded-2xl"
+      : size === "med"
+      ? "h-[56px] headline_s rounded-xl"
+      : "py-3.25 title rounded-lg";
 
   const modeCSS =
     mode === "ghost"
