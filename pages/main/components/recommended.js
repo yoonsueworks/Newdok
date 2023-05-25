@@ -1,6 +1,6 @@
 import Lists from "../../../components/Lists";
 import ListTitle from "./Recommended/ListTitle";
-import CardTitle from "./Recommended/Cardtitle";
+import CardTitle from "./Recommended/CardTitle";
 import Cards from "./Recommended/Cards";
 
 export default function Recommended() {

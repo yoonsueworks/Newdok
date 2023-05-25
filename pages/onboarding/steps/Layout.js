@@ -3,13 +3,17 @@ import { GlobalContext } from "../../_app";
 import Button from "../../../components/Button";
 import Topbar from "../../../components/Topbar";
 import { useRouter } from "next/router";
+import Onboarding from "../index";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
   const { clickNext, clickBefore, isActivated } = value;
   const router = useRouter();
 
-  console.log(infos.display);
+  if (!infos) {
+    return null;
+  }
+  const { id, display, headline, caption, comp } = infos;
 
   return (
     <div className="flex flex-col h-full pb-20">
