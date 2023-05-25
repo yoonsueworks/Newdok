@@ -6,7 +6,7 @@ export default function InterestButton({
   isClicked,
 }) {
   const clickedCSS =
-    isClicked.includes(id) === true
+    isClicked?.includes(id) === true
       ? "text-white bg-purple-30 "
       : "text-warmgray-100 border-solid border-1 border-warmgray-20 bg-warmgray-10";
   return (
