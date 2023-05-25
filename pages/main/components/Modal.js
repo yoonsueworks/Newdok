@@ -27,12 +27,14 @@ const Modal = ({ open, setOpen }) => (
             mode="ghost"
             state={true}
             size="med"
+            text="뉴스레터 미리보기"
           />
           <Button
             func={() => console.log("clicked")}
             mode="enabled"
             state={true}
             size="med"
+            text="구독하기"
           />
         </div>
       </div>

@@ -4,12 +4,15 @@ import InterestButton from "./components/InteresButton";
 
 export default function Interest() {
   const value = useContext(GlobalContext);
-  const { interests, setIsActivated } = value;
+  const { interests, setIsActivated, handleProgressWithOption } = value;
   const [userInterests, setUserInterests] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
+  const interestsArr = userInterests.length;
 
   const getUserInterests = (e) => {
     const clickedId = Number.parseInt(e.target.value);
+
+    if (interestsArr === 3 && !userInterests.includes(clickedId)) return;
 
     userInterests.includes(clickedId)
       ? filterUserInterests(clickedId)
@@ -24,6 +27,9 @@ export default function Interest() {
 
   const activateButton = () => {
     setIsActivated(userInterests.length > 0 ? true : false);
+    interestsArr === 0
+      ? handleProgressWithOption(3)
+      : handleProgressWithOption(4);
   };
 
   const resetUserInterests = () => {
@@ -37,19 +43,21 @@ export default function Interest() {
   }, [userInterests]);
 
   return (
-    <div className="w-full h-420 grid grid-cols-2 gap-2 overflow-auto">
-      {interests.map(({ id, name }) => {
-        return (
-          <InterestButton
-            key={id}
-            id={id}
-            name={name}
-            isClicked={userInterests}
-            setIsClicked={setIsClicked}
-            getUserInterests={getUserInterests}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div className="w-full h-420 grid grid-cols-2 gap-2 overflow-auto">
+        {interests.map(({ id, name }) => {
+          return (
+            <InterestButton
+              key={id}
+              id={id}
+              name={name}
+              isClicked={userInterests}
+              setIsClicked={setIsClicked}
+              getUserInterests={getUserInterests}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }

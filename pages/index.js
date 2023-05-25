@@ -1,3 +1,6 @@
+import { useState, useContext } from "react";
+import { GlobalContext } from "./_app";
+
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -7,6 +10,12 @@ import Topbar from "../components/Topbar";
 export default function Home() {
   const router = useRouter();
   const routeOnbooarding = () => router.push("/onboarding");
+
+  // const value = useContext(GlobalContext);
+
+  // value.setProgress = setProgress;
+  // value.progress = progress;
+
   return (
     <div className="w-full h-full flex flex-col justify-between pb-20">
       <Topbar />
@@ -31,6 +40,8 @@ export default function Home() {
             mode="enabled"
             state={true}
             size="big"
+            text="시작하기"
+            onClick={() => setProgress(1)}
           />
         </div>
       </div>
