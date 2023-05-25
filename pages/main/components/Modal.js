@@ -5,6 +5,8 @@ import S from "./modal.module.scss";
 import Button from "../../../components/Button";
 
 const Modal = ({ open, setOpen, datas }) => {
+  if (!datas) return;
+
   const {
     id,
     name,

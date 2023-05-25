@@ -6,6 +6,9 @@ import S from "./Card.module.scss";
 
 export default function Card({ datas }) {
   const { setOpenModal, modalData } = useContext(GlobalContext);
+
+  if (!data) return;
+
   const {
     id,
     name,
