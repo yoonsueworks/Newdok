@@ -1,6 +1,8 @@
 import React from "react";
 import { ModalProvider } from "../../components/Modal/ModalProvider";
-import Component from "./component/component";
+const Component = dynamic(() => import("./component/component"), {
+  ssr: false,
+});
 
 export default function App() {
   return (
