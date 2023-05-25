@@ -12,7 +12,8 @@ export default function Card() {
           id={S.gradient}
           width="300"
           height="300"
-          alt="image"
+          alt=""
+          priority
           src="/images/thumbnail_sample.png"
           priority
         />
