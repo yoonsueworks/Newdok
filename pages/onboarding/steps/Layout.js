@@ -8,6 +8,7 @@ import Onboarding from "../index";
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
   const { clickNext, clickBefore, isActivated } = value;
+  const { id, display, headline, caption, comp } = infos;
   const router = useRouter();
 
   return (
