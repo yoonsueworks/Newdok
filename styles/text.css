@@ -36,4 +36,9 @@
     font-weight: 400;
     letter-spacing: -0.01em;
   }
+  .reload {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
 }

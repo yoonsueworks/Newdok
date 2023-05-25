@@ -8,6 +8,7 @@
 @layer components {
   #__next {
     @apply h-full;
+    overflow: scroll;
   }
 }
 
@@ -38,6 +39,10 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+#topbar {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {
   body {
     width: 100vw;
@@ -46,6 +51,15 @@ body {
     justify-content: flex-start; /* Align content to the top */
     height: 95vh; /* Remove fixed height to allow content to expand vertically */
     min-height: 900px; /* Remove fixed height to allow content to expand vertically */
+  }
+
+  #__next {
+    margin: 0;
+    padding: 0;
+  }
+  /*  */
+  #topbar {
+    display: block;
   }
 }
 
@@ -57,7 +71,14 @@ a {
 * {
   box-sizing: border-box;
   transition: 0.3s;
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
+
 input,
 textarea {
   outline: none;
@@ -87,6 +108,7 @@ body::-webkit-scrollbar-thumb {
 
 .scrollbar-design::-webkit-scrollbar {
   width: 6px;
+  height: 0px;
 }
 
 .scrollbar-design::-webkit-scrollbar-thumb {
@@ -96,4 +118,5 @@ body::-webkit-scrollbar-thumb {
 
 *::-webkit-scrollbar {
   width: 0;
+  height: 0;
 }

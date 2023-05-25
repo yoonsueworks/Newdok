@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "NEWNEEK",
+    "first_description": "핵심만 꾹꾹 눌러 담은  세상 돌아가는 이야기",
+    "second_description": "세상 돌아가는 소식, 뉴닉으로!",
+    "detail_description": "세상 돌아가는 소식은 궁금한데, 시간이 없다고요? <뉴닉>은 신문 볼 새 없이 바쁘지만, 세상과의 연결고리는 튼튼하게 유지하고 싶은 여러분들을 위해 세상 돌아가는 소식을 모두 담아 간단하게 정리해드려요.",
+    "publication_cycle": "매주 평일 아침",
+    "subscribe_url": "https://newneek.co/",
+    "preview_url": "https://stibee.com/api/v1.0/emails/share/suUTgJDMeeHmTsd35csnstQ23SYohM8=",
+    "image_url": "https://pincock.shop/public/8333a1d1-d6a9-4413-9179-16f2d545d060.jpeg",
+    "createdAt": "2023-05-24T11:45:21.929Z",
+    "updatedAt": "2023-05-24T12:21:15.966Z",
+    "industry": ["광고", "금융・부동산"],
+    "interests": ["경제・시사・상식", "비즈니스"]
+  },
+  {
+    "id": 2,
+    "name": "NEWNEEK",
+    "first_description": "핵심만 꾹꾹 눌러 담은  세상 돌아가는 이야기",
+    "second_description": "세상 돌아가는 소식, 뉴닉으로!",
+    "detail_description": "세상 돌아가는 소식은 궁금한데, 시간이 없다고요? <뉴닉>은 신문 볼 새 없이 바쁘지만, 세상과의 연결고리는 튼튼하게 유지하고 싶은 여러분들을 위해 세상 돌아가는 소식을 모두 담아 간단하게 정리해드려요.",
+    "publication_cycle": "매주 평일 아침",
+    "subscribe_url": "https://newneek.co/",
+    "preview_url": "https://stibee.com/api/v1.0/emails/share/suUTgJDMeeHmTsd35csnstQ23SYohM8=",
+    "image_url": "https://pincock.shop/public/8333a1d1-d6a9-4413-9179-16f2d545d060.jpeg",
+    "createdAt": "2023-05-24T11:45:21.929Z",
+    "updatedAt": "2023-05-24T12:21:15.966Z",
+    "industry": ["광고", "금융・부동산"],
+    "interests": ["경제・시사・상식", "비즈니스"]
+  }
+]
