@@ -7,11 +7,16 @@ import Onboarding from "../index";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
-  // const { clickNext, clickBefore, isActivated } = value;
+  const { clickNext, clickBefore, isActivated } = value;
   const router = useRouter();
 
   return (
-    <div>Onboarding</div>
+    <div className="flex flex-col h-full pb-20">
+      <Topbar />
+      <div className="h-2">
+        progressbar------------TODO: progressbar 분리--------------
+      </div>
+    </div>
     // <div className="flex flex-col h-full pb-20">
     //   <Topbar />
     //   <div className="h-2">

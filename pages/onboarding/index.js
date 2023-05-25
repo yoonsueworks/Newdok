@@ -43,8 +43,7 @@ export default function Onboarding() {
   value.setIsActivated = setIsActivated;
   value.isActivated = isActivated;
 
-  return;
-  <div>layout</div>;
+  return <Layout />;
   // <Layout infos={pages[step]} />;
   // TODO: progressbar < 3
 }
