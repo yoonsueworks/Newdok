@@ -15,7 +15,6 @@ export default function Card() {
           alt=""
           priority
           src="/images/thumbnail_sample.png"
-          priority
         />
       </div>
       <div className="h-fit px-6 pt-4 grid gap-y-3">
