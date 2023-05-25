@@ -11,18 +11,11 @@ export default function Layout({ infos }) {
   const router = useRouter();
 
   if (!infos) {
-    return null; // or display a loading state/error message
+    return null;
   }
   const { id, display, headline, caption, comp } = infos;
-  // console.log(infos);
 
   return (
-    // <div className="flex flex-col h-full pb-20">
-    //   <Topbar />
-    //   <div className="h-2">
-    //     progressbar------------TODO: progressbar 분리--------------
-    //   </div>
-    // </div>
     <div className="flex flex-col h-full pb-20">
       <Topbar />
       <div className="h-2">
