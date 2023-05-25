@@ -13,11 +13,16 @@ const TABS = [
 ];
 
 export default function Main() {
-  // const [datas, setDatas] = useState([])
   const [clickedTab, setClickedTab] = useState(1);
+  const [modalData, setModalData] = useState(false);
   const value = useContext(GlobalContext);
 
   const [open, setOpen] = useState(false);
+
+  const setOpenModal = (data) => {
+    setModalData(data);
+    setOpen((prev) => !prev);
+  };
 
   const changeTab = (id) => {
     setClickedTab(id);
@@ -25,13 +30,7 @@ export default function Main() {
   const clickedId = Number.parseInt(clickedTab);
 
   value.openModal = open;
-  value.setOpenModal = setOpen;
-
-  // useEffect(() => {
-  //   fetch("/data/newsletters.json")
-  //     .then((res) => res.json())
-  //     .then((res) => setInterests(res));
-  // }, []);
+  value.setOpenModal = setOpenModal;
 
   return (
     <div className="flex flex-col bg-beige-10 h-full w-full">
@@ -45,7 +44,7 @@ export default function Main() {
         {TABS[clickedId - 1].comp}
       </div>
       <div className="flex items-center justify-center h-full">
-        <Modal open={open} setOpen={setOpen} />
+        <Modal open={open} setOpen={setOpen} datas={modalData} />
       </div>
     </div>
   );

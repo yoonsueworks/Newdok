@@ -9,13 +9,27 @@ export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const [interests, setInterests] = useState([]);
-  const value = { interests: interests };
+  const [intersection, setIntersection] = useState([]);
+  const [union, setUnion] = useState([]);
+  const value = {
+    interests: interests,
+    intersection: intersection,
+    union: union,
+  };
 
   useEffect(() => {
     fetch("/data/Interest.json")
       .then((res) => res.json())
       .then((res) => setInterests(res));
+
+    fetch("/data/userInfoRequest.json")
+      .then((res) => res.json())
+      .then((res) => {
+        setIntersection(res.data.intersection);
+        setUnion(res.data.union);
+      });
   }, []);
+
   return (
     <Layout>
       <GlobalContext.Provider value={value}>
