@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { ModalProvider } from "../../components/Modal/ModalProvider";
 const Component = dynamic(() => import("./component/component"), {
   ssr: false,
