@@ -4,14 +4,15 @@ import InterestButton from "./components/InteresButton";
 
 export default function Interest() {
   const value = useContext(GlobalContext);
-  const { interests, setIsActivated } = value;
+  const { interests, setIsActivated, handleProgressWithOption } = value;
   const [userInterests, setUserInterests] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
+  const interestsArr = userInterests.length;
 
   const getUserInterests = (e) => {
     const clickedId = Number.parseInt(e.target.value);
-    if (userInterests.length === 3 && !userInterests.includes(clickedId))
-      return;
+
+    if (interestsArr === 3 && !userInterests.includes(clickedId)) return;
 
     userInterests.includes(clickedId)
       ? filterUserInterests(clickedId)
@@ -26,6 +27,9 @@ export default function Interest() {
 
   const activateButton = () => {
     setIsActivated(userInterests.length > 0 ? true : false);
+    interestsArr === 0
+      ? handleProgressWithOption(3)
+      : handleProgressWithOption(4);
   };
 
   const resetUserInterests = () => {

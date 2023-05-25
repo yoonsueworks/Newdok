@@ -7,7 +7,7 @@ import Onboarding from "../index";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
-  const { clickNext, clickBefore, isActivated } = value;
+  const { clickNext, clickBefore, isActivated, progress } = value;
   const router = useRouter();
 
   if (!infos) {
@@ -17,9 +17,7 @@ export default function Layout({ infos }) {
   return (
     <div className="flex flex-col h-full pb-20">
       <Topbar />
-      <div className="h-2">
-        progressbar---------------progressbar---------------
-      </div>
+      <div className="h-2 w-full bg-purple=30">{progress}</div>
       {/* TODO: progressbar 분리 */}
       <div className="w-full h-full flex flex-col justify-between px-5 mt-16">
         <div className="w-full flex flex-col">
@@ -47,16 +45,29 @@ export default function Layout({ infos }) {
         </div>
         {infos?.id === 1 ? (
           <div className="w-full">
-            <Button mode="alive" func={clickNext} state={true} size="big" />
+            <Button
+              mode="alive"
+              func={clickNext}
+              state={true}
+              size="big"
+              text="다음"
+            />
           </div>
         ) : (
           <div className="flex space-x-4">
-            <Button mode="ghost" func={clickBefore} state={true} size="big" />
+            <Button
+              mode="ghost"
+              func={clickBefore}
+              state={true}
+              size="big"
+              text="이전"
+            />
             <Button
               mode="alive"
               func={() => router.push("/main")}
               state={isActivated}
               size="big"
+              text="결과 보기"
             />
           </div>
         )}

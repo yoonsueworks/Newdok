@@ -1,4 +1,5 @@
-import { useState, Fragment, useEffect, useRef } from "react";
+import { useState, Fragment, useEffect, useRef, useContext } from "react";
+import { GlobalContext } from "../../_app";
 import { Listbox } from "@headlessui/react";
 
 const people = [
@@ -14,8 +15,14 @@ export default function Job() {
   const [clickArea, setClickArea] = useState(false);
   const wrapperRef = useRef(null);
 
+  const { handleProgressWithOption } = useContext(GlobalContext);
+
   const selectedCSS = "text-purple-30";
   const labelCSS = "text-warmgray-60";
+
+  useEffect(() => {
+    selectedPerson && handleProgressWithOption(2);
+  }, [selectedPerson]);
 
   useEffect(() => {
     function handleClickOutside(event) {

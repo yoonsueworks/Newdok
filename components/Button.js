@@ -1,5 +1,5 @@
 export default function Button(props) {
-  const { func, mode, state, size } = props;
+  const { func, mode, state, size, text } = props;
 
   const sizeCSS =
     size === "big"
@@ -26,7 +26,7 @@ export default function Button(props) {
       <div
         className={`${sizeCSS} ${modeCSS} ${stateCSS}  w-full flex items-center justify-center`}
       >
-        시작하기
+        {text}
       </div>
     </div>
   );
