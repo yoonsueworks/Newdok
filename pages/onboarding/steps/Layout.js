@@ -1,8 +1,8 @@
 import { useContext } from "react";
+import { useRouter } from "next/router";
 import { GlobalContext } from "../../_app";
 import Button from "../../../components/Button";
 import Topbar from "../../../components/Topbar";
-import { useRouter } from "next/router";
 import Onboarding from "../index";
 
 export default function Layout({ infos }) {
@@ -13,7 +13,6 @@ export default function Layout({ infos }) {
   if (!infos) {
     return null;
   }
-  const { id, display, headline, caption, comp } = infos;
 
   return (
     <div className="flex flex-col h-full pb-20">
@@ -24,11 +23,27 @@ export default function Layout({ infos }) {
       {/* TODO: progressbar 분리 */}
       <div className="w-full h-full flex flex-col justify-between px-5 mt-16">
         <div className="w-full flex flex-col">
-          <div className="mb-10">
+          <div className="grid gap-y-[18px] mb-10">
             <div className="display">{infos?.display}</div>
-            <div className="headline">{infos?.headline}</div>
+            <div className="headline w-[302px] flex items-end">
+              {infos?.id === 1 ? (
+                infos?.headline
+              ) : (
+                <>
+                  <div className="w-[226px] headline shrink-0">
+                    {infos?.headline}
+                  </div>
+                  <div className="title text-warmgray-50 mb-1">
+                    {infos?.caption}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
-          <div className="w-full">{infos?.comp}</div>
+          <div className="w-full relative">
+            <div className="fixed absolute w-full h-12 bottom-0 bg-gradient-to-b from-white to-transparent transform rotate-180"></div>
+            {infos?.comp}
+          </div>
         </div>
         {infos?.id === 1 ? (
           <div className="w-full">

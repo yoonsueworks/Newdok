@@ -15,7 +15,6 @@ export default function InterestButton({
       value={id}
       name="interests"
       onClick={getUserInterests}
-      // onClick={() => setIsClicked((prev) => !prev)}
       className={`${clickedCSS} w-full border rounded-2xl py-5 headline_s`}
     >
       {name}

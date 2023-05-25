@@ -14,7 +14,7 @@ export default function Job() {
   const [clickArea, setClickArea] = useState(false);
   const wrapperRef = useRef(null);
 
-  const selectedCSS = "text-purple-30 border-1 border-purple-30";
+  const selectedCSS = "text-purple-30";
   const labelCSS = "text-warmgray-60";
 
   useEffect(() => {
@@ -33,44 +33,67 @@ export default function Job() {
   return (
     <div ref={wrapperRef}>
       <Listbox value={selectedPerson} onChange={setSelectedPerson}>
-        <Listbox.Button
-          className="text-left bg-warmgray-10 p-6 w-full rounded-2xl headline_s "
-          onClick={() => setClickArea((prev) => !prev)}
-        >
-          <Listbox.Label
-            className={selectedPerson === false ? labelCSS : selectedCSS}
+        <div className="grid">
+          <Listbox.Button
+            className={`z-10 text-left bg-warmgray-10 p-6 w-full headline_s ${
+              clickArea ? "rounded-t-2xl" : "rounded-2xl "
+            } ${selectedPerson ? "border border-1 border-purple-30 " : ""}`}
+            onClick={() => setClickArea((prev) => !prev)}
           >
-            {selectedPerson === false
-              ? "산업군을 선택하세요"
-              : selectedPerson.name}
-          </Listbox.Label>
-        </Listbox.Button>
-        <div
-          className={`h-[300px] overflow-scroll ${
-            clickArea
-              ? "outline-warmgray-20 outline outline-1 "
-              : "outline-warmgray-20"
-          }`}
-        >
-          <Listbox.Options className="border-warmgray-20">
-            {people.map((person) => (
-              <Listbox.Option key={person.id} value={person} as={Fragment}>
-                {({ active, selected }) => (
-                  <li
-                    className={`${
-                      active
-                        ? "bg-warmgray-10 text-warmgray-100"
-                        : "bg-white text-warmgray-100"
-                    } flex justify-between p-6 headline_s `}
-                    onClick={() => setClickArea(false)}
-                  >
-                    {selected && <div>ddd</div>}
-                    {person.name}
-                  </li>
-                )}
-              </Listbox.Option>
-            ))}
-          </Listbox.Options>
+            <Listbox.Label
+              className={`${
+                selectedPerson === false ? labelCSS : selectedCSS
+              } flex justify-between items-center`}
+            >
+              {selectedPerson === false ? (
+                <div>"산업군을 선택하세요"</div>
+              ) : (
+                <div>{selectedPerson.name}</div>
+              )}
+
+              <div
+                className={`w-[20px] h-[10px] transition-transform duration-500 ${
+                  clickArea ? "rotate-180" : ""
+                }`}
+              >
+                <div
+                  className="object-cover bg-cover bg-center w-[20px] h-[10px]"
+                  style={{
+                    backgroundImage: `url("/images/icons/arrow.png")`,
+                  }}
+                ></div>
+              </div>
+            </Listbox.Label>
+          </Listbox.Button>
+          {clickArea ? (
+            <div
+              className={`z-0 h-[300px] overflow-scroll ${
+                clickArea
+                  ? "border-warmgray-20 border rounded-b-2xl"
+                  : "border-warmgray-20 rounded-b-2xl"
+              }`}
+            >
+              <Listbox.Options className="border-warmgray-20">
+                {people.map((person) => (
+                  <Listbox.Option key={person.id} value={person} as={Fragment}>
+                    {({ active, selected }) => (
+                      <li
+                        className={`${
+                          active
+                            ? "bg-warmgray-10 text-warmgray-100"
+                            : "bg-white text-warmgray-100"
+                        } flex justify-between p-6 headline_s `}
+                        onClick={() => setClickArea(false)}
+                      >
+                        {selected && <div>ddd</div>}
+                        {person.name}
+                      </li>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </div>
+          ) : null}
         </div>
       </Listbox>
     </div>

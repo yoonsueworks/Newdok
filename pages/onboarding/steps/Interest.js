@@ -10,6 +10,8 @@ export default function Interest() {
 
   const getUserInterests = (e) => {
     const clickedId = Number.parseInt(e.target.value);
+    if (userInterests.length === 3 && !userInterests.includes(clickedId))
+      return;
 
     userInterests.includes(clickedId)
       ? filterUserInterests(clickedId)
@@ -37,19 +39,21 @@ export default function Interest() {
   }, [userInterests]);
 
   return (
-    <div className="w-full h-420 grid grid-cols-2 gap-2 overflow-auto">
-      {interests.map(({ id, name }) => {
-        return (
-          <InterestButton
-            key={id}
-            id={id}
-            name={name}
-            isClicked={userInterests}
-            setIsClicked={setIsClicked}
-            getUserInterests={getUserInterests}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div className="w-full h-420 grid grid-cols-2 gap-2 overflow-auto">
+        {interests.map(({ id, name }) => {
+          return (
+            <InterestButton
+              key={id}
+              id={id}
+              name={name}
+              isClicked={userInterests}
+              setIsClicked={setIsClicked}
+              getUserInterests={getUserInterests}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }
