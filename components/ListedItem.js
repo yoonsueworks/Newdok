@@ -4,8 +4,9 @@ import { GlobalContext } from "../pages/_app";
 import Image from "next/image";
 import Tags from "./Tags";
 
-export default function ListedItem() {
+export default function ListedItem({ datas }) {
   const { setOpenModal } = useContext(GlobalContext);
+
   return (
     <li
       onClick={() => setOpenModal(true)}
