@@ -19,6 +19,8 @@ export default function ListedItem({ datas }) {
     detail_description,
   } = datas;
 
+  console.log(datas);
+
   return (
     <li
       onClick={() => setOpenModal(true)}
