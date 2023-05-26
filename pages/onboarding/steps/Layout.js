@@ -1,24 +1,67 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { GlobalContext } from "../../_app";
 import Button from "../../../components/Button";
 import Topbar from "../../../components/Topbar";
 import Onboarding from "../index";
+import Progressbar from "./components/progressbar";
+import API from "../../../config";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
-  const { clickNext, clickBefore, isActivated, progress } = value;
+  const {
+    clickNext,
+    clickBefore,
+    isActivated,
+    progress,
+    userInfos,
+    setIntersection,
+    setUnion,
+  } = value;
   const router = useRouter();
 
   if (!infos) {
     return null;
   }
 
+  const queryParams = {
+    industry: value.userInfos.industry,
+    interest: userInfos?.interests || [],
+  };
+
+  const params = Object.entries(queryParams)
+    .map(([key, value]) => {
+      if (Array.isArray(value)) {
+        return value
+          .map((v) => `${encodeURIComponent(key)}=${encodeURIComponent(v)}`)
+          .join("&");
+      } else {
+        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+      }
+    })
+    .join("&");
+
+  const fetchDatas = () => {
+    fetch(`${API.recommend}${params}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setIntersection(res.intersection);
+        setUnion(res.union);
+      });
+    router.push("/loadingSplash");
+
+    const timeout = setTimeout(() => {
+      router.push("/main");
+    }, 2500);
+
+    return () => clearTimeout(timeout);
+  };
+
   return (
     <div className="flex flex-col h-full pb-20">
       <Topbar />
-      <div className="h-2 w-full bg-purple=30">{progress}</div>
-      {/* TODO: progressbar 분리 */}
+      <Progressbar progress={progress} />
+      {/* <div className="h-2 w-full bg-purple=30">{progress}</div> */}
       <div className="w-full h-full flex flex-col justify-between px-5 mt-16">
         <div className="w-full flex flex-col">
           <div className="grid gap-y-[18px] mb-10">
@@ -64,7 +107,7 @@ export default function Layout({ infos }) {
             />
             <Button
               mode="alive"
-              func={() => router.push("/main")}
+              func={fetchDatas}
               state={isActivated}
               size="big"
               text="결과 보기"

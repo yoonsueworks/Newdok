@@ -1,13 +1,11 @@
 import ListedItem from "./ListedItem";
 
-export default function Lists() {
+export default function Lists({ datas }) {
   return (
     <ul className="px-5 grid gap-y-2.5 mb-9">
-      <ListedItem />
-      <ListedItem />
-      <ListedItem />
-      <ListedItem />
-      <ListedItem />
+      {datas?.map((data) => {
+        return <ListedItem key={data.id} datas={data} />;
+      })}
     </ul>
   );
 }

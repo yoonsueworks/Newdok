@@ -18,6 +18,7 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
         width={0}
         height={0}
         sizes="100vw"
+        priority={false}
         style={{ width: "100%", height: "auto" }}
       />
       <div className="absolute w-full">
@@ -35,20 +36,6 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
                 </div>
               );
             })}
-            {/* <div
-              className="w-2/4 text-center self-center headline_s text-purple-30"
-              id="recommended"
-              onClick={changeTab}
-            >
-              추천 뉴스레터
-            </div>
-            <div
-              className="w-2/4 text-center self-center headline_s text-warmgray-100"
-              id="industry"
-              onClick={changeTab}
-            >
-              산업별 뉴스레터
-            </div> */}
           </div>
         </div>
       </div>

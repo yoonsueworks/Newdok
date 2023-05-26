@@ -4,14 +4,19 @@ import InterestButton from "./components/InteresButton";
 
 export default function Interest() {
   const value = useContext(GlobalContext);
-  const { interests, setIsActivated, handleProgressWithOption } = value;
+  const {
+    interests,
+    setIsActivated,
+    handleProgressWithOption,
+    setUserInfos,
+    userInfos,
+  } = value;
   const [userInterests, setUserInterests] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const interestsArr = userInterests.length;
 
   const getUserInterests = (e) => {
     const clickedId = Number.parseInt(e.target.value);
-
     if (interestsArr === 3 && !userInterests.includes(clickedId)) return;
 
     userInterests.includes(clickedId)
@@ -27,9 +32,7 @@ export default function Interest() {
 
   const activateButton = () => {
     setIsActivated(userInterests.length > 0 ? true : false);
-    interestsArr === 0
-      ? handleProgressWithOption(3)
-      : handleProgressWithOption(4);
+    handleProgressWithOption(interestsArr > 0 ? 4 : 3);
   };
 
   const resetUserInterests = () => {
@@ -39,7 +42,19 @@ export default function Interest() {
   value.resetUserInterests = resetUserInterests;
 
   useEffect(() => {
+    const preventGoBack = () => {
+      history.pushState(null, "", location.href);
+    };
+
+    history.pushState(null, "", location.href);
+    window.addEventListener("popstate", preventGoBack);
+
+    return () => window.removeEventListener("popstate", preventGoBack);
+  }, []);
+
+  useEffect(() => {
     activateButton();
+    setUserInfos({ ...userInfos, interests: userInterests });
   }, [userInterests]);
 
   return (

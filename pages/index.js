@@ -11,11 +11,6 @@ export default function Home() {
   const router = useRouter();
   const routeOnbooarding = () => router.push("/onboarding");
 
-  // const value = useContext(GlobalContext);
-
-  // value.setProgress = setProgress;
-  // value.progress = progress;
-
   return (
     <div className="w-full h-full flex flex-col justify-between pb-20">
       <Topbar />
@@ -24,10 +19,12 @@ export default function Home() {
           <div>
             <div className="mb-10">
               <Image
-                src="/images/splash.png"
-                alt="splashImage"
-                width="207"
-                height="278"
+                src="/images/Newdok_Logo-motion.gif"
+                alt="My GIF"
+                className="object-cover mb-[44px]"
+                width="300"
+                height="400"
+                priority={true}
               />
             </div>
             <div className="headline grid text-center">

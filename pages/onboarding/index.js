@@ -1,13 +1,15 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../_app";
+
 import Job from "./steps/Job";
 import Interest from "./steps/Interest";
 import Layout from "./steps/Layout";
+import API from "../../config";
 
 const pages = [
   {
     id: 1,
-    display: "반가워요",
+    display: "반가워요👋",
     headline: `뉴스레터 추천을 위해 종사 중인 산업을 선택해 주세요.`,
     caption: "",
     comp: <Job />,
