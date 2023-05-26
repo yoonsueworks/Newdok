@@ -4,8 +4,21 @@ import { GlobalContext } from "../../../_app";
 import Image from "next/image";
 import S from "./Card.module.scss";
 
-export default function Card() {
+export default function Card({ datas }) {
   const { setOpenModal } = useContext(GlobalContext);
+  const {
+    id,
+    name,
+    image_url,
+    industries,
+    interests,
+    preview_url,
+    second_description,
+    first_description,
+    publication_cycle,
+    detail_description,
+  } = datas;
+
   return (
     <div
       onClick={() => setOpenModal(true)}
@@ -17,17 +30,14 @@ export default function Card() {
           id={S.gradient}
           width="300"
           height="300"
-          alt=""
+          alt={name}
           priority
-          src="/images/thumbnail_sample.png"
+          src={image_url}
         />
       </div>
       <div className="h-fit px-6 pt-4 grid gap-y-3">
-        <div className="headline_s">타이틀</div>
-        <div className="body">
-          이 곳에 뉴스레터 설명을 입력합니다.이 곳에 뉴스레터 설명을
-          입력합니다.이 곳에 뉴스레터
-        </div>
+        <div className="headline_s">{name}</div>
+        <div className="body">{first_description}</div>
       </div>
     </div>
   );

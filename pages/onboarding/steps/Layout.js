@@ -8,7 +8,15 @@ import API from "../../../config";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
-  const { clickNext, clickBefore, isActivated, progress, userInfos } = value;
+  const {
+    clickNext,
+    clickBefore,
+    isActivated,
+    progress,
+    userInfos,
+    setIntersection,
+    setUnion,
+  } = value;
   const router = useRouter();
 
   if (!infos) {
@@ -32,17 +40,13 @@ export default function Layout({ infos }) {
     })
     .join("&");
 
-  // const fetchDatas = () => {
-  //   fetch(`${API.recommend}${params}`)
-  //     .then((res) => res.json())
-  //     .then((res) => console.log(res));
-  //   router.push("/main");
-  // };
-
   const fetchDatas = () => {
     fetch(`${API.recommend}${params}`)
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => {
+        setIntersection(res.intersection);
+        setUnion(res.union);
+      });
     router.push("/main");
   };
 
@@ -50,7 +54,6 @@ export default function Layout({ infos }) {
     <div className="flex flex-col h-full pb-20">
       <Topbar />
       <div className="h-2 w-full bg-purple=30">{progress}</div>
-      {/* TODO: progressbar 분리 */}
       <div className="w-full h-full flex flex-col justify-between px-5 mt-16">
         <div className="w-full flex flex-col">
           <div className="grid gap-y-[18px] mb-10">

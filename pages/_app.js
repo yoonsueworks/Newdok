@@ -18,6 +18,8 @@ function MyApp({ Component, pageProps }) {
     industry: industry,
     intersection: intersection,
     union: union,
+    setIntersection: setIntersection,
+    setUnion: setUnion,
   };
 
   useEffect(() => {
@@ -28,13 +30,14 @@ function MyApp({ Component, pageProps }) {
         setIndustry(res.industry);
       });
 
-    fetch("/data/userInfoRequest.json")
-      .then((res) => res.json())
-      .then((res) => {
-        setIntersection(res.data.intersection);
-        setUnion(res.data.union);
-      });
+    // fetch("/data/userInfoRequest.json")
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     setIntersection(res.data.intersection);
+    //     setUnion(res.data.union);
+    //   });
   }, []);
+
   return (
     <Layout>
       <GlobalContext.Provider value={value}>

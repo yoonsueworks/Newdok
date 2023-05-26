@@ -14,8 +14,6 @@ export default function Job() {
   const selectedCSS = "text-purple-30";
   const labelCSS = "text-warmgray-60";
 
-  console.log(industry);
-
   useEffect(() => {
     selected && handleProgressWithOption(2);
     setUserInfos({ industry: selected.id });

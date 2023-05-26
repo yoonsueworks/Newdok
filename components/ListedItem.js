@@ -19,8 +19,6 @@ export default function ListedItem({ datas }) {
     detail_description,
   } = datas;
 
-  console.log(datas);
-
   return (
     <li
       onClick={() => setOpenModal(true)}
@@ -30,7 +28,7 @@ export default function ListedItem({ datas }) {
         <div className="w-58 h-58 rounded-full flex-shrink-0 border border-solid border-1 border-warmgray-20 relative">
           <Image
             alt=";t"
-            src="/images/thumbnail_sample.png"
+            src={image_url}
             fill
             sizes="100"
             style={{

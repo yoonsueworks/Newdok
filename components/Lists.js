@@ -6,11 +6,6 @@ export default function Lists({ datas }) {
       {datas?.map((data) => {
         return <ListedItem key={data.id} datas={data} />;
       })}
-      {/* <ListedItem />
-      
-      <ListedItem />
-      <ListedItem />
-      <ListedItem /> */}
     </ul>
   );
 }
