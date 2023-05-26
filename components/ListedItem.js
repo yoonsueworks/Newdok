@@ -18,7 +18,6 @@ export default function ListedItem({ datas }) {
     publication_cycle,
     detail_description,
   } = datas;
-  console.log(datas);
 
   return (
     <li

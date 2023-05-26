@@ -10,10 +10,12 @@ export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const [interests, setInterests] = useState([]);
+  const [industry, setIndustry] = useState([]);
   const [intersection, setIntersection] = useState([]);
   const [union, setUnion] = useState([]);
   const value = {
     interests: interests,
+    industry: industry,
     intersection: intersection,
     union: union,
   };
@@ -21,7 +23,10 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     fetch("/data/Interest.json")
       .then((res) => res.json())
-      .then((res) => setInterests(res));
+      .then((res) => {
+        setInterests(res.interests);
+        setIndustry(res.industry);
+      });
 
     fetch("/data/userInfoRequest.json")
       .then((res) => res.json())

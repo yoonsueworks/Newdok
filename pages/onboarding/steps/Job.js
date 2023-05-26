@@ -14,6 +14,8 @@ export default function Job() {
   const selectedCSS = "text-purple-30";
   const labelCSS = "text-warmgray-60";
 
+  console.log(industry);
+
   useEffect(() => {
     selected && handleProgressWithOption(2);
     setUserInfos({ industry: selected.id });
@@ -80,7 +82,7 @@ export default function Job() {
               }`}
             >
               <Listbox.Options className="border-warmgray-20">
-                {industry.map((ind) => (
+                {industry?.map((ind) => (
                   <Listbox.Option key={ind.id} value={ind} as={Fragment}>
                     {({ active, selected }) => (
                       <li
