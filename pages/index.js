@@ -19,11 +19,12 @@ export default function Home() {
           <div>
             <div className="mb-10">
               <Image
-                src="/images/splash.png"
-                alt="splashImage"
-                width="207"
-                height="278"
-                priority={false}
+                src="/images/Newdok_Logo-motion.gif"
+                alt="My GIF"
+                className="object-cover mb-[44px]"
+                width="300"
+                height="400"
+                priority={true}
               />
             </div>
             <div className="headline grid text-center">

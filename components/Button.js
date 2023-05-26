@@ -21,7 +21,7 @@ export default function Button(props) {
   return (
     <div
       className="w-full group"
-      onClick={state ? () => func() : () => alert("dd")}
+      onClick={state ? () => func() : () => alert("관심사를 선택해주세요")}
     >
       <div
         className={`${sizeCSS} ${modeCSS} ${stateCSS}  w-full flex items-center justify-center`}

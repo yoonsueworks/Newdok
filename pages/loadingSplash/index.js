@@ -21,6 +21,7 @@ export default function MyComponent() {
         className="object-cover mb-20"
         width="300"
         height="400"
+        priority={true}
       />
       <div className="headline_s text-center">
         사용자님께 맞는 <br />
