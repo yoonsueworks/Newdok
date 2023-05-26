@@ -21,7 +21,7 @@ export default function ListedItem({ datas }) {
 
   return (
     <li
-      onClick={() => setOpenModal(true)}
+      onClick={() => setOpenModal(datas)}
       className="bg-white p-6 h-max w-full border border-solid border-1 border-warmgray-20 rounded-2xl  cursor-pointer "
     >
       <div className="flex gap-x-4">
