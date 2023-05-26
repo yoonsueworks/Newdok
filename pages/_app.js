@@ -41,4 +41,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-// TODO: 사용자 선택 사항 저장
