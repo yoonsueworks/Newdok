@@ -37,8 +37,15 @@ const Modal = ({ open, setOpen, datas }) => {
           <div className="grid gap-y-6">
             <div className="h-[28px] flex justify-between items-center">
               <div className="headline text-warmgray-100">{name}</div>
-              <div className="flex">
-                <div>icon</div>
+              <div className="flex items-center">
+                <div className="w-[28px] h-[28px] mb-1">
+                  <div
+                    className="object-cover bg-cover bg-center w-[28px] h-[28px]"
+                    style={{
+                      backgroundImage: `url("/images/icons/mail_time.png")`,
+                    }}
+                  ></div>
+                </div>
                 <span>{publication_cycle}</span>
               </div>
             </div>
@@ -64,12 +71,22 @@ const Modal = ({ open, setOpen, datas }) => {
           </div>
         </div>
         <svg
+          viewBox="0 0 40 40"
           onClick={() => setOpen(false)}
-          height="200"
-          viewBox="0 0 200 200"
-          width="200"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z" />
+          <path
+            d="M7.14285 7.14307L32.8571 32.8574"
+            stroke="white"
+            stroke-width="2.85714"
+            stroke-linecap="round"
+          />
+          <path
+            d="M32.8571 7.14307L7.14286 32.8574"
+            stroke="white"
+            stroke-width="2.85714"
+            stroke-linecap="round"
+          />
         </svg>
       </div>
     </div>

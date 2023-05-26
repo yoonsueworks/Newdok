@@ -33,11 +33,13 @@
 
     svg {
         position: absolute;
-        right: 10px;
-        top: 10px;
-        height: 24px;
-        width: 24px;
-        opacity: 0.3;
+        bottom: -90px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 40px;
+        width: 40px;
+        opacity: 1;
+        fill: white;
         cursor: pointer;
 
         &:hover {
