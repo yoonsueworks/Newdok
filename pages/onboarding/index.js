@@ -1,8 +1,10 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../_app";
+
 import Job from "./steps/Job";
 import Interest from "./steps/Interest";
 import Layout from "./steps/Layout";
+import API from "../../config";
 
 const pages = [
   {

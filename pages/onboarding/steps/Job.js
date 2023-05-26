@@ -11,18 +11,21 @@ const people = [
 ];
 
 export default function Job() {
-  const [selectedPerson, setSelectedPerson] = useState(false);
+  const [selected, setSelected] = useState(false);
   const [clickArea, setClickArea] = useState(false);
   const wrapperRef = useRef(null);
 
-  const { handleProgressWithOption } = useContext(GlobalContext);
+  const value = useContext(GlobalContext);
+  const { handleProgressWithOption, setUserInfos, industry } =
+    useContext(GlobalContext);
 
   const selectedCSS = "text-purple-30";
   const labelCSS = "text-warmgray-60";
 
   useEffect(() => {
-    selectedPerson && handleProgressWithOption(2);
-  }, [selectedPerson]);
+    selected && handleProgressWithOption(2);
+    setUserInfos({ industry: selected.id });
+  }, [selected]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -39,23 +42,27 @@ export default function Job() {
 
   return (
     <div ref={wrapperRef}>
-      <Listbox value={selectedPerson} onChange={setSelectedPerson}>
+      <Listbox value={selected} onChange={setSelected}>
         <div className="grid">
           <Listbox.Button
             className={`z-10 text-left bg-warmgray-10 p-6 w-full headline_s ${
               clickArea ? "rounded-t-2xl" : "rounded-2xl "
-            } ${selectedPerson ? "border border-1 border-purple-30 " : ""}`}
+            } ${
+              selected
+                ? "border border-1 border-purple-30 "
+                : "border border-1 border-warmgray-20"
+            }`}
             onClick={() => setClickArea((prev) => !prev)}
           >
             <Listbox.Label
               className={`${
-                selectedPerson === false ? labelCSS : selectedCSS
+                selected === false ? labelCSS : selectedCSS
               } flex justify-between items-center`}
             >
-              {selectedPerson === false ? (
+              {selected === false ? (
                 <div>"산업군을 선택하세요"</div>
               ) : (
-                <div>{selectedPerson.name}</div>
+                <div>{selected.name}</div>
               )}
 
               <div
@@ -81,8 +88,8 @@ export default function Job() {
               }`}
             >
               <Listbox.Options className="border-warmgray-20">
-                {people.map((person) => (
-                  <Listbox.Option key={person.id} value={person} as={Fragment}>
+                {industry.map((ind) => (
+                  <Listbox.Option key={ind.id} value={ind} as={Fragment}>
                     {({ active, selected }) => (
                       <li
                         className={`${
@@ -92,8 +99,7 @@ export default function Job() {
                         } flex justify-between p-6 headline_s `}
                         onClick={() => setClickArea(false)}
                       >
-                        {selected && <div>ddd</div>}
-                        {person.name}
+                        {ind.name}
                       </li>
                     )}
                   </Listbox.Option>

@@ -4,7 +4,13 @@ import InterestButton from "./components/InteresButton";
 
 export default function Interest() {
   const value = useContext(GlobalContext);
-  const { interests, setIsActivated, handleProgressWithOption } = value;
+  const {
+    interests,
+    setIsActivated,
+    handleProgressWithOption,
+    setUserInfos,
+    userInfos,
+  } = value;
   const [userInterests, setUserInterests] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const interestsArr = userInterests.length;
@@ -40,6 +46,7 @@ export default function Interest() {
 
   useEffect(() => {
     activateButton();
+    setUserInfos({ ...userInfos, interests: userInterests });
   }, [userInterests]);
 
   return (

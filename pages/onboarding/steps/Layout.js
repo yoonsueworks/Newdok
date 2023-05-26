@@ -1,18 +1,50 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { GlobalContext } from "../../_app";
 import Button from "../../../components/Button";
 import Topbar from "../../../components/Topbar";
 import Onboarding from "../index";
+import API from "../../../config";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
-  const { clickNext, clickBefore, isActivated, progress } = value;
+  const { clickNext, clickBefore, isActivated, progress, userInfos } = value;
   const router = useRouter();
 
   if (!infos) {
     return null;
   }
+
+  const queryParams = {
+    industry: value.userInfos.industry,
+    interest: userInfos?.interests || [],
+  };
+
+  const params = Object.entries(queryParams)
+    .map(([key, value]) => {
+      if (Array.isArray(value)) {
+        return value
+          .map((v) => `${encodeURIComponent(key)}=${encodeURIComponent(v)}`)
+          .join("&");
+      } else {
+        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+      }
+    })
+    .join("&");
+
+  // const fetchDatas = () => {
+  //   fetch(`${API.recommend}${params}`)
+  //     .then((res) => res.json())
+  //     .then((res) => console.log(res));
+  //   router.push("/main");
+  // };
+
+  const fetchDatas = () => {
+    fetch(`${API.recommend}${params}`)
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+    router.push("/main");
+  };
 
   return (
     <div className="flex flex-col h-full pb-20">
@@ -64,7 +96,7 @@ export default function Layout({ infos }) {
             />
             <Button
               mode="alive"
-              func={() => router.push("/main")}
+              func={fetchDatas}
               state={isActivated}
               size="big"
               text="결과 보기"

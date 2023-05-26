@@ -9,13 +9,19 @@ export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const [interests, setInterests] = useState([]);
-  const value = { interests: interests };
+  const [industry, setIndustry] = useState([]);
+  const value = { interests: interests, industry: industry };
 
   useEffect(() => {
     fetch("/data/Interest.json")
       .then((res) => res.json())
-      .then((res) => setInterests(res));
+      .then((res) => {
+        const { interests, industry } = res;
+        setInterests(interests);
+        setIndustry(industry);
+      });
   }, []);
+
   return (
     <Layout>
       <GlobalContext.Provider value={value}>
@@ -27,4 +33,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-// TODO: 사용자 선택 사항 저장
