@@ -22,6 +22,8 @@ export default function HeadComp() {
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/site.webmanifest" />
+
+      <meta property="og:image" content="/images/og-image.png" />
     </Head>
   );
 }
