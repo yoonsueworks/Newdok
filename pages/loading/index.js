@@ -5,7 +5,6 @@ export default function Loading() {
   const router = useRouter();
 
   useEffect(() => {
-    // Route to the first component
     router.push("/loadingSplash");
 
     const timeout = setTimeout(() => {

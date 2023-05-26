@@ -18,7 +18,7 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
         width={0}
         height={0}
         sizes="100vw"
-        priority
+        priority={false}
         style={{ width: "100%", height: "auto" }}
       />
       <div className="absolute w-full">

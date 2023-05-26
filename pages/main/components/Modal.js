@@ -24,7 +24,14 @@ const Modal = ({ open, setOpen, datas }) => {
     <div className={` ${S.overlay} ${S.animated} ${open ? S.show : ""}`}>
       <div className={S.modal}>
         <div id={S.gradient} className="w-full h-[155px]">
-          <Image id={S.image} fill alt={name} priority src={image_url} />
+          <Image
+            id={S.image}
+            fill
+            alt={name}
+            priority
+            src={image_url}
+            sizes="100"
+          />
         </div>
         <div className="grid gap-y-9 p-6">
           <div className="grid gap-y-6">

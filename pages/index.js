@@ -23,6 +23,7 @@ export default function Home() {
                 alt="splashImage"
                 width="207"
                 height="278"
+                priority={false}
               />
             </div>
             <div className="headline grid text-center">

@@ -1,6 +1,18 @@
+import { useEffect } from "react";
 import Image from "next/image";
 
 export default function MyComponent() {
+  useEffect(() => {
+    const preventGoBack = () => {
+      history.pushState(null, "", location.href);
+    };
+
+    history.pushState(null, "", location.href);
+    window.addEventListener("popstate", preventGoBack);
+
+    return () => window.removeEventListener("popstate", preventGoBack);
+  }, []);
+
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
       <Image
