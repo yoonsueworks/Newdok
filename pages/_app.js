@@ -30,12 +30,12 @@ function MyApp({ Component, pageProps }) {
         setIndustry(res.industry);
       });
 
-    // fetch("/data/userInfoRequest.json")
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     setIntersection(res.data.intersection);
-    //     setUnion(res.data.union);
-    //   });
+    fetch("/data/userInfoRequest.json")
+      .then((res) => res.json())
+      .then((res) => {
+        setIntersection(res.data.intersection);
+        setUnion(res.data.union);
+      });
   }, []);
 
   return (

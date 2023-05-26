@@ -47,7 +47,13 @@ export default function Layout({ infos }) {
         setIntersection(res.intersection);
         setUnion(res.union);
       });
-    router.push("/main");
+    router.push("/loadingSplash");
+
+    const timeout = setTimeout(() => {
+      router.push("/main");
+    }, 2500);
+
+    return () => clearTimeout(timeout);
   };
 
   return (
