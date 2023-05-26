@@ -26,8 +26,6 @@ export default function Industry() {
   return (
     <div className="h-full bg-beige-10 grid gap-y-5">
       <ul className="pl-5 h-[44px] flex gap-x-2 overflow-auto">
-        <li className="">모든 산업</li>
-
         {industry.map((ind) => {
           return (
             <li
