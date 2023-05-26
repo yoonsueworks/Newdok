@@ -17,7 +17,6 @@ export default function Interest() {
 
   const getUserInterests = (e) => {
     const clickedId = Number.parseInt(e.target.value);
-
     if (interestsArr === 3 && !userInterests.includes(clickedId)) return;
 
     userInterests.includes(clickedId)
@@ -33,9 +32,7 @@ export default function Interest() {
 
   const activateButton = () => {
     setIsActivated(userInterests.length > 0 ? true : false);
-    interestsArr === 0
-      ? handleProgressWithOption(3)
-      : handleProgressWithOption(4);
+    handleProgressWithOption(interestsArr > 0 ? 4 : 3);
   };
 
   const resetUserInterests = () => {

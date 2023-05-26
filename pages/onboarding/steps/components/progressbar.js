@@ -4,8 +4,6 @@ import S from "./progressbar.module.css";
 export default function Progressbar({ progress }) {
   const [style, setStyle] = useState({});
 
-  console.log(progress);
-
   useEffect(() => {
     if (progress === 1) {
       setStyle({
@@ -22,9 +20,9 @@ export default function Progressbar({ progress }) {
         width: `75%`,
         backgroundColor: "#674188",
       });
-    } else {
+    } else if (progress === 4) {
       setStyle({
-        progress: `100%`,
+        width: `100%`,
         backgroundColor: "#674188",
       });
     }
