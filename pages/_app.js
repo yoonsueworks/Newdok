@@ -10,20 +10,36 @@ export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const [interests, setInterests] = useState([]);
-  const value = { interests: interests };
+  const [intersection, setIntersection] = useState([]);
+  const [union, setUnion] = useState([]);
+  const value = {
+    interests: interests,
+    intersection: intersection,
+    union: union,
+  };
 
   useEffect(() => {
     fetch("/data/Interest.json")
       .then((res) => res.json())
       .then((res) => setInterests(res));
+
+    fetch("/data/userInfoRequest.json")
+      .then((res) => res.json())
+      .then((res) => {
+        setIntersection(res.data.intersection);
+        setUnion(res.data.union);
+      });
   }, []);
 
+<<<<<<< HEAD
   // useEffect(() => {
   //   fetch(`${API.recommend}industry=1&interest=1&interest=3`)
   //     .then((res) => res.json)
   //     .then((res) => console.log(res));
   // }, []);
 
+=======
+>>>>>>> feat/main
   return (
     <Layout>
       <GlobalContext.Provider value={value}>
@@ -35,4 +51,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-// TODO: 사용자 선택 사항 저장
