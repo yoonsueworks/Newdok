@@ -7,7 +7,8 @@ export default function Industry() {
   const [selectedIndustry, setSelectedIndustry] = useState(1);
   const [list, setList] = useState(INITIAL_DATA);
   const [fetchedList, setFetchedList] = useState([]);
-  const { industry } = useContext(GlobalContext);
+  const value = useContext(GlobalContext);
+  const { industry } = value;
 
   const sharedCSS =
     "w-max h-full flex inline-block text-center self-center items-center px-4 rounded-[10px] title";
@@ -28,7 +29,6 @@ export default function Industry() {
     if (checkFetchedList(id)) {
       const list = fetchedList[id];
       setList(list);
-      console.log(list);
     }
   };
 
@@ -53,6 +53,15 @@ export default function Industry() {
   return (
     <div className="h-full bg-beige-10 grid gap-y-5">
       <ul className="pl-5 h-[44px] flex gap-x-2 overflow-auto">
+        <li
+          id="1"
+          className={`${sharedCSS} ${
+            selectedIndustry === 1 ? clickedCSS : unClickedCSS
+          }`}
+          onClick={() => fetchLists("1")}
+        >
+          <div className="w-max overflow-wrap-break-word">모든 산업</div>
+        </li>
         {industry.map((ind) => {
           return (
             <li

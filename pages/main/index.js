@@ -18,6 +18,7 @@ export default function Main() {
   const [clickedTab, setClickedTab] = useState(1);
   const [modalData, setModalData] = useState(false);
   const value = useContext(GlobalContext);
+  const router = useRouter();
   const { setIntersection, setUnion } = value;
 
   const [open, setOpen] = useState(false);
@@ -42,7 +43,10 @@ export default function Main() {
 
   useEffect(() => {
     const preventGoBack = () => {
+      // change start
       history.pushState(null, "", location.href);
+      // change end
+      console.log("prevent go back!");
     };
 
     history.pushState(null, "", location.href);

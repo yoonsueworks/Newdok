@@ -46,6 +46,7 @@ export default function Layout({ infos }) {
               state={isActivated}
               size="big"
               text="다음"
+              onboarding="산업군을"
             />
           </div>
         ) : (
@@ -63,6 +64,7 @@ export default function Layout({ infos }) {
               state={isActivated}
               size="big"
               text="결과 보기"
+              onboarding="관심사를"
             />
           </div>
         )}

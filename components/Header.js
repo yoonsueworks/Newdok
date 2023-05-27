@@ -1,9 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Topbar from "./Topbar";
 
 export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
+  const router = useRouter();
   const clickedCSS =
     "h-full w-2/4 flex justify-center items-center headline_s text-purple-30 border-b-2 border-purple-30";
   const unClickedCss =
@@ -13,6 +13,7 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
     <header className="w-full absolute fixed z-10 cursor-pointer">
       <Topbar />
       <Image
+        onClick={() => router.reload()}
         src="/images/GNB.png"
         alt="splashImage"
         width={0}

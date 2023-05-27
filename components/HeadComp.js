@@ -3,7 +3,7 @@ import Head from "next/head";
 export default function HeadComp() {
   return (
     <Head>
-      <title>NewdoK | (캐치프레이즈 문구 TBU)</title>
+      <title>Newdok :: 뉴스레터 큐레이션</title>
       <link
         rel="apple-touch-icon"
         sizes="180x180"
