@@ -107,7 +107,9 @@ export default function Onboarding() {
   value.handleProgressWithOption = handleProgressWithOption;
   value.fetchDatas = fetchDatas;
 
-  sessionStorage.setItem("params", params);
+  typeof window !== "undefined"
+    ? sessionStorage.setItem("params", params)
+    : null;
 
   return <Layout infos={pages[step]} />;
 }
