@@ -33,10 +33,7 @@ export default function Layout({ infos }) {
               )}
             </div>
           </div>
-          <div className="w-full relative">
-            <div className="fixed absolute w-full h-12 bottom-0 bg-gradient-to-b from-white to-transparent transform rotate-180"></div>
-            {infos?.comp}
-          </div>
+          <div className="w-full relative">{infos?.comp}</div>
         </div>
         {infos?.id === 1 ? (
           <div className="w-full">

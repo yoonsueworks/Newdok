@@ -73,9 +73,10 @@ export default function Job() {
           </Listbox.Button>
           {clickArea ? (
             <div
-              className={`z-0 h-[300px] overflow-scroll ${
+              id="onboardIndustryBox"
+              className={`z-0 overflow-scroll cursor-pointer ${
                 clickArea
-                  ? "border-warmgray-20 border rounded-b-2xl"
+                  ? "border-b border-x border-warmgray-20  rounded-b-2xl"
                   : "border-warmgray-20 rounded-b-2xl"
               }`}
             >

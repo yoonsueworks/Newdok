@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { GlobalContext } from "../../_app";
 import InterestButton from "./components/InteresButton";
 
@@ -14,6 +14,8 @@ export default function Interest() {
   const [userInterests, setUserInterests] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
   const interestsArr = userInterests.length;
+  const scrollContainerRef = useRef(null);
+  const gradientRef = useRef(null);
 
   const getUserInterests = (e) => {
     const clickedId = Number.parseInt(e.target.value);
@@ -57,9 +59,40 @@ export default function Interest() {
     setUserInfos({ ...userInfos, interests: userInterests });
   }, [userInterests]);
 
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    const gradientElement = gradientRef.current;
+
+    const handleScroll = () => {
+      const isAtBottom =
+        scrollContainer.scrollHeight - scrollContainer.scrollTop ===
+        scrollContainer.clientHeight;
+
+      if (isAtBottom) {
+        gradientElement.style.display = "none";
+      } else {
+        gradientElement.style.display = "block";
+      }
+    };
+
+    scrollContainer.addEventListener("scroll", handleScroll);
+
+    return () => {
+      scrollContainer.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <div className="w-full h-420 grid grid-cols-2 gap-2 overflow-auto">
+      <div
+        className="fixed absolute w-full h-12 bottom-0 bg-gradient-to-b from-white to-transparent transform rotate-180"
+        ref={gradientRef}
+      ></div>
+      <div
+        id="onboardInterestsBox"
+        className="w-full grid grid-cols-2 gap-2 overflow-auto"
+        ref={scrollContainerRef}
+      >
         {interests.map(({ id, name }) => {
           return (
             <InterestButton
