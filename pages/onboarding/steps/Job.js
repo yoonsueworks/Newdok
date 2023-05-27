@@ -7,8 +7,7 @@ export default function Job() {
   const [clickArea, setClickArea] = useState(false);
   const wrapperRef = useRef(null);
 
-  const value = useContext(GlobalContext);
-  const { handleProgressWithOption, setUserInfos, industry } =
+  const { handleProgressWithOption, setUserInfos, industry, setIsActivated } =
     useContext(GlobalContext);
 
   const selectedCSS = "text-purple-30";
@@ -16,6 +15,7 @@ export default function Job() {
 
   useEffect(() => {
     selected && handleProgressWithOption(2);
+    selected && setIsActivated(true);
     setUserInfos({ industry: selected.id });
   }, [selected]);
 
@@ -52,7 +52,7 @@ export default function Job() {
               } flex justify-between items-center`}
             >
               {selected === false ? (
-                <div>"산업군을 선택하세요"</div>
+                <div>산업군을 선택하세요</div>
               ) : (
                 <div>{selected.name}</div>
               )}

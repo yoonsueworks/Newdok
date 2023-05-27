@@ -43,7 +43,7 @@ export default function Layout({ infos }) {
             <Button
               mode="alive"
               func={clickNext}
-              state={true}
+              state={isActivated}
               size="big"
               text="다음"
             />
