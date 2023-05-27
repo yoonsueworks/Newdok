@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 
-export default function MyComponent() {
+export default function LoadingSplash() {
   useEffect(() => {
     const preventGoBack = () => {
       history.pushState(null, "", location.href);

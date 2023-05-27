@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../_app";
 import Lists from "../../../components/Lists";
 import API from "../../../config";
@@ -6,6 +6,7 @@ import API from "../../../config";
 export default function Industry() {
   const [selectedIndustry, setSelectedIndustry] = useState(1);
   const [list, setList] = useState(INITIAL_DATA);
+  const [fetchedList, setFetchedList] = useState([]);
   const { industry } = useContext(GlobalContext);
 
   const sharedCSS =
@@ -15,12 +16,39 @@ export default function Industry() {
   const unClickedCSS =
     "bg-white text-purple-30 border border-1 border-solid border-purple-30 overscroll-auto";
 
+  const preventRequest = (id, arr) => {
+    fetchLists && setFetchedList((prevList) => ({ ...prevList, [id]: arr }));
+  };
+
+  const checkFetchedList = (id) => {
+    return Object.keys(fetchedList).includes(String(id));
+  };
+
+  const setExistingList = (id) => {
+    if (checkFetchedList(id)) {
+      const list = fetchedList[id];
+      setList(list);
+      console.log(list);
+    }
+  };
+
   const fetchLists = (id) => {
     setSelectedIndustry(id);
-    fetch(`${API.industry}${selectedIndustry}`)
-      .then((res) => res.json())
-      .then((res) => setList(res));
+    if (!checkFetchedList(id)) {
+      fetch(`${API.industry}${id}`)
+        .then((res) => res.json())
+        .then((res) => {
+          setList(res);
+          preventRequest(id, res);
+        });
+    } else {
+      setExistingList(id);
+    }
   };
+
+  useEffect(() => {
+    fetchLists(1);
+  }, []);
 
   return (
     <div className="h-full bg-beige-10 grid gap-y-5">
@@ -28,6 +56,7 @@ export default function Industry() {
         {industry.map((ind) => {
           return (
             <li
+              id={ind.id}
               key={ind.id}
               className={`${sharedCSS} ${
                 selectedIndustry === ind.id ? clickedCSS : unClickedCSS
@@ -43,21 +72,6 @@ export default function Industry() {
     </div>
   );
 }
-
-// export async function getServerSideProps() {
-
-//   const initialData = await fetch("/your-api-endpoint").then((response) =>
-//     response.json()
-//   );
-
-//   return {
-//     props: {
-//       initialData,
-//     },
-//   };
-// }
-
-// export default YourComponent;
 
 const INITIAL_DATA = [
   {

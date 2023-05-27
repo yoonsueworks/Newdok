@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import S from "./modal.module.scss";
 import Button from "../../../components/Button";
+import Tags from "../../../components/Tags";
 
 const Modal = ({ open, setOpen, datas }) => {
   if (!datas) return;
@@ -23,7 +24,10 @@ const Modal = ({ open, setOpen, datas }) => {
   return (
     <div className={` ${S.overlay} ${S.animated} ${open ? S.show : ""}`}>
       <div className={S.modal}>
-        <div id={S.gradient} className="w-full h-[155px]">
+        <div id={S.gradient} className="w-full h-[155px] relative">
+          <div className="absolute bottom-4 left-4 z-10">
+            <Tags interests={interests} />
+          </div>
           <Image
             id={S.image}
             fill

@@ -12,7 +12,7 @@
 
 .modal {
     background-color: #fff;
-    width: 90%;
+    width: 90.5%;
     min-width: 300px;
     height: fit-content;
     border-radius: 16px;
@@ -26,9 +26,12 @@
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.5s ease-in-out;
 
+
     img {
-        border-radius: 5px;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
         width: 100%;
+        mix-blend-mode: multiply;
     }
 
     svg {
@@ -74,4 +77,9 @@
 #image {
     height: 155px !important;
     object-fit: cover;
+}
+
+#gradient {
+    border-radius: 16px 16px 0px 0px;
+    background: linear-gradient(180deg, rgba(103, 65, 136, 0.8) 0%, rgba(195, 172, 208, 0.8) 100%);
 }

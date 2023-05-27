@@ -1,23 +1,35 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useMemo } from "react";
 
 import Head from "next/head";
 import Layout from "./Layout";
 import HeadComp from "../components/HeadComp";
 import "../styles/globals.css";
-import API from "../config";
 
 export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const [interests, setInterests] = useState([]);
   const [industry, setIndustry] = useState([]);
+  const industries = useMemo(() => {
+    return industry;
+  }, [industry]);
+  const interest = useMemo(() => {
+    return interests;
+  }, [interests]);
   const [intersection, setIntersection] = useState([]);
+  const intersectionArr = useMemo(() => {
+    return intersection;
+  }, [intersection]);
   const [union, setUnion] = useState([]);
+  const unionArr = useMemo(() => {
+    return union;
+  }, [union]);
+
   const value = {
-    interests: interests,
-    industry: industry,
-    intersection: intersection,
-    union: union,
+    interests: interest,
+    industry: industries,
+    intersection: intersectionArr,
+    union: unionArr,
     setIntersection: setIntersection,
     setUnion: setUnion,
   };
@@ -28,13 +40,6 @@ function MyApp({ Component, pageProps }) {
       .then((res) => {
         setInterests(res.interests);
         setIndustry(res.industry);
-      });
-
-    fetch("/data/userInfoRequest.json")
-      .then((res) => res.json())
-      .then((res) => {
-        setIntersection(res.data.intersection);
-        setUnion(res.data.union);
       });
   }, []);
 
