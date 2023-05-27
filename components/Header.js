@@ -21,6 +21,7 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
         priority={false}
         style={{ width: "100%", height: "auto" }}
       />
+
       <div className="absolute w-full">
         <div className="top-0 bg-white">
           <div className="h-14 flex w-full">

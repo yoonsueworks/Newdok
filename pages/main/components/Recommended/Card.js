@@ -33,10 +33,11 @@ export default function Card({ datas }) {
         <Image
           id={S.size}
           fill
+          responsive="true"
           alt={name}
-          priority
           src={image_url}
-          sizes="100"
+          loading="lazy"
+          required
         />
       </div>
       <div className="h-fit px-6 pt-4 grid gap-y-3">
