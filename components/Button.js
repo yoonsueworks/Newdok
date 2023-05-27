@@ -10,7 +10,7 @@ export default function Button(props) {
 
   const modeCSS =
     mode === "ghost"
-      ? "bg-white border border-purple-30 text-purple-30 cursor-pointer"
+      ? "bg-white ring-1 ring-purple-30 inset-0 text-purple-30 cursor-pointer"
       : "bg-purple-30 group-hover:bg-purple-20 text-white cursor-pointer";
 
   const stateCSS =

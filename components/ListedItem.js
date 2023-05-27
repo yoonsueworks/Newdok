@@ -40,8 +40,8 @@ export default function ListedItem({ datas }) {
         <div>
           <h4 className="title mb-1">{name}</h4>
           <div className="label break-keep w-full">
-            <span className="block">{first_description}</span>
-            <span>{second_description}</span>
+            {/* <span className="block">{first_description}</span> */}
+            <span className="block">{second_description}</span>
           </div>
           <Tags interests={interests} />
         </div>
