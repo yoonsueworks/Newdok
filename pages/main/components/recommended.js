@@ -1,10 +1,11 @@
-import { memo, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../../_app";
 
 import Lists from "../../../components/Lists";
 import ListTitle from "./Recommended/ListTitle";
 import CardTitle from "./Recommended/CardTitle";
 import Cards from "./Recommended/Cards";
+import LoadingSplash from "../../loadingSplash";
 
 export default function Recommended() {
   const { union } = useContext(GlobalContext);
@@ -42,7 +43,9 @@ export default function Recommended() {
           </div>
         </>
       ) : (
-        <div>loading</div>
+        <div className="bg-white w-full h-full">
+          <LoadingSplash />
+        </div>
       )}
     </div>
   );
