@@ -15,7 +15,10 @@ export default function Home() {
     <div className="w-full h-full flex flex-col justify-between pb-20">
       <Topbar />
       <div className="w-full h-full flex flex-col justify-end">
-        <div className="h-max px-5 flex flex-col items-center gap-y-[166px]">
+        <div
+          id="buttonPlacementMain"
+          className="h-max px-5 flex flex-col items-center "
+        >
           <div>
             <div className="mb-10">
               <Image

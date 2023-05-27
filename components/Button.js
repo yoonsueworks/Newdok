@@ -1,5 +1,5 @@
 export default function Button(props) {
-  const { func, mode, state, size, text } = props;
+  const { func, mode, state, size, text, onboarding } = props;
 
   const sizeCSS =
     size === "big"
@@ -21,7 +21,7 @@ export default function Button(props) {
   return (
     <div
       className="w-full group"
-      onClick={state ? () => func() : () => alert("관심사를 선택해주세요")}
+      onClick={state ? () => func() : () => alert(`${onboarding} 선택해주세요`)}
     >
       <div
         className={`${sizeCSS} ${modeCSS} ${stateCSS}  w-full flex items-center justify-center`}

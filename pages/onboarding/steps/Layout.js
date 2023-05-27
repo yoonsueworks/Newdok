@@ -33,10 +33,7 @@ export default function Layout({ infos }) {
               )}
             </div>
           </div>
-          <div className="w-full relative">
-            <div className="fixed absolute w-full h-12 bottom-0 bg-gradient-to-b from-white to-transparent transform rotate-180"></div>
-            {infos?.comp}
-          </div>
+          <div className="w-full relative">{infos?.comp}</div>
         </div>
         {infos?.id === 1 ? (
           <div className="w-full">
@@ -46,6 +43,7 @@ export default function Layout({ infos }) {
               state={isActivated}
               size="big"
               text="다음"
+              onboarding="산업군을"
             />
           </div>
         ) : (
@@ -63,6 +61,7 @@ export default function Layout({ infos }) {
               state={isActivated}
               size="big"
               text="결과 보기"
+              onboarding="관심사를"
             />
           </div>
         )}
