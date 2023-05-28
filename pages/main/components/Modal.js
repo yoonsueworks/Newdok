@@ -38,7 +38,7 @@ const Modal = ({ open, setOpen, datas }) => {
           />
         </div>
         <div className="grid gap-y-9 p-6">
-          <div className="grid gap-y-6">
+          <div className="grid gap-y-2.5">
             <div className="h-[28px] flex justify-between items-center">
               <div className="headline text-warmgray-100">{name}</div>
               <div className="flex items-center">

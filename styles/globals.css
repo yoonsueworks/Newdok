@@ -45,7 +45,6 @@ body {
 }
 
 #buttonPlacementMain {
-  /* gap-y-[166px] */
   row-gap: 166px;
 }
 
@@ -62,9 +61,9 @@ body {
     width: 100vw;
     max-width: 430px;
     min-width: 320px;
-    justify-content: flex-start; /* Align content to the top */
-    height: 100vh; /* Remove fixed height to allow content to expand vertically */
-    min-height: 750px; /* Remove fixed height to allow content to expand vertically */
+    justify-content: flex-start;
+    height: 100vh;
+    min-height: 750px;
   }
 
   #__next {
