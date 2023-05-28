@@ -32,7 +32,8 @@ html {
 body {
   position: fixed;
   width: 430px;
-  height: 900px;
+  max-height: 900px;
+  height: 95vh;
   overflow: auto;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   background-color: #ffffff;
@@ -56,13 +57,13 @@ body {
   height: 420px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 895px) {
   body {
     width: 100vw;
     max-width: 430px;
     min-width: 320px;
     justify-content: flex-start; /* Align content to the top */
-    height: 95vh; /* Remove fixed height to allow content to expand vertically */
+    height: 100vh; /* Remove fixed height to allow content to expand vertically */
     min-height: 750px; /* Remove fixed height to allow content to expand vertically */
   }
 
@@ -76,18 +77,26 @@ body {
   }
 
   #buttonPlacementMain {
-    /* gap-y-[166px] */
     row-gap: 40px;
+    margin-bottom: 80px;
   }
 
   #onboardIndustryBox {
     height: 236px;
   }
+
+  #onboardInterestsBox {
+    height: 350px;
+  }
+
+  #gif {
+    width: 60vw;
+  }
 }
 
 @media only screen and (max-width: 400px) {
   #onboardInterestsBox {
-    height: 330px;
+    height: 280px;
   }
 }
 a {
