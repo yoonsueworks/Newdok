@@ -14,7 +14,7 @@ export default function LoadingSplash() {
   }, []);
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center">
+    <div className="w-full h-full flex flex-col justify-start items-center mt-6 bg-white">
       <Image
         src="/images/Newdok_Logo-motion.gif"
         alt="My GIF"
