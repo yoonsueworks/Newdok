@@ -85,7 +85,7 @@ export default function Interest() {
   return (
     <>
       <div
-        className="fixed absolute w-full h-12 bottom-0 bg-gradient-to-b from-white to-transparent transform rotate-180"
+        className="fixed absolute w-full h-12 bottom-[-1px] bg-gradient-to-b from-white to-transparent transform rotate-180"
         ref={gradientRef}
       ></div>
       <div
