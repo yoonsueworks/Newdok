@@ -5,6 +5,7 @@ import Image from "next/image";
 import Tags from "./Tags";
 
 export default function ListedItem({ datas }) {
+<<<<<<< HEAD
   const { setOpenModal, modalData } = useContext(GlobalContext);
 
   if (!datas) return;
@@ -21,6 +22,20 @@ export default function ListedItem({ datas }) {
     image_url,
     industries,
     interests,
+=======
+  const { setOpenModal } = useContext(GlobalContext);
+  const {
+    id,
+    name,
+    image_url,
+    industries,
+    interests,
+    preview_url,
+    second_description,
+    first_description,
+    publication_cycle,
+    detail_description,
+>>>>>>> 3165242df132952738126f6da7173187733442a1
   } = datas;
 
   return (
@@ -44,10 +59,17 @@ export default function ListedItem({ datas }) {
         <div>
           <h4 className="title mb-1">{name}</h4>
           <div className="label break-keep w-full">
+<<<<<<< HEAD
             <span className="block">{first_description}</span>
             <span>{second_description}</span>
           </div>
           <Tags tags={interests} />
+=======
+            {/* <span className="block">{first_description}</span> */}
+            <span className="block">{second_description}</span>
+          </div>
+          <Tags interests={interests} />
+>>>>>>> 3165242df132952738126f6da7173187733442a1
         </div>
       </div>
     </li>

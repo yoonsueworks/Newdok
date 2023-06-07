@@ -1,7 +1,3 @@
-import { useState, useContext } from "react";
-import { GlobalContext } from "./_app";
-
-import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Button from "../components/Button";
@@ -15,14 +11,20 @@ export default function Home() {
     <div className="w-full h-full flex flex-col justify-between pb-20">
       <Topbar />
       <div className="w-full h-full flex flex-col justify-end">
-        <div className="h-max px-5 flex flex-col items-center gap-y-[166px]">
+        <div
+          id="buttonPlacementMain"
+          className="h-max px-5 flex flex-col items-center "
+        >
           <div>
             <div className="mb-10">
               <Image
-                src="/images/splash.png"
-                alt="splashImage"
-                width="207"
-                height="278"
+                src="/images/Newdok_Logo-motion.gif"
+                alt="뉴독 서비스 로고: 우편함"
+                id="gif"
+                className="object-cover mb-[44px]"
+                width="300"
+                height="400"
+                priority={true}
               />
             </div>
             <div className="headline grid text-center">

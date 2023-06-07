@@ -1,9 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Topbar from "./Topbar";
 
 export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
+  const router = useRouter();
   const clickedCSS =
     "h-full w-2/4 flex justify-center items-center headline_s text-purple-30 border-b-2 border-purple-30";
   const unClickedCss =
@@ -13,13 +13,16 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
     <header className="w-full absolute fixed z-10 cursor-pointer">
       <Topbar />
       <Image
+        onClick={() => router.reload()}
         src="/images/GNB.png"
         alt="splashImage"
         width={0}
         height={0}
         sizes="100vw"
+        priority={false}
         style={{ width: "100%", height: "auto" }}
       />
+
       <div className="absolute w-full">
         <div className="top-0 bg-white">
           <div className="h-14 flex w-full">
@@ -35,20 +38,6 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
                 </div>
               );
             })}
-            {/* <div
-              className="w-2/4 text-center self-center headline_s text-purple-30"
-              id="recommended"
-              onClick={changeTab}
-            >
-              추천 뉴스레터
-            </div>
-            <div
-              className="w-2/4 text-center self-center headline_s text-warmgray-100"
-              id="industry"
-              onClick={changeTab}
-            >
-              산업별 뉴스레터
-            </div> */}
           </div>
         </div>
       </div>

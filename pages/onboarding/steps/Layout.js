@@ -3,22 +3,17 @@ import { useRouter } from "next/router";
 import { GlobalContext } from "../../_app";
 import Button from "../../../components/Button";
 import Topbar from "../../../components/Topbar";
-import Onboarding from "../index";
+import Progressbar from "./components/progressbar";
+import API from "../../../config";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
-  const { clickNext, clickBefore, isActivated, progress } = value;
-  const router = useRouter();
-
-  if (!infos) {
-    return null;
-  }
+  const { clickNext, clickBefore, isActivated, progress, fetchDatas } = value;
 
   return (
     <div className="flex flex-col h-full pb-20">
       <Topbar />
-      <div className="h-2 w-full bg-purple=30">{progress}</div>
-      {/* TODO: progressbar 분리 */}
+      <Progressbar progress={progress} />
       <div className="w-full h-full flex flex-col justify-between px-5 mt-16">
         <div className="w-full flex flex-col">
           <div className="grid gap-y-[18px] mb-10">
@@ -38,19 +33,17 @@ export default function Layout({ infos }) {
               )}
             </div>
           </div>
-          <div className="w-full relative">
-            <div className="fixed absolute w-full h-12 bottom-0 bg-gradient-to-b from-white to-transparent transform rotate-180"></div>
-            {infos?.comp}
-          </div>
+          <div className="w-full relative">{infos?.comp}</div>
         </div>
         {infos?.id === 1 ? (
           <div className="w-full">
             <Button
               mode="alive"
               func={clickNext}
-              state={true}
+              state={isActivated}
               size="big"
               text="다음"
+              onboarding="산업군을"
             />
           </div>
         ) : (
@@ -64,10 +57,11 @@ export default function Layout({ infos }) {
             />
             <Button
               mode="alive"
-              func={() => router.push("/main")}
+              func={fetchDatas}
               state={isActivated}
               size="big"
               text="결과 보기"
+              onboarding="관심사를"
             />
           </div>
         )}

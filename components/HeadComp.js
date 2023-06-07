@@ -1,9 +1,10 @@
 import Head from "next/head";
 
 export default function HeadComp() {
+  const title = "Newdok :: 뉴스레터 큐레이션";
   return (
     <Head>
-      <title>NewdoK | (캐치프레이즈 문구 TBU)</title>
+      <title>{title}</title>
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -22,6 +23,8 @@ export default function HeadComp() {
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/site.webmanifest" />
+      <meta property="og:image" content="/images/og-image.png" />
+      <meta property="og:title" name="title" content={title} />
     </Head>
   );
 }
