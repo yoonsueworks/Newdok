@@ -74,16 +74,6 @@
     }
 }
 
-<<<<<<< HEAD
-#gradient {
-    background: linear-gradient(180deg, rgba(103, 65, 136, 0.8) 0%, rgba(195, 172, 208, 0.8) 100%);
-    mix-blend-mode: multiply;
-    border-radius: 16px 16px 0px 0px;
-}
-
-#card {
-    border-radius: 16px;
-=======
 #image {
     height: 155px !important;
     object-fit: cover;
@@ -92,5 +82,4 @@
 #gradient {
     border-radius: 16px 16px 0px 0px;
     background: linear-gradient(180deg, rgba(103, 65, 136, 0.8) 0%, rgba(195, 172, 208, 0.8) 100%);
->>>>>>> 3165242df132952738126f6da7173187733442a1
 }

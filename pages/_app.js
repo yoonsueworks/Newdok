@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState, useMemo } from "react";
 
-import Head from "next/head";
 import Layout from "./Layout";
 import HeadComp from "../components/HeadComp";
 import "../styles/globals.css";
@@ -9,14 +8,6 @@ export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const [interests, setInterests] = useState([]);
-<<<<<<< HEAD
-  const [intersection, setIntersection] = useState([]);
-  const [union, setUnion] = useState([]);
-  const value = {
-    interests: interests,
-    intersection: intersection,
-    union: union,
-=======
   const [industry, setIndustry] = useState([]);
   const industries = useMemo(() => {
     return industry;
@@ -40,14 +31,16 @@ function MyApp({ Component, pageProps }) {
     union: unionArr,
     setIntersection: setIntersection,
     setUnion: setUnion,
->>>>>>> 3165242df132952738126f6da7173187733442a1
   };
 
   useEffect(() => {
     fetch("/data/Interest.json")
       .then((res) => res.json())
-<<<<<<< HEAD
-      .then((res) => setInterests(res));
+      .then((res) => {
+        setInterests(res.interests);
+        setIndustry(res.industry);
+      });
+    // .then((res) => setInterests(res));
 
     fetch("/data/userInfoRequest.json")
       .then((res) => res.json())
@@ -57,23 +50,19 @@ function MyApp({ Component, pageProps }) {
       });
   }, []);
 
-<<<<<<< HEAD
   // useEffect(() => {
+  // fetch("/data/Interest.json")
   //   fetch(`${API.recommend}industry=1&interest=1&interest=3`)
   //     .then((res) => res.json)
   //     .then((res) => console.log(res));
   // }, []);
 
-=======
->>>>>>> feat/main
-=======
-      .then((res) => {
-        setInterests(res.interests);
-        setIndustry(res.industry);
-      });
-  }, []);
+  //     .then((res) => {
+  //       setInterests(res.interests);
+  //       setIndustry(res.industry);
+  //     });
+  // }, []);
 
->>>>>>> 3165242df132952738126f6da7173187733442a1
   return (
     <Layout>
       <GlobalContext.Provider value={value}>

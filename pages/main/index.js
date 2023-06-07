@@ -35,8 +35,6 @@ export default function Main() {
 
   value.openModal = open;
   value.setOpenModal = setOpenModal;
-<<<<<<< HEAD
-=======
 
   const preventClose = (e) => {
     e.preventDefault();
@@ -78,7 +76,6 @@ export default function Main() {
         setUnion(res.union);
       });
   }, []);
->>>>>>> 3165242df132952738126f6da7173187733442a1
 
   return (
     <div className="flex flex-col bg-beige-10 h-full w-full">

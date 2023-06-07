@@ -24,17 +24,6 @@ const Modal = ({ open, setOpen, datas }) => {
   return (
     <div className={` ${S.overlay} ${S.animated} ${open ? S.show : ""}`}>
       <div className={S.modal}>
-<<<<<<< HEAD
-        <div id={S.gradient} className="w-full h-[155px]">
-          <Image width="300" height="300" alt={name} priority src={image_url} />
-        </div>
-        <div className="grid gap-y-9 p-6">
-          <div className="grid gap-y-6">
-            <div className="h-[28px] flex justify-between items-center">
-              <div className="headline text-warmgray-100">{name}</div>
-              <div className="flex">
-                <div>icon</div>
-=======
         <div id={S.gradient} className="w-full h-[155px] relative">
           <div className="absolute bottom-4 left-4 z-10">
             <Tags interests={interests} />
@@ -61,7 +50,6 @@ const Modal = ({ open, setOpen, datas }) => {
                     }}
                   ></div>
                 </div>
->>>>>>> 3165242df132952738126f6da7173187733442a1
                 <span>{publication_cycle}</span>
               </div>
             </div>
@@ -87,14 +75,6 @@ const Modal = ({ open, setOpen, datas }) => {
           </div>
         </div>
         <svg
-<<<<<<< HEAD
-          onClick={() => setOpen(false)}
-          height="200"
-          viewBox="0 0 200 200"
-          width="200"
-        >
-          <path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z" />
-=======
           viewBox="0 0 40 40"
           onClick={() => setOpen(false)}
           xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +91,6 @@ const Modal = ({ open, setOpen, datas }) => {
             stroke-width="2.85714"
             stroke-linecap="round"
           />
->>>>>>> 3165242df132952738126f6da7173187733442a1
         </svg>
       </div>
     </div>

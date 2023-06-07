@@ -30,9 +30,6 @@ export default function Card({ datas }) {
       className="h-[300px] w-[289px] inline-block bg-white flex flex-col border border-solid border-1 border-warmgray-20 cursor-pointer"
     >
       <div id={S.gradient} className="w-full h-[155px]">
-<<<<<<< HEAD
-        <Image width="300" height="300" alt={name} priority src={image_url} />
-=======
         <Image
           id={S.size}
           fill
@@ -42,7 +39,6 @@ export default function Card({ datas }) {
           loading="lazy"
           required
         />
->>>>>>> 3165242df132952738126f6da7173187733442a1
       </div>
       <div className="h-fit px-6 pt-4 grid gap-y-3">
         <div className="headline_s">{name}</div>
