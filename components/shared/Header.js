@@ -5,7 +5,15 @@ import Topbar from "./Topbar";
 export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
   const router = useRouter();
   const clickedCSS =
+<<<<<<< HEAD:components/shared/Header.js
+<<<<<<< HEAD:components/shared/Header.js
     "h-full w-2/4 flex justify-center items-center header_1 text-purple-700 border-b-2 border-purple-700";
+=======
+    "h-full w-2/4 flex justify-center items-center headline_s text-purple-700 border-b-2 border-purple-700";
+>>>>>>> 8298727 (♻️ Refactor: Global Colors Update):components/Header.js
+=======
+    "h-full w-2/4 flex justify-center items-center header_1 text-purple-700 border-b-2 border-purple-700";
+>>>>>>> 663a880 ( 💄 Style: global text Styling):components/Header.js
   const unClickedCss =
     "h-full w-2/4 flex justify-center items-center header_1 text-warmgray-100 ";
 

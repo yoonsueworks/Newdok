@@ -3,6 +3,8 @@ export default function Button(props) {
 
   const sizeCSS =
     size === "big"
+<<<<<<< HEAD:components/shared/Button.js
+<<<<<<< HEAD:components/shared/Button.js
       ? "py-5 button_1 rounded-[14px]"
       : size === "med"
       ? "py-4 button_2 rounded-xl"
@@ -11,6 +13,19 @@ export default function Button(props) {
   const modeCSS =
     mode === "ghost"
       ? "bg-white shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 cursor-pointer group-hover:bg-purple-50 group-active:bg-purple-100"
+=======
+      ? "py-4 headline rounded-[14px]"
+=======
+      ? "py-4 header_1 rounded-[14px]"
+>>>>>>> 663a880 ( 💄 Style: global text Styling):components/Button.js
+      : size === "med"
+      ? "h-[56px] header_1 rounded-xl"
+      : "py-3.25 header_3 rounded-[10px]";
+
+  const modeCSS =
+    mode === "ghost"
+      ? "bg-white shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 cursor-pointer"
+>>>>>>> 8298727 (♻️ Refactor: Global Colors Update):components/Button.js
       : "bg-purple-700 group-hover:bg-purple-500 text-white cursor-pointer";
 
   const stateCSS =

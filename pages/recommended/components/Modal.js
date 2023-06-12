@@ -2,22 +2,22 @@ import React from "react";
 import Image from "next/image";
 
 import S from "./modal.module.scss";
-import Button from "shared/Button";
-import Tags from "shared/Tags";
+import Button from "../../../components/Button";
+import Tags from "../../../components/Tags";
 
 const Modal = ({ open, setOpen, datas }) => {
   if (!datas) return;
 
   const {
+    id,
     name,
+    first_description,
+    second_description,
     detail_description,
     publication_cycle,
     subscribe_url,
     preview_url,
-<<<<<<< HEAD:pages/lookaround/components/Modal.js
-=======
 
->>>>>>> 8298727 (♻️ Refactor: Global Colors Update):pages/main/components/Modal.js
     image_url,
     interests,
   } = datas;
@@ -26,7 +26,7 @@ const Modal = ({ open, setOpen, datas }) => {
       <div className={S.modal}>
         <div id={S.gradient} className="w-full h-[155px] relative">
           <div className="absolute bottom-4 left-4 z-10">
-            <Tags tags={interests} />
+            <Tags interests={interests} />
           </div>
           <Image
             id={S.image}
