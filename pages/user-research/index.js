@@ -7,20 +7,28 @@ import Interest from "./steps/Interest";
 import Layout from "./steps/Layout";
 import API from "../../config";
 
-const pages = [
+const user_research_pages = [
   {
     id: 1,
-    display: "반가워요👋",
-    headline: `뉴스레터 추천을 위해 종사 중인 산업을 선택해 주세요.`,
-    caption: "",
+    header_1_1: "종사 중인 산업을",
+    header_1_2: `선택해 주세요.`,
+    caption: "선택하신 산업과 관련된 뉴스레터를 찾아드려요.",
     comp: <Job />,
   },
   {
     id: 2,
-    display: "한 가지만 더!👆",
-    headline: "더 정확한 추천을 위해 관심사를 선택해 주세요.",
-    caption: " (최대 3개)",
+    header_1_1: "더 정확한 추천을 위해 ",
+    header_1_2: "관심사를 선택해 주세요.",
+    caption: "최소 3가지 이상을 선택해주세요.",
     comp: <Interest />,
+  },
+  {
+    id: 3,
+    header_1_1: "님을 위한 ",
+    header_1_2: "맞춤형 뉴스레터가 도착했어요!",
+    caption: "구독한 뉴스레터는 발행일에 맞춰 홈으로 배달해드려요.",
+    comp: <Interest />,
+    //TODO: comp 수정
   },
 ];
 
@@ -111,5 +119,5 @@ export default function UserResearch() {
     ? sessionStorage.setItem("params", params)
     : null;
 
-  return <Layout infos={pages[step]} />;
+  return <Layout infos={user_research_pages[step]} />;
 }
