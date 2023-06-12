@@ -21,7 +21,7 @@ export const getServerSideProps = async () => {
 
 export default function Home({ interest, industry }) {
   const router = useRouter();
-  const routeOnbooarding = () => router.push("/onboarding");
+  const routeUserResearch = () => router.push("/user-research");
   const { setIndustry, setInterests } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Home({ interest, industry }) {
             </div>
           </div>
           <Button
-            func={routeOnbooarding}
+            func={routeUserResearch}
             mode="enabled"
             state={true}
             size="big"
