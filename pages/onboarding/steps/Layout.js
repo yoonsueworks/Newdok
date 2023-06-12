@@ -1,10 +1,8 @@
 import { useContext } from "react";
-import { useRouter } from "next/router";
 import { GlobalContext } from "../../_app";
 import Button from "../../../components/Button";
 import Topbar from "../../../components/Topbar";
 import Progressbar from "./components/progressbar";
-import API from "../../../config";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
