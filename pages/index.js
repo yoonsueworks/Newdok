@@ -21,7 +21,9 @@ export const getServerSideProps = async () => {
 
 export default function Home({ interest, industry }) {
   const router = useRouter();
-  const routeUserResearch = () => router.push("/user-research");
+
+  const routeSignup = () => router.push("/signup");
+  const routeLogin = () => router.push("/login");
   const { setIndustry, setInterests } = useContext(GlobalContext);
 
   useEffect(() => {
@@ -55,13 +57,15 @@ export default function Home({ interest, industry }) {
             </div>
           </div>
           <Button
-            func={routeUserResearch}
+            func={routeSignup}
             mode="enabled"
             state={true}
             size="big"
             text="시작하기"
             onClick={() => setProgress(1)}
           />
+
+          <div onClick={() => routeLogin()}>로그인</div>
         </div>
       </div>
     </div>
