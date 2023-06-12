@@ -29,7 +29,7 @@ export default function Progressbar({ progress }) {
   }, [progress]);
 
   return (
-    <div className={`${S.progress} h-2 w-full bg-purple=30`}>
+    <div className={`${S.progress} h-2 w-full bg-purple=700`}>
       <div className={`${S.changable}`} style={style}>
         {/* {width}% */}
       </div>

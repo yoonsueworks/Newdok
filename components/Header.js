@@ -5,7 +5,7 @@ import Topbar from "./Topbar";
 export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
   const router = useRouter();
   const clickedCSS =
-    "h-full w-2/4 flex justify-center items-center headline_s text-purple-30 border-b-2 border-purple-30";
+    "h-full w-2/4 flex justify-center items-center headline_s text-purple-700 border-b-2 border-purple-700";
   const unClickedCss =
     "h-full w-2/4 flex justify-center items-center headline_s text-warmgray-100 ";
 

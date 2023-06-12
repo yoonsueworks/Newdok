@@ -17,7 +17,7 @@ const Modal = ({ open, setOpen, datas }) => {
     publication_cycle,
     subscribe_url,
     preview_url,
-    industries,
+
     image_url,
     interests,
   } = datas;

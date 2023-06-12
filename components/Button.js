@@ -3,15 +3,15 @@ export default function Button(props) {
 
   const sizeCSS =
     size === "big"
-      ? "py-4 headline rounded-2xl"
+      ? "py-4 headline rounded-[14px]"
       : size === "med"
       ? "h-[56px] headline_s rounded-xl"
-      : "py-3.25 title rounded-lg";
+      : "py-3.25 title rounded-[10px]";
 
   const modeCSS =
     mode === "ghost"
-      ? "bg-white shadow-[inset_0_0px_0px_1px_#674188] text-purple-30 cursor-pointer"
-      : "bg-purple-30 group-hover:bg-purple-20 text-white cursor-pointer";
+      ? "bg-white shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 cursor-pointer"
+      : "bg-purple-700 group-hover:bg-purple-500 text-white cursor-pointer";
 
   const stateCSS =
     state === true

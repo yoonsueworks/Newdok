@@ -78,7 +78,7 @@ export default function Main() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-beige-10 h-full w-full">
+    <div className="flex flex-col bg-beige-100 h-full w-full">
       <Header
         tabs={TABS}
         changeTab={changeTab}

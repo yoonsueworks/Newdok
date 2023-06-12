@@ -33,6 +33,12 @@ module.exports = {
         16: "4rem", //64
         20: "5rem", //80
         31.25: "7.8125rem", //500
+        32: "8rem", //128px
+        36: "9rem", //144px
+        40: "10rem", //160px
+        44: "11rem", //176px
+        48: "12rem", //192px
+        52: "13rem", //208p
       },
       width: {
         58: "57px",
@@ -43,13 +49,20 @@ module.exports = {
         420: "26.25rem",
       },
       colors: {
-        "beige-10": "#F7EFE5",
-        "beige-20": "#FFFBF5",
-        "purple-10": "#C3ACD0",
-        "purple-20": "#8B69B2",
-        "purple-30": "#674188",
-        "purple-40": "#542975",
-        "purple-50": "#391354",
+        "beige-50": "#FFFBF5",
+        "beige-100": "#F7EFE5",
+
+        "purple-50": "#EFE7F2",
+        "purple-100": "#D8C4E1",
+        "purple-200": "#BF9ECE",
+        "purple-300": "#A67AB9",
+        "purple-400": "#9362A9",
+        "purple-500": "#824E9A",
+        "purple-600": "#774893",
+        "purple-700": "#674188",
+        "purple-800": "#593B7D",
+        "purple-900": "#413166",
+
         "warmgray-10": "#F7F3F2",
         "warmgray-20": "#E5E0DF",
         "warmgray-30": "#CAC5C4",
@@ -60,6 +73,11 @@ module.exports = {
         "warmgray-80": "#3C3838",
         "warmgray-90": "#272525",
         "warmgray-100": "#171414",
+
+        warning: "#FFB802",
+        error: "#F82148",
+        success: "#00D46F",
+        information: "#0080DC",
       },
     },
   },

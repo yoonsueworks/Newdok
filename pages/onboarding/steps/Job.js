@@ -10,7 +10,7 @@ export default function Job() {
   const { handleProgressWithOption, setUserInfos, industry, setIsActivated } =
     useContext(GlobalContext);
 
-  const selectedCSS = "text-purple-30";
+  const selectedCSS = "text-purple-700";
   const labelCSS = "text-warmgray-60";
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Job() {
               clickArea ? "rounded-t-2xl" : "rounded-2xl "
             } ${
               selected
-                ? "border border-1 border-purple-30 "
+                ? "border border-1 border-purple-700 "
                 : "border border-1 border-warmgray-20"
             }`}
             onClick={() => setClickArea((prev) => !prev)}
