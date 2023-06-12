@@ -6,18 +6,7 @@ import Tags from "./Tags";
 
 export default function ListedItem({ datas }) {
   const { setOpenModal } = useContext(GlobalContext);
-  const {
-    id,
-    name,
-    image_url,
-    industries,
-    interests,
-    preview_url,
-    second_description,
-    first_description,
-    publication_cycle,
-    detail_description,
-  } = datas;
+  const { name, image_url, interests, second_description } = datas;
 
   return (
     <li
@@ -38,9 +27,8 @@ export default function ListedItem({ datas }) {
           />
         </div>
         <div>
-          <h4 className="title mb-1">{name}</h4>
-          <div className="label break-keep w-full">
-            {/* <span className="block">{first_description}</span> */}
+          <h4 className="header_3 mb-1">{name}</h4>
+          <div className="caption_2_1 break-keep w-full">
             <span className="block">{second_description}</span>
           </div>
           <Tags interests={interests} />

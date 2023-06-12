@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useMemo } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/router";
 import { GlobalContext } from "../_app";
 
@@ -24,7 +24,7 @@ const pages = [
   },
 ];
 
-export default function Onboarding() {
+export default function UserResearch() {
   const [step, setStep] = useState(0);
   const [userInfos, setUserInfos] = useState([]);
   const [isActivated, setIsActivated] = useState(false);

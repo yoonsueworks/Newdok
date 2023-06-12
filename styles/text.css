@@ -2,50 +2,90 @@
 
 @variants {
   .display {
-    @apply text-3xl;
+    font-size: 36px;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    line-height: 48px;
+    letter-spacing: -1%;
   }
-  .headline {
-    @apply text-2xl;
+  .header_1 {
+    font-size: 24px;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    line-height: 36px;
+    letter-spacing: -1%;
   }
 
-  .headline_s {
-    @apply text-xl;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+  .header_2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: -1%;
   }
-  .title {
-    @apply text-lg;
+  .header_3 {
     font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: -1%;
+  }
+  .body_1 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -1%;
+  }
+  .body_2 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -1%;
+  }
+
+  .caption_1 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -1%;
+  }
+  .caption_2 {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -1%;
+  }
+  .button_1 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -1%;
+  }
+  .button_2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -1%;
+  }
+  .button_3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: -1%;
+  }
+  .button_4 {
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    line-height: 100%;
+    letter-spacing: -1%;
   }
-  .body {
-    @apply text-base;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+  .button_5 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 100%;
+    letter-spacing: -1%;
   }
-  .label {
-    @apply text-sm;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-  .caption {
-    @apply text-xs;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
+  /* v.1.0 */
   .reload {
     @apply text-sm;
     font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-  .headline_m {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    line-height: 100%;
+    letter-spacing: -1%;
   }
 }

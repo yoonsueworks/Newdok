@@ -17,7 +17,7 @@ const Modal = ({ open, setOpen, datas }) => {
     publication_cycle,
     subscribe_url,
     preview_url,
-    industries,
+
     image_url,
     interests,
   } = datas;
@@ -40,7 +40,7 @@ const Modal = ({ open, setOpen, datas }) => {
         <div className="grid gap-y-9 p-6">
           <div className="grid gap-y-2.5">
             <div className="h-[28px] flex justify-between items-center">
-              <div className="headline text-warmgray-100">{name}</div>
+              <div className="header_1 text-warmgray-100">{name}</div>
               <div className="flex items-center">
                 <div className="w-[28px] h-[28px] mb-1">
                   <div
@@ -53,7 +53,7 @@ const Modal = ({ open, setOpen, datas }) => {
                 <span>{publication_cycle}</span>
               </div>
             </div>
-            <div className="w-full h-full body text-warmgray-100 break-words">
+            <div className="w-full h-full body_1 text-warmgray-100 break-words">
               {detail_description}
             </div>
           </div>

@@ -30,7 +30,7 @@ export default function Recommended() {
   }, [union]);
 
   return (
-    <div className="bg-beige-10 grid gap-y-14 scroll-smooth">
+    <div className="bg-beige-100 grid gap-y-14 scroll-smooth">
       {shuffledArray && union.length !== 0 ? (
         <>
           <div className=" grid gap-y-4">

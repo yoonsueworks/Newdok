@@ -10,7 +10,7 @@ export default function Job() {
   const { handleProgressWithOption, setUserInfos, industry, setIsActivated } =
     useContext(GlobalContext);
 
-  const selectedCSS = "text-purple-30";
+  const selectedCSS = "text-purple-700";
   const labelCSS = "text-warmgray-60";
 
   useEffect(() => {
@@ -37,11 +37,11 @@ export default function Job() {
       <Listbox value={selected} onChange={setSelected}>
         <div className="grid">
           <Listbox.Button
-            className={`z-10 text-left bg-warmgray-10 p-6 w-full headline_s ${
+            className={`z-10 text-left bg-warmgray-10 p-6 w-full header_1 ${
               clickArea ? "rounded-t-2xl" : "rounded-2xl "
             } ${
               selected
-                ? "border border-1 border-purple-30 "
+                ? "border border-1 border-purple-700 "
                 : "border border-1 border-warmgray-20"
             }`}
             onClick={() => setClickArea((prev) => !prev)}
@@ -89,7 +89,7 @@ export default function Job() {
                           active
                             ? "bg-warmgray-10 text-warmgray-100"
                             : "bg-white text-warmgray-100"
-                        } flex justify-between p-6 headline_s `}
+                        } flex justify-between p-6 header_1 `}
                         onClick={() => setClickArea(false)}
                       >
                         {ind.name}

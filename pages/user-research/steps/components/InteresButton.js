@@ -7,7 +7,7 @@ export default function InterestButton({
 }) {
   const clickedCSS =
     isClicked?.includes(id) === true
-      ? "text-white bg-purple-30 "
+      ? "text-white bg-purple-700 "
       : "text-warmgray-100 border-solid border-1 border-warmgray-20 bg-warmgray-10";
   return (
     <button
@@ -15,7 +15,7 @@ export default function InterestButton({
       value={id}
       name="interests"
       onClick={getUserInterests}
-      className={`${clickedCSS} w-full border rounded-2xl py-5 headline_s`}
+      className={`${clickedCSS} w-full border rounded-2xl py-5 header_1`}
     >
       {name}
     </button>

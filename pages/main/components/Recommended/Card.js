@@ -41,8 +41,8 @@ export default function Card({ datas }) {
         />
       </div>
       <div className="h-fit px-6 pt-4 grid gap-y-3">
-        <div className="headline_s">{name}</div>
-        <div className="body">{first_description}</div>
+        <div className="header_1">{name}</div>
+        <div className="body_1">{first_description}</div>
       </div>
     </div>
   );

@@ -11,11 +11,11 @@ export default function Industry() {
   const { industry } = value;
 
   const sharedCSS =
-    "w-max h-full flex inline-block text-center self-center items-center px-4 rounded-[10px] title";
+    "w-max h-full flex inline-block text-center self-center items-center px-4 rounded-[10px] header_3";
 
-  const clickedCSS = `bg-purple-30 text-white break-keep`;
+  const clickedCSS = `bg-purple-700 text-white break-keep`;
   const unClickedCSS =
-    "bg-white text-purple-30 border border-1 border-solid border-purple-30 overscroll-auto";
+    "bg-white text-purple-700 border border-1 border-solid border-purple-700 overscroll-auto";
 
   const preventRequest = (id, arr) => {
     fetchLists && setFetchedList((prevList) => ({ ...prevList, [id]: arr }));
@@ -51,7 +51,7 @@ export default function Industry() {
   }, []);
 
   return (
-    <div className="h-full bg-beige-10 grid gap-y-5">
+    <div className="h-full bg-beige-100 grid gap-y-5">
       <ul className="pl-5 h-[44px] flex gap-x-2 overflow-auto">
         <li
           id="1"

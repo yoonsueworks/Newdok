@@ -1,10 +1,8 @@
 import { useContext } from "react";
-import { useRouter } from "next/router";
 import { GlobalContext } from "../../_app";
 import Button from "../../../components/Button";
 import Topbar from "../../../components/Topbar";
 import Progressbar from "./components/progressbar";
-import API from "../../../config";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
@@ -18,15 +16,15 @@ export default function Layout({ infos }) {
         <div className="w-full flex flex-col">
           <div className="grid gap-y-[18px] mb-10">
             <div className="display">{infos?.display}</div>
-            <div className="headline w-[302px] flex items-end">
+            <div className="header_1 w-[302px] flex items-end">
               {infos?.id === 1 ? (
                 infos?.headline
               ) : (
                 <>
-                  <div className="w-[226px] headline shrink-0">
+                  <div className="w-[226px] header_1 shrink-0">
                     {infos?.headline}
                   </div>
-                  <div className="title text-warmgray-50 mb-1">
+                  <div className="header_3 text-warmgray-50 mb-1">
                     {infos?.caption}
                   </div>
                 </>

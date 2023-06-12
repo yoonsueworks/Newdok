@@ -23,7 +23,7 @@ export default function LoadingSplash() {
         height="400"
         priority={true}
       />
-      <div className="headline_s text-center">
+      <div className="header_1 text-center">
         사용자님께 맞는 <br />
         뉴스레터를 찾고있어요...🔍
       </div>
