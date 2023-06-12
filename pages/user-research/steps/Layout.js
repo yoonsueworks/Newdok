@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../_app";
 import Button from "../../../components/Button";
 import Topbar from "../../../components/Topbar";
-import Progressbar from "./components/progressbar";
+import ProgressBar from "../../../components/ProgressBar";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);
@@ -11,24 +11,18 @@ export default function Layout({ infos }) {
   return (
     <div className="flex flex-col h-full pb-20">
       <Topbar />
-      <Progressbar progress={progress} />
+      <ProgressBar progress={progress} type="userResearch" />
       <div className="w-full h-full flex flex-col justify-between px-5 mt-16">
         <div className="w-full flex flex-col">
           <div className="grid gap-y-[18px] mb-10">
-            <div className="display">{infos?.display}</div>
-            <div className="header_1 w-[302px] flex items-end">
-              {infos?.id === 1 ? (
-                infos?.headline
-              ) : (
-                <>
-                  <div className="w-[226px] header_1 shrink-0">
-                    {infos?.headline}
-                  </div>
-                  <div className="header_3 text-warmgray-50 mb-1">
-                    {infos?.caption}
-                  </div>
-                </>
-              )}
+            <div className="w-full">
+              <div className="w-[226px] header_2 shrink-0 mb-1">
+                <span className="block">{infos?.header_1_1}</span>
+                <span className="block">{infos?.header_1_2}</span>
+              </div>
+              <div className="body_2 text-warmgray-100 mb-1">
+                {infos?.caption}
+              </div>
             </div>
           </div>
           <div className="w-full relative">{infos?.comp}</div>
