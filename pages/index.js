@@ -1,11 +1,16 @@
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "./_app";
+
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Button from "../components/Button";
-import Topbar from "../components/Topbar";
+import Button from "shared/Button";
+import Topbar from "shared/Topbar";
 
 export default function Home() {
   const router = useRouter();
-  const routeOnbooarding = () => router.push("/onboarding");
+
+  const routeSignup = () => router.push("/signup");
+  const routeLogin = () => router.push("/login");
 
   return (
     <div className="w-full h-full flex flex-col justify-between pb-20">
@@ -27,19 +32,21 @@ export default function Home() {
                 priority={true}
               />
             </div>
-            <div className="headline grid text-center">
+            <div className="header_1 grid text-center">
               <div>내게 꼭 필요한 뉴스레터만</div>
               <div>쏙쏙 뽑아줄게요!</div>
             </div>
           </div>
           <Button
-            func={routeOnbooarding}
+            func={routeSignup}
             mode="enabled"
             state={true}
             size="big"
             text="시작하기"
             onClick={() => setProgress(1)}
           />
+
+          <div onClick={() => routeLogin()}>로그인</div>
         </div>
       </div>
     </div>
