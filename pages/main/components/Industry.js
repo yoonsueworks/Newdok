@@ -11,7 +11,7 @@ export default function Industry() {
   const { industry } = value;
 
   const sharedCSS =
-    "w-max h-full flex inline-block text-center self-center items-center px-4 rounded-[10px] title";
+    "w-max h-full flex inline-block text-center self-center items-center px-4 rounded-[10px] header_3";
 
   const clickedCSS = `bg-purple-700 text-white break-keep`;
   const unClickedCSS =

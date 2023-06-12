@@ -49,7 +49,7 @@ export default function Home({ interest, industry }) {
                 priority={true}
               />
             </div>
-            <div className="headline grid text-center">
+            <div className="header_1 grid text-center">
               <div>내게 꼭 필요한 뉴스레터만</div>
               <div>쏙쏙 뽑아줄게요!</div>
             </div>

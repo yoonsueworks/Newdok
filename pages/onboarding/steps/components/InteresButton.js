@@ -15,7 +15,7 @@ export default function InterestButton({
       value={id}
       name="interests"
       onClick={getUserInterests}
-      className={`${clickedCSS} w-full border rounded-2xl py-5 headline_s`}
+      className={`${clickedCSS} w-full border rounded-2xl py-5 header_1`}
     >
       {name}
     </button>

@@ -3,10 +3,10 @@ export default function Button(props) {
 
   const sizeCSS =
     size === "big"
-      ? "py-4 headline rounded-[14px]"
+      ? "py-4 header_1 rounded-[14px]"
       : size === "med"
-      ? "h-[56px] headline_s rounded-xl"
-      : "py-3.25 title rounded-[10px]";
+      ? "h-[56px] header_1 rounded-xl"
+      : "py-3.25 header_3 rounded-[10px]";
 
   const modeCSS =
     mode === "ghost"

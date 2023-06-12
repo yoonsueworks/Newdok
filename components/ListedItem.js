@@ -27,8 +27,8 @@ export default function ListedItem({ datas }) {
           />
         </div>
         <div>
-          <h4 className="title mb-1">{name}</h4>
-          <div className="label break-keep w-full">
+          <h4 className="header_3 mb-1">{name}</h4>
+          <div className="caption_2_1 break-keep w-full">
             <span className="block">{second_description}</span>
           </div>
           <Tags interests={interests} />

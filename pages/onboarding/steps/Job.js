@@ -37,7 +37,7 @@ export default function Job() {
       <Listbox value={selected} onChange={setSelected}>
         <div className="grid">
           <Listbox.Button
-            className={`z-10 text-left bg-warmgray-10 p-6 w-full headline_s ${
+            className={`z-10 text-left bg-warmgray-10 p-6 w-full header_1 ${
               clickArea ? "rounded-t-2xl" : "rounded-2xl "
             } ${
               selected
@@ -89,7 +89,7 @@ export default function Job() {
                           active
                             ? "bg-warmgray-10 text-warmgray-100"
                             : "bg-white text-warmgray-100"
-                        } flex justify-between p-6 headline_s `}
+                        } flex justify-between p-6 header_1 `}
                         onClick={() => setClickArea(false)}
                       >
                         {ind.name}

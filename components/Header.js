@@ -5,9 +5,9 @@ import Topbar from "./Topbar";
 export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
   const router = useRouter();
   const clickedCSS =
-    "h-full w-2/4 flex justify-center items-center headline_s text-purple-700 border-b-2 border-purple-700";
+    "h-full w-2/4 flex justify-center items-center header_1 text-purple-700 border-b-2 border-purple-700";
   const unClickedCss =
-    "h-full w-2/4 flex justify-center items-center headline_s text-warmgray-100 ";
+    "h-full w-2/4 flex justify-center items-center header_1 text-warmgray-100 ";
 
   return (
     <header className="w-full absolute fixed z-10 cursor-pointer">
