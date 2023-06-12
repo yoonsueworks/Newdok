@@ -1,11 +1,33 @@
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "./_app";
+
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Button from "../components/Button";
 import Topbar from "../components/Topbar";
 
-export default function Home() {
+export const getServerSideProps = async () => {
+  const response = await fetch(
+    "http://localhost:3001/data/Industry_Interest.json"
+  );
+  const data = await response.json();
+  return {
+    props: {
+      interest: data.interests,
+      industry: data.industry,
+    },
+  };
+};
+
+export default function Home({ interest, industry }) {
   const router = useRouter();
   const routeOnbooarding = () => router.push("/onboarding");
+  const { setIndustry, setInterests } = useContext(GlobalContext);
+
+  useEffect(() => {
+    setIndustry(industry);
+    setInterests(interest);
+  }, []);
 
   return (
     <div className="w-full h-full flex flex-col justify-between pb-20">
