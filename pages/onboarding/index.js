@@ -2,12 +2,13 @@ import { useRouter } from "next/router";
 
 const Onboarding = () => {
   const router = useRouter();
-
   return (
     <div>
-      <button onClick={() => router.push("/signup")}>회원가입</button>
-      <br />
-      <button onClick={() => router.push("/login")}>로그인</button>
+      <div onClick={() => router.push("/signup")}>회원가입</div>
+      <span>
+        이미 계정이 있나요?
+        <div onClick={() => router.push("/login")}>로그인</div>
+      </span>
     </div>
   );
 };

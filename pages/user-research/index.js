@@ -69,7 +69,7 @@ export default function UserResearch() {
     router.push("/loadingSplash");
 
     const timeout = setTimeout(() => {
-      router.push("/main");
+      router.push("/home");
     }, 2500);
 
     return () => clearTimeout(timeout);
