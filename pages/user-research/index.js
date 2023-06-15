@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
-import { GlobalContext } from "../_app";
+import { GlobalContext } from "../../_app";
 
 import Job from "./steps/Job";
 import Interest from "./steps/Interest";
 import Layout from "./steps/Layout";
-import API from "../../config";
+import API from "../../../config";
 
 const user_research_pages = [
   {
