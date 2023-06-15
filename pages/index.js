@@ -8,7 +8,7 @@ import Topbar from "../components/Topbar";
 
 export const getServerSideProps = async () => {
   const response = await fetch(
-    "http://localhost:3001/data/Industry_Interest.json"
+    "http://localhost:3000/data/Industry_Interest.json"
   );
   const data = await response.json();
   return {
