@@ -1,5 +1,5 @@
 import { useState, Fragment, useEffect, useRef, useContext } from "react";
-import { GlobalContext } from "../../_app";
+import { GlobalContext } from "../../../_app";
 import { Listbox } from "@headlessui/react";
 
 export default function Job() {

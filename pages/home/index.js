@@ -1,9 +1,5 @@
-import Nav from "../../components/Nav";
-
 const Home = () => {
-  //TODO: auth token confirmation
-
-  return <>home</>;
+  return <div>home</div>;
 };
 
 export default Home;

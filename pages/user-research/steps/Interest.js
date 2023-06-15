@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import { GlobalContext } from "../../_app";
+import { GlobalContext } from "../../../_app";
 import InterestButton from "./components/InteresButton";
 
 export default function Interest() {
