@@ -65,16 +65,6 @@ export default function UserResearch() {
     value.resetUserInterests();
   };
 
-  const loadMainAfterSplash = () => {
-    router.push("/loadingSplash");
-
-    const timeout = setTimeout(() => {
-      router.push("/home");
-    }, 2500);
-
-    return () => clearTimeout(timeout);
-  };
-
   const queryParams = {
     industry: userInfos.industry,
     interest: userInfos.interests || [],
@@ -100,7 +90,7 @@ export default function UserResearch() {
         setUnion(res.union);
       })
       .finally(() => {
-        loadMainAfterSplash();
+        router.push("/subscription-b010");
       });
   };
 
