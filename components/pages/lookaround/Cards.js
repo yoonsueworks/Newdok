@@ -8,7 +8,7 @@ import { Mousewheel } from "swiper";
 
 import Card from "./Card";
 import S from "./CardSwiper.module.scss";
-import { GlobalContext } from "../../../_app";
+import { GlobalContext } from "pages/_app";
 
 export default function App() {
   const { intersection } = useContext(GlobalContext);

@@ -1,46 +1,39 @@
 import { useRouter } from "next/router";
 
-const Login = () => {
+import ButtonText from "shared/ButtonText";
+import Button from "shared/Button";
+
+const SignIn = () => {
   const router = useRouter();
+  const route = (segment) => router.push(segment);
+
+  const TEXT_BUTTONS = [
+    { id: 1, text: "ID/PW 찾기", func: console.log("find id/pw") },
+    { id: 2, text: "회원가입", func: () => route("/signup") },
+    { id: 3, text: "비회원으로 이동하기", func: () => route("/home") },
+  ];
 
   return (
     <div>
-      <div>logo</div>
       <form>
-        <label class="block">
-          <span class="block text-sm font-medium text-slate-700">Username</span>
-
-          <input
-            type="text"
-            placeholder="이메일 주소 입력"
-            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-      disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-pink-500 invalid:text-pink-600
-      focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-    "
-          />
-          <span class="block text-sm font-medium text-slate-700">password</span>
-          <input
-            type="text"
-            placeholder="비밀번호 입력"
-            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-      disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-pink-500 invalid:text-pink-600
-      focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-    "
-          />
-        </label>
+        <input placeholder="input" />
+        <input placeholder="input" />
       </form>
-      <button onClick={() => router.push("/home")}>로그인</button>
-      <div>
-        <div>logo</div>
-        <div>logo</div>
-        <div>logo</div>
+      <Button
+        mode="alive"
+        func={() => console.log("로그인 함수")}
+        // state={isActivated}
+        size="big"
+        text="로그인"
+        onboarding="관심사를"
+      />
+      <div className="text_button">
+        {TEXT_BUTTONS.map(({ id, text, func }) => {
+          return <ButtonText key={id} text={text} func={func} />;
+        })}
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignIn;

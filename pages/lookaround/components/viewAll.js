@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../../_app";
-import Lists from "../../../components/Lists";
+import { GlobalContext } from "pages/_app";
+
+import Lists from "shared/Lists";
 import API from "../../../config";
+import { industries } from "constants/industries";
 
 export default function Industry() {
   const [selectedIndustry, setSelectedIndustry] = useState(1);
   const [list, setList] = useState(INITIAL_DATA);
   const [fetchedList, setFetchedList] = useState([]);
-  const value = useContext(GlobalContext);
-  const { industry } = value;
 
   const sharedCSS =
     "w-max h-full flex inline-block text-center self-center items-center px-4 rounded-[10px] header_3";
@@ -62,7 +62,7 @@ export default function Industry() {
         >
           <div className="w-max overflow-wrap-break-word">모든 산업</div>
         </li>
-        {industry.map((ind) => {
+        {industries.map((ind) => {
           return (
             <li
               id={ind.id}

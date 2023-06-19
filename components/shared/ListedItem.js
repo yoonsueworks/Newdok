@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GlobalContext } from "../pages/_app";
+import { GlobalContext } from "../../pages/_app";
 
 import Image from "next/image";
 import Tags from "./Tags";
@@ -27,11 +27,21 @@ export default function ListedItem({ datas }) {
           />
         </div>
         <div>
+<<<<<<< HEAD:components/shared/ListedItem.js
+<<<<<<< HEAD:components/shared/ListedItem.js
           <h4 className="header_3 mb-1">{name}</h4>
           <div className="caption_2_1 break-keep w-full">
+=======
+          <h4 className="title mb-1">{name}</h4>
+          <div className="label break-keep w-full">
+>>>>>>> 8298727 (♻️ Refactor: Global Colors Update):components/ListedItem.js
+=======
+          <h4 className="header_3 mb-1">{name}</h4>
+          <div className="caption_2_1 break-keep w-full">
+>>>>>>> 663a880 ( 💄 Style: global text Styling):components/ListedItem.js
             <span className="block">{second_description}</span>
           </div>
-          <Tags interests={interests} />
+          <Tags tags={interests} />
         </div>
       </div>
     </li>
