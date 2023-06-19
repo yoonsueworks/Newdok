@@ -14,10 +14,6 @@ const Modal = ({ open, setOpen, datas }) => {
     publication_cycle,
     subscribe_url,
     preview_url,
-<<<<<<< HEAD:pages/lookaround/components/Modal.js
-=======
-
->>>>>>> 8298727 (♻️ Refactor: Global Colors Update):pages/main/components/Modal.js
     image_url,
     interests,
   } = datas;
