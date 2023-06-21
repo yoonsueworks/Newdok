@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import S from "./progressbar.module.css";
 import { useContext } from "react";
-import { GlobalContext } from "../../pages/_app";
+import { GlobalContext } from "pages/_app";
 
 export default function ProgressBar({ type }) {
   const [style, setStyle] = useState({});

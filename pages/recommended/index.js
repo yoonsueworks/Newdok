@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { GlobalContext } from "../_app";
-import Header from "../../components/Header";
+import { GlobalContext } from "pages/_app";
+import Header from "shared/Header";
 import S from "./index.module.scss";
 
-import Industry from "./components/Industry";
+import Industry from "pages/recommended/components/Industry";
 import Recommended from "./components/recommended";
 import Modal from "./components/Modal";
 import API from "../../config";

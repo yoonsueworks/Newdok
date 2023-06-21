@@ -6,7 +6,7 @@ import Button from "shared/Button";
 import PasswordChild from "components/pages/login/PasswordChild";
 import EmailChild from "components/pages/login/EmailChild";
 
-import BottomTextButtons from "../../components/pages/login/BottomTextButtons";
+import BottomTextButtons from "components/pages/login/BottomTextButtons";
 
 const SignIn = () => {
   const router = useRouter();
