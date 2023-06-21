@@ -86,7 +86,7 @@ export default function Interest() {
       ></div>
       <div
         id="onboardInterestsBox"
-        className="w-full grid grid-cols-2 gap-2 overflow-auto"
+        className="w-full grid grid-cols-2 gap-4 overflow-auto"
         ref={scrollContainerRef}
       >
         {interests.map(({ id, name }) => {

@@ -8,8 +8,10 @@ import Topbar from "shared/Topbar";
 export default function Home() {
   const router = useRouter();
 
+  const routeSignup = () => router.push("/signup");
+  const routeLogin = () => router.push("/login");
+
   const routeOnbooarding = () => router.push("/onboarding");
-  const routeHome = () => router.push("/home");
 
   const cookieOrToken = false;
 
