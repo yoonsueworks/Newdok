@@ -3,15 +3,14 @@ import { useRouter } from "next/router";
 const Onboarding = () => {
   const router = useRouter();
 
-  return (
-    <div>
-      <div onClick={() => router.push("/signup")}>회원가입</div>
-      <span>
-        이미 계정이 있나요?
-        <div onClick={() => router.push("/login")}>로그인 hello</div>
-      </span>
-    </div>
-  );
-};
+  const value = useContext(GlobalContext);
+  const { intersection, setIntersection, union, setUnion } =
+    useContext(GlobalContext);
+
+  const handleProgress = (condition) => {
+    condition === true
+      ? setProgress((prev) => Number.parseInt(prev) + 1)
+      : setProgress((prev) => Number.parseInt(prev) - 2);
+  };
 
 export default Onboarding;
