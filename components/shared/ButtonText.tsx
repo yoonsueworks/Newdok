@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 const ButtonText = (props: ButtonProps) => {
-  const { func, mode, state, size, text } = props;
+  const { func, text } = props;
   return (
     <button
       className="button_5 w-fit h-fit border-b border-warmgray-100"
