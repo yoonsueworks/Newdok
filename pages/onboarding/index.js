@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 
 const Onboarding = () => {
   const router = useRouter();
+
   return (
     <div>
       <div onClick={() => router.push("/signup")}>회원가입</div>

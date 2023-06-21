@@ -75,9 +75,9 @@ module.exports = {
         "warmgray-100": "#171414",
 
         warning: "#FFB802",
-        error: "#F82148",
-        success: "#00D46F",
-        information: "#0080DC",
+        error: "#EA0730",
+        success: "#16892C",
+        information: "#0079D0",
       },
     },
   },

@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 
 import S from "./modal.module.scss";
-import Button from "../../../components/Button";
-import Tags from "../../../components/Tags";
+import Button from "shared/Button";
+import Tags from "shared/Tags";
 
 const Modal = ({ open, setOpen, datas }) => {
   if (!datas) return;

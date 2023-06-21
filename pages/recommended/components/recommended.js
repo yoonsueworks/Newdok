@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../../_app";
+import { GlobalContext } from "pages/_app";
 
-import Lists from "../../../components/Lists";
+import Lists from "shared/Lists";
 import ListTitle from "./Recommended/ListTitle";
 import CardTitle from "./Recommended/CardTitle";
 import Cards from "./Recommended/Cards";
-import LoadingSplash from "../../loadingSplash";
+import LoadingSplash from "pages/loadingSplash";
 
 export default function Recommended() {
   const { union } = useContext(GlobalContext);
