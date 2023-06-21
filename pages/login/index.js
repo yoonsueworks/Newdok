@@ -1,46 +1,95 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 
-const Login = () => {
+import Input from "shared/Input";
+import Button from "shared/Button";
+import PasswordChild from "components/pages/login/PasswordChild";
+import EmailChild from "components/pages/login/EmailChild";
+
+import BottomTextButtons from "components/pages/login/BottomTextButtons";
+
+const SignIn = () => {
   const router = useRouter();
+  const [userInfo, setUserInfo] = useState({ userId: "", password: "" });
+  const [inputType, setInputType] = useState(false);
+
+  const getUserInfo = (e) => {
+    const { name, value } = e.target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
+
+  const validateID =
+    userInfo.userId.length > 0
+      ? /^[A-Za-z0-9]{6,12}$/.test(userInfo.userId)
+      : true;
+  const validatePW =
+    userInfo.password.length > 0
+      ? /^[A-Za-z0-9]{8}$/.test(userInfo.password)
+      : true;
+
+  const isValid = validateID && validatePW;
+
+  const fetchLogin = () => {
+    // TODO:fetch
+    router.push("/home");
+  };
+
+  const LOGIN_INPUTS = [
+    {
+      id: 1,
+      placeholder: "이메일 주소 입력",
+      name: "userId",
+      child: <EmailChild />,
+      func: getUserInfo,
+      isValid: validateID,
+      type: "text",
+      error: "이메일 주소는 영문/숫자 조합입니다.",
+    },
+    {
+      id: 2,
+      placeholder: "비밀번호 입력",
+      name: "password",
+      child: <PasswordChild setInputType={setInputType} type={inputType} />,
+      func: getUserInfo,
+      isValid: validatePW,
+      type: inputType,
+      error: "비밀번호는 최소 8자 이상입니다.",
+    },
+  ];
 
   return (
-    <div>
-      <div>logo</div>
-      <form>
-        <label class="block">
-          <span class="block text-sm font-medium text-slate-700">Username</span>
-
-          <input
-            type="text"
-            placeholder="이메일 주소 입력"
-            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-      disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-pink-500 invalid:text-pink-600
-      focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-    "
-          />
-          <span class="block text-sm font-medium text-slate-700">password</span>
-          <input
-            type="text"
-            placeholder="비밀번호 입력"
-            class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
-      focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-      disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-      invalid:border-pink-500 invalid:text-pink-600
-      focus:invalid:border-pink-500 focus:invalid:ring-pink-500
-    "
-          />
-        </label>
+    <div className="w-full h-screen pb-14 flex flex-col justify-between  px-4">
+      <form className="grid gap-y-4 w-full">
+        {LOGIN_INPUTS.map(
+          ({ id, placeholder, name, child, func, isValid, type, error }) => {
+            return (
+              <Input
+                key={id}
+                placeholder={placeholder}
+                name={name}
+                child={child}
+                func={func}
+                isValid={isValid}
+                type={type}
+                error={error}
+              />
+            );
+          }
+        )}
       </form>
-      <button onClick={() => router.push("/home")}>로그인</button>
-      <div>
-        <div>logo</div>
-        <div>logo</div>
-        <div>logo</div>
+      <div className="w-full flex flex-col items-center">
+        <Button
+          mode="alive"
+          func={fetchLogin}
+          state={isValid}
+          size="big"
+          text="로그인"
+          onboarding="관심사를"
+        />
+        <BottomTextButtons />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignIn;

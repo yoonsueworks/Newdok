@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { GlobalContext } from "../pages/_app";
+import { GlobalContext } from "pages/_app";
 
 import Image from "next/image";
 import Tags from "./Tags";
 
-export default function ListedItem({ datas }) {
+function ListedItem({ datas }) {
   const { setOpenModal } = useContext(GlobalContext);
   const { name, image_url, interests, second_description } = datas;
 
@@ -31,9 +31,19 @@ export default function ListedItem({ datas }) {
           <div className="caption_2_1 break-keep w-full">
             <span className="block">{second_description}</span>
           </div>
-          <Tags interests={interests} />
+          <Tags tags={interests} />
         </div>
       </div>
     </li>
+  );
+}
+
+export default function Lists({ datas }) {
+  return (
+    <ul className="px-5 grid gap-y-2.5 mb-9">
+      {datas?.map((data) => {
+        return <ListedItem key={data.id} datas={data} />;
+      })}
+    </ul>
   );
 }

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { GlobalContext } from "../../../_app";
+import { GlobalContext } from "pages/_app";
 
 import Image from "next/image";
 import S from "./Card.module.scss";

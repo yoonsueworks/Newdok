@@ -1,48 +1,24 @@
 import { useState, useContext } from "react";
-import { useRouter } from "next/router";
-import { GlobalContext } from "../_app";
+import { GlobalContext } from "pages/_app";
 
-import Job from "./steps/Job";
-import Interest from "./steps/Interest";
-import Layout from "./steps/Layout";
-import API from "../../config";
+import Job from "components/pages/user-research/Job";
+import Interest from "components/pages/user-research/Interest";
 
-const user_research_pages = [
-  {
-    id: 1,
-    header_1_1: "종사 중인 산업을",
-    header_1_2: `선택해 주세요.`,
-    caption: "선택하신 산업과 관련된 뉴스레터를 찾아드려요.",
-    comp: <Job />,
-  },
-  {
-    id: 2,
-    header_1_1: "더 정확한 추천을 위해 ",
-    header_1_2: "관심사를 선택해 주세요.",
-    caption: "최소 3가지 이상을 선택해주세요.",
-    comp: <Interest />,
-  },
-  {
-    id: 3,
-    header_1_1: "님을 위한 ",
-    header_1_2: "맞춤형 뉴스레터가 도착했어요!",
-    caption: "구독한 뉴스레터는 발행일에 맞춰 홈으로 배달해드려요.",
-    comp: <Interest />,
-    //TODO: comp 수정
-  },
-];
+import { pages } from "constants/user_research_pages";
+import { useResearchQuery } from "../../public/hooks/UserResearch";
+import UserResearchLayout from "./steps/UserResearchLayout";
 
 export default function UserResearch() {
+  const [page, setPage] = useState(1);
   const [step, setStep] = useState(0);
   const [userInfos, setUserInfos] = useState([]);
   const [isActivated, setIsActivated] = useState(false);
-
   const [progress, setProgress] = useState(1);
-  const router = useRouter();
+  const queryParams = useResearchQuery(userInfos.industry, userInfos.interests);
 
   const value = useContext(GlobalContext);
-  const { intersection, setIntersection, union, setUnion } =
-    useContext(GlobalContext);
+
+  const comps = { 1: <Job />, 2: <Interest />, 3: <div>mailbox</div> };
 
   const handleProgress = (condition) => {
     condition === true
@@ -55,53 +31,16 @@ export default function UserResearch() {
   };
 
   const clickNext = () => {
+    setPage((prev) => prev + 1);
     setStep(step + 1);
     handleProgressWithOption(3);
   };
 
   const clickBefore = () => {
+    setPage((prev) => prev - 1);
     setStep(step - 1);
     handleProgress(false);
     value.resetUserInterests();
-  };
-
-  const loadMainAfterSplash = () => {
-    router.push("/loadingSplash");
-
-    const timeout = setTimeout(() => {
-      router.push("/home");
-    }, 2500);
-
-    return () => clearTimeout(timeout);
-  };
-
-  const queryParams = {
-    industry: userInfos.industry,
-    interest: userInfos.interests || [],
-  };
-
-  const params = Object.entries(queryParams)
-    .map(([key, value]) => {
-      if (Array.isArray(value)) {
-        return value
-          .map((v) => `${encodeURIComponent(key)}=${encodeURIComponent(v)}`)
-          .join("&");
-      } else {
-        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-      }
-    })
-    .join("&");
-
-  const fetchDatas = () => {
-    fetch(`${API.recommend}${params}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setIntersection(res.intersection);
-        setUnion(res.union);
-      })
-      .finally(() => {
-        loadMainAfterSplash();
-      });
   };
 
   value.clickNext = clickNext;
@@ -113,11 +52,12 @@ export default function UserResearch() {
   value.progress = progress;
   value.handleProgress = handleProgress;
   value.handleProgressWithOption = handleProgressWithOption;
-  value.fetchDatas = fetchDatas;
+  value.research = queryParams;
+  value.setPage = setPage;
 
   typeof window !== "undefined"
-    ? sessionStorage.setItem("params", params)
+    ? sessionStorage.setItem("params", queryParams)
     : null;
 
-  return <Layout infos={user_research_pages[step]} />;
+  return <UserResearchLayout infos={pages[page]} comp={comps[page]} />;
 }

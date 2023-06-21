@@ -52,11 +52,11 @@ html {
 #buttonPlacementMain {
   row-gap: 166px;
 }
-
+/* 
 #onboardIndustryBox {
   height: 300px;
 }
-
+ */
 #onboardInterestsBox {
   height: 420px;
 }
@@ -85,9 +85,9 @@ html {
     margin-bottom: 80px;
   }
 
-  #onboardIndustryBox {
+  /* #onboardIndustryBox {
     height: 236px;
-  }
+  } */
 
   #onboardInterestsBox {
     height: 350px;

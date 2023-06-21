@@ -1,24 +1,23 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { GlobalContext } from "../_app";
-import Header from "../../components/Header";
+import { GlobalContext } from "pages/_app";
+import Header from "components/shared/Header";
 import S from "./index.module.scss";
 
-import Industry from "./components/Industry";
+import Industry from "./components/viewAll";
 import Recommended from "./components/recommended";
 import Modal from "./components/Modal";
 import API from "../../config";
 
 const TABS = [
   { id: 1, name: "추천 뉴스레터", comp: <Recommended /> },
-  { id: 2, name: "산업별 뉴스레터", comp: <Industry /> },
+  { id: 2, name: "모든 뉴스레터", comp: <Industry /> },
 ];
 
 export default function Main() {
   const [clickedTab, setClickedTab] = useState(1);
   const [modalData, setModalData] = useState(false);
   const value = useContext(GlobalContext);
-  const router = useRouter();
   const { setIntersection, setUnion } = value;
 
   const [open, setOpen] = useState(false);
@@ -40,20 +39,6 @@ export default function Main() {
     e.preventDefault();
     e.returnValue = ""; //Chrome에서 동작하도록; deprecated
   };
-
-  useEffect(() => {
-    const preventGoBack = () => {
-      // change start
-      history.pushState(null, "", location.href);
-      // change end
-      console.log("prevent go back!");
-    };
-
-    history.pushState(null, "", location.href);
-    window.addEventListener("popstate", preventGoBack);
-    1;
-    return () => window.removeEventListener("popstate", preventGoBack);
-  }, []);
 
   useEffect(() => {
     (() => {

@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../_app";
-import Button from "../../../components/Button";
-import Topbar from "../../../components/Topbar";
-import ProgressBar from "../../../components/ProgressBar";
+import Button from "shared/Button";
+import Topbar from "shared/Topbar";
+import ProgressBar from "components/ProgressBar";
 
 export default function Layout({ infos }) {
   const value = useContext(GlobalContext);

@@ -2,22 +2,18 @@ import React from "react";
 import Image from "next/image";
 
 import S from "./modal.module.scss";
-import Button from "../../../components/Button";
-import Tags from "../../../components/Tags";
+import Button from "shared/Button";
+import Tags from "shared/Tags";
 
 const Modal = ({ open, setOpen, datas }) => {
   if (!datas) return;
 
   const {
-    id,
     name,
-    first_description,
-    second_description,
     detail_description,
     publication_cycle,
     subscribe_url,
     preview_url,
-
     image_url,
     interests,
   } = datas;
@@ -26,7 +22,7 @@ const Modal = ({ open, setOpen, datas }) => {
       <div className={S.modal}>
         <div id={S.gradient} className="w-full h-[155px] relative">
           <div className="absolute bottom-4 left-4 z-10">
-            <Tags interests={interests} />
+            <Tags tags={interests} />
           </div>
           <Image
             id={S.image}

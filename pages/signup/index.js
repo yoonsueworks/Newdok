@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Button from "../../components/Button";
+import Button from "components/shared/Button";
 
 const SignUp = () => {
   const router = useRouter();
