@@ -3,6 +3,7 @@ import React, { createContext, useState, useMemo } from "react";
 import Layout from "./Layout";
 import HeadComp from "shared/HeadComp";
 import "styles/globals.css";
+// import "components/pages/home/calendar.scss";
 
 export const GlobalContext = createContext(null);
 

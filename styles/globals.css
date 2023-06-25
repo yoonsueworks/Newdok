@@ -2,8 +2,9 @@
 @tailwind utilities;
 @tailwind components;
 
-@import url("https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700;800&display=swap");
 @import "text.css";
+@import "elevation.css";
+@import "calendar.css";
 
 @layer components {
   #__next {
@@ -12,15 +13,19 @@
   }
 }
 
-@import url("https://webfontworld.github.io/pretendard/Pretendard.css");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.7/dist/web/static/pretendard-gov-dynamic-subset.css");
 
 html,
 body {
   background-color: aliceblue;
   padding: 0;
   margin: 0;
-  font-family: "Pretendard", sans-serif;
+  font-family: "Pretendard GOV Variable", "Pretendard GOV", -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
+
 html {
   display: flex;
   justify-content: center;
