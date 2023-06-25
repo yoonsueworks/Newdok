@@ -1,3 +1,7 @@
+* {
+  transition: 0s !important;
+}
+
 .react-calendar__navigation {
   display: flex;
   padding: 16px;
@@ -48,7 +52,7 @@
 
 .react-calendar__month-view__days {
   padding: 16px;
-  row-gap: 32px;
+  row-gap: 24px;
 }
 
 .react-calendar__month-view__days button {
@@ -78,8 +82,14 @@
   align-items: center;
 }
 
+.react-calendar__tile--active abbr {
+  /* active tile */
+  border-radius: 50%;
+  background-color: #efe7f2;
+}
+
 .react-calendar__tile--now abbr {
   border-radius: 50%;
   color: white;
-  background: #674188;
+  background: #9362a9;
 }

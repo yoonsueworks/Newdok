@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { GlobalContext } from "pages/_app";
-import Header from "components/shared/Header";
+
+import Header from "shared/Header";
+import NavEmptyForStyles from "shared/NavEmptyForStyles";
 import S from "./index.module.scss";
 
 import Industry from "./components/viewAll";
@@ -35,21 +37,6 @@ export default function Main() {
   value.openModal = open;
   value.setOpenModal = setOpenModal;
 
-  const preventClose = (e) => {
-    e.preventDefault();
-    e.returnValue = ""; //Chrome에서 동작하도록; deprecated
-  };
-
-  useEffect(() => {
-    (() => {
-      window.addEventListener("beforeunload", preventClose);
-    })();
-
-    return () => {
-      window.removeEventListener("beforeunload", preventClose);
-    };
-  }, []);
-
   useEffect(() => {
     const params =
       typeof window !== "undefined" ? sessionStorage.getItem("params") : null;
@@ -63,19 +50,20 @@ export default function Main() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-beige-100 h-full w-full overflow-auto">
+    <div className="h-full w-full flex flex-col bg-beige-100 overflow-auto">
       <Header
         tabs={TABS}
         changeTab={changeTab}
         clickedTab={clickedTab}
         clickedId={clickedId}
       />
-      <div id={S.subsequent} className="w-full">
+      <div id={S.subsequent} className="w-full h-full">
         {TABS[clickedId - 1].comp}
       </div>
-      <div className="flex items-center justify-center h-full">
+      {/* <div className="flex items-center justify-center h-full">
         <Modal open={open} setOpen={setOpen} datas={modalData} />
-      </div>
+      </div> */}
+      <NavEmptyForStyles />
     </div>
   );
 }

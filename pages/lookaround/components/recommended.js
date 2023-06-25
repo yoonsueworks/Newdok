@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "pages/_app";
 
+import NotRecommended from "components/pages/lookaround/NotRecommended";
 import CardTitle from "components/pages/lookaround/CardTitle";
 import ListTitle from "components/pages/lookaround/ListTitle";
 import Cards from "components/pages/lookaround/Cards";
@@ -29,9 +30,12 @@ export default function Recommended() {
   }, [union]);
 
   return (
-    <div className="bg-beige-100 grid gap-y-14 scroll-smooth">
-      {shuffledArray && union.length !== 0 ? (
-        <>
+    <div className="bg-beige-100 h-full">
+      {/* TODO: 지금은 union의 길이로 받았으나, 추후에 auth, union 동시에 검증할 수 있도록 처리하기 */}
+      {!union ? (
+        <NotRecommended />
+      ) : shuffledArray && union.length !== 0 ? (
+        <div className="bg-beige-100 grid gap-y-14 scroll-smooth">
           <div className=" grid gap-y-4">
             <CardTitle />
             <Cards />
@@ -40,7 +44,7 @@ export default function Recommended() {
             <ListTitle shuffle={shuffleUnion} />
             <Lists datas={shuffledArray} />
           </div>
-        </>
+        </div>
       ) : (
         <div className="bg-white w-full h-full"></div>
       )}

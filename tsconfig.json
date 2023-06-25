@@ -26,7 +26,8 @@
       "styles/*": ["styles/*"],
       "constants/*": ["constants/*"],
       "api/*": ["public/api/*"],
-      "icons/*": ["public/assets/*"]
+      "icons/*": ["public/assets/*"],
+      "context/*": ["context/*"]
     },
     "incremental": true
   },

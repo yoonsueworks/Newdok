@@ -1,7 +1,9 @@
 import React, { createContext, useState, useMemo } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import Layout from "./Layout";
 import HeadComp from "shared/HeadComp";
+import GNB from "shared/GNB";
 import Nav from "shared/Nav";
 import "styles/globals.css";
 
@@ -30,6 +32,11 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <GlobalContext.Provider value={value}>
         <HeadComp />
+        {(router.pathname.includes("home") ||
+          !router.pathname.includes("/myPage") ||
+          router.pathname === "/lookaround") && (
+         <GNB/>
+        )}
         <Component {...pageProps} />
         {(router.pathname.includes("home") ||
           router.pathname === "/myPage" ||
