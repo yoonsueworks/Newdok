@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+
 import Button from "shared/Button";
 import Topbar from "shared/Topbar";
 
@@ -27,8 +27,16 @@ export default function Home() {
   return (
     <>
       <div className="w-full h-full flex flex-col justify-center items-center">
-        <div className="w-[280px] h-[280px] bg-white border-2">
-          <div className="border h-36">will be logo splash</div>
+        <div className="w-[280px] h-[280px] bg-white">
+          <Image
+            width="280"
+            height="280"
+            responsive="true"
+            alt="Newdok logo"
+            src="/images/logo_7_black.png"
+            priority
+            required
+          />
         </div>
       </div>
     </>

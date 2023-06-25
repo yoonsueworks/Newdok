@@ -7,6 +7,7 @@ import PasswordChild from "components/pages/login/PasswordChild";
 import EmailChild from "components/pages/login/EmailChild";
 
 import BottomTextButtons from "components/pages/login/BottomTextButtons";
+import Image from "next/image";
 
 const SignIn = () => {
   const router = useRouter();
@@ -58,25 +59,28 @@ const SignIn = () => {
   ];
 
   return (
-    <div className="w-full h-screen pb-14 flex flex-col justify-between  px-4">
-      <form className="grid gap-y-4 w-full">
-        {LOGIN_INPUTS.map(
-          ({ id, placeholder, name, child, func, isValid, type, error }) => {
-            return (
-              <Input
-                key={id}
-                placeholder={placeholder}
-                name={name}
-                child={child}
-                func={func}
-                isValid={isValid}
-                type={type}
-                error={error}
-              />
-            );
-          }
-        )}
-      </form>
+    <div className="w-full h-screen pb-14 flex flex-col justify-between px-4 pt-28">
+      <div className="flex flex-col gap-y-16 justify-center items-center">
+        <Image src="/images/logo_3_black.png" alt="" width="200" height="45" />
+        <form className="grid gap-y-4 w-full">
+          {LOGIN_INPUTS.map(
+            ({ id, placeholder, name, child, func, isValid, type, error }) => {
+              return (
+                <Input
+                  key={id}
+                  placeholder={placeholder}
+                  name={name}
+                  child={child}
+                  func={func}
+                  isValid={isValid}
+                  type={type}
+                  error={error}
+                />
+              );
+            }
+          )}
+        </form>
+      </div>
       <div className="w-full flex flex-col items-center">
         <Button
           mode="alive"

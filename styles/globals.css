@@ -8,8 +8,13 @@
 
 @layer components {
   #__next {
-    @apply h-full;
-    overflow: scroll;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #__next > * {
+    flex-grow: 1;
   }
 }
 
@@ -20,10 +25,10 @@ body {
   background-color: aliceblue;
   padding: 0;
   margin: 0;
-  font-family: "Pretendard GOV Variable", "Pretendard GOV", -apple-system,
-    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
-    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard,
+    -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue",
+    "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
 html {

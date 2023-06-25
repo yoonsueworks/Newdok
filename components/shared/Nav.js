@@ -11,7 +11,7 @@ import ProfileOn from "icons/profile_on.svg";
 
 const Nav = () => {
   const router = useRouter();
-  const [clickedMenu, setClickedMenu] = useState(MENU_NAMES.HOME);
+  const [clickedMenu, setClickedMenu] = useState(2);
 
   const liCSS =
     "list-none text-center flex flex-col gap-y-1 justify-center align-center items-center single-12-m";
@@ -29,9 +29,9 @@ const Nav = () => {
         return (
           <li className={liCSS} key={menu.id} onClick={() => clickMenu(menu)}>
             <div>
-              {clickedMenu === menu.menuName ? menu.state_on : menu.state_off}
+              {clickedMenu === menu.id ? menu.state_on : menu.state_off}
             </div>
-            <span className={clickedCSS(menu.menuName)}>{menu.name}</span>
+            <span className={clickedCSS(menu.id)}>{menu.name_kr}</span>
           </li>
         );
       })}
@@ -50,26 +50,26 @@ const MENU_NAMES = {
 const NAV_MENUS = [
   {
     id: 1,
-    name: "둘러보기",
-    menuName: MENU_NAMES.RECOMMENDED,
+    name_kr: "둘러보기",
+    name_eng: MENU_NAMES.RECOMMENDED,
     state_on: <MailBoxOn width="32" height="32" />,
     state_off: <MailBoxOff width="32" height="32" />,
     path: "/lookaround",
   },
   {
     id: 2,
-    name: "홈",
-    menuName: MENU_NAMES.HOME,
+    name_kr: "홈",
+    name_eng: MENU_NAMES.HOME,
     state_on: <HomeOn width="32" height="32" />,
     state_off: <HomeOff width="32" height="32" />,
     path: "/home",
   },
   {
     id: 3,
-    name: "마이페이지",
-    menuName: MENU_NAMES.MYPAGE,
+    name_kr: "마이페이지",
+    name_eng: MENU_NAMES.MYPAGE,
     state_on: <ProfileOn width="32" height="32" />,
     state_off: <ProfileOff width="32" height="32" />,
-    path: "/mypage",
+    path: "/myPage",
   },
 ];

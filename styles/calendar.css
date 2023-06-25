@@ -9,6 +9,12 @@
   fill: #674188 !important;
 }
 
+.react-calendar__navigation__next-button,
+.react-calendar__navigation__prev-button {
+  width: 24px;
+  height: 24px;
+}
+
 .react-calendar__navigation__label span {
   color: var(--primary-purple-700-p, #674188);
   text-align: center;
