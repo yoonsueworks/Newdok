@@ -65,7 +65,7 @@
   .multiple-20-b,
   .multiple-18-b,
   .multiple-16-b {
-    font-weight: bold;
+    font-weight: 700;
   }
 
   .single-32-sb,
@@ -84,7 +84,7 @@
   .multiple-16-sb,
   .multiple-14-sb,
   .multiple-12-sb {
-    font-weight: semibold;
+    font-weight: 600;
   }
 
   .single-24-m,

@@ -7,10 +7,18 @@ interface ButtonProps {
 }
 
 const ButtonText = (props: ButtonProps) => {
-  const { func, text } = props;
+  const { func, text, size } = props;
+  const sizeCSS =
+    size === "big"
+      ? "single-18-sb"
+      : size === "medium"
+      ? "single-16-sb"
+      : "single-14-sb";
   return (
     <button
-      className="button_5 w-fit h-fit border-b border-warmgray-100"
+      className={
+        sizeCSS + " w-fit h-fit underline decoration-1 underline-offset-2"
+      }
       onClick={func}
     >
       {text}

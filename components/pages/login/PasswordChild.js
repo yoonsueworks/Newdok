@@ -1,14 +1,18 @@
+import ViewIconOn from "icons/view_on.svg";
+import ViewIconOff from "icons/view_off.svg";
+
 const PasswordChild = ({ setInputType, type }) => {
-  return (
-    <button
-      className="w-5 h-5 bg-purple-300 shrink-0"
-      onClick={(e) => {
-        console.log(type);
-        setInputType((type) => !type);
-        e.preventDefault();
-      }}
-    ></button>
-  );
+  const props = {
+    width: "20",
+    height: "20",
+    className: "shrink-0",
+    onClick: (e) => {
+      console.log(type);
+      setInputType((type) => !type);
+      e.preventDefault();
+    },
+  };
+  return type === true ? <ViewIconOff {...props} /> : <ViewIconOn {...props} />;
 };
 
 export default PasswordChild;

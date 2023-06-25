@@ -74,6 +74,17 @@ module.exports = {
         "warmgray-90": "#272525",
         "warmgray-100": "#171414",
 
+        "neutralgray-50": "#F7F3F2",
+        "neutralgray-100": "#E5E0DF",
+        "neutralgray-200": "#CAC5C4",
+        "neutralgray-300": "#ADA8A8",
+        "neutralgray-400": "#8F8B8B",
+        "neutralgray-500": "#726E6E",
+        "neutralgray-600": "#565151",
+        "neutralgray-700": "#3C3838",
+        "neutralgray-800": "#272525",
+        "neutralgray-900": "#171414",
+
         warning: "#FFB802",
         error: "#EA0730",
         success: "#16892C",

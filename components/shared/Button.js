@@ -3,10 +3,10 @@ export default function Button(props) {
 
   const sizeCSS =
     size === "big"
-      ? "py-5 button_1 rounded-[14px]"
+      ? "py-5 single-24-b rounded-[14px]"
       : size === "med"
-      ? "py-4 button_2 rounded-xl"
-      : "py-3.5 button_3 rounded-[10px]"; //small
+      ? "py-4 single-20-b rounded-xl"
+      : "py-3.5 single-18-b rounded-[10px]"; //small
 
   const modeCSS =
     mode === "ghost"
