@@ -1,8 +1,9 @@
+import Background from "shared/Background";
 import ListItem from "components/pages/mypage/subscriptionList/ListItem";
 
 const Subscription = () => {
   return (
-    <div className="px-5 bg-beige-100">
+    <Background>
       <div className="grid gap-y-1 mb-7">
         <div className="multiple-24-b text-neutralgray-900">
           8개의 뉴스레터를 구독 중이에요.
@@ -12,7 +13,7 @@ const Subscription = () => {
         </div>
       </div>
       <ListItem />
-    </div>
+    </Background>
   );
 };
 

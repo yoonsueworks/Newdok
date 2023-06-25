@@ -65,7 +65,7 @@ export default function Job() {
                 <div
                   className="object-cover bg-cover bg-center w-[20px] h-[10px]"
                   style={{
-                    backgroundImage: `url("/images/icons/arrow.png")`,
+                    BackgroundImage: `url("/images/icons/arrow.png")`,
                   }}
                 ></div>
               </div>

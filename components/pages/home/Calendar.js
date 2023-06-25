@@ -1,26 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { CalendarContext } from "../../../context/CalendarContext";
+
 import Calendar from "react-calendar";
 import PrevIcon from "icons/arrow_left_off.svg";
 import NextIcon from "icons/arrow_right_off.svg";
-// import S from "./Calendar.module.scss";
 
 export default function ReactCalendar() {
   const [value, onChange] = useState(new Date());
+  const { monthlyArticles } = useContext(CalendarContext);
 
   const tileContent = ({ date }) => {
     const currentDate = Number(String(date).split(" ")[2]);
     // 달 따라서 값 확인하기 일치하지 않는 경우 안하기
-    const data = [
-      { id: 1, artics: ["hello1", "hello1"] },
-      { id: 2, articles: ["hello1", "hello1"] },
-      { id: 3, articles: ["hello1", "hello1"] },
-      { id: 4, articles: ["hello1", "hello1"] },
-      { id: 5, articles: ["hello1", "hello1"] },
-      { id: 6, articles: ["hello1", "hello1"] },
-      { id: 25, articles: ["hello1", "hello1"] },
-    ];
 
-    const hasMatchingArticles = data.some((el) => {
+    const hasMatchingArticles = monthlyArticles.some((el) => {
       return el.id === currentDate && el.articles?.length > 0;
     });
 
@@ -40,20 +33,27 @@ export default function ReactCalendar() {
   };
 
   return (
-    <div className="calendar-container">
+    // TODO: next, prev 버튼 클릭 시 요청 보내기
+    <div className="calendar-container z-30">
       <Calendar
-        onChange={onChange}
+        onChange={() => {
+          // TODO: 다른 날 클릭 시 데이터 다시 세팅하기
+          console.log("another day clicked");
+          onChange();
+        }}
         value={value}
         locale="ko-KO"
+        calendarType="US"
         formatDay={(locale, date) =>
           date.toLocaleString("en", { day: "numeric" })
         }
-        nextLabel={<NextIcon />}
-        prevLabel={<PrevIcon />}
+        nextLabel={<NextIcon onClick={() => console.log("요청")} />}
+        prevLabel={<PrevIcon onClick={() => console.log("요청")} />}
         next2Label={null}
         prev2Label={null}
         tileContent={tileContent}
         showNeighboringMonth={false}
+        minDetail="month"
         className="react-calendar"
       />
     </div>

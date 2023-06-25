@@ -1,9 +1,12 @@
 import React, { createContext, useState, useMemo } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import Layout from "./Layout";
 import HeadComp from "shared/HeadComp";
+import GNB from "shared/GNB";
 import Nav from "shared/Nav";
 import "styles/globals.css";
+// import "components/pages/home/calendar.scss";
 
 export const GlobalContext = createContext(null);
 
@@ -18,6 +21,7 @@ function MyApp({ Component, pageProps }) {
   }, [union]);
 
   const router = useRouter();
+  // console.log(router.pathname !== "/");
 
   const value = {
     intersection: intersectionArr,
@@ -30,6 +34,15 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <GlobalContext.Provider value={value}>
         <HeadComp />
+        {((!router.pathname.includes("/myPage") &&
+          router.pathname !== "/" &&
+          router.pathname !== "/leaveId") ||
+          // 여기까지 예외 처리 해야하는것
+          router.pathname.includes("home") ||
+          router.pathname === "/lookaround") && (
+          // 여기까지 포함 처리 해야하는 것
+          <GNB />
+        )}
         <Component {...pageProps} />
         {(router.pathname.includes("home") ||
           router.pathname === "/myPage" ||

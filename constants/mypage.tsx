@@ -10,3 +10,16 @@ export const myaccount_menus = [
   { id: 2, name: "비밀번호 변경", path: "/myPage/myAccount/pswd" },
   { id: 3, name: "로그아웃", path: "" },
 ];
+
+export const policy_menus = [
+  {
+    id: 1,
+    name: "서비스 이용 약관",
+    path: "/myPage/policy/term",
+  },
+  {
+    id: 2,
+    name: "개인정보 처리 방침",
+    path: "/myPage/policy/privacy",
+  },
+];

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useRouter } from "next/router";
 
@@ -22,6 +22,14 @@ const Nav = () => {
     setClickedMenu(menu.id);
     router.push(menu.path);
   };
+
+  useEffect(() => {
+    router.pathname === "/lookaround"
+      ? setClickedMenu(1)
+      : router.pathname.includes("/myPage")
+      ? setClickedMenu(3)
+      : setClickedMenu(2);
+  }, []);
 
   return (
     <div className="w-full h-fit bg-white absolute bottom-0 grid grid-cols-3 elevation-2-top pt-3.5 pb-5">

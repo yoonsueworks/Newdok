@@ -8,7 +8,7 @@ const Input = ({ placeholder, child, func, name, error, isValid, type }) => {
   return (
     <div>
       <div
-        className={`flex justify-between items-center w-full p-4 gap-x-4 rounded-lg ${validBorder} ${focusStyle}`}
+        className={`flex justify-between items-center w-full p-4 gap-x-4 rounded-lg bg-white ${validBorder} ${focusStyle}`}
       >
         <input
           className={`w-full rounded-lg bg-transparent`}
@@ -20,7 +20,7 @@ const Input = ({ placeholder, child, func, name, error, isValid, type }) => {
         {/* <div className="w-5 h-5 bg-purple-300 shrink-0" /> */}
         {child}
       </div>
-      {!isValid && <div className="pt-2 caption_2 text-error">{error}</div>}
+      {!isValid && <div className="pt-2 single-12-m text-error">{error}</div>}
     </div>
   );
 };

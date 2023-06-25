@@ -3,8 +3,8 @@ import { useState } from "react";
 
 import Input from "shared/Input";
 import Button from "shared/Button";
-import PasswordChild from "components/pages/login/PasswordChild";
-import EmailChild from "components/pages/login/EmailChild";
+import PasswordChild from "shared/PasswordChild";
+import EmailChild from "shared/EmailChild";
 
 import BottomTextButtons from "components/pages/login/BottomTextButtons";
 import Image from "next/image";

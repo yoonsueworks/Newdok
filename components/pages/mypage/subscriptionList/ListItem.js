@@ -2,12 +2,12 @@ import Clock from "icons/time_off.svg";
 
 const ListItem = () => {
   const cardCSS =
-    "w-full h-fit rounded-lg border border-1 border-neutralgray-200 bg-white p-5 flex items-center gap-x-4";
+    "w-full h-fit contentbox-border p-5 flex items-center gap-x-4";
 
   return (
     <ul className="grid gap-y-2.5">
       <li className={cardCSS}>
-        <div className="w-12 h-12 rounded-full bg-black border border-1 border-neutralgray-200"></div>
+        <div className="w-12 h-12 rounded-full bg-black contentbox-border"></div>
         <div className="grid gap-y-2">
           <div className="single-18-sb text-neutralgray-900">
             Alone & around

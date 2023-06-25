@@ -1,12 +1,15 @@
-import Profile from "components/pages/mypage/profile";
-import Menus from "components/pages/mypage/menus";
+import Background from "shared/Background";
+import Profile from "components/pages/myPage/Profile";
+import Menus from "components/pages/myPage/Menus";
 
 const MyPage = () => {
   return (
-    <div className="w-full bg-beige-100">
+    <>
       <Profile />
-      <Menus />
-    </div>
+      <Background>
+        <Menus />
+      </Background>
+    </>
   );
 };
 

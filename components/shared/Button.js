@@ -1,5 +1,5 @@
 export default function Button(props) {
-  const { func, mode, state, size, text, onboarding } = props;
+  const { func, mode, state, size, text, onboarding, width } = props;
 
   const sizeCSS =
     size === "big"
@@ -18,13 +18,16 @@ export default function Button(props) {
       ? ""
       : "bg-warmgray-60 cursor-not-allowed group-hover:bg-warmgray-60";
 
+  const widthCSS = width === "fit" ? "w-fit p-4" : "w-full";
+  const widthGroupCSS = width === "fit" ? "w-fit" : "w-full";
+
   return (
     <div
-      className="w-full group"
+      className={`${widthGroupCSS} group shrink-0`}
       onClick={state ? () => func() : () => alert(`${onboarding} 선택해주세요`)}
     >
       <div
-        className={`${sizeCSS} ${modeCSS} ${stateCSS} w-full flex items-center justify-center`}
+        className={`${sizeCSS} ${modeCSS} ${stateCSS} ${widthCSS} flex items-center justify-center`}
       >
         {text}
       </div>
