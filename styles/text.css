@@ -1,91 +1,168 @@
 @tailwind utilities;
 
 @variants {
-  .display {
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 48px;
-    letter-spacing: -1%;
-  }
-  .header_1 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 36px;
+  /* line height, letter-spacing */
+
+  .single-32-b,
+  .single-32-sb,
+  .single-30-b,
+  .single-30-sb,
+  .single-24-b,
+  .single-24-sb,
+  .single-24-m,
+  .single-20-b,
+  .single-20-sb,
+  .single-20-m,
+  .single-18-b,
+  .single-18-sb,
+  .single-18-m,
+  .single-16-b,
+  .single-16-sb,
+  .single-16-m,
+  .single-14-sb,
+  .single-14-m,
+  .single-12-sb,
+  .single-12-m {
+    line-height: 100%;
     letter-spacing: -1%;
   }
 
-  .header_2 {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 30px;
-    letter-spacing: -1%;
-  }
-  .header_3 {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 26px;
-    letter-spacing: -1%;
-  }
-  .body_1 {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: -1%;
-  }
-  .body_2 {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 22px;
+  .multiple-32-b,
+  .multiple-32-sb,
+  .multiple-30-b,
+  .multiple-30-sb,
+  .multiple-24-b,
+  .multiple-24-sb,
+  .multiple-24-m,
+  .multiple-20-b,
+  .multiple-20-sb,
+  .multiple-20-m,
+  .multiple-18-b,
+  .multiple-18-sb,
+  .multiple-18-m,
+  .multiple-16-b,
+  .multiple-16-sb,
+  .multiple-16-m,
+  .multiple-14-sb,
+  .multiple-14-m,
+  .multiple-12-sb,
+  .multiple-12-m {
+    line-height: 150%;
     letter-spacing: -1%;
   }
 
-  .caption_1 {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -1%;
-  }
-  .caption_2 {
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -1%;
-  }
-  .button_1 {
-    font-size: 24px;
+  /* font weight */
+
+  .single-32-b,
+  .single-30-b,
+  .single-24-b,
+  .single-20-b,
+  .single-18-b,
+  .single-16-b,
+  .multiple-32-b,
+  .multiple-30-b,
+  .multiple-24-b,
+  .multiple-20-b,
+  .multiple-18-b,
+  .multiple-16-b {
     font-weight: 700;
-    line-height: 100%;
-    letter-spacing: -1%;
   }
-  .button_2 {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 100%;
-    letter-spacing: -1%;
-  }
-  .button_3 {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 100%;
-    letter-spacing: -1%;
-  }
-  .button_4 {
-    font-size: 16px;
+
+  .single-32-sb,
+  .single-30-sb,
+  .single-24-sb,
+  .single-20-sb,
+  .single-18-sb,
+  .single-16-sb,
+  .single-14-sb,
+  .single-12-sb,
+  .multiple-32-sb,
+  .multiple-30-sb,
+  .multiple-24-sb,
+  .multiple-20-sb,
+  .multiple-18-sb,
+  .multiple-16-sb,
+  .multiple-14-sb,
+  .multiple-12-sb {
     font-weight: 600;
-    line-height: 100%;
-    letter-spacing: -1%;
   }
-  .button_5 {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 100%;
-    letter-spacing: -1%;
+
+  .single-24-m,
+  .single-20-m,
+  .single-18-m,
+  .single-16-m,
+  .single-14-m,
+  .multiple-24-m,
+  .multiple-20-m,
+  .multiple-18-m,
+  .multiple-16-m,
+  .multiple-14-m {
+    font-weight: 500;
   }
-  /* v.1.0 */
-  .reload {
+
+  /* font size */
+
+  .single-32-b,
+  .single-32-sb,
+  .multiple-32-b,
+  .multiple-32-sb {
+    font-size: 32px;
+  }
+
+  .single-30-b,
+  .single-30-sb,
+  .multiple-30-b,
+  .multiple-30-sb {
+    @apply text-3xl;
+  }
+
+  .single-24-b,
+  .single-24-sb,
+  .single-24-m,
+  .multiple-24-b,
+  .multiple-24-sb,
+  .multiple-24-m {
+    @apply text-2xl;
+  }
+
+  .single-20-b,
+  .single-20-sb,
+  .single-20-m,
+  .multiple-20-b,
+  .multiple-20-sb,
+  .multiple-20-m {
+    @apply text-xl;
+  }
+
+  .single-18-b,
+  .single-18-sb,
+  .single-18-m,
+  .multiple-18-b,
+  .multiple-18-sb,
+  .multiple-18-m {
+    @apply text-lg;
+  }
+
+  .single-16-b,
+  .single-16-sb,
+  .single-16-m,
+  .multiple-16-b,
+  .multiple-16-sb,
+  .multiple-16-m {
+    @apply text-base;
+  }
+
+  .single-14-sb,
+  .single-14-m,
+  .multiple-14-sb,
+  .multiple-14-m {
     @apply text-sm;
-    font-weight: 700;
-    line-height: 100%;
-    letter-spacing: -1%;
+  }
+
+  .single-12-sb,
+  .single-12-m,
+  .multiple-12-sb,
+  .multiple-12-m {
+    @apply text-xs;
   }
 }

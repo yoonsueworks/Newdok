@@ -1,7 +1,8 @@
 import React, { createContext, useState, useMemo } from "react";
-
+import { useRouter } from "next/router";
 import Layout from "./Layout";
 import HeadComp from "shared/HeadComp";
+import Nav from "shared/Nav";
 import "styles/globals.css";
 
 export const GlobalContext = createContext(null);
@@ -16,6 +17,8 @@ function MyApp({ Component, pageProps }) {
     return union;
   }, [union]);
 
+  const router = useRouter();
+
   const value = {
     intersection: intersectionArr,
     union: unionArr,
@@ -28,6 +31,9 @@ function MyApp({ Component, pageProps }) {
       <GlobalContext.Provider value={value}>
         <HeadComp />
         <Component {...pageProps} />
+        {(router.pathname.includes("home") ||
+          router.pathname === "/myPage" ||
+          router.pathname === "/lookaround") && <Nav />}
       </GlobalContext.Provider>
     </Layout>
   );
