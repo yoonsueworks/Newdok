@@ -6,10 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "es2017"
-    ],
+    "lib": ["dom", "es2017"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -22,36 +19,17 @@
     "target": "esnext",
     "baseUrl": ".",
     "paths": {
-      "components/*": [
-        "components/*"
-      ],
-      "shared/*": [
-        "components/shared/*"
-      ],
-      "config/*": [
-        "config/*"
-      ],
-      "pages/*": [
-        "pages/*"
-      ],
-      "styles/*": [
-        "styles/*"
-      ],
-      "constants/*": [
-        "constants/*"
-      ],
-      "api/*": [
-        "public/api/*"
-      ]
+      "components/*": ["components/*"],
+      "shared/*": ["components/shared/*"],
+      "config/*": ["config/*"],
+      "pages/*": ["pages/*"],
+      "styles/*": ["styles/*"],
+      "constants/*": ["constants/*"],
+      "api/*": ["public/api/*"],
+      "icons/*": ["public/assets/*"]
     },
     "incremental": true
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "pages/api/user-research/index.js"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx", "pages/api/user-research/index.js"]
 }

@@ -1,0 +1,79 @@
+.react-calendar__navigation {
+  display: flex;
+  padding: 16px;
+  background: var(--primary-purple-50, #efe7f2);
+  color: var(--primary-purple-700-p, #674188);
+}
+
+.react-calendar__navigation path {
+  fill: #674188 !important;
+}
+
+.react-calendar__navigation__label span {
+  color: var(--primary-purple-700-p, #674188);
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 100%;
+  letter-spacing: -0.18px;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+}
+
+.react-calendar__month-view__weekdays {
+  padding: 16px;
+  background: #fffbf5;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  /* 월,화,수... 글자 부분 */
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 100%;
+  letter-spacing: -1%;
+  color: #9362a9;
+  text-decoration: none;
+}
+
+.react-calendar__month-view__days {
+  padding: 16px;
+  row-gap: 32px;
+}
+
+.react-calendar__month-view__days button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-calendar__tile {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  color: #171414;
+}
+
+.react-calendar__tile abbr {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-calendar__tile--now abbr {
+  border-radius: 50%;
+  color: white;
+  background: #674188;
+}
