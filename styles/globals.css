@@ -22,7 +22,7 @@
 
 html,
 body {
-  background-color: aliceblue;
+  background-color: #efe7f2;
   padding: 0;
   margin: 0;
   font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard,
@@ -40,7 +40,7 @@ html {
 body {
   position: fixed;
   width: 430px;
-  max-height: 900px;
+  max-height: 932px;
   min-height: 100vh;
   /* mobile viewport bug fix */
   min-height: -webkit-fill-available;

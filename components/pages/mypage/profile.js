@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Button from "shared/Button";
 import CopyIcon from "icons/copy_off.svg";
+import QuestionMarkIcon from "icons/question_mark_off.svg";
 import ListIcon from "icons/list_off.svg";
 import SettingIcon from "icons/setting_off.svg";
 
@@ -11,11 +12,17 @@ const Profile = () => {
 
   return (
     <div className="pt-14 pb-8 px-5 grid gap-x-6 gap-y-6 bg-white">
-      <div className="grid gap-y-1">
+      <div className="grid gap-y-4">
         <div className="single-24-b text-purple-700">도커스</div>
-        <div className="single-18-m flex gap-x-2 flex items-center">
-          <div>newdok12@newdok.tbd</div>
-          <CopyIcon width="24" height="24" />
+        <div className="flex justify-between">
+          <div className="single-18-b flex gap-x-0.5 items-center text-purple-700">
+            <div>구독이메일</div>
+            <QuestionMarkIcon width="24" height="24" fill="#9362A9" />
+          </div>
+          <div className="single-18-m flex gap-x-2 flex items-center">
+            <div>newdok12@newdok.tbd</div>
+            <CopyIcon width="24" height="24" />
+          </div>
         </div>
       </div>
       <div className="flex justify-between gap-x-2.5">
