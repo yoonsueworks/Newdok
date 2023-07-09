@@ -6,8 +6,7 @@ import Close from "icons/close_off.svg";
 
 const ToolBar = () => {
   const value = useContext(CalendarContext);
-  const { dateLocaleKr, calendarOpen, setCalendarOpen } =
-    value;
+  const { dateLocaleKr, calendarOpen, setCalendarOpen } = value;
 
   const handleCalendar = () => {
     setCalendarOpen((prev) => !prev);
