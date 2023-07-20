@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <GlobalContext.Provider value={value}>
         <HeadComp />
-        {((!router.pathname.includes("/myPage") &&
+        {((!router.pathname.includes("/userPage") &&
           router.pathname !== "/" &&
           router.pathname !== "/leaveId") ||
           // 여기까지 예외 처리 해야하는것
@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }) {
         )}
         <Component {...pageProps} />
         {(router.pathname.includes("home") ||
-          router.pathname === "/myPage" ||
+          router.pathname === "/userPage" ||
           router.pathname === "/lookaround") && <Nav />}
       </GlobalContext.Provider>
     </Layout>

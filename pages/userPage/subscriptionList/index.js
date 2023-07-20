@@ -1,5 +1,5 @@
 import Background from "shared/Background";
-import ListItem from "components/pages/myPage/subscriptionList/ListItem";
+import ListItem from "components/pages/userPage/subscriptionList/ListItem";
 
 const Subscription = () => {
   return (

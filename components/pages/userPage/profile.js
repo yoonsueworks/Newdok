@@ -30,7 +30,7 @@ const Profile = () => {
           <button
             className={buttonCSS}
             onClick={() => {
-              router.push("/myPage/subscriptionList");
+              router.push("/userPage/subscriptionList");
             }}
           >
             <ListIcon width="20" height="20" fill="#674188" /> 구독 리스트 보기
@@ -40,7 +40,7 @@ const Profile = () => {
           <button
             className={buttonCSS}
             onClick={() => {
-              router.push("/myPage/myInfo");
+              router.push("/userPage/myInfo");
             }}
           >
             <SettingIcon width="20" height="20" fill="#674188" /> 프로필 편집

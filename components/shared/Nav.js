@@ -26,7 +26,7 @@ const Nav = () => {
   useEffect(() => {
     router.pathname === "/lookaround"
       ? setClickedMenu(1)
-      : router.pathname.includes("/myPage")
+      : router.pathname.includes("/userPage")
       ? setClickedMenu(3)
       : setClickedMenu(2);
   }, []);
@@ -52,7 +52,7 @@ export default Nav;
 const MENU_NAMES = {
   RECOMMENDED: "recommended",
   HOME: "home",
-  MYPAGE: "mypage",
+  userPage: "userPage",
 };
 
 const NAV_MENUS = [
@@ -75,9 +75,9 @@ const NAV_MENUS = [
   {
     id: 3,
     name_kr: "마이페이지",
-    name_eng: MENU_NAMES.MYPAGE,
+    name_eng: MENU_NAMES.userPage,
     state_on: <ProfileOn width="32" height="32" />,
     state_off: <ProfileOff width="32" height="32" />,
-    path: "/myPage",
+    path: "/userPage",
   },
 ];

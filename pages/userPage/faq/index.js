@@ -1,5 +1,5 @@
 import Background from "shared/Background";
-import QuestionsDisclosure from "components/pages/mypage/faq/QuestionsDisclosure";
+import QuestionsDisclosure from "components/pages/userPage/faq/QuestionsDisclosure";
 import { faqList } from "constants/faqList";
 
 const Faq = () => {

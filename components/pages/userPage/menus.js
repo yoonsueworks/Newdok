@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import ArrowRight from "icons/arrow_right_off.svg";
-import { mypage_menus } from "constants/mypage";
+import { userPage_menus } from "constants/userPage";
 
 const Menus = () => {
   const router = useRouter();
@@ -11,7 +11,7 @@ const Menus = () => {
     "w-full flex justify-between items-center bg-warmgray-30 p-5 rounded-lg single-18-b";
   return (
     <div className="w-full h-full flex flex-col gap-y-2.5 pt-8">
-      {mypage_menus.map((menu) => {
+      {userPage_menus.map((menu) => {
         return (
           <div
             key={menu.id}

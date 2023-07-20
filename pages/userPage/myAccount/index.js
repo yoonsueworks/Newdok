@@ -5,7 +5,7 @@ import ButtonText from "shared/ButtonText";
 import ArrowRight from "icons/arrow_right_off.svg";
 import LogOut from "icons/logout_off.svg";
 
-import { myaccount_menus } from "constants/mypage";
+import { myaccount_menus } from "constants/userPage";
 
 const MyAccount = () => {
   const router = useRouter();
