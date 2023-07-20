@@ -29,6 +29,7 @@ const Nav = () => {
       : router.pathname.includes("/userPage")
       ? setClickedMenu(3)
       : setClickedMenu(2);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

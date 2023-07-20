@@ -133,6 +133,7 @@ const Home = () => {
     });
     setDateLocaleKr(currentDate);
     setActiveDate(new Date().getDate());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //TODO: getServerSiceProps 로 monthlyArticles 받아오기

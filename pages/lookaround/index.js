@@ -47,6 +47,7 @@ export default function Main() {
         setIntersection(res.intersection);
         setUnion(res.union);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

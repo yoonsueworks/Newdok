@@ -17,6 +17,7 @@ export default function Job() {
     selected && handleProgressWithOption(2);
     selected && setIsActivated(true);
     setUserInfos({ industry: selected.id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Job() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

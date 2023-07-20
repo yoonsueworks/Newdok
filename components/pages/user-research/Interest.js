@@ -48,11 +48,13 @@ export default function Interest() {
     window.addEventListener("popstate", preventGoBack);
 
     return () => window.removeEventListener("popstate", preventGoBack);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     activateButton();
     setUserInfos({ ...userInfos, interests: userInterests });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInterests]);
 
   useEffect(() => {
@@ -69,6 +71,7 @@ export default function Interest() {
       } else {
         gradientElement.style.display = "block";
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     };
 
     scrollContainer.addEventListener("scroll", handleScroll);

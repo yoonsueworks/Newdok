@@ -41,12 +41,14 @@ export default function App() {
       return () => {
         window.removeEventListener("beforeunload", handleBeforeUnload);
       };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
   }
   useBlockReload();
 
   useEffect(() => {
     shuffleUnion();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -14,6 +14,7 @@ export default function ProgressBar({ type }) {
         BackgroundColor: "#674188",
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress]);
 
   return (
