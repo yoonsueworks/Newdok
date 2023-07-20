@@ -15,14 +15,15 @@ export default function Home() {
 
   const cookieOrToken = false;
 
-  // useEffect(() => {
-  //   const checkUserToken = async () => {
-  //     cookieOrToken ? routeHome() : routeOnbooarding();
-  //   };
-
-  //   checkUserToken();
-  // });
-  // TODO: 토큰 확인 후 페이지 라우팅
+  useEffect(() => {
+    // const checkUserToken = async () => {
+    //   cookieOrToken ? routeHome() : routeOnbooarding();
+    // };
+    // checkUserToken();
+    router.push("/onboarding");
+    // TODO: 토큰 확인 후 페이지 라우팅
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
