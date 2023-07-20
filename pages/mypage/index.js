@@ -1,5 +1,5 @@
-import Profile from "components/pages/mypage/profile";
-import Menus from "components/pages/mypage/menus";
+import Profile from "components/pages/myPage/profile";
+import Menus from "components/pages/myPage/menus";
 
 const MyPage = () => {
   return (

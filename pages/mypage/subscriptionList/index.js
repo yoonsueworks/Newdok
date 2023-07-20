@@ -1,4 +1,4 @@
-import ListItem from "components/pages/mypage/subscriptionList/ListItem";
+import ListItem from "components/pages/myPage/subscriptionList/ListItem";
 
 const Subscription = () => {
   return (
