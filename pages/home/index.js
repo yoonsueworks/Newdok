@@ -138,29 +138,25 @@ const Home = () => {
   //TODO: getServerSiceProps 로 monthlyArticles 받아오기
 
   return (
-    <CalendarContext.Provider value={calendarContextValues}>
-      {/* <div className="w-full h-full"> */}
+    <>
       <CalendarContext.Provider value={calendarContextValues}>
-        {/* <div className="w-full h-full"> */}
-        <ToolBar />
-        {calendarOpen && <ReactCalendar />}
-        <Articles />
-        {calendarOpen && <ReactCalendar />}
-        <Articles />
+        <div className="w-full h-full">
+          <ToolBar />
+          {calendarOpen && <ReactCalendar />}
+          <Articles />
 
-        {/* <ToastPopUp /> */}
-        {/* <ToastPopUp /> */}
-        {/* <BottomSheet comp={<Filters />} /> */}
-        {/* <BrandInfo />*/}
-        {/* <BrandArticles /> */}
-        {/* <Arrivals /> */}
-        {/* <UnAuthorized /> */}
-        {/* </div> */}
-        <NavEmptyForStyles />
+          {/* <ToastPopUp /> */}
+          {/* <BottomSheet comp={<Filters />} /> */}
+          {/* <BrandInfo />*/}
+          {/* <BrandArticles /> */}
+          {/* <Arrivals /> */}
+          {/* <UnAuthorized /> */}
+          {/* </div> */}
+          {/* <NavEmptyForStyles /> */}
+        </div>
       </CalendarContext.Provider>
-      {/* </div> */}
       <NavEmptyForStyles />
-    </CalendarContext.Provider>
+    </>
   );
 };
 

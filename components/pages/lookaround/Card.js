@@ -3,6 +3,7 @@ import { GlobalContext } from "pages/_app";
 
 import Image from "next/image";
 import S from "./Card.module.scss";
+import Tags from "../../shared/Tags";
 
 export default function Card({ datas }) {
   const { setOpenModal, modalData } = useContext(GlobalContext);
@@ -27,9 +28,9 @@ export default function Card({ datas }) {
     <div
       onClick={() => setOpenModal(datas)}
       id={S.card}
-      className="h-[300px] w-[289px] inline-block bg-white flex flex-col border border-solid border-1 border-warmgray-20 cursor-pointer"
+      className="h-[307px] w-[320px] inline-block bg-white flex flex-col border border-solid border-1 border-warmgray-20 cursor-pointer"
     >
-      <div id={S.gradient} className="w-full h-[155px]">
+      <div id={S.gradient} className="w-full h-[150px]">
         <Image
           id={S.size}
           fill
@@ -40,9 +41,10 @@ export default function Card({ datas }) {
           required
         />
       </div>
-      <div className="h-fit px-6 pt-4 grid gap-y-3">
-        <div className="header_1">{name}</div>
-        <div className="body_1">{first_description}</div>
+      <div className="h-fit p-5 grid gap-y-3">
+        <div className="single-18-sb">{name}</div>
+        <div className="multiple-14-m">{first_description}</div>
+        <Tags tags={interests} />
       </div>
     </div>
   );

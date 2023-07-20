@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Layout from "./Layout";
 import HeadComp from "shared/HeadComp";
 import Nav from "shared/Nav";
+import GNB from "shared/GNB";
 import "styles/globals.css";
 
 export const GlobalContext = createContext(null);
@@ -31,6 +32,8 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <GlobalContext.Provider value={value}>
         <HeadComp />
+        {(router.pathname.includes("home") ||
+          router.pathname === "/lookaround") && <GNB />}
         <Component {...pageProps} />
         {(router.pathname.includes("home") ||
           router.pathname === "/userPage" ||

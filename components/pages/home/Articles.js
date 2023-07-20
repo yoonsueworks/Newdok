@@ -18,8 +18,8 @@ const Articles = () => {
   // CSS
   const dafaultWrapperCSS =
     "w-full h-full flex flex-col overflow-y-scroll bg-beige-100 px-4 pt-7 gap-y-[26px] z-0";
-  const arrivalsWrapperCSS =
-    "w-full h-full flex flex-col justify-between bg-beige-100";
+  const arrivalsWrapperCSS = "w-full h-full justify-between bg-beige-100";
+  // "w-full h-full flex flex-col justify-between bg-beige-100";
   const arrivalsCSS = "w-full h-full px-4 flex flex-col justify-between pb-0";
   // const articleNoneCSS = "w-full h-full px-4 flex flex-col justify-between";
   const defaultArticlesCSS =
@@ -38,6 +38,7 @@ const Articles = () => {
       {!articleLength ? (
         <div className={arrivalsCSS}>
           <Arrivals />
+          <NavEmptyForStyles />
         </div>
       ) : (
         <>

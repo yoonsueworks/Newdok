@@ -10,7 +10,7 @@ import Card from "./Card";
 import S from "./CardSwiper.module.scss";
 import { GlobalContext } from "pages/_app";
 
-export default function App() {
+export default function Cards({ datas }) {
   const { intersection } = useContext(GlobalContext);
   const [shuffledArray, setShuffledArray] = useState(intersection);
 
@@ -28,24 +28,6 @@ export default function App() {
     setShuffledArray(shuffleArray(intersection));
   };
 
-  function useBlockReload() {
-    useEffect(() => {
-      const handleBeforeUnload = (event) => {
-        event.preventDefault();
-        // Set a custom message to display in the browser's confirmation dialog
-        event.returnValue = "Are you sure you want to leave this page?";
-      };
-
-      window.addEventListener("beforeunload", handleBeforeUnload);
-
-      return () => {
-        window.removeEventListener("beforeunload", handleBeforeUnload);
-      };
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-  }
-  useBlockReload();
-
   useEffect(() => {
     shuffleUnion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,12 +44,18 @@ export default function App() {
         modules={[Mousewheel]}
         className={`mySwiper ${S.swiper} px-5`}
       >
-        {shuffledArray?.length > 0 &&
+        {datas?.length > 0 &&
+          datas?.map((data) => (
+            <SwiperSlide key={data.id} className={S.swiperSlide}>
+              <Card datas={data} />
+            </SwiperSlide>
+          ))}
+        {/* {shuffledArray?.length > 0 &&
           shuffledArray?.map((datas) => (
             <SwiperSlide key={datas.id} className={S.swiperSlide}>
               <Card datas={datas} />
             </SwiperSlide>
-          ))}
+          ))} */}
       </Swiper>
     </>
   );

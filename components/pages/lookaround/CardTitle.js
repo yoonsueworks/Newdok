@@ -1,10 +1,8 @@
 export default function CardTitle() {
   return (
-    <h1 className="header_1 px-5 w-max">
-      <span>
-        내게 꼭 맞는 <span className="text-purple-700">뉴스레터</span>가
-        도착했어요!
-      </span>
+    <h1 className="multiple-20-b pt-8 pb-4 w-max">
+      도커스님을 위한 <br />
+      맞춤형 뉴스레터가 도착했어요!
     </h1>
   );
 }
