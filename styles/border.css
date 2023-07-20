@@ -1,0 +1,9 @@
+@tailwind utilities;
+
+@variants {
+  .contentbox-border {
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px inset #cac5c4;
+    background: #fff;
+  }
+}

@@ -11,9 +11,10 @@ export default function ProgressBar({ type }) {
     if (type === "userResearch") {
       setStyle({
         width: `${progress * 25}%`,
-        backgroundColor: "#674188",
+        BackgroundColor: "#674188",
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress]);
 
   return (

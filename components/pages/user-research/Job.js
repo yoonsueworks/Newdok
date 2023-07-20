@@ -24,6 +24,7 @@ export default function Job() {
     selected && handleProgressWithOption(2);
     selected && setIsActivated(true);
     setUserInfos({ industry: selected.id });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export default function Job() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -101,7 +103,7 @@ const Arrow = ({ clickArea }) => {
       <div
         className="object-cover bg-cover bg-center w-[20px] h-[10px]"
         style={{
-          backgroundImage: `url("/images/icons/arrow.png")`,
+          BackgroundImage: `url("/images/icons/arrow.png")`,
         }}
       />
     </div>

@@ -42,7 +42,7 @@ const Modal = ({ open, setOpen, datas }) => {
                   <div
                     className="object-cover bg-cover bg-center w-[28px] h-[28px]"
                     style={{
-                      backgroundImage: `url("/images/icons/mail_time.png")`,
+                      BackgroundImage: `url("/images/icons/mail_time.png")`,
                     }}
                   ></div>
                 </div>

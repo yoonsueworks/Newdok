@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useRouter } from "next/router";
 
@@ -23,6 +23,15 @@ const Nav = () => {
     router.push(menu.path);
   };
 
+  useEffect(() => {
+    router.pathname === "/lookaround"
+      ? setClickedMenu(1)
+      : router.pathname.includes("/userPage")
+      ? setClickedMenu(3)
+      : setClickedMenu(2);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="w-full h-fit bg-white absolute bottom-0 grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
       {NAV_MENUS.map((menu) => {
@@ -44,7 +53,7 @@ export default Nav;
 const MENU_NAMES = {
   RECOMMENDED: "recommended",
   HOME: "home",
-  MYPAGE: "mypage",
+  userPage: "userPage",
 };
 
 const NAV_MENUS = [
@@ -67,9 +76,9 @@ const NAV_MENUS = [
   {
     id: 3,
     name_kr: "마이페이지",
-    name_eng: MENU_NAMES.MYPAGE,
+    name_eng: MENU_NAMES.userPage,
     state_on: <ProfileOn width="32" height="32" />,
     state_off: <ProfileOff width="32" height="32" />,
-    path: "/myPage",
+    path: "/userPage",
   },
 ];

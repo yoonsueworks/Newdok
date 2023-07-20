@@ -140,16 +140,24 @@ const Home = () => {
   return (
     <CalendarContext.Provider value={calendarContextValues}>
       {/* <div className="w-full h-full"> */}
-      <ToolBar />
-      {calendarOpen && <ReactCalendar />}
-      <Articles />
+      <CalendarContext.Provider value={calendarContextValues}>
+        {/* <div className="w-full h-full"> */}
+        <ToolBar />
+        {calendarOpen && <ReactCalendar />}
+        <Articles />
+        {calendarOpen && <ReactCalendar />}
+        <Articles />
 
-      {/* <ToastPopUp /> */}
-      {/* <BottomSheet comp={<Filters />} /> */}
-      {/* <BrandInfo />*/}
-      {/* <BrandArticles /> */}
-      {/* <Arrivals /> */}
-      {/* <UnAuthorized /> */}
+        {/* <ToastPopUp /> */}
+        {/* <ToastPopUp /> */}
+        {/* <BottomSheet comp={<Filters />} /> */}
+        {/* <BrandInfo />*/}
+        {/* <BrandArticles /> */}
+        {/* <Arrivals /> */}
+        {/* <UnAuthorized /> */}
+        {/* </div> */}
+        <NavEmptyForStyles />
+      </CalendarContext.Provider>
       {/* </div> */}
       <NavEmptyForStyles />
     </CalendarContext.Provider>

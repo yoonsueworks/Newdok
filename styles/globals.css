@@ -2,9 +2,10 @@
 @tailwind utilities;
 @tailwind components;
 
-@import "text.css";
+@import "border.css";
 @import "elevation.css";
 @import "calendar.css";
+@import "text.css";
 
 @layer components {
   #__next {

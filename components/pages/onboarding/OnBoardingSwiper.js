@@ -22,7 +22,7 @@ const OnBoardingSwiper = () => {
     "--swiper-pagination-bullet-height": "4px",
     "--swiper-pagination-bullet-border-radius": "4px",
     "--swiper-pagination-bullet-active-color": "#674188",
-    "--swiper-pagination-bullet-active-background": "#674188",
+    "--swiper-pagination-bullet-active-Background": "#674188",
   };
   //TODO: swiper pagination active color 오류 해결 필요
 

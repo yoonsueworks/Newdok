@@ -8,7 +8,7 @@ export default function ListTitle({ shuffle }) {
           <div
             className="object-cover bg-cover bg-center w-5 h-5"
             style={{
-              backgroundImage: `url("/images/icons/Icons_reload.png")`,
+              BackgroundImage: `url("/images/icons/Icons_reload.png")`,
             }}
           ></div>
         </div>

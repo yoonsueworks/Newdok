@@ -27,6 +27,7 @@ export default function Recommended() {
 
   useEffect(() => {
     shuffleUnion();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [union]);
 
   return (
