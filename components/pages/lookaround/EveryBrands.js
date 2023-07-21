@@ -2,15 +2,24 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "pages/_app";
 
 import Lists from "shared/Lists";
-import API from "../../../config";
 
 import { industries } from "constants/industries";
 import FilterChips from "./FilterChips";
+import Filters from "./Filters";
+import FiltersFooter from "./FiltersFooter";
+import API from "../../../config";
+
+import { BottomSheet } from "react-spring-bottom-sheet";
+
+// if setting up the CSS is tricky, you can add this to your page somewhere:
+// <link rel="stylesheet" href="https://unpkg.com/react-spring-bottom-sheet/dist/style.css" crossorigin="anonymous">
+// import "react-spring-bottom-sheet/dist/style.css";
 
 export default function EveryBrands() {
   const [selectedIndustry, setSelectedIndustry] = useState(1);
   const [fetchedList, setFetchedList] = useState([]);
   const [list, setList] = useState(INITIAL_DATA);
+  const [open, setOpen] = useState(false);
 
   const sharedCSS =
     "w-max h-full flex inline-block text-center self-center items-center px-4 rounded-[10px] header_3";
@@ -54,9 +63,10 @@ export default function EveryBrands() {
   // }, []);
 
   return (
-    <div className="pb-8">
-      <FilterChips />
-      {/* <ul className="pl-5 h-[44px] flex gap-x-2 overflow-auto">
+    <>
+      <div className="pb-8">
+        <FilterChips func={() => setOpen(true)} />
+        {/* <ul className="pl-5 h-[44px] flex gap-x-2 overflow-auto">
         <li
           id="1"
           className={`${sharedCSS} ${
@@ -81,8 +91,17 @@ export default function EveryBrands() {
           );
         })}
       </ul> */}
-      <Lists datas={list} />
-    </div>
+        <Lists datas={list} />
+      </div>
+      <BottomSheet
+        open={open}
+        onDismiss={() => setOpen(false)}
+        snapPoints={({ maxHeight }) => [0.8 * maxHeight]}
+        footer={<FiltersFooter onApply={() => setOpen(false)} />}
+      >
+        <Filters />
+      </BottomSheet>
+    </>
   );
 }
 

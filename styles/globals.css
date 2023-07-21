@@ -2,6 +2,7 @@
 @tailwind utilities;
 @tailwind components;
 
+@import "bottomSheet.css";
 @import "border.css";
 @import "elevation.css";
 @import "calendar.css";

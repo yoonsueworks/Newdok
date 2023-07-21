@@ -6,13 +6,14 @@ import FilterOnIcon from "icons/filter_on.svg";
 import AlignIcon from "icons/align_off.svg";
 import Refresh from "icons/refresh_off.svg";
 
-const FilterChips = () => {
+const FilterChips = ({ func }) => {
   const [activatedChip, setActivatedChip] = useState([]);
   const [activated, setActivated] = useState(false);
   const [hoverChip, setHoverChip] = useState(null);
 
   const filterHandler = (id) => {
     setActivated((prev) => !prev);
+
     if (!activatedChip.includes(id)) {
       setActivatedChip([...activatedChip, id]);
     } else {
@@ -40,6 +41,7 @@ const FilterChips = () => {
               state={!activatedChip.includes(id)}
               func={() => filterHandler(id)}
               hover={() => filterHandlerHover(id)}
+              open={func}
             >
               {id === 1 ? (
                 <AlignIcon

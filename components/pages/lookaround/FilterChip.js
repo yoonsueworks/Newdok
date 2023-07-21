@@ -1,13 +1,16 @@
-const FilterChip = ({ children, text, state, func, hover }) => {
+const FilterChip = ({ children, text, state, func, hover, open }) => {
   const defaultMode = "contentbox-border text-neutralgray-900";
   const hoverMode =
     "hover:bg-purple-50 hover:contentbox-border hover:rounded-full hover:text-neutralgray-900";
   const activatedMode = "selectedchip-border text-white";
 
   return (
-    <div
-      className="group"
-      onClick={func}
+    <button
+      className="group rounded-full"
+      onClick={() => {
+        func();
+        open();
+      }}
       onMouseEnter={hover}
       onMouseLeave={hover}
     >
@@ -19,7 +22,7 @@ const FilterChip = ({ children, text, state, func, hover }) => {
         <span>{text}</span>
         {children}
       </div>
-    </div>
+    </button>
   );
 };
 

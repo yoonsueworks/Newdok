@@ -13,7 +13,7 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
   return (
     <>
       {/* <Topbar /> */}
-      <div className="w-full h-fit z-10 cursor-pointer">
+      <div className="w-full h-fit z-1 cursor-pointer">
         <div className="w-full h-fit">
           <div className="top-0 bg-white">
             <div className="h-[64px] flex w-full">
