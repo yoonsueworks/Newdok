@@ -26,7 +26,6 @@ const Filters = () => {
       <div className="grid gap-y-4">
         <span className={titleCSS}>발행 요일</span>
         <div className={gridCSS}>
-          <Tag text="모든 요일" type="days" />
           <Tag text="월요일" type="days" />
           <Tag text="화요일" type="days" />
           <Tag text="수요일" type="days" />
@@ -34,6 +33,7 @@ const Filters = () => {
           <Tag text="금요일" type="days" />
           <Tag text="토요일" type="days" />
           <Tag text="일요일" type="days" />
+          <Tag text="기타" type="days" />
         </div>
       </div>
       <div className="w-full flex gap-x-4">

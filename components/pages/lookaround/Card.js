@@ -28,7 +28,7 @@ export default function Card({ datas }) {
     <div
       onClick={() => setOpenModal(datas)}
       id={S.card}
-      className="h-[307px] w-[320px] inline-block bg-white flex flex-col border border-solid border-1 border-warmgray-20 cursor-pointer"
+      className="h-[307px] w-[320px] inline-block bg-white flex flex-col contentbox-border cursor-pointer"
     >
       <div id={S.gradient} className="w-full h-[150px]">
         <Image

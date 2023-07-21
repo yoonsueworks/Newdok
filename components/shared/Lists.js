@@ -12,10 +12,10 @@ function ListedItem({ datas }) {
   return (
     <li
       onClick={() => setOpenModal(datas)}
-      className="bg-white p-6 h-max w-full border border-solid border-1 border-warmgray-20 rounded-lg cursor-pointer "
+      className="bg-white p-6 h-max w-full contentbox-border rounded-lg cursor-pointer "
     >
       <div className="flex gap-x-4">
-        <div className="w-58 h-58 rounded-full flex-shrink-0 border border-solid border-1 border-warmgray-20 relative">
+        <div className="w-58 h-58 rounded-full flex-shrink-0 contentbox-border relative">
           <Image
             alt=";t"
             src={image_url}
@@ -30,8 +30,8 @@ function ListedItem({ datas }) {
         <div className="flex flex-col gap-y-4">
           <div className="grid gap-y-3">
             <h4 className="single-18-sb mb-1">{name}</h4>
-            <div className="caption_2_1 break-keep w-full">
-              <span className="multiple-14-m">{second_description}</span>
+            <div className="single-14-m break-keep w-full">
+              {second_description}
             </div>
           </div>
           <Tags tags={interests} />
@@ -42,7 +42,6 @@ function ListedItem({ datas }) {
 }
 
 export default function Lists({ datas }) {
-  console.log(datas);
   return (
     <>
       <ul className="grid gap-y-2.5">

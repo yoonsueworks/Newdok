@@ -3,12 +3,14 @@ import { GlobalContext } from "pages/_app";
 
 import Lists from "shared/Lists";
 import API from "../../../config";
-import { industries } from "constants/industries";
 
-export default function Industry() {
+import { industries } from "constants/industries";
+import FilterChips from "./FilterChips";
+
+export default function EveryBrands() {
   const [selectedIndustry, setSelectedIndustry] = useState(1);
-  const [list, setList] = useState(INITIAL_DATA);
   const [fetchedList, setFetchedList] = useState([]);
+  const [list, setList] = useState(INITIAL_DATA);
 
   const sharedCSS =
     "w-max h-full flex inline-block text-center self-center items-center px-4 rounded-[10px] header_3";
@@ -46,14 +48,15 @@ export default function Industry() {
     }
   };
 
-  useEffect(() => {
-    fetchLists(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   fetchLists(1);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
-    <div className="h-full bg-beige-100 grid gap-y-5">
-      <ul className="pl-5 h-[44px] flex gap-x-2 overflow-auto">
+    <div className="pb-8">
+      <FilterChips />
+      {/* <ul className="pl-5 h-[44px] flex gap-x-2 overflow-auto">
         <li
           id="1"
           className={`${sharedCSS} ${
@@ -77,7 +80,7 @@ export default function Industry() {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
       <Lists datas={list} />
     </div>
   );
@@ -104,9 +107,8 @@ const INITIAL_DATA = [
       { id: 16, name: "기타" },
     ],
     interests: [
-      { id: 1, name: "경제・시사・상식" },
-      { id: 2, name: "비즈니스" },
-      { id: 8, name: "취미・자기계발" },
+      { id: 1, name: "경제・시사" },
+      { id: 8, name: "자기계발" },
       { id: 4, name: "트렌드" },
     ],
   },
@@ -131,9 +133,8 @@ const INITIAL_DATA = [
       { id: 16, name: "기타" },
     ],
     interests: [
-      { id: 1, name: "경제・시사・상식" },
+      { id: 1, name: "음악" },
       { id: 2, name: "비즈니스" },
-      { id: 8, name: "취미・자기계발" },
       { id: 4, name: "트렌드" },
     ],
   },
@@ -159,7 +160,30 @@ const INITIAL_DATA = [
       { id: 9, name: "건강・의학" },
       { id: 7, name: "라이프스타일" },
       { id: 10, name: "멘탈케어" },
-      { id: 8, name: "취미・자기계발" },
+    ],
+  },
+  {
+    id: 20,
+    name: "비잉10",
+    first_description: "멘탈 스타일리스트가 챙겨주는  일잘러를 위한 마음가짐",
+    second_description: "일잘러를 위한 마음 챙김 뉴스레터",
+    detail_description:
+      "<비잉10>은 출근길이 불안한 모두를 위해 무엇을 하는 것이 아닌 그냥 있는 10분을 함께 합니다. 일하는 마음에 다양한 색을 칠해보는 오늘의 컬러 명상, 마음 챙김 콘텐츠와 일 트렌드 아티클을 큐레이션 합니다.",
+    publication_cycle: "격주 목요일 아침",
+    subscribe_url: "https://being10.stibee.com/subscribe/",
+    preview_url: "https://being10.stibee.com/p/54/",
+    image_url:
+      "https://pincock.shop/public/2ec56c2a-1153-45fd-81e3-28aaa19e8638.png",
+    createdAt: "2023-05-25T01:21:14.128Z",
+    updatedAt: "2023-05-26T00:34:36.573Z",
+    industries: [
+      { id: 1, name: "모든 산업" },
+      { id: 16, name: "기타" },
+    ],
+    interests: [
+      { id: 9, name: "운동" },
+      { id: 7, name: "콘서트・음악" },
+      { id: 10, name: "멘탈케어" },
     ],
   },
 ];

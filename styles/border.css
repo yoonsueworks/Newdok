@@ -6,4 +6,8 @@
     box-shadow: 0 0 0 1px inset #cac5c4;
     background: #fff;
   }
+  .selectedchip-border {
+    box-shadow: 0 0 0 1px inset #674188;
+    background: #9362a9;
+  }
 }

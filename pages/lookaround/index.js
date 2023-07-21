@@ -3,18 +3,18 @@ import { useRouter } from "next/router";
 import { GlobalContext } from "pages/_app";
 
 import Header from "shared/Header";
+
+import RecommendedBrands from "components/pages/lookaround/RecommendedBrands";
+import EveryBrands from "components/pages/lookaround/EveryBrands";
 import NavEmptyForStyles from "shared/NavEmptyForStyles";
-import S from "./index.module.scss";
-import Industry from "./components/viewAll";
 import Background from "shared/Background";
 
-import Recommended from "./components/recommended";
-import Modal from "./components/Modal";
+import Modal from "components/pages/lookaround/Modal";
 import API from "../../config";
 
 const TABS = [
-  { id: 1, name: "추천 뉴스레터", comp: <Recommended /> },
-  { id: 2, name: "모든 뉴스레터", comp: <Industry /> },
+  { id: 1, name: "추천 뉴스레터", comp: <RecommendedBrands /> },
+  { id: 2, name: "모든 뉴스레터", comp: <EveryBrands /> },
 ];
 
 export default function Main() {
@@ -22,7 +22,6 @@ export default function Main() {
   // const [modalData, setModalData] = useState(false);
   // const value = useContext(GlobalContext);
   // const { setIntersection, setUnion } = value;
-
   // const [open, setOpen] = useState(false);
 
   const setOpenModal = (data) => {
@@ -59,11 +58,9 @@ export default function Main() {
         clickedTab={clickedTab}
         clickedId={clickedId}
       />
-      
+
       <Background>
-        <div id={S.subsequent} className="w-full h-full">
-          {TABS[clickedId - 1].comp}
-        </div>
+        <div className="w-full h-full">{TABS[clickedId - 1].comp}</div>
       </Background>
       {/* <div className="flex items-center justify-center h-full">
         <Modal open={open} setOpen={setOpen} datas={modalData} />

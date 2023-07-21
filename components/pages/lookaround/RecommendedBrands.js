@@ -8,7 +8,7 @@ import CustomizedCards from "components/pages/lookaround/CustomizedCards";
 // import Cards from "components/pages/lookaround/Cards";
 import Lists from "shared/Lists";
 
-export default function Recommended() {
+export default function RecommendedLetters() {
   const { union } = useContext(GlobalContext);
   const [shuffledArray, setShuffledArray] = useState(INITIAL_DATA);
 
