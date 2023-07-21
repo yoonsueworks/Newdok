@@ -6,13 +6,9 @@ import NavEmptyForStyles from "shared/NavEmptyForStyles";
 import Articles from "components/pages/home/Articles";
 import Arrivals from "components/pages/home/Arrivals";
 import UnAuthorized from "components/pages/home/UnAuthorized";
-import BrandInfo from "components/pages/brandhome/BrandInfo";
-import BrandArticles from "components/pages/brandhome/BrandArticles";
 import ReactCalendar from "components/pages/home/Calendar";
 import ToolBar from "components/pages/home/ToolBar";
-import BottomSheet from "shared/BottomSheet";
 import ToastPopUp from "shared/ToastPopUp";
-import Filters from "components/pages/lookaround/Filters";
 
 const Home = () => {
   //TODO: auth token confirmation
@@ -142,17 +138,11 @@ const Home = () => {
       <CalendarContext.Provider value={calendarContextValues}>
         <div className="w-full h-full">
           <ToolBar />
-          {calendarOpen && <ReactCalendar />}
+          <div className="relative">{calendarOpen && <ReactCalendar />}</div>
           <Articles />
-
           {/* <ToastPopUp /> */}
-          {/* <BottomSheet comp={<Filters />} /> */}
-          {/* <BrandInfo />*/}
-          {/* <BrandArticles /> */}
           {/* <Arrivals /> */}
           {/* <UnAuthorized /> */}
-          {/* </div> */}
-          {/* <NavEmptyForStyles /> */}
         </div>
       </CalendarContext.Provider>
       <NavEmptyForStyles />

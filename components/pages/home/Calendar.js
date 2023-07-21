@@ -7,7 +7,7 @@ import NextIcon from "icons/arrow_right_off.svg";
 
 export default function ReactCalendar() {
   const [value, onChange] = useState(new Date());
-  const { monthlyArticles } = useContext(CalendarContext);
+  const { monthlyArticles, setActiveDate } = useContext(CalendarContext);
 
   const tileContent = ({ date }) => {
     const currentDate = Number(String(date).split(" ")[2]);
@@ -34,11 +34,10 @@ export default function ReactCalendar() {
 
   return (
     // TODO: next, prev 버튼 클릭 시 요청 보내기
-    <div className="calendar-container z-30">
+    <div className="calendar-container z-30 absolute bg-white">
       <Calendar
-        onChange={() => {
-          // TODO: 다른 날 클릭 시 데이터 다시 세팅하기
-          console.log("another day clicked");
+        onChange={(e) => {
+          setActiveDate(Number(String(e).split(" ")[2]));
           onChange();
         }}
         value={value}
