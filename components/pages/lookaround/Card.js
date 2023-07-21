@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GlobalContext } from "pages/_app";
+import { useRouter } from "next/router";
 
 import Image from "next/image";
 import S from "./Card.module.scss";
@@ -7,6 +8,7 @@ import Tags from "../../shared/Tags";
 
 export default function Card({ datas }) {
   const { setOpenModal, modalData } = useContext(GlobalContext);
+  const router = useRouter();
 
   if (!datas) return;
 
@@ -26,7 +28,9 @@ export default function Card({ datas }) {
 
   return (
     <div
-      onClick={() => setOpenModal(datas)}
+      onClick={() => router.push(`/brandHome`)}
+      // onClick={() => router.push(`pages/brandHome/[${id}]`)}
+      // onClick={() => setOpenModal(datas)}
       id={S.card}
       className="h-[307px] w-[320px] inline-block bg-white flex flex-col contentbox-border cursor-pointer"
     >
