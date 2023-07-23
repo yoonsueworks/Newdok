@@ -33,11 +33,11 @@ function MyApp({ Component, pageProps }) {
       <GlobalContext.Provider value={value}>
         <HeadComp />
         {(router.pathname.includes("home") ||
-          router.pathname === "/lookaround") && <GNB />}
+          router.pathname === "/lookAround") && <GNB />}
         <Component {...pageProps} />
         {(router.pathname.includes("home") ||
           router.pathname === "/userPage" ||
-          router.pathname === "/lookaround") && <Nav />}
+          router.pathname === "/lookAround") && <Nav />}
       </GlobalContext.Provider>
     </Layout>
   );

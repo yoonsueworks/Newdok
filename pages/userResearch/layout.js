@@ -1,4 +1,4 @@
-export default function OnboardingLayout({ children }) {
+export default function OnBoardingLayout({ children }) {
   return (
     <div>
       <main>{children}</main>

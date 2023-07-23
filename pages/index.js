@@ -11,7 +11,7 @@ export default function Home() {
   const routeSignup = () => router.push("/signup");
   const routeLogin = () => router.push("/login");
 
-  const routeOnbooarding = () => router.push("/onboarding");
+  const routeOnbooarding = () => router.push("/onBoarding");
 
   const cookieOrToken = false;
 
@@ -20,7 +20,7 @@ export default function Home() {
     //   cookieOrToken ? routeHome() : routeOnbooarding();
     // };
     // checkUserToken();
-    router.push("/onboarding");
+    router.push("/onBoarding");
     // TODO: 토큰 확인 후 페이지 라우팅
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

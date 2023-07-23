@@ -1,9 +1,14 @@
+import { useContext } from "react";
+import { GlobalContext } from "../../_app";
+
 import Topbar from "shared/Topbar";
 import ProgressBar from "shared/ProgressBar";
-import Texts from "components/pages/user-research/Texts";
-import Buttons from "components/pages/user-research/Buttons";
+import Texts from "components/pages/userResearch/Texts";
+import Buttons from "components/pages/userResearch/Buttons";
 
 export default function UserResearchLayout({ infos, comp }) {
+  const { page } = useContext(GlobalContext);
+  console.log(page);
   return (
     <div className="w-full h-full pb-14 flex flex-col content-between">
       <div className="flex flex-col h-full">
@@ -14,6 +19,7 @@ export default function UserResearchLayout({ infos, comp }) {
           {comp}
         </div>
       </div>
+
       <Buttons infos={infos} />
     </div>
   );

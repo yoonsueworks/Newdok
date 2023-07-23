@@ -32,5 +32,5 @@
     "incremental": true
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "pages/api/user-research/index.js"]
+  "include": ["**/*.ts", "**/*.tsx", "pages/api/userResearch/index.js"]
 }

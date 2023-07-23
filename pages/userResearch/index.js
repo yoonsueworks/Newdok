@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { GlobalContext } from "pages/_app";
 
-import Job from "components/pages/user-research/Job";
-import Interest from "components/pages/user-research/Interest";
+import Job from "components/pages/userResearch/Job";
+import Interest from "components/pages/userResearch/Interest";
 
 import { pages } from "constants/user_research_pages";
 import { useResearchQuery } from "../../public/hooks/UserResearch";
@@ -18,7 +18,14 @@ export default function UserResearch() {
 
   const value = useContext(GlobalContext);
 
-  const comps = { 1: <Job />, 2: <Interest />, 3: <div>mailbox</div> };
+  const comps = {
+    1: (
+      <div>반가워요👋 뉴스레터 추천을 위해 도커스님에 대해 더 알려주세요.</div>
+    ),
+    2: <Job />,
+    3: <Interest />,
+    4: <div>mailbox</div>,
+  };
 
   const handleProgress = (condition) => {
     condition === true
@@ -54,6 +61,7 @@ export default function UserResearch() {
   value.handleProgressWithOption = handleProgressWithOption;
   value.research = queryParams;
   value.setPage = setPage;
+  value.page = page;
 
   typeof window !== "undefined"
     ? sessionStorage.setItem("params", queryParams)

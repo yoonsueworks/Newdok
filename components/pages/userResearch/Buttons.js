@@ -2,7 +2,7 @@ import Button from "shared/Button";
 import { useContext } from "react";
 import { useRouter } from "next/router";
 import { GlobalContext } from "pages/_app";
-import { FetchResearchResult } from "pages/api/user-research";
+import { FetchResearchResult } from "pages/api/userResearch";
 
 const Buttons = ({ infos }) => {
   const {
@@ -32,6 +32,14 @@ const Buttons = ({ infos }) => {
   return (
     <div className="px-4">
       {infos?.id === 1 ? (
+        <Button
+          mode="default"
+          text="시작하기"
+          state={true}
+          size="big"
+          func={clickNext}
+        />
+      ) : infos?.id === 2 ? (
         <div>
           <Button
             mode="alive"
@@ -42,21 +50,14 @@ const Buttons = ({ infos }) => {
             onboarding="산업군을"
           />
         </div>
-      ) : infos?.id === 2 ? (
+      ) : infos?.id === 3 ? (
         <div className="flex space-x-4">
-          <Button
-            mode="ghost"
-            func={clickBefore}
-            state={true}
-            size="big"
-            text="이전"
-          />
           <Button
             mode="alive"
             func={fetchResearch}
             state={isActivated}
             size="big"
-            text="결과 보기"
+            text="다음"
             onboarding="관심사를"
           />
         </div>

@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { BrandHomeContext } from "context/BrandHomeContext";
 
-import BrandArticles from "components/pages/brandhome/BrandArticles";
-import BrandInfo from "components/pages/brandhome/BrandInfo";
+import BrandArticles from "components/pages/brandHome/BrandArticles";
+import BrandInfo from "components/pages/brandHome/BrandInfo";
 import CloseIcon from "icons/close_off.svg";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
