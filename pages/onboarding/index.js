@@ -11,14 +11,13 @@ const OnBoarding = () => {
   return (
     <div className="flex flex-col items-center justify-between pb-14 px-5">
       <OnBoardingSwiper />
-
       <div className="grid gap-y-8 w-full text-center">
         <Button
           size="big"
           mode="enabled"
           state={true}
           text="회원가입"
-          func={() => router.push("/signup")}
+          func={() => router.push("/signUp")}
         />
         <div className="single-14-m flex justify-center gap-x-2">
           이미 계정이 있나요?
