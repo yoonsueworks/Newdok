@@ -15,6 +15,7 @@
     "react": "^18.2.0",
     "react-calendar": "^4.3.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.2",
     "react-notion": "^0.10.0",
     "react-spring-bottom-sheet": "^3.4.1",
     "react-spring-bottom-sheet-updated": "^3.5.6",
