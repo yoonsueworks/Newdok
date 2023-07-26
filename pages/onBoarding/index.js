@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import ButtonText from "shared/ButtonText";
 import Button from "shared/Button";
-import OnBoardingSwiper from "components/pages/Onboarding/OnBoardingSwiper";
+import OnBoardingSwiper from "components/pages/OnBoarding/OnBoardingSwiper";
 
 const OnBoarding = () => {
   const router = useRouter();
