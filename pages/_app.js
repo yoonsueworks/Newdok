@@ -1,5 +1,7 @@
 import React, { createContext, useState, useMemo } from "react";
 import { useRouter } from "next/router";
+import { QueryClient, QueryClientProvider } from "react-query";
+
 import Layout from "./Layout";
 import HeadComp from "shared/HeadComp";
 import Nav from "shared/Nav";
@@ -18,8 +20,8 @@ function MyApp({ Component, pageProps }) {
     return union;
   }, [union]);
 
+  const queryClient = new QueryClient();
   const router = useRouter();
-  // console.log(router.pathname !== "/");
 
   const value = {
     intersection: intersectionArr,
@@ -29,17 +31,19 @@ function MyApp({ Component, pageProps }) {
   };
 
   return (
-    <Layout>
-      <GlobalContext.Provider value={value}>
-        <HeadComp />
-        {(router.pathname.includes("home") ||
-          router.pathname === "/lookAround") && <GNB />}
-        <Component {...pageProps} />
-        {(router.pathname.includes("home") ||
-          router.pathname === "/userPage" ||
-          router.pathname === "/lookAround") && <Nav />}
-      </GlobalContext.Provider>
-    </Layout>
+    <QueryClientProvider client={queryClient}>
+      <Layout>
+        <GlobalContext.Provider value={value}>
+          <HeadComp />
+          {(router.pathname.includes("home") ||
+            router.pathname === "/lookAround") && <GNB />}
+          <Component {...pageProps} />
+          {(router.pathname.includes("home") ||
+            router.pathname === "/userPage" ||
+            router.pathname === "/lookAround") && <Nav />}
+        </GlobalContext.Provider>
+      </Layout>
+    </QueryClientProvider>
   );
 }
 

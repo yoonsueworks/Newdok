@@ -1,27 +1,29 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-
-import Input from "shared/Input";
-import Button from "shared/Button";
-import PasswordChild from "shared/PasswordChild";
-import EmailChild from "shared/EmailChild";
+import Image from "next/image";
 
 import BottomTextButtons from "components/pages/login/BottomTextButtons";
-import Image from "next/image";
+import PasswordChild from "shared/PasswordChild";
+import EmailChild from "shared/EmailChild";
+import Button from "shared/Button";
+import Input from "shared/Input";
+
+import { useUserLogin } from "../../service/hooks/login";
 
 const SignIn = () => {
   const router = useRouter();
-  const [userInfo, setUserInfo] = useState({ userId: "", password: "" });
+  const [userInfo, setUserInfo] = useState({ loginId: "", password: "" });
   const [inputType, setInputType] = useState(false);
+  // const postUserLogin = useUserLogin(JSON.stringify(userInfo));
 
-  const getUserInfo = (e) => {
+  const handleUserInfo = (e) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
 
   const validateID =
-    userInfo.userId.length > 0
-      ? /^[A-Za-z0-9]{6,12}$/.test(userInfo.userId)
+    userInfo.loginId.length > 0
+      ? /^[A-Za-z0-9]{6,12}$/.test(userInfo.loginId)
       : true;
   const validatePW =
     userInfo.password.length > 0
@@ -30,18 +32,17 @@ const SignIn = () => {
 
   const isValid = validateID && validatePW;
 
-  const fetchLogin = () => {
-    // TODO:fetch
-    router.push("/home");
+  const handleLogin = async () => {
+    await postUserLogin();
   };
 
   const LOGIN_INPUTS = [
     {
       id: 1,
       placeholder: "이메일 주소 입력",
-      name: "userId",
+      name: "loginId",
       child: <EmailChild />,
-      func: getUserInfo,
+      func: handleUserInfo,
       isValid: validateID,
       type: "text",
       error: "이메일 주소는 영문/숫자 조합입니다.",
@@ -51,7 +52,7 @@ const SignIn = () => {
       placeholder: "비밀번호 입력",
       name: "password",
       child: <PasswordChild setInputType={setInputType} type={inputType} />,
-      func: getUserInfo,
+      func: handleUserInfo,
       isValid: validatePW,
       type: inputType,
       error: "비밀번호는 최소 8자 이상입니다.",
@@ -84,7 +85,7 @@ const SignIn = () => {
       <div className="w-full flex flex-col items-center">
         <Button
           mode="alive"
-          func={fetchLogin}
+          func={handleLogin}
           state={isValid}
           size="big"
           text="로그인"
