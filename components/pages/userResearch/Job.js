@@ -1,7 +1,8 @@
 import { useState, Fragment, useEffect, useRef, useContext } from "react";
 import { GlobalContext } from "pages/_app";
-import { Listbox } from "@headlessui/react";
+import { Listbox, Transition } from "@headlessui/react";
 import { industries } from "constants/industries";
+import ArrowIcon from "icons/arrow_down_off.svg";
 
 export default function Job() {
   const [selected, setSelected] = useState(false);
@@ -11,13 +12,13 @@ export default function Job() {
   const { handleProgressWithOption, setUserInfos, setIsActivated } =
     useContext(GlobalContext);
 
-  const selectedCSS = "text-purple-700";
-  const labelCSS = "text-warmgray-900";
+  const selectedCSS = "text-neutralgray-900 bg-white";
+  const labelCSS = "text-neutralgray-900";
   const borderCSS = clickArea
-    ? "shadow-[inset_0_0px_0px_1px_#BF9ECE]"
+    ? "inputFocused-border"
     : !clickArea && !selected
     ? "shadow-[inset_0_0px_0px_1px_#E5E0DF]"
-    : "shadow-[inset_0_0px_0px_1px_#674188]";
+    : "input-border";
   const height = " h-64 sm:h-80 md:h-80 lg:h-80 xl:h-80";
 
   useEffect(() => {
@@ -42,70 +43,64 @@ export default function Job() {
   }, []);
 
   return (
-    <div ref={wrapperRef}>
+    <div ref={wrapperRef} className="relative">
       <Listbox value={selected} onChange={setSelected}>
         <div className="grid">
           <Listbox.Button
             className={`z-10 text-left p-4 w-full text-base font-medium 
             ${clickArea ? "rounded-t-lg" : "rounded-lg"} 
-            ${selected ? "bg-beige-50" : "bg-white"} 
+            ${selectedCSS} 
             ${borderCSS}`}
             onClick={() => setClickArea((prev) => !prev)}
           >
             <Listbox.Label
-              className={`flex justify-between items-center 
+              className={`flex justify-between items-center cursor-pointer 
               ${selected === false ? labelCSS : selectedCSS} `}
             >
               {!selected ? "산업군 선택" : selected.name}
-              <Arrow clickArea={clickArea} />
+              <ArrowIcon
+                className={`${
+                  clickArea ? "rotate-180" : ""
+                } transition-transform duration-500`}
+              />
             </Listbox.Label>
           </Listbox.Button>
-
-          {clickArea && (
-            <Listbox.Options
-              id="onboardIndustryBox"
-              className={
-                `z-0 overflow-scroll cursor-pointer border-b border-x border-purple-200 rounded-b-lg` +
-                height
-              }
-            >
-              {industries?.map((ind) => (
-                <Listbox.Option key={ind.id} value={ind} as={Fragment}>
-                  {({ active }) => (
-                    <li
-                      className={`${
-                        active
-                          ? "bg-purple-50 text-warmgray-900"
-                          : "bg-white text-warmgray-100"
-                      } flex justify-between p-4 text-base font-medium`}
-                      onClick={() => setClickArea(false)}
-                    >
-                      {ind.name}
-                    </li>
-                  )}
-                </Listbox.Option>
-              ))}
-            </Listbox.Options>
-          )}
+          <Transition
+            as={Listbox.Options}
+            show={clickArea}
+            enter="transition ease-out duration-200"
+            enterFrom="transform -translate-y-10 opacity-0"
+            enterTo="transform translate-y-0 opacity-100"
+            leave="transition ease-in duration-200"
+            leaveFrom="transform translate-y-0 opacity-100"
+            leaveTo="transform -translate-y-10 opacity-0"
+          >
+            {clickArea && (
+              <Listbox.Options
+                id="onboardIndustryBox"
+                className={`z-0 overflow-scroll cursor-pointer rounded-b-lg ${height} border-x-2 border-b-2 border-purple-200`}
+              >
+                {industries?.map((ind) => (
+                  <Listbox.Option key={ind.id} value={ind} as={Fragment}>
+                    {({ active }) => (
+                      <li
+                        className={`${
+                          active
+                            ? "text-neutralgray-900"
+                            : "bg-white text-neutralgray-900"
+                        } flex justify-between p-4 single-16-m font-medium transition-colors duration-120 hover:bg-purple-50 active:bg-purple-50`}
+                        onClick={() => setClickArea(false)}
+                      >
+                        {ind.name}
+                      </li>
+                    )}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            )}
+          </Transition>
         </div>
       </Listbox>
     </div>
   );
 }
-
-const Arrow = ({ clickArea }) => {
-  return (
-    <div
-      className={`w-[20px] h-[10px] transition-transform duration-500 ${
-        clickArea ? "rotate-180" : ""
-      }`}
-    >
-      <div
-        className="object-cover bg-cover bg-center w-[20px] h-[10px]"
-        style={{
-          BackgroundImage: `url("/images/icons/arrow.png")`,
-        }}
-      />
-    </div>
-  );
-};

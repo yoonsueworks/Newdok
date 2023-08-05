@@ -8,8 +8,6 @@ import EmailChild from "shared/EmailChild";
 import Button from "shared/Button";
 import Input from "shared/Input";
 
-import { useUserLogin } from "../../service/hooks/login";
-
 const SignIn = () => {
   const router = useRouter();
   const [userInfo, setUserInfo] = useState({ loginId: "", password: "" });

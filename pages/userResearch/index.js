@@ -1,8 +1,10 @@
 import { useState, useContext } from "react";
 import { GlobalContext } from "pages/_app";
+import Image from "next/image";
 
 import Job from "components/pages/userResearch/Job";
 import Interest from "components/pages/userResearch/Interest";
+import ArrivedBrands from "components/pages/userResearch/ArrivedBrands";
 
 import { pages } from "constants/user_research_pages";
 import { useResearchQuery } from "../../public/hooks/UserResearch";
@@ -20,11 +22,19 @@ export default function UserResearch() {
 
   const comps = {
     1: (
-      <div>반가워요👋 뉴스레터 추천을 위해 도커스님에 대해 더 알려주세요.</div>
+      <div className="w-full">
+        <Image
+          src="/images/signup_300.png"
+          alt="사용자 정보와 관련된 일러스트"
+          width={500}
+          height={500}
+          loading="lazy"
+        />
+      </div>
     ),
     2: <Job />,
     3: <Interest />,
-    4: <div>mailbox</div>,
+    4: <ArrivedBrands />,
   };
 
   const handleProgress = (condition) => {

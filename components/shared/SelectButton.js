@@ -3,8 +3,8 @@ export default function SelectButton(props) {
 
   const clickedCSS =
     isClicked?.includes(id) === true
-      ? "text-white bg-purple-700"
-      : "text-purple-700 bg-white ";
+      ? "text-white bg-purple-400 selectedchip-border hover:bg-purple-300 "
+      : "text-neutralgray-900 bg-white input-border hover:bg-purple-50 ";
 
   return (
     <div key={id} className="group">
@@ -12,8 +12,7 @@ export default function SelectButton(props) {
         value={id}
         name="interests"
         onClick={getUserInterests}
-        className={`${clickedCSS} w-full rounded-xl py-4 button_2 shadow-[inset_0_0px_0px_1px_#674188] 
-      group-hover:bg-purple-50 group-hover:text-purple-700 group-active:bg-purple-100`}
+        className={`${clickedCSS} w-full rounded-xl py-4 single-16-m transition-colors duration-120`}
       >
         {name}
       </button>
