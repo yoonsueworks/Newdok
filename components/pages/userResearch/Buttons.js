@@ -30,7 +30,7 @@ const Buttons = ({ infos }) => {
   };
 
   return (
-    <div className="px-4">
+    <div className="px-5">
       {infos?.id === 1 ? (
         <Button
           mode="default"

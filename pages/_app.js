@@ -1,6 +1,7 @@
 import React, { createContext, useState, useMemo } from "react";
 import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import Layout from "./Layout";
 import HeadComp from "shared/HeadComp";
@@ -12,6 +13,7 @@ export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const [intersection, setIntersection] = useState([]);
+  const [userDatas, setUserDatas] = useState(null);
   const intersectionArr = useMemo(() => {
     return intersection;
   }, [intersection]);
@@ -28,6 +30,8 @@ function MyApp({ Component, pageProps }) {
     union: unionArr,
     setIntersection: setIntersection,
     setUnion: setUnion,
+    userDatas: userDatas,
+    setUserDatas: setUserDatas,
   };
 
   return (
@@ -43,6 +47,7 @@ function MyApp({ Component, pageProps }) {
             router.pathname === "/lookAround") && <Nav />}
         </GlobalContext.Provider>
       </Layout>
+      {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
     </QueryClientProvider>
   );
 }

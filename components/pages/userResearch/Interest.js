@@ -15,7 +15,7 @@ export default function Interest() {
 
   const getUserInterests = (e) => {
     const clickedId = Number.parseInt(e.target.value);
-    if (interestsArr === 3 && !userInterests.includes(clickedId)) return;
+    if (userInterests.includes(clickedId)) return;
 
     userInterests.includes(clickedId)
       ? filterUserInterests(clickedId)
