@@ -8,11 +8,9 @@ import { phoneTextElement, phoneErrorMessage } from "constants/signup";
 
 const PhoneForm = () => {
   const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ validateCriteriaMode: "all" });
+  const { register, handleSubmit } = useForm({
+    validateCriteriaMode: "all",
+  });
   const router = useRouter();
 
   /* 사용자 인터랙션 관련 */
@@ -211,22 +209,26 @@ const PhoneForm = () => {
             </p>
           </div>
         )}
-        {error?.statusCode === 400 ? (
-          error?.message
-        ) : (
+        {isPhoneAuthRequested && data ? (
           <div className="bg-white rounded-2xl flex flex-col gap-y-5 w-full h-fit p-8">
             <h6 className="single-24-b">중복 계정 안내</h6>
             <div className="multiple-18-sb">
               입력하신 번호로 이미 가입된 계정이 있어요.
               <br />한 번호로 최대 3개의 계정을 만들 수 있어요.
             </div>
-            <div className="bg-neutralgray-50 rounded-2xl w-full h-20">
+            <div className="bg-neutralgray-50 rounded-2xl w-full h-fit multiple-16-m text-neutralgray-900 p-4">
               {data?.map((el) => {
                 return (
-                  <>
-                    <div key={el.id}>{el.loginId.replace(/^..../, "****")}</div>
+                  <div key={el.id}>
+                    <span className="single-16-m">
+                      {el.loginId.replace(/^..../, "****")}
+                    </span>
                     <br />
-                  </>
+                    <span className="single-14-m">
+                      {el.createdAt.replaceAll("-", ". ").slice(0, 12)} 가입
+                    </span>
+                    <br />
+                  </div>
                 );
               })}
             </div>
@@ -244,10 +246,9 @@ const PhoneForm = () => {
                 로그인
               </button>
             </div>
-            <div className="single-12-m text-error">
-              * 모달 처리 예정, 응답 확인용
-            </div>
           </div>
+        ) : (
+          ""
         )}
       </div>
       <button

@@ -1,19 +1,28 @@
 import axios from "../../axios";
 
+export const handleLoginErrors = async (error) => {
+  const statusCode = error.response.status;
+  const message = error.response.data.message;
+  if (statusCode === 400) {
+    return message;
+  }
+};
+
 /* 회원가입 */
 export const userSignUp = async (params) => {
-  const { data } = await axios.post("/users/signup", params)
+  const { data } = await axios.post("/users/signup", params);
   return data;
 };
 
 /* 로그인 */
 export const userLogin = async (params) => {
-  await axios.post("/users/login", params);
+  try {
+    const { data } = await axios.post("/users/login", params);
+    return data;
+  } catch (error) {
+    handleLoginErrors(error);
+  }
 };
-// {
-//     "loginId": "newdok",
-//     "password": "!abc1234"
-//   }
 
 /* 전화번호 중복 확인 */
 export const userCheckPhoneNumber = async (params) => {

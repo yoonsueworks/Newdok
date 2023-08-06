@@ -33,7 +33,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <div className="w-full h-fit bg-white absolute bottom-0 grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
+    <div className="w-full h-fit bg-white grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
       {NAV_MENUS.map((menu) => {
         return (
           <li className={liCSS} key={menu.id} onClick={() => clickMenu(menu)}>

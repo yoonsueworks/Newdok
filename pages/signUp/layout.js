@@ -1,18 +1,19 @@
 import { useContext } from "react";
 import { SignUpContext } from "context/SignUpContext";
-import Appbar from "shared/Appbar";
+import AppBar from "shared/AppBar";
 
 const SignUpLayout = ({ description, forms }) => {
   const { step, setStep } = useContext(SignUpContext);
   return (
     <>
-      <Appbar
+      <AppBar
         iconl={true}
         textl={""}
         iconr={false}
         func={
           step > 1 ? () => setStep((prev) => prev - 1) : () => history.back()
         }
+        shadow={false}
       />
       <div className="w-full bg-beige-100 h-1">
         <div

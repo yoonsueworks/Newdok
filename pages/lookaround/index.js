@@ -6,11 +6,7 @@ import Header from "shared/Header";
 
 import RecommendedBrands from "components/pages/lookAround/RecommendedBrands";
 import EveryBrands from "components/pages/lookAround/EveryBrands";
-import NavEmptyForStyles from "shared/NavEmptyForStyles";
 import Background from "shared/Background";
-
-import Modal from "components/pages/lookAround/Modal";
-import API from "../../config";
 
 const TABS = [
   { id: 1, name: "추천 뉴스레터", comp: <RecommendedBrands /> },
@@ -20,7 +16,9 @@ const TABS = [
 export default function Main() {
   const [clickedTab, setClickedTab] = useState(1);
   // const [modalData, setModalData] = useState(false);
-  // const value = useContext(GlobalContext);
+  const value = useContext(GlobalContext);
+  const { token } = value;
+  console.log(token);
   // const { setIntersection, setUnion } = value;
   // const [open, setOpen] = useState(false);
 
@@ -65,7 +63,6 @@ export default function Main() {
       {/* <div className="flex items-center justify-center h-full">
         <Modal open={open} setOpen={setOpen} datas={modalData} />
       </div> */}
-      <NavEmptyForStyles />
     </div>
   );
 }

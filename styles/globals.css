@@ -217,6 +217,7 @@ input#check1 + label#check1:before,
 input#check2 + label#check2:before,
 input#check3 + label#check3:before,
 input#check4 + label#check4:before {
+  background-color: white;
   content: "";
   display: inline-block;
   width: 20px;

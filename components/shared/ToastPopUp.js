@@ -1,11 +1,11 @@
 import Copied from "icons/check_off.svg";
 
-const ToastPopUp = () => {
+const ToastPopUp = ({ toastMessage }) => {
   return (
-    <div className="w-full p-5 z-1000">
+    <div className="w-full p-5 z-1000 bg-transparent">
       <div className="w-full p-4 rounded-lg bg-purple-400 text-white flex gap-x-2 single-16-b elevation-1-bottom items-center">
         <Copied width="24" height="24" stroke="white" />
-        {MESSAGE.mailCopied && <div>내 구독용 이메일 주소가 복사됐어요.</div>}
+        {<div>{MESSAGE[toastMessage]}</div>}
       </div>
     </div>
   );

@@ -15,7 +15,8 @@ const PersonalInfoForm = () => {
   const [isGenderSelected, setIsGenderSelected] = useState(false);
 
   const onSubmit = (data) => {
-    setUserInfo({ ...userInfo, ...data });
+    const birthYearAsString = data.birthYear.toString();
+    setUserInfo({ ...userInfo, ...data, birthYear: birthYearAsString });
     setStep((prev) => prev + 1);
   };
 
@@ -96,7 +97,6 @@ const PersonalInfoForm = () => {
                 value={field.value}
                 onChange={(value) => {
                   field.onChange(value);
-                  setBirthYear(value);
                 }}
               >
                 <div className="relative input-border rounded-lg focus:inputFocused-border">

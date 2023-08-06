@@ -7,7 +7,6 @@ const PasswordChild = ({ setInputType, type }) => {
     height: "20",
     className: "shrink-0",
     onClick: (e) => {
-      console.log(type);
       setInputType((type) => !type);
       e.preventDefault();
     },

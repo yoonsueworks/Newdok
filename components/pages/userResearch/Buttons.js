@@ -11,21 +11,16 @@ const Buttons = ({ infos }) => {
     isActivated,
     research,
     userInfos,
+    intersection,
     setIntersection,
     setUnion,
     setPage,
   } = useContext(GlobalContext);
   const router = useRouter();
 
-  const getResponseDatas = () => {
-    setIntersection(fetch.intersection);
-    setUnion(fetch.union);
-  };
-
-  const fetchResearch = () => {
-    const fetch = () => FetchResearchResult(research, userInfos?.interests);
-    fetch();
-    getResponseDatas();
+  const fetchResearch = async () => {
+    const data = await FetchResearchResult(research, userInfos?.interests);
+    setIntersection(data);
     setPage((prev) => prev + 1);
   };
 

@@ -1,12 +1,14 @@
-import React, { createContext, useState, useMemo } from "react";
+import React, { createContext, useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import LocalStorage from "public/utils/LocalStorage";
 
 import Layout from "./Layout";
 import HeadComp from "shared/HeadComp";
 import Nav from "shared/Nav";
 import GNB from "shared/GNB";
+import ToastPopUp from "shared/ToastPopUp";
 import "styles/globals.css";
 
 export const GlobalContext = createContext(null);
@@ -22,8 +24,26 @@ function MyApp({ Component, pageProps }) {
     return union;
   }, [union]);
 
+  const [toast, setToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
   const queryClient = new QueryClient();
   const router = useRouter();
+
+  const setToastPopUp = () => {
+    setToast(true);
+    setTimeout(() => setToast(false), 1500);
+  };
+
+  const token = LocalStorage.getItem("NDtoken");
+
+  useEffect(() => {
+    const checkUserToken = async () => {
+      await router.push(token ? "/home" : "/onBoarding");
+    };
+    setTimeout(() => checkUserToken(), 800);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const value = {
     intersection: intersectionArr,
@@ -32,6 +52,11 @@ function MyApp({ Component, pageProps }) {
     setUnion: setUnion,
     userDatas: userDatas,
     setUserDatas: setUserDatas,
+    token: token,
+    setToastPopUp: setToastPopUp,
+    toast: toast,
+    setToastMessage: setToastMessage,
+    toastMessage: toastMessage,
   };
 
   return (
@@ -42,9 +67,12 @@ function MyApp({ Component, pageProps }) {
           {(router.pathname.includes("home") ||
             router.pathname === "/lookAround") && <GNB />}
           <Component {...pageProps} />
-          {(router.pathname.includes("home") ||
-            router.pathname === "/userPage" ||
-            router.pathname === "/lookAround") && <Nav />}
+          <div>
+            {toast && <ToastPopUp toastMessage={toastMessage} />}
+            {(router.pathname.includes("home") ||
+              router.pathname === "/userPage" ||
+              router.pathname === "/lookAround") && <Nav />}
+          </div>
         </GlobalContext.Provider>
       </Layout>
       {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}

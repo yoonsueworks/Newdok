@@ -37,19 +37,13 @@ const Terms = () => {
   };
 
   const submitUserInfo = async () => {
+    // await console.log(userInfo);
     await postSignUp();
     router.push("/userResearch");
   };
 
   useEffect(() => {
-    setUserInfo({
-      loginId: "mrokr0327",
-      password: "Njhjhjh0521",
-      phoneNumber: "01041478220",
-      nickname: "테스트",
-      birthYear: "1996",
-      gender: "여자",
-    });
+    setUserInfo(userInfo);
   }, []);
 
   return (
