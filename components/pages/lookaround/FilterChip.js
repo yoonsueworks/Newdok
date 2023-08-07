@@ -15,7 +15,7 @@ const FilterChip = ({ children, text, state, func, hover, open }) => {
       onMouseLeave={hover}
     >
       <div
-        className={`w-fit h-fit px-2.5 py-2 cursor-pointer single-14-m flex gap-x-1 items-center rounded-full ${hoverMode} ${
+        className={`w-fit h-fit px-2.5 py-2 cursor-pointer single-14-m flex gap-x-1 items-center rounded-full transition-colors duration-300 ${hoverMode} ${
           state ? defaultMode : activatedMode
         }`}
       >

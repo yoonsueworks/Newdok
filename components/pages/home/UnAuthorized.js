@@ -16,9 +16,9 @@ const UnAuthorized = () => {
           <Image
             src="/images/onboarding_300_3.png"
             alt="사용자 정보와 관련된 일러스트"
-            width={290}
-            height={500}
-            loading="lazy"
+            width={500}
+            height={300}
+            priority
           />
           <div className={text1}>
             <span className="block">회원이 되면 간편하게</span>

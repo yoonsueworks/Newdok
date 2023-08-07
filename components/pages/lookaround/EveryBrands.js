@@ -1,32 +1,18 @@
-import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "pages/_app";
+import { useState } from "react";
 
-import Lists from "shared/Lists";
-
-import { industries } from "constants/industries";
+import FiltersFooter from "./FiltersFooter";
 import FilterChips from "./FilterChips";
 import Filters from "./Filters";
-import FiltersFooter from "./FiltersFooter";
+import Lists from "shared/Lists";
 import API from "../../../config";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
-
-// if setting up the CSS is tricky, you can add this to your page somewhere:
-// <link rel="stylesheet" href="https://unpkg.com/react-spring-bottom-sheet/dist/style.css" crossorigin="anonymous">
-// import "react-spring-bottom-sheet/dist/style.css";
 
 export default function EveryBrands() {
   const [selectedIndustry, setSelectedIndustry] = useState(1);
   const [fetchedList, setFetchedList] = useState([]);
   const [list, setList] = useState(INITIAL_DATA);
   const [open, setOpen] = useState(false);
-
-  const sharedCSS =
-    "w-max h-full flex inline-block text-center self-center items-center px-4 rounded-[10px] header_3";
-
-  const clickedCSS = `bg-purple-700 text-white break-keep`;
-  const unClickedCSS =
-    "bg-white text-purple-700 border border-1 border-solid border-purple-700 overscroll-auto";
 
   const preventRequest = (id, arr) => {
     fetchLists && setFetchedList((prevList) => ({ ...prevList, [id]: arr }));
@@ -57,40 +43,10 @@ export default function EveryBrands() {
     }
   };
 
-  // useEffect(() => {
-  //   fetchLists(1);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   return (
-    <>
-      <div className="pb-8">
+    <div className="w-full h-full">
+      <div className="pb-8 p-5">
         <FilterChips func={() => setOpen(true)} />
-        {/* <ul className="pl-5 h-[44px] flex gap-x-2 overflow-auto">
-        <li
-          id="1"
-          className={`${sharedCSS} ${
-            selectedIndustry === 1 ? clickedCSS : unClickedCSS
-          }`}
-          onClick={() => fetchLists("1")}
-        >
-          <div className="w-max overflow-wrap-break-word">모든 산업</div>
-        </li>
-        {industries.map((ind) => {
-          return (
-            <li
-              id={ind.id}
-              key={ind.id}
-              className={`${sharedCSS} ${
-                selectedIndustry === ind.id ? clickedCSS : unClickedCSS
-              }`}
-              onClick={() => fetchLists(ind.id)}
-            >
-              <div className="w-max overflow-wrap-break-word">{ind.name}</div>
-            </li>
-          );
-        })}
-      </ul> */}
         <Lists datas={list} />
       </div>
       <BottomSheet
@@ -101,7 +57,7 @@ export default function EveryBrands() {
       >
         <Filters />
       </BottomSheet>
-    </>
+    </div>
   );
 }
 
@@ -182,7 +138,7 @@ const INITIAL_DATA = [
     ],
   },
   {
-    id: 20,
+    id: 21,
     name: "비잉10",
     first_description: "멘탈 스타일리스트가 챙겨주는  일잘러를 위한 마음가짐",
     second_description: "일잘러를 위한 마음 챙김 뉴스레터",

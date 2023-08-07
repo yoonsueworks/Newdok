@@ -1,15 +1,11 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useState, useContext } from "react";
 import { CalendarContext } from "context/CalendarContext";
 
 import Articles from "components/pages/home/Articles";
-import Arrivals from "components/pages/home/Arrivals";
-import UnAuthorized from "components/pages/home/UnAuthorized";
 import ReactCalendar from "components/pages/home/Calendar";
 import ToolBar from "components/pages/home/ToolBar";
 
 const Home = () => {
-  //TODO: auth token confirmation
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [dateLocaleKr, setDateLocaleKr] = useState("");
   const [activeDate, setActiveDate] = useState("");

@@ -1,19 +1,14 @@
 import { useContext } from "react";
 import { GlobalContext } from "pages/_app";
-
 import Image from "next/image";
 import Tags from "./Tags";
-import NavEmptyForStyles from "shared/NavEmptyForStyles";
 
 function ListedItem({ datas }) {
   const { setOpenModal } = useContext(GlobalContext);
   const { name, image_url, interests, second_description } = datas;
 
   return (
-    <li
-      onClick={() => setOpenModal(datas)}
-      className="bg-white p-6 h-max w-full contentbox-border rounded-lg cursor-pointer "
-    >
+    <li className="bg-white p-5 h-max w-full contentbox-border rounded-lg cursor-pointer">
       <div className="flex gap-x-4">
         <div className="w-58 h-58 rounded-full flex-shrink-0 contentbox-border relative">
           <Image
@@ -49,7 +44,6 @@ export default function Lists({ datas }) {
           datas?.map((data) => {
             return <ListedItem key={data.id} datas={data} />;
           })}
-        {/* TODO: statusCode 500 : 서버 꺼져있을 때 오류 발생, 오류 처리 화면 */}
       </ul>
     </>
   );

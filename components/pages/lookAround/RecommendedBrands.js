@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "pages/_app";
+import LocalStorage from "public/utils/LocalStorage";
 
 import NotRecommended from "components/pages/lookAround/NotRecommended";
 import CardTitle from "components/pages/lookAround/CardTitle";
 import ListTitle from "components/pages/lookAround/ListTitle";
 import CustomizedCards from "components/pages/lookAround/CustomizedCards";
-// import Cards from "components/pages/lookAround/Cards";
+
 import Lists from "shared/Lists";
 
 export default function RecommendedLetters() {
+  const [token, setToken] = useState();
   const { union } = useContext(GlobalContext);
   const [shuffledArray, setShuffledArray] = useState(INITIAL_DATA);
 
@@ -26,44 +28,61 @@ export default function RecommendedLetters() {
     setShuffledArray(shuffleArray(union));
   };
 
+  // const deleteToken = () => LocalStorage.removeItem("NDtoken");
+  // const deleteNickname = () => LocalStorage.removeItem("NDNickname");
+  // const deleteUserDatas = () => LocalStorage.removeItem("NDUserDatas");
+
+  // const handleLogOut = () => {
+  //   deleteToken();
+  //   deleteNickname();
+  //   deleteUserDatas();
+  // };
+
+  useEffect(() => {
+    const loadedToken = LocalStorage.getItem("NDtoken");
+    setToken(loadedToken);
+  }, []);
+
   // useEffect(() => {
   //   shuffleUnion();
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [union]);
 
   return (
-    <div className="bg-beige-100 h-full">
-      {/* TODO: 지금은 union의 길이로 받았으나, 추후에 auth, union 동시에 검증할 수 있도록 처리하기 */}
-      {!union ? (
-        <NotRecommended />
-      ) : shuffledArray !== 0 ? (
-        <div className="scroll-smooth pb-9">
-          <div>
-            <CardTitle />
-            <CustomizedCards datas={INITIAL_DATA} />
-          </div>
-          <div>
-            <ListTitle shuffle={shuffleUnion} />
-            <Lists datas={shuffledArray} />
-          </div>
-        </div>
-      ) : (
-        // shuffledArray && union.length !== 0 ? (
-        //   <div className="bg-beige-100 grid gap-y-14 scroll-smooth">
-        //     <div className=" grid gap-y-4">
-        //       <CardTitle />
-        //       <Cards />
-        //     </div>
-        //     <div className="grid gap-y-6">
-        //       <ListTitle shuffle={shuffleUnion} />
-        //       <Lists datas={shuffledArray} />
-        //     </div>
-        //   </div>
-        // 관심사 등록이 안 되어있는 경우
-        <div className="w-full h-full flex flex-col justify-between items-center">
+    <div className="w-full h-full">
+      <div className="bg-beige-100 h-full">
+        {/* TODO: 지금은 union의 길이로 받았으나, 추후에 auth, union 동시에 검증할 수 있도록 처리하기 */}
+        {!union ? (
           <NotRecommended />
-        </div>
-      )}
+        ) : shuffledArray !== 0 ? (
+          <div className="scroll-smooth pb-9">
+            <div>
+              <CardTitle />
+              <CustomizedCards datas={INITIAL_DATA} />
+            </div>
+            <div className="px-5">
+              <ListTitle shuffle={shuffleUnion} />
+              <Lists datas={shuffledArray} />
+            </div>
+          </div>
+        ) : (
+          // shuffledArray && union.length !== 0 ? (
+          //   <div className="bg-beige-100 grid gap-y-14 scroll-smooth">
+          //     <div className=" grid gap-y-4">
+          //       <CardTitle />
+          //       <Cards />
+          //     </div>
+          //     <div className="grid gap-y-6">
+          //       <ListTitle shuffle={shuffleUnion} />
+          //       <Lists datas={shuffledArray} />
+          //     </div>
+          //   </div>
+          // 관심사 등록이 안 되어있는 경우
+          <div className="w-full h-full flex flex-col justify-between items-center">
+            <NotRecommended />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

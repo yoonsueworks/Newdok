@@ -38,6 +38,7 @@ export default function Cards({ datas }) {
       <Swiper
         slidesPerView={"auto"}
         spaceBetween={16}
+        speed={5000}
         pagination={{
           clickable: true,
         }}
