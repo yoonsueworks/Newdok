@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import FilterChip from "components/pages/lookAround/FilterChip";
+import FilterChip from "components/pages/browse/FilterChip";
 import FilterOffIcon from "icons/filter_off.svg";
 import FilterOnIcon from "icons/filter_on.svg";
 import AlignIcon from "icons/align_off.svg";

@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "pages/_app";
 import LocalStorage from "public/utils/LocalStorage";
 
-import NotRecommended from "components/pages/lookAround/NotRecommended";
-import CardTitle from "components/pages/lookAround/CardTitle";
-import ListTitle from "components/pages/lookAround/ListTitle";
-import CustomizedCards from "components/pages/lookAround/CustomizedCards";
+import NotRecommended from "components/pages/Browse/NotRecommended";
+import CardTitle from "components/pages/Browse/CardTitle";
+import ListTitle from "components/pages/Browse/ListTitle";
+import CustomizedCards from "components/pages/Browse/CustomizedCards";
 
 import Lists from "shared/Lists";
 

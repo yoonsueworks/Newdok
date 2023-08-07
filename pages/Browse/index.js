@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import Header from "shared/Header";
 
-import RecommendedBrands from "components/pages/lookAround/RecommendedBrands";
-import EveryBrands from "components/pages/lookAround/EveryBrands";
+import RecommendedBrands from "components/pages/browse/RecommendedBrands";
+import EveryBrands from "components/pages/browse/EveryBrands";
 import Background from "shared/Background";
 import Background3 from "shared/Background3";
 
