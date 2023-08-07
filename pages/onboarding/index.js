@@ -3,13 +3,13 @@ import { useRouter } from "next/router";
 
 import ButtonText from "shared/ButtonText";
 import Button from "shared/Button";
-import OnBoardingSwiper from "components/pages/OnBoarding/OnBoardingSwiper";
+import OnBoardingSwiper from "components/pages/onboarding/OnBoardingSwiper";
 
 const OnBoarding = () => {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center justify-between pb-14 px-5">
+    <div className="flex flex-col items-center justify-between pb-14 px-5 w-full h-full">
       <OnBoardingSwiper />
       <div className="grid gap-y-8 w-full text-center">
         <Button

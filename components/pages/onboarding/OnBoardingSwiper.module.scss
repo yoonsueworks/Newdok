@@ -6,10 +6,17 @@
     height: 2px !important;
     color: #000;
     opacity: 1;
-    Background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
   }
 
   .swiper-pagination-bullet-active {
-    Background-color: #674188;
+    background-color: #674188 !important;
+    width: 16px !important;
   }
+
+}
+
+.swiper-pagination-bullet-active {
+  opacity: var(--swiper-pagination-bullet-opacity, 1);
+  background: #674188 !important;
 }
