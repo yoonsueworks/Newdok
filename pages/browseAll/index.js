@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import Header from "shared/Header";
 
-import RecommendedBrands from "components/pages/browse/RecommendedBrands";
-import EveryBrands from "components/pages/browse/EveryBrands";
+import RecommendedBrands from "components/pages/browseAll/RecommendedBrands";
+import EveryBrands from "components/pages/browseAll/EveryBrands";
 import Background from "shared/Background";
 import Background3 from "shared/Background3";
 
@@ -12,7 +12,7 @@ const TABS = [
   { id: 2, name: "모든 뉴스레터", comp: <EveryBrands /> },
 ];
 
-export default function Main() {
+export default function BrowseAll() {
   const [clickedTab, setClickedTab] = useState(1);
 
   const changeTab = (id) => {

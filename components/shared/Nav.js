@@ -24,7 +24,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    router.pathname === "/browse"
+    router.pathname === "/browseAll"
       ? setClickedMenu(1)
       : router.pathname.includes("/userPage")
       ? setClickedMenu(3)
@@ -63,7 +63,7 @@ const NAV_MENUS = [
     name_eng: MENU_NAMES.RECOMMENDED,
     state_on: <MailBoxOn width="32" height="32" />,
     state_off: <MailBoxOff width="32" height="32" />,
-    path: "/browse",
+    path: "/browseAll",
   },
   {
     id: 2,

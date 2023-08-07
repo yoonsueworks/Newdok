@@ -65,13 +65,13 @@ function MyApp({ Component, pageProps }) {
         <GlobalContext.Provider value={value}>
           <HeadComp />
           {(router.pathname.includes("home") ||
-            router.pathname === "/browse") && <GNB />}
+            router.pathname === "/browseAll") && <GNB />}
           <Component {...pageProps} />
           <div>
             {toast && <ToastPopUp toastMessage={toastMessage} />}
             {(router.pathname.includes("home") ||
               router.pathname === "/userPage" ||
-              router.pathname === "/browse") && <Nav />}
+              router.pathname === "/browseAll") && <Nav />}
           </div>
         </GlobalContext.Provider>
       </Layout>
