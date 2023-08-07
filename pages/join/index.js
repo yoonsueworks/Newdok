@@ -2,14 +2,14 @@ import { useState } from "react";
 import { SignUpContext } from "context/SignUpContext";
 
 import SignUpLayout from "./layout";
-import Description from "components/pages/signUp/Description";
-import PhoneForm from "components/pages/signUp/PhoneForm";
-import PswdForm from "components/pages/signUp/PswdForm";
-import IdForm from "components/pages/signUp/IdForm";
-import PersonalInfoForm from "components/pages/signUp/PersonalInfoForm";
-import Terms from "components/pages/signUp/Terms";
+import Description from "components/pages/join/Description";
+import PhoneForm from "components/pages/join/PhoneForm";
+import PswdForm from "components/pages/join/PswdForm";
+import IdForm from "components/pages/join/IdForm";
+import PersonalInfoForm from "components/pages/join/PersonalInfoForm";
+import Terms from "components/pages/join/Terms";
 
-const SignUp = () => {
+const Join = () => {
   const [step, setStep] = useState(1);
   const [userInfo, setUserInfo] = useState({});
 
@@ -30,7 +30,7 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Join;
 
 const description = {
   1: ["본인 확인을 위해", "휴대폰 번호를 입력해 주세요."],

@@ -17,7 +17,7 @@ const Introduction = () => {
           mode="enabled"
           state={true}
           text="회원가입"
-          func={() => router.push("/signUp")}
+          func={() => router.push("/join")}
         />
         <div className="single-14-m flex justify-center gap-x-2">
           이미 계정이 있나요?
