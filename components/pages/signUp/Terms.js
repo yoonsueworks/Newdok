@@ -44,6 +44,7 @@ const Terms = () => {
 
   useEffect(() => {
     setUserInfo(userInfo);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

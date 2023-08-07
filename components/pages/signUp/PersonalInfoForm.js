@@ -41,6 +41,7 @@ const PersonalInfoForm = () => {
   useEffect(() => {
     setValue("gender", genderVar.male);
     setIsGenderSelected(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
