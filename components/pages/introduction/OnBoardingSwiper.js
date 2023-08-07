@@ -29,7 +29,6 @@ const OnBoardingSwiper = () => {
   return (
     <>
       <Swiper
-        id="onboardSwiper"
         pagination={pagination}
         modules={[Pagination]}
         className={`${S.mySwiper} w-full`}

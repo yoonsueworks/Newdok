@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const checkUserToken = async () => {
-      await router.push(token ? "/home" : "/onboarding");
+      await router.push(token ? "/home" : "/introduction");
     };
     setTimeout(() => checkUserToken(), 800);
     // eslint-disable-next-line react-hooks/exhaustive-deps

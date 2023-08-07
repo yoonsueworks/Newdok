@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 
 import ButtonText from "shared/ButtonText";
 import Button from "shared/Button";
-import OnBoardingSwiper from "components/pages/onboarding/OnBoardingSwiper";
+import OnBoardingSwiper from "components/pages/introduction/OnBoardingSwiper";
 
-const OnBoarding = () => {
+const Introduction = () => {
   const router = useRouter();
 
   return (
@@ -31,4 +31,4 @@ const OnBoarding = () => {
     </div>
   );
 };
-export default OnBoarding;
+export default Introduction;
