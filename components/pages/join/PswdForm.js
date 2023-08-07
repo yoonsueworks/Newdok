@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { SignUpContext } from "context/SignUpContext";
 
 import PasswordChild from "shared/PasswordChild";
-import { pswdText, pswdErrorMessage } from "constants/signup";
+import { pswdText, pswdErrorMessage } from "constants/join";
 
 const PswdForm = () => {
   const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);

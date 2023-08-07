@@ -4,7 +4,7 @@ import { SignUpContext } from "context/SignUpContext";
 import { useForm } from "react-hook-form";
 
 import { useAuthSms, useCheckPhoneNumber } from "service/hooks/user";
-import { phoneTextElement, phoneErrorMessage } from "constants/signup";
+import { phoneTextElement, phoneErrorMessage } from "constants/join";
 
 const PhoneForm = () => {
   const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);

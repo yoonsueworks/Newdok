@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { SignUpContext } from "context/SignUpContext";
 import { Listbox } from "@headlessui/react";
 
-import { nicknameErrorMessage } from "constants/signup";
+import { nicknameErrorMessage } from "constants/join";
 
 const PersonalInfoForm = () => {
   const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { SignUpContext } from "context/SignUpContext";
 import { useCheckLoginId } from "service/hooks/user";
-import { idErrorMessage, idPlaceholderText } from "constants/signup";
+import { idErrorMessage, idPlaceholderText } from "constants/join";
 
 const IdForm = () => {
   const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);

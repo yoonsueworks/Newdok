@@ -2,8 +2,6 @@ import Background from "shared/Background";
 import Button from "shared/Button";
 import AppBar from "shared/AppBar";
 
-import PhoneForm from "components/pages/signUp/PhoneForm";
-
 const Phone = () => {
   return (
     <>
