@@ -22,12 +22,12 @@ const Join = () => {
 
   return (
     <SignUpContext.Provider value={value}>
-      {step && (
-        <SignUpLayout
-          description={<Description description={description[step]} />}
-          forms={forms[step]}
-        />
-      )}
+      <SignUpLayout
+        step={step}
+        setStep={setStep}
+        description={<Description description={description[step]} />}
+        forms={forms[step]}
+      />
     </SignUpContext.Provider>
   );
 };

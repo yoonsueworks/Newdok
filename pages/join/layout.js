@@ -1,10 +1,6 @@
-import { useContext } from "react";
-import { SignUpContext } from "context/SignUpContext";
 import AppBar from "shared/AppBar";
 
-const SignUpLayout = ({ description, forms }) => {
-  const { step, setStep } = useContext(SignUpContext);
-
+const SignUpLayout = ({ description, forms, step, setStep }) => {
   return (
     <>
       <AppBar
