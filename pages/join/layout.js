@@ -4,6 +4,7 @@ import AppBar from "shared/AppBar";
 
 const SignUpLayout = ({ description, forms }) => {
   const { step, setStep } = useContext(SignUpContext);
+
   return (
     <>
       <AppBar
