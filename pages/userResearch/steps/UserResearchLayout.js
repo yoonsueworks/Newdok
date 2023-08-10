@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../_app";
 
-import Appbar from "shared/AppBar";
+import AppBar from "shared/AppBar";
 import ProgressBar from "shared/ProgressBar";
 import Texts from "components/pages/userResearch/Texts";
 import Buttons from "components/pages/userResearch/Buttons";
@@ -12,7 +12,7 @@ export default function UserResearchLayout({ infos, comp }) {
   return (
     <div className="w-full h-full pb-14 flex flex-col content-between">
       <div className="flex flex-col h-full">
-        <Appbar
+        <AppBar
           iconl={page !== 1}
           textl={""}
           iconr={page === 1}

@@ -1,20 +1,15 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useState, useContext } from "react";
 import { CalendarContext } from "context/CalendarContext";
 
-import NavEmptyForStyles from "shared/NavEmptyForStyles";
 import Articles from "components/pages/home/Articles";
-import Arrivals from "components/pages/home/Arrivals";
-import UnAuthorized from "components/pages/home/UnAuthorized";
 import ReactCalendar from "components/pages/home/Calendar";
 import ToolBar from "components/pages/home/ToolBar";
-import ToastPopUp from "shared/ToastPopUp";
 
 const Home = () => {
-  //TODO: auth token confirmation
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [dateLocaleKr, setDateLocaleKr] = useState("");
   const [activeDate, setActiveDate] = useState("");
+  const [fullActiveDate, setFullActiveDate] = useState("");
 
   const calendarContextValues = {
     setCalendarOpen: setCalendarOpen,
@@ -23,6 +18,9 @@ const Home = () => {
     setDateLocaleKr: setDateLocaleKr,
     activeDate: activeDate,
     setActiveDate: setActiveDate,
+    fullActiveDate: fullActiveDate,
+    setFullActiveDate: setFullActiveDate,
+
     monthlyArticles: [
       {
         id: 1,
@@ -136,16 +134,12 @@ const Home = () => {
   return (
     <>
       <CalendarContext.Provider value={calendarContextValues}>
-        <div className="w-full h-full">
+        <div className="h-full w-full flex flex-col overflow-auto">
           <ToolBar />
           <div className="relative">{calendarOpen && <ReactCalendar />}</div>
           <Articles />
-          {/* <ToastPopUp /> */}
-          {/* <Arrivals /> */}
-          {/* <UnAuthorized /> */}
         </div>
       </CalendarContext.Provider>
-      <NavEmptyForStyles />
     </>
   );
 };

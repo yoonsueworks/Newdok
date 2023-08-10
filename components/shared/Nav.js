@@ -24,7 +24,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    router.pathname === "/lookAround"
+    router.pathname === "/browseAll"
       ? setClickedMenu(1)
       : router.pathname.includes("/userPage")
       ? setClickedMenu(3)
@@ -33,7 +33,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <div className="w-full h-fit bg-white absolute bottom-0 grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
+    <div className="w-full h-fit bg-white grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
       {NAV_MENUS.map((menu) => {
         return (
           <li className={liCSS} key={menu.id} onClick={() => clickMenu(menu)}>
@@ -63,7 +63,7 @@ const NAV_MENUS = [
     name_eng: MENU_NAMES.RECOMMENDED,
     state_on: <MailBoxOn width="32" height="32" />,
     state_off: <MailBoxOff width="32" height="32" />,
-    path: "/lookAround",
+    path: "/browseAll",
   },
   {
     id: 2,

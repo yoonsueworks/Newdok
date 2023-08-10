@@ -40,18 +40,6 @@ export default function Interest() {
   value.resetUserInterests = resetUserInterests;
 
   useEffect(() => {
-    const preventGoBack = () => {
-      history.pushState(null, "", location.href);
-    };
-
-    history.pushState(null, "", location.href);
-    window.addEventListener("popstate", preventGoBack);
-
-    return () => window.removeEventListener("popstate", preventGoBack);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     activateButton();
     setUserInfos({ ...userInfos, interests: userInterests });
     // eslint-disable-next-line react-hooks/exhaustive-deps

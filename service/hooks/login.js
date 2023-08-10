@@ -1,23 +1,46 @@
-// import { useMutation, useQuery } from "react-query";
-// import { getUserInfo, handleGetErrors } from "service/api/login";
+import { useMutation } from "react-query";
+import { userLogin, handleLoginErrors } from "service/api/user";
+import LocalStorage from "../../public/utils/LocalStorage";
+import API from "../../config";
 
-// export const useGetUserInfo = (params) => {
-//   return useQuery({
-//     queryFn: () => {
-//       return getUserInfo(params);
-//     },
-//     onError: handleGetErrors,
-//     retry: 0,
-//   });
-// };
+const token = LocalStorage.getItem("NDtoken");
+const headers = {
+  Authorization: `Bearer ${token}`,
+  "Content-Type": "application/json",
+};
 
-// import { useQuery } from "react-query";
-// import { LoginAPI } from "../api/login";
+export const usePostLogin = () => {
+  return useMutation({
+    mutationKey: ["login"],
+    mutationFn: async (params) => {
+      const data = await userLogin(params);
+      return data;
+    },
+  });
+};
 
-// export const useUserLogin = (loginData) => {
-//   return useQuery({
-//     queryKey: ["userLogin", loginData],
-//     queryFn: () => LoginAPI(loginData),
-//     onError: console.log("error! hello!"),
-//   });
-// };
+export const fetchlogin = async (params) => {
+  const body = JSON.stringify(params);
+
+  try {
+    const response = await fetch(`${API.login}`, {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: body,
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.accessToken) {
+      LocalStorage.setItem("NDtoken", data?.accessToken);
+      LocalStorage.setItem("NDnickname", data?.user.nickname);
+      LocalStorage.setItem("NDUserDatas", JSON.stringify(data?.user));
+      return true; // Login successful
+    } else {
+      return false; // Login failed
+    }
+  } catch (error) {
+    console.error("Error occurred:", error);
+    return false; // Login failed due to an error
+  }
+};

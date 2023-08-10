@@ -1,5 +1,5 @@
 export const userPage_menus = [
-  { id: 1, name: "계정관리", path: "/userPage/myAccount" },
+  { id: 1, name: "계정 관리", path: "/userPage/myAccount" },
   { id: 2, name: "FAQ", path: "/userPage/faq" },
   { id: 3, name: "서비스 피드백", path: "/userPage/feedback" },
   { id: 4, name: "약관 및 정책", path: "/userPage/policy" },
