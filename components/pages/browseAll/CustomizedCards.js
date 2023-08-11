@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -8,7 +8,6 @@ import { Mousewheel } from "swiper";
 
 import Card from "./Card";
 import S from "./CardSwiper.module.scss";
-import { GlobalContext } from "pages/_app";
 
 export default function CustomizedCards({ datas }) {
   return (
@@ -28,12 +27,6 @@ export default function CustomizedCards({ datas }) {
               <Card datas={data} />
             </SwiperSlide>
           ))}
-        {/* {shuffledArray?.length > 0 &&
-            shuffledArray?.map((datas) => (
-              <SwiperSlide key={datas.id} className={S.swiperSlide}>
-                <Card datas={datas} />
-              </SwiperSlide>
-            ))} */}
       </Swiper>
     </>
   );

@@ -49,10 +49,6 @@ export const userCheckLoginId = async (params) => {
 export const userResetPswd = async (params) => {
   await axios.patch("/users/reset/password", params);
 };
-// {
-//     "loginId": "kjyong702",
-//     "newPassword": "@def5678"
-//   }
 
 export const userPreInvestigate = async () => {
   await axios.get(`/users/preInvestigate/${params}`, {

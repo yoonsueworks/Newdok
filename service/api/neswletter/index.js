@@ -1,10 +1,20 @@
-import axios from "axios";
+import axios from "../../axios";
+import LocalStorage from "public/utils/LocalStorage";
+
+const token = LocalStorage.getItem("NDtoken");
+
+const headers = {
+  Authorization: `Bearer ${token}`,
+  "Content-Type": "application/json",
+};
 
 /* 개인화 추천 뉴스레터 */
-export const newsletterRecommend = async (params) => {
-  await axios.get("/newsletters/recommend", params);
+export const newsletterRecommend = async () => {
+  const { data } = await axios.get("/newsletters/recommend", {
+    headers: headers,
+  });
+  return data;
 };
-// TODO: params 형식 확인
 
 /* 뉴스레터 브랜드 조회 */
 export const newsletterBrand = async (params) => {

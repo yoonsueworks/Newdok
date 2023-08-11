@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
-import LocalStorage from "../../public/utils/LocalStorage";
+import { useRecoilValue } from "recoil";
+import { userDatasAtom } from "service/atoms/atoms";
 import { useRouter } from "next/router";
 import Background from "shared/Background";
 import Profile from "components/pages/userPage/Profile";
@@ -9,6 +10,7 @@ import { GlobalContext } from "../_app";
 const UserPage = () => {
   const [email, setEmail] = useState(null);
   const { setToastPopUp, setToastMessage } = useContext(GlobalContext);
+  const userDatas = useRecoilValue(userDatasAtom);
   const router = useRouter();
 
   const copyClipboard = () => {
@@ -18,7 +20,6 @@ const UserPage = () => {
   };
 
   useEffect(() => {
-    const userDatas = JSON.parse(LocalStorage.getItem("NDUserDatas"));
     userDatas?.subscribeEmail
       ? setEmail(userDatas.subscribeEmail)
       : router.push("/login");
@@ -36,3 +37,6 @@ const UserPage = () => {
 };
 
 export default UserPage;
+
+// TODO: Protected Route 로 구현하고, email은 그냥 아톰에서 가지고 오기
+// useEffect...어쩌고 라우팅 걸고.. 이런거 다 지우기

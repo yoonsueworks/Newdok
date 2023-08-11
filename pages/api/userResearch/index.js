@@ -9,22 +9,6 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-// export const FetchResearchResult = (params) => {
-//   // const { setIntersection, setUnion, setPage, page } =
-//   //   useContext(GlobalContext);
-//   page > 2 &&
-//     fetch(`${API.recommend}${params}`)
-//       .then((res) => res.json())
-//       .then((res) => {
-//         return data;
-//         // setIntersection(res.intersection);
-//         // setUnion(res.union);
-//       });
-//   //   .finally(() => {
-//   //     setPage((prev) => prev + 1);
-//   //   });
-// };
-
 export const FetchResearchResult = (params, interests) => {
   const token = LocalStorage.getItem("NDtoken");
 

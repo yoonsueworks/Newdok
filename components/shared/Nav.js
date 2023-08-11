@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-
 import { useRouter } from "next/router";
+import { atom, useRecoilState } from "recoil";
+import { userDatasAtom, accessTokenAtom } from "service/atoms/atoms";
 
 import HomeOff from "icons/home_off.svg";
 import HomeOn from "icons/home_on.svg";
@@ -8,39 +9,62 @@ import MailBoxOff from "icons/mail_box_off.svg";
 import MailBoxOn from "icons/mail_box_on.svg";
 import ProfileOff from "icons/profile_off.svg";
 import ProfileOn from "icons/profile_on.svg";
+import LocalStorage from "public/utils/LocalStorage";
 
 const Nav = () => {
   const router = useRouter();
-  const [clickedMenu, setClickedMenu] = useState(2);
+  const [page, setPage] = useState(null);
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
+  const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
 
-  const liCSS =
-    "list-none text-center flex flex-col gap-y-1 justify-center align-center items-center single-12-m";
-  const clickedCSS = (id) =>
-    clickedMenu === id ? "text-purple-700 font-bold" : "text-warmgray-100 ";
+  const hasBrowseAll = router.pathname === "/browseAll";
+  const hasUserPage = router.pathname.includes("/userPage");
+  const hasHome = router.pathname === "/home";
 
   const clickMenu = (menu) => {
-    setClickedMenu(menu.id);
+    setPage(menu.id);
     router.push(menu.path);
   };
 
   useEffect(() => {
-    router.pathname === "/browseAll"
-      ? setClickedMenu(1)
-      : router.pathname.includes("/userPage")
-      ? setClickedMenu(3)
-      : setClickedMenu(2);
+    if (hasBrowseAll) {
+      setPage(1);
+    } else if (hasHome) {
+      setPage(2);
+    } else if (hasUserPage) {
+      setPage(3);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const localAccessToken = LocalStorage.getItem("NDtoken");
+    const localUserDatas = LocalStorage.getItem("NDUserDatas");
+    if (localAccessToken) {
+      setAccessToken(localAccessToken);
+      setUserDatas(JSON.parse(localUserDatas));
+    }
   }, []);
 
   return (
     <div className="w-full h-fit bg-white grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
       {NAV_MENUS.map((menu) => {
         return (
-          <li className={liCSS} key={menu.id} onClick={() => clickMenu(menu)}>
-            <div>
-              {clickedMenu === menu.id ? menu.state_on : menu.state_off}
-            </div>
-            <span className={clickedCSS(menu.id)}>{menu.name_kr}</span>
+          <li
+            className="list-none text-center flex flex-col gap-y-1 justify-center align-center items-center single-12-m"
+            key={menu.id}
+            onClick={() => clickMenu(menu)}
+          >
+            <div>{page === menu.id ? menu.state_on : menu.state_off}</div>
+            <span
+              className={
+                page === menu.id
+                  ? "text-purple-700 font-bold"
+                  : "text-warmgray-100 "
+              }
+            >
+              {menu.name_kr}
+            </span>
           </li>
         );
       })}

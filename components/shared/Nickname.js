@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
-import LocalStorage from "public/utils/LocalStorage";
+import { useRecoilValue } from "recoil";
+import { userDatasAtom } from "service/atoms/atoms";
 
 const Nickname = () => {
-  const [nickname, setNickname] = useState("");
-  useEffect(() => {
-    const nickname = LocalStorage.getItem("NDnickname");
-    setNickname(nickname);
-  }, []);
+  const userDatas = useRecoilValue(userDatasAtom);
+  const nickname = userDatas?.nickname;
 
-  return <>{nickname && nickname}</>;
+  return <>{nickname}</>;
+
 };
 
 export default Nickname;
