@@ -30,8 +30,6 @@ const Filter = ({ text, type, id, func, browseOptions }) => {
 const Filters = () => {
   const [browseOptions, setBrowseOptions] = useRecoilState(browseOptionsAtom);
 
-  console.log(browseOptions);
-
   const titleCSS = "single-18-b text-purple-700";
   const wrapCSS = "flex flex-wrap gap-2.5";
   const gridCSS = "grid grid-cols-4 gap-2.5";

@@ -40,10 +40,8 @@ export const userAuthSms = async (params) => {
 
 /* 아이디 중복 확인 */
 export const userCheckLoginId = async (params) => {
-  const { data } = await axios.get(`/users/check/loginId?loginId=${params}`, {
-    validateStatus: false,
-  });
-  return data;
+  const response = await axios.get(`/users/check/loginId?loginId=${params}`);
+  return response;
 };
 
 export const userResetPswd = async (params) => {

@@ -66,19 +66,18 @@ export const useSignUp = () => {
 };
 
 export const useCheckLoginId = (params) => {
+  const queryClient = useQueryClient();
   return useQuery({
-    queryKey: ["checkLoginId"],
+    queryKey: ["checkLoginId", params],
     queryFn: async () => {
-      await userCheckLoginId(params);
+      const data = await userCheckLoginId(params);
+      return data;
     },
     enabled: false,
     retry: 0,
     throwOnError: true,
     onSuccess: (data) => {
       return data;
-    },
-    onError: (error) => {
-      console.log = function () {};
     },
   });
 };

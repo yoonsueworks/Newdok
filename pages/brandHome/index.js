@@ -15,7 +15,6 @@ const BrandHome = () => {
     setOpen: setOpen,
   };
 
-  // TODO: router.query로 id 받아오기
   return (
     <>
       <BrandHomeContext.Provider value={value}>

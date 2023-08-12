@@ -66,7 +66,7 @@ function MyApp({ Component, pageProps }) {
             </div>
           </GlobalContext.Provider>
         </Layout>
-        {/* <ReactQueryDevtools initialIsOpen={false} position="bottom-right" /> */}
+        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
       </QueryClientProvider>
     </RecoilRoot>
   );

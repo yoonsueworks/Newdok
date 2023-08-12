@@ -30,7 +30,9 @@ const MyAccount = () => {
     deleteToken();
     deleteNickname();
     deleteUserDatas();
+    console.log(localStorage)
     routeTo("/login");
+    
   };
 
   return (

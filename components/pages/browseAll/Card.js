@@ -12,7 +12,7 @@ export default function Card({ datas }) {
 
   return (
     <div
-      onClick={() => router.push(`/brandHome`)}
+      onClick={() => router.push(`/brandHome/${id}`)}
       id={S.card}
       className="h-[307px] w-[320px] inline-block bg-white flex flex-col contentbox-border cursor-pointer"
     >

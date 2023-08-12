@@ -73,9 +73,5 @@ export default function UserResearch() {
   value.setPage = setPage;
   value.page = page;
 
-  typeof window !== "undefined"
-    ? sessionStorage.setItem("params", queryParams)
-    : null;
-
   return <UserResearchLayout infos={pages[page]} comp={comps[page]} />;
 }

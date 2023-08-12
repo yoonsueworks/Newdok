@@ -29,9 +29,12 @@ const FilterChips = ({ func, sortOption }) => {
           ) : (
             <FilterChip
               text={
-                browseOptions[name].length !== 0
+                browseOptions[name].length === 0
+                  ? text
+                  : browseOptions[name].length !== 0
                   ? text.split(" ")[1] + " " + browseOptions[name].length
                   : text
+                // TODO: 1일 때 요소 name 가져요기
               }
               key={id}
               id={id}

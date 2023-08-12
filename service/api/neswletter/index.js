@@ -22,11 +22,10 @@ export const newsletterBrand = async (params) => {
     headers: { Authorization: token },
   });
 };
-// params = newletter brand id ( string )
-// TODO: token
 
 /* 모든 뉴스레터 브랜드 조회 : 둘러보기 */
 export const newsletterAll = async (params) => {
-  await axios.get(`/newsletters/${params}`);
+  await axios.get(`/newsletters?${params}`, {
+    headers: { Authorization: token },
+  });
 };
-// params = newletter brand id ( string )

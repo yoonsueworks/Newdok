@@ -16,5 +16,6 @@ export const browseOptionsAtom = atom({
   default: {
     industries: [],
     days: [],
+    sortOption: "인기순",
   },
 });

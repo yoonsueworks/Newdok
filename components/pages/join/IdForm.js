@@ -7,13 +7,13 @@ import { idErrorMessage, idPlaceholderText } from "constants/join";
 
 const IdForm = () => {
   const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);
-  const { register, handleSubmit, formState } = useForm({});
+  const { register, handleSubmit } = useForm({});
 
   const [loginId, setLoginId] = useState("");
   const [loginIdExist, setLoginIdExist] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
 
-  const checkLoginId = useCheckLoginId(loginId);
+  const { refetch, data } = useCheckLoginId(loginId);
 
   /* 페이지 제출 */
   const onSubmit = (data) => {
@@ -23,10 +23,12 @@ const IdForm = () => {
     } else return;
   };
 
-  /* id 중복 확인, 비회원이 에러 400으로 들어와서 여기서 처리 X */
+  /* ID 중복 확인 */
   const handleIdCheck = async () => {
-    const data = await checkLoginId.refetch();
-    setLoginIdExist(data.status === "error" ? false : true);
+    await refetch();
+    const success = Boolean(data);
+    setLoginIdExist(success);
+    console.log(loginId, loginIdExist, "loginIdExist");
   };
 
   /* id 입력값 제어 : 특수문자 차단, 대문자 소문자로 교체 */
@@ -69,15 +71,16 @@ const IdForm = () => {
     if (!conditionControl.isLengthValid) {
       return idErrorMessage.error_length;
     }
-    if (!isChecked && !loginIdExist) {
-      return "중복 확인";
+    if (loginIdExist === null) {
+      return "아이디 중복 여부를 확인해주세요.";
     }
-    if (loginId && !loginIdExist) {
+    if (loginIdExist) {
       return idErrorMessage.error_exist;
     }
-    if (loginId && loginIdExist) {
+    if (!loginIdExist && loginId) {
       return "사용 가능한 아이디입니다.";
     }
+    return "아이디 중복 여부를 확인해주세요.";
   };
 
   return (

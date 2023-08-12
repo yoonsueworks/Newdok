@@ -1,27 +1,25 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { browseOptionsAtom } from "service/atoms/atoms";
+import { browseOptionsQuerySelector } from "service/atoms/selectors";
+import { useBrowseAll } from "service/hooks/newsletters";
 
 import FiltersFooter from "./FiltersFooter";
 import FilterChips from "./FilterChips";
 import Filters from "./Filters";
 import Lists from "shared/Lists";
-import API from "../../../config";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
 
 export default function EveryBrands() {
-  const [selectedIndustry, setSelectedIndustry] = useState(1);
-  const [fetchedList, setFetchedList] = useState([]);
-  const [list, setList] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSort, setOpenSort] = useState(false);
-
   const [sortOption, setSortOption] = useState("인기순");
   const [browseOptions, setBrowseOptions] = useRecoilState(browseOptionsAtom);
+  const browseOptionsString = useRecoilValue(browseOptionsQuerySelector);
 
-  // 1. 초기값은 무조건 인기순 = 서버 렌더링 가능
-  // 2. 필터링 선택지 수정
+  const browseAllRequest = useBrowseAll(browseOptionsString);
+  console.log(browseAllRequest.data);
 
   const handleOpen = (id) => {
     if (id === 1) {
@@ -40,15 +38,15 @@ export default function EveryBrands() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setBrowseOptions({ ...browseOptions, sortOption: sortOption });
     handleDismiss(1);
-    console.log("orderOpt=", sortOption, "&", "");
   };
 
   return (
     <div className="w-full h-full">
       <div className="pb-8 p-5">
         <FilterChips func={handleOpen} sortOption={sortOption} />
-        <Lists datas={list} />
+        {/* <Lists datas={list} /> */}
       </div>
       <BottomSheet open={openSort} onDismiss={() => handleDismiss(1)}>
         <form className="grid gap-y-8 pb-14" onSubmit={handleSubmit}>
@@ -62,24 +60,22 @@ export default function EveryBrands() {
               onClick={handleSubmit}
             />
           </div>
-          <li className="px-5 list-none flex justify-between items-center">
-            <span className="single-18-m">인기순</span>
-            <input
-              type="radio"
-              name="gender"
-              value="인기순"
-              onChange={(e) => setSortOption(e.target.value)}
-            />
-          </li>
-          <li className="px-5 list-none flex justify-between items-center">
-            <span className="single-18-m">최신 등록순</span>
-            <input
-              type="radio"
-              name="gender"
-              value="최신순"
-              onChange={(e) => setSortOption(e.target.value)}
-            />
-          </li>
+          {["인기순", "최신 등록순"].map((el, id) => {
+            return (
+              <li
+                key={id}
+                className="px-5 list-none flex justify-between items-center"
+              >
+                <span className="single-18-m">{el}</span>
+                <input
+                  type="radio"
+                  name="order"
+                  value={el}
+                  onChange={(e) => setSortOption(e.target.value)}
+                />
+              </li>
+            );
+          })}
         </form>
       </BottomSheet>
       <BottomSheet
