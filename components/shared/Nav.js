@@ -38,12 +38,12 @@ const Nav = () => {
   }, []);
 
   useEffect(() => {
-    const localAccessToken = LocalStorage.getItem("NDtoken");
-    const localUserDatas = LocalStorage.getItem("NDUserDatas");
-    if (localAccessToken) {
-      setAccessToken(localAccessToken);
-      setUserDatas(JSON.parse(localUserDatas));
-    }
+    // const localAccessToken = LocalStorage.getItem("NDtoken");
+    // const localUserDatas = LocalStorage.getItem("NDUserDatas");
+    // if (localAccessToken) {
+    //   setAccessToken(localAccessToken);
+    //   setUserDatas(JSON.parse(localUserDatas));
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

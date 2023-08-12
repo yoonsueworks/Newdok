@@ -1,11 +1,16 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Tags from "./Tags";
 
 function ListedItem({ datas }) {
-  const { brandName, imageUrl, interests, secondDescription } = datas;
+  const router = useRouter();
+  const { brandName, imageUrl, interests, secondDescription, id } = datas;
 
   return (
-    <li className="bg-white p-5 h-max w-full contentbox-border rounded-lg cursor-pointer">
+    <li
+      className="bg-white p-5 h-max w-full contentbox-border rounded-lg cursor-pointer"
+      onClick={() => router.push(`/brandHome/${id}`)}
+    >
       <div className="flex gap-x-4">
         <div className="w-58 h-58 rounded-full flex-shrink-0 contentbox-border relative">
           <Image

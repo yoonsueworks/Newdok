@@ -9,9 +9,9 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const usePostLogin = () => {
+export const usePostLogin = (params) => {
   return useMutation({
-    mutationKey: ["login"],
+    mutationKey: ["login", params],
     mutationFn: async (params) => {
       const data = await userLogin(params);
       return data;

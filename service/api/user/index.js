@@ -16,12 +16,8 @@ export const userSignUp = async (params) => {
 
 /* 로그인 */
 export const userLogin = async (params) => {
-  try {
-    const { data } = await axios.post("/users/login", params);
-    return data;
-  } catch (error) {
-    handleLoginErrors(error);
-  }
+  const { data } = await axios.post("/users/login", params);
+  return data;
 };
 
 /* 전화번호 중복 확인 */

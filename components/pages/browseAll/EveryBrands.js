@@ -19,7 +19,8 @@ export default function EveryBrands() {
   const browseOptionsString = useRecoilValue(browseOptionsQuerySelector);
 
   const browseAllRequest = useBrowseAll(browseOptionsString);
-  console.log(browseAllRequest.data);
+  // console.log(browseOptionsString);
+  // console.log(browseAllRequest.data);
 
   const handleOpen = (id) => {
     if (id === 1) {

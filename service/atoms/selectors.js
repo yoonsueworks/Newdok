@@ -6,9 +6,7 @@ export const browseOptionsQuerySelector = selector({
   get: ({ get }) => {
     const browseOptions = get(browseOptionsAtom);
     const orderQuery =
-      browseOptions.sortOption &&
-      "orderOpt=" + encodeURIComponent(browseOptions.sortOption);
-
+      browseOptions.sortOption && "orderOpt=" + browseOptions.sortOption;
     const industryQuery =
       browseOptions.industries.length > 0
         ? "&industry=" + browseOptions.industries.join("&industry=")

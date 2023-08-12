@@ -16,16 +16,38 @@ export const newsletterRecommend = async () => {
   return data;
 };
 
-/* 뉴스레터 브랜드 조회 */
+/* 뉴스레터 브랜드 조회 (회원) */
 export const newsletterBrand = async (params) => {
-  await axios.get(`/newsletters/${params}`, {
-    headers: { Authorization: token },
+  const { data } = await axios.get(`/newsletters/${params}`, {
+    headers: headers,
   });
+  return data;
+};
+
+/* 뉴스레터 브랜드 조회 (비회원) */
+export const newsletterBrandUnAuth = async (params) => {
+  const { data } = await axios.get(`/newsletters/${params}`);
+  return data;
 };
 
 /* 모든 뉴스레터 브랜드 조회 : 둘러보기 */
 export const newsletterAll = async (params) => {
-  await axios.get(`/newsletters?${params}`, {
-    headers: { Authorization: token },
+  const { data } = await axios.get(`/newsletters?${params}`, {
+    headers: headers,
   });
+  return data;
+};
+
+/* 모든 뉴스레터 브랜드 조회 : 둘러보기(비회원) */
+export const newsletterAllUnAuth = async (params) => {
+  const { data } = await axios.get(`/newsletters?${params}`);
+  return data;
+};
+
+/* 뉴스레터 브랜드 조회 (회원) */
+export const articleRead = async (params) => {
+  const { data } = await axios.get(`/articles/${params}`, {
+    headers: headers,
+  });
+  return data;
 };

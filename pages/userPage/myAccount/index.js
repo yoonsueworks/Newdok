@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { useContext } from "react";
 
 import Background2 from "shared/Background2";
 import ButtonText from "shared/ButtonText";
@@ -9,10 +8,12 @@ import LogOut from "icons/logout_off.svg";
 import AppBar from "shared/AppBar";
 import { myaccount_menus } from "constants/userPage";
 import LocalStorage from "../../../public/utils/LocalStorage";
-import { GlobalContext } from "pages/_app";
+import { useResetRecoilState } from "recoil";
+import { userDatasAtom, accessTokenAtom } from "service/atoms/atoms";
 
 const MyAccount = () => {
-  const { setToken } = useContext(GlobalContext);
+  const resetUserDatas = useResetRecoilState(userDatasAtom);
+  const resetAccessToken = useResetRecoilState(accessTokenAtom);
   const router = useRouter();
   const buttonCSS =
     "w-full h-fit flex justify-between items-center contentbox-border p-5 single-18-b cursor-pointer";
@@ -26,13 +27,16 @@ const MyAccount = () => {
   const deleteUserDatas = () => LocalStorage.removeItem("NDUserDatas");
 
   const handleLogOut = () => {
-    localStorage.clear();
+    /* 로컬 스토리지 삭제 */
     deleteToken();
     deleteNickname();
     deleteUserDatas();
-    console.log(localStorage)
+
+    /* 아톱 초기화 */
+    resetUserDatas();
+    resetAccessToken();
+
     routeTo("/login");
-    
   };
 
   return (

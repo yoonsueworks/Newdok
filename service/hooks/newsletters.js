@@ -1,9 +1,15 @@
 import { useQuery } from "react-query";
+import LocalStorage from "public/utils/LocalStorage";
 import {
   newsletterRecommend,
   newsletterAll,
+  newsletterAllUnAuth,
   newsletterBrand,
+  newsletterBrandUnAuth,
+  articleRead
 } from "../api/neswletter";
+
+const token = LocalStorage.getItem("NDtoken");
 
 export const useNewslettersRecommended = () => {
   return useQuery("newsletterRecommend", newsletterRecommend, {
@@ -16,13 +22,15 @@ export const useNewslettersRecommended = () => {
 export const useBrowseAll = (params) => {
   return useQuery(
     {
-      queryKey: "browseAll",
-      // queryFn: () => newsletterAll(params),
-      // TODO: 모든 뉴스레터 조회
+      queryKey: ["browseAll", params],
+      queryFn: () =>
+        token ? newsletterAll(params) : newsletterAllUnAuth(params),
     },
     {
-      refetchInterval: 60 * 60 * 1000,
-      retry: 2,
+      onSuccess: (data) => {
+        return data;
+      },
+      retry: 0,
     }
   );
 };
@@ -30,11 +38,30 @@ export const useBrowseAll = (params) => {
 export const useNewsletterBrand = (params) => {
   return useQuery(
     {
-      queryKey: "useNewsletterBrand",
-      queryFn: () => newsletterBrand(params),
+      queryKey: ["useNewsletterBrand", params],
+      queryFn: () =>
+        token ? newsletterBrand(params) : newsletterBrandUnAuth(params),
     },
     {
-      refetchInterval: 60 * 60 * 1000,
+      onSuccess: (data) => {
+        return data;
+      },
+      retry: 0,
+    }
+  );
+};
+
+export const useArticleRead = (params) => {
+  return useQuery(
+    {
+      queryKey: ["useArticleRead", params],
+      queryFn: () => articleRead(params),
+      // token ? newsletterBrand(params) : newsletterBrandUnAuth(params),
+    },
+    {
+      onSuccess: (data) => {
+        return data;
+      },
       retry: 0,
     }
   );

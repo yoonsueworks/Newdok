@@ -1,14 +1,15 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import { usePostLogin } from "service/hooks/login";
+import { useRecoilState } from "recoil";
+import { accessTokenAtom, userDatasAtom } from "service/atoms/atoms";
+import LocalStorage from "../../public/utils/LocalStorage";
 import { useForm } from "react-hook-form";
 
 import BottomTextButtons from "components/pages/login/BottomTextButtons";
 import PasswordChild from "shared/PasswordChild";
 import AppBar from "shared/AppBar";
-import { usePostLogin } from "service/hooks/login";
-import { fetchlogin } from "../../service/hooks/login";
-import LocalStorage from "../../public/utils/LocalStorage";
 
 const SignIn = () => {
   const { register, handleSubmit } = useForm();
@@ -17,15 +18,31 @@ const SignIn = () => {
   const [userInfo, setUserInfo] = useState({ loginId: "", password: "" });
   const [pwVisible, setPwVisible] = useState(false);
   const [isRequested, setIsRequested] = useState(false);
-  const [error, setError] = useState(null);
-  const passwordValidation = /^(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]*$/;
 
-  // const postLogin = usePostLogin(userInfo);
+  const { mutate } = usePostLogin(userInfo);
+  const [, setAccessToken] = useRecoilState(accessTokenAtom);
+  const [, setUserDatas] = useRecoilState(userDatasAtom);
 
   const onSubmit = async () => {
-    await fetchlogin(userInfo);
-    const token = LocalStorage.getItem("NDtoken");
-    token ? await router.push("/home") : setIsRequested(true);
+    await mutate(userInfo, {
+      onSuccess: (data) => {
+        setLoggedInDatas(data);
+        router.push("/home");
+      },
+      onError: (error) => {
+        setIsRequested(true);
+        console.log(error);
+      },
+    });
+  };
+
+  const setLoggedInDatas = (data) => {
+    setAccessToken(data.accessToken);
+    setUserDatas(data.user);
+
+    LocalStorage.setItem("NDtoken", data?.accessToken);
+    LocalStorage.setItem("NDnickname", data?.user.nickname);
+    LocalStorage.setItem("NDUserDatas", JSON.stringify(data?.user));
   };
 
   const getErrorMessage = () => {
@@ -35,11 +52,6 @@ const SignIn = () => {
   const handleUserInfo = (e) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
-    // console.log(userInfo);
-  };
-
-  const handleLogin = async () => {
-    await postUserLogin();
   };
 
   return (
@@ -94,7 +106,7 @@ const SignIn = () => {
                 </div>
                 <p className="text-error single-12-m">
                   {isRequested &&
-                    "등록되지 않은 계정이거나, 아이디를 다시 확인해 주세요."}
+                    "등록되지 않은 계정이거나, 아이디 혹은 비밀번호를 확인해주세요."}
                 </p>
               </div>
             </div>
@@ -107,7 +119,6 @@ const SignIn = () => {
             </button>
           </form>
         </div>
-
         <BottomTextButtons />
       </div>
     </>
