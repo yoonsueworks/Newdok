@@ -1,7 +1,8 @@
 import { useEffect, useState, useMemo } from "react";
 
 import NotRecommended from "components/pages/browseAll/NotRecommended";
-import UnAuthorized from "components/pages/browseAll/UnAuthorized";
+import Unauthorized from "components/pages/browseAll/Unauthorized";
+
 import Authorized from "components/pages/browseAll/Authorized";
 import Loading from "shared/Loading";
 
@@ -49,7 +50,7 @@ export default function RecommendedLetters({ statusCode, data, isLoading }) {
       ) : statusCode === 400 ? (
         <NotRecommended />
       ) : statusCode === 401 ? (
-        <UnAuthorized />
+        <Unauthorized />
       ) : (
         <Authorized
           shuffledArray={shuffledArray}

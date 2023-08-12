@@ -44,6 +44,7 @@ const Nav = () => {
       setAccessToken(localAccessToken);
       setUserDatas(JSON.parse(localUserDatas));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
