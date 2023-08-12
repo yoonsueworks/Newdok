@@ -10,7 +10,7 @@ const Menus = () => {
   const versionCSS =
     "w-full flex justify-between items-center bg-warmgray-30 p-5 rounded-lg single-18-b";
   return (
-    <div className="w-full h-full flex flex-col gap-y-2.5 pt-8">
+    <div className="w-full h-fit flex flex-col gap-y-2.5 pt-8">
       {userPage_menus.map((menu) => {
         return (
           <div

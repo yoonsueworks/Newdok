@@ -7,7 +7,7 @@ const GNB = () => {
       width="430"
       height="100"
       alt="스플래시 이미지"
-      priority={false}
+      priority
     />
   );
 };

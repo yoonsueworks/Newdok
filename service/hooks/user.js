@@ -47,38 +47,16 @@ export const useCheckPhoneNumber = () => {
 
 export const useSignUp = () => {
   return useMutation({
-    mutationKey: ["postSignUp"],
-    mutationFn: () => {
-      return {
-        user: {
-          id: 12,
-          loginId: "mrokr0327",
-          password:
-            "$2b$10$oiKbW/ixdkmfAJwTx.Yv2eaQg8sVyl/QOH6/m07Q85si8y/Dp8o1e",
-          phoneNumber: "01041478220",
-          subscribeEmail: "test@newdok.site",
-          subscribePassword:
-            "$2b$10$XeCrejK16PEa9WermMDjBudGAi1TVEZujD0/1U2PROdVzmoOmXHQq",
-          nickname: "테스트",
-          birthYear: "1996",
-          gender: "여자",
-          industryId: null,
-        },
-        accessToken:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY5MTIyNjc4NSwiZXhwIjoxNjkxMzEzMTg1fQ.BSEbe2rrxscSrZHJkk_1VvlAMo0emQj9KsqG1JeHK-0",
-      };
+    mutationFn: async (params) => {
+      const response = await userSignUp(params);
+      return response;
     },
-
-    // mutationFn: async (params) => {
-    //   const response = await userSignUp(params);
-    // return response;
-    // },
     enabled: false,
     retry: 0,
     throwOnError: true,
     onSuccess: (data) => {
-      return data;
       LocalStorage.setItem("NDtoken", data.accessToken);
+      LocalStorage.setItem("NDuserName", data.user.nickname);
       console.log(data, "onsuccess");
     },
     onError: (error) => {
@@ -88,19 +66,18 @@ export const useSignUp = () => {
 };
 
 export const useCheckLoginId = (params) => {
+  const queryClient = useQueryClient();
   return useQuery({
-    queryKey: ["checkLoginId"],
+    queryKey: ["checkLoginId", params],
     queryFn: async () => {
-      await userCheckLoginId(params);
+      const data = await userCheckLoginId(params);
+      return data;
     },
     enabled: false,
     retry: 0,
     throwOnError: true,
     onSuccess: (data) => {
       return data;
-    },
-    onError: (error) => {
-      return { error };
     },
   });
 };

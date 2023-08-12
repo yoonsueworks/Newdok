@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Topbar from "./Topbar";
 
 export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
-  const router = useRouter();
   const clickedCSS =
     "h-full w-2/4 flex justify-center items-center single-20-b text-purple-700 border-b-2 border-purple-700";
 
@@ -12,7 +11,6 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
 
   return (
     <>
-      {/* <Topbar /> */}
       <div className="w-full h-fit z-1 cursor-pointer">
         <div className="w-full h-fit">
           <div className="top-0 bg-white">

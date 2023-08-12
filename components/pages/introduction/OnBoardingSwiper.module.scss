@@ -1,0 +1,22 @@
+.mySwiper {
+  width: 100%;
+
+  .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 2px !important;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #674188 !important;
+    width: 16px !important;
+  }
+
+}
+
+.swiper-pagination-bullet-active {
+  opacity: var(--swiper-pagination-bullet-opacity, 1);
+  background: #674188 !important;
+}

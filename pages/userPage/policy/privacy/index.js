@@ -1,5 +1,6 @@
 import "react-notion/src/styles.css";
 import "prismjs/themes/prism-tomorrow.css";
+import AppBar from "shared/AppBar";
 
 import { NotionRenderer } from "react-notion";
 
@@ -16,9 +17,22 @@ export async function getStaticProps() {
 }
 
 const Privacy = ({ blockMap }) => (
-  <div className="w-full h-full overflow-scroll p-5">
-    <NotionRenderer blockMap={blockMap} />
-  </div>
+  <>
+    <div className="relative w-full">
+      <div className="absolute w-full">
+        <AppBar
+          iconl={true}
+          shadow={true}
+          textl="개인정보 처리방침"
+          iconr={false}
+          func={() => history.back()}
+        />
+      </div>
+    </div>
+    <div className="w-full h-full overflow-scroll p-5 pt-24">
+      <NotionRenderer blockMap={blockMap} />
+    </div>
+  </>
 );
 
 export default Privacy;

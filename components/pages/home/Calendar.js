@@ -7,7 +7,8 @@ import NextIcon from "icons/arrow_right_off.svg";
 
 export default function ReactCalendar() {
   const [value, onChange] = useState(new Date());
-  const { monthlyArticles, setActiveDate } = useContext(CalendarContext);
+  const { monthlyArticles, setActiveDate, setFullActiveDate } =
+    useContext(CalendarContext);
 
   const tileContent = ({ date }) => {
     const currentDate = Number(String(date).split(" ")[2]);
@@ -38,6 +39,14 @@ export default function ReactCalendar() {
       <Calendar
         onChange={(e) => {
           setActiveDate(Number(String(e).split(" ")[2]));
+          setFullActiveDate(
+            e.toLocaleDateString(undefined, {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          );
           onChange();
         }}
         value={value}

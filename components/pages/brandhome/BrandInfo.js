@@ -1,48 +1,98 @@
+import Image from "next/image";
+
 import { useContext } from "react";
-import { BrandHomeContext } from "context/BrandHomeContext";
+import { GlobalContext } from "../../../pages/_app";
+import { atom, useRecoilState } from "recoil";
+import { userDatasAtom } from "service/atoms/atoms";
 
 import Button from "shared/Button";
 import Tags from "shared/Tags";
-
 import CheckIcon from "icons/check_off.svg";
 
-const BrandInfo = () => {
-  const value = useContext(BrandHomeContext);
-  const { setOpen } = value;
+const BrandInfo = ({ data, setOpen }) => {
+  const {
+    brandId,
+    brandName,
+    interests,
+    detailDescription,
+    publicationCycle,
+    imageUrl,
+    isSubscribed,
+  } = data;
 
-  const containerCSS = "w-full h-fit grid py-8 px-5 gap-y-6 bg-beige-100";
+  const { setToastPopUp, setToastMessage } = useContext(GlobalContext);
+  const [userDatas] = useRecoilState(userDatasAtom);
+
+  const copyClipboard = () => {
+    window.navigator.clipboard.writeText(userDatas.subscribeEmail);
+    setToastPopUp();
+    setToastMessage("mailCopied");
+  };
+
+  const containerCSS = "w-full h-fit grid py-8 px-5 gap-y-6 bg-beige-100 ";
   const infosCSS = "grid gap-y-5";
   const profileCSS = "flex gap-x-5";
-  const thumbnailCSS =
-    "w-[100px] h-[100px] border border-warmgray-30 rounded-[100px] bg-white";
+
   const profileWrapperCSS = "flex flex-col gap-y-4";
   const h6titleCSS = "single-24-b text-purple-700 mb-2";
   const dateCSS = "single-14-m flex items-center gap-x-1";
   const descriptionCSS = "multiple-16-m";
 
+  const clickSubscribeBtn = () => {
+    console.log(userDatas);
+    if (userDatas) {
+      setOpen(true);
+      copyClipboard();
+    }
+    if (!userDatas) {
+      console.log("open modal");
+    }
+  };
+
   return (
     <div className={containerCSS}>
       <div className={infosCSS}>
         <div className={profileCSS}>
-          <div className={thumbnailCSS}></div>
+          <div className="w-[100px] h-[100px] rounded-full flex-shrink-0 contentbox-border relative border border-neutralgray-200 flex justify-center items-center">
+            <Image
+              alt={brandName}
+              src={imageUrl}
+              fill
+              sizes="100"
+              quality={45}
+              loading="lazy"
+              placeholder="blur"
+              className={isSubscribed === "CHECK" ? "brightness-50" : ""}
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcNGFlPQAGEwJcG4PRAwAAAABJRU5ErkJggg=="
+              style={{
+                objectFit: "cover",
+                borderRadius: 50,
+              }}
+            />
+            {isSubscribed === "CHECK" && (
+              <div className="text-white single-16-b z-10">구독 확인 중</div>
+            )}
+          </div>
           <div className={profileWrapperCSS}>
-            <Tags tags={[{ id: 1, name: "시사" }]} usage="brand" />
+            <Tags tags={interests} usage="brand" />
             <div>
-              <h6 className={h6titleCSS}>NEWNEEK</h6>
+              <h6 className={h6titleCSS}>{brandName}</h6>
               <div className={dateCSS}>
                 <CheckIcon width="16" height="16" stroke="#171414" />
-                매주 평일 아침
+                {publicationCycle}
               </div>
             </div>
           </div>
         </div>
-        <div className={descriptionCSS}>
-          세상 돌아가는 소식은 궁금한데, 시간이 없다고요? &#60;뉴닉&#62;은 신문
-          볼 새 없이 바쁘지만, 세상과의 연결고리는 튼튼하게 유지하고 싶은
-          여러분들을 위해 세상 돌아가는 소식을 모두 담아 간단한게 정리해 드려요.
-        </div>
+        <div className={descriptionCSS}>{detailDescription}</div>
       </div>
-      <Button text="구독하기" state={true} func={() => setOpen(true)} />
+      <button
+        type="button"
+        onClick={clickSubscribeBtn}
+        className="w-full h-fit p-4 rounded-xl text-white single-20-b bg-purple-700 active:bg-purple-800 hover:bg-purple-400 transition-colors duration-300 "
+      >
+        {isSubscribed === ("INITIAL" || "CHECK") ? "구독하기" : "구독 중"}
+      </button>
     </div>
   );
 };

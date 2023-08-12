@@ -6,7 +6,7 @@ import Close from "icons/close_off.svg";
 
 const ToolBar = () => {
   const value = useContext(CalendarContext);
-  const { dateLocaleKr, calendarOpen, setCalendarOpen } = value;
+  const { dateLocaleKr, calendarOpen, setCalendarOpen, fullActiveDate } = value;
 
   const handleCalendar = () => {
     setCalendarOpen((prev) => !prev);
@@ -16,6 +16,7 @@ const ToolBar = () => {
     <div className="w-full px-5 py-2.5 bg-purple-400 text-white single-20-b">
       <div className="h-11 flex flex-row justify-between items-center">
         <span>{dateLocaleKr}</span>
+        {/* <span>{fullActiveDate ? dateLocaleKr : fullActiveDate}</span> */}
         {calendarOpen ? (
           <Close
             className="cursor-pointer"

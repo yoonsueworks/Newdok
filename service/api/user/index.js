@@ -1,19 +1,24 @@
 import axios from "../../axios";
 
+export const handleLoginErrors = async (error) => {
+  const statusCode = error.response.status;
+  const message = error.response.data.message;
+  if (statusCode === 400) {
+    return message;
+  }
+};
+
 /* 회원가입 */
 export const userSignUp = async (params) => {
-  const { data } = await axios.post("/users/signup", params)
+  const { data } = await axios.post("/users/signup", params);
   return data;
 };
 
 /* 로그인 */
 export const userLogin = async (params) => {
-  await axios.post("/users/login", params);
+  const { data } = await axios.post("/users/login", params);
+  return data;
 };
-// {
-//     "loginId": "newdok",
-//     "password": "!abc1234"
-//   }
 
 /* 전화번호 중복 확인 */
 export const userCheckPhoneNumber = async (params) => {
@@ -31,19 +36,13 @@ export const userAuthSms = async (params) => {
 
 /* 아이디 중복 확인 */
 export const userCheckLoginId = async (params) => {
-  const { data } = await axios.get(`/users/check/loginId?loginId=${params}`, {
-    validateStatus: false,
-  });
-  return data;
+  const response = await axios.get(`/users/check/loginId?loginId=${params}`);
+  return response;
 };
 
 export const userResetPswd = async (params) => {
   await axios.patch("/users/reset/password", params);
 };
-// {
-//     "loginId": "kjyong702",
-//     "newPassword": "@def5678"
-//   }
 
 export const userPreInvestigate = async () => {
   await axios.get(`/users/preInvestigate/${params}`, {

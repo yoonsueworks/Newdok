@@ -1,5 +1,9 @@
 export const industries = [
   {
+    id: 1,
+    name: "모든 산업",
+  },
+  {
     id: 2,
     name: "IT・게임・통신",
   },
@@ -53,7 +57,7 @@ export const industries = [
   },
   {
     id: 15,
-    name: "자영업",
+    name: "창업・자영업",
   },
   {
     id: 16,

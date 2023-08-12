@@ -1,10 +1,15 @@
 import BackIcon from "icons/back_off.svg";
 import { useRouter } from "next/router";
 
-const Appbar = ({ iconl, textl, iconr, func }) => {
+const AppBar = ({ iconl, textl, iconr, func, shadow }) => {
   const router = useRouter();
+
+  const shadowCSS = shadow ? "elevation-1-bottom" : "";
+
   return (
-    <div className="w-full h-fit flex justify-between items-center p-2.5">
+    <div
+      className={`w-full h-fit flex justify-between items-center p-2.5 ${shadowCSS} bg-white z-1`}
+    >
       <div className="flex h-fit items-center gap-x-4 shrink-0">
         <button
           type="button"
@@ -32,4 +37,4 @@ const Appbar = ({ iconl, textl, iconr, func }) => {
   );
 };
 
-export default Appbar;
+export default AppBar;
