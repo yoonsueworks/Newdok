@@ -18,9 +18,7 @@ export default function EveryBrands() {
   const [browseOptions, setBrowseOptions] = useRecoilState(browseOptionsAtom);
   const browseOptionsString = useRecoilValue(browseOptionsQuerySelector);
 
-  const browseAllRequest = useBrowseAll(browseOptionsString);
-  // console.log(browseOptionsString);
-  // console.log(browseAllRequest.data);
+  const { data } = useBrowseAll(browseOptionsString);
 
   const handleOpen = (id) => {
     if (id === 1) {
@@ -47,7 +45,7 @@ export default function EveryBrands() {
     <div className="w-full h-full">
       <div className="pb-8 p-5">
         <FilterChips func={handleOpen} sortOption={sortOption} />
-        {/* <Lists datas={list} /> */}
+        <Lists datas={data} />
       </div>
       <BottomSheet open={openSort} onDismiss={() => handleDismiss(1)}>
         <form className="grid gap-y-8 pb-14" onSubmit={handleSubmit}>

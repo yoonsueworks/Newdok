@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { browseOptionsAtom } from "service/atoms/atoms";
 
 import FilterChip from "components/pages/browseAll/FilterChip";
 import FilterOffIcon from "icons/filter_off.svg";
-import FilterOnIcon from "icons/filter_on.svg";
 import AlignIcon from "icons/align_off.svg";
 import Refresh from "icons/refresh_off.svg";
 
@@ -13,7 +11,7 @@ const FilterChips = ({ func, sortOption }) => {
   const resetBrowseOptions = useResetRecoilState(browseOptionsAtom);
 
   return (
-    <div className="flex justify-between items-center pt-8 pb-4">
+    <div className="flex justify-between items-center pb-4">
       <div className="flex gap-x-1">
         {FILTERS.map(({ id, text, name }) => {
           return id === 1 ? (
