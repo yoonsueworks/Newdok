@@ -45,4 +45,5 @@ export const nicknameErrorMessage = {
   error_nickname: "특수문자는 사용할 수 없어요",
   default_birthYear: "출생연도는 뉴스레터 추천에 활용돼요.",
   default_gender: "성별은 뉴스레터 추천에 활용돼요.",
+  modify_nickname: "닉네임은 12자 이내로 입력해 주세요.",
 };

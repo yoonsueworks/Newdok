@@ -8,6 +8,9 @@ import {
   userAuthSms,
   userResetPswd,
   userPreInvestigate,
+  userSubscriptionList,
+  modifyNickname,
+  modifyIndustry,
 } from "service/api/user";
 
 export const useAuthSms = () => {
@@ -80,4 +83,48 @@ export const useCheckLoginId = (params) => {
       return data;
     },
   });
+};
+
+export const useUserSubscriptionList = () => {
+  return useQuery(
+    {
+      queryKey: "getSubscriptionList",
+      queryFn: () => userSubscriptionList(),
+    },
+    {
+      onSuccess: (data) => {
+        return data;
+      },
+    }
+  );
+};
+
+export const useModifyNickname = (params) => {
+  return useMutation(
+    {
+      mutationKey: ["modifyNickname", params],
+      mutationFn: (params) => modifyNickname(params),
+    },
+    {
+      onSuccess: (data) => {
+        return data;
+      },
+      enabled: false,
+    }
+  );
+};
+
+export const useModifyIndustry = (params) => {
+  return useMutation(
+    {
+      mutationKey: ["modifyIndustry", params],
+      mutationFn: (params) => modifyIndustry(params),
+    },
+    {
+      onSuccess: (data) => {
+        return data;
+      },
+      enabled: false,
+    }
+  );
 };

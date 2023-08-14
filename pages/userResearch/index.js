@@ -5,6 +5,7 @@ import Image from "next/image";
 import Job from "components/pages/userResearch/Job";
 import Interest from "components/pages/userResearch/Interest";
 import ArrivedBrands from "components/pages/userResearch/ArrivedBrands";
+import IndustryDropDown from "shared/IndustryDropDown";
 
 import { pages } from "constants/user_research_pages";
 import { useResearchQuery } from "../../public/hooks/UserResearch";
@@ -32,7 +33,8 @@ export default function UserResearch() {
         />
       </div>
     ),
-    2: <Job />,
+    2: <IndustryDropDown />,
+    // 2: <Job />,
     3: <Interest />,
     4: <ArrivedBrands />,
   };
