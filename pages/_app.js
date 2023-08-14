@@ -19,6 +19,7 @@ function MyApp({ Component, pageProps }) {
   const [userDatas, setUserDatas] = useState(null);
   const [toast, setToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [hydrated, setHydrated] = React.useState(false); //added
 
   const queryClient = new QueryClient();
   const router = useRouter();
@@ -31,11 +32,11 @@ function MyApp({ Component, pageProps }) {
   const token = LocalStorage.getItem("NDtoken");
 
   useEffect(() => {
-    const checkUserToken = async () => {
-      await router.push(token ? "/home" : "/introduction");
-    };
-
-    setTimeout(() => checkUserToken(), 800);
+    //TODO: 온보딩 페이지에서 ? 해야할 듯?
+    // const checkUserToken = async () => {
+    //   await router.push(token ? "/home" : "/introduction");
+    // };
+    // setTimeout(() => checkUserToken(), 800);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -48,6 +49,15 @@ function MyApp({ Component, pageProps }) {
     setToastMessage: setToastMessage,
     toastMessage: toastMessage,
   };
+
+  //added :하이드레이션 오류 방지
+  React.useEffect(() => {
+    setHydrated(true);
+  }, []);
+  if (!hydrated) {
+    // Returns null on first render, so the client and server match
+    return null;
+  }
 
   return (
     <RecoilRoot>
