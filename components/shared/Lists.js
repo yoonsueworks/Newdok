@@ -1,10 +1,19 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Tags from "./Tags";
+import { useEffect } from "react";
 
 function ListedItem({ datas }) {
   const router = useRouter();
-  const { brandName, imageUrl, interests, secondDescription, id } = datas;
+  const {
+    brandName,
+    imageUrl,
+    interests,
+    secondDescription,
+    shortDescription,
+    id,
+    isSubscribed,
+  } = datas;
 
   return (
     <li
@@ -30,9 +39,16 @@ function ListedItem({ datas }) {
         </div>
         <div className="flex flex-col gap-y-4">
           <div className="grid gap-y-3">
-            <h4 className="single-18-sb mb-1">{brandName}</h4>
+            <div className="flex items-center gap-x-2  mb-1">
+              <h4 className="single-18-sb">{brandName}</h4>
+              {isSubscribed === "CONFIRMED" && (
+                <div className="p-1 bg-purple-400 rounded-full w-fit h-fit  text-white single-12-sb">
+                  구독 중
+                </div>
+              )}
+            </div>
             <div className="single-14-m break-keep w-full">
-              {secondDescription}
+              {secondDescription || shortDescription}
             </div>
           </div>
           <Tags tags={interests} />
