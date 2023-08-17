@@ -1,10 +1,12 @@
-import Background3 from "shared/Background3";
+import { useState } from "react";
 import Background from "shared/Background";
 import QuestionsDisclosure from "components/pages/userPage/faq/QuestionsDisclosure";
 import { faqList } from "constants/faqList";
 import AppBar from "shared/AppBar";
 
 const Faq = () => {
+  const [openDisclosureId, setOpenDisclosureId] = useState(null);
+
   const containerCSS = "flex flex-col pt-8 gap-y-8 pb-14 scroll-smooth";
   const categoryCSS = "text-purple-700 single-18-b";
   const questionWrapperCSS = "grid gap-y-2.5";
@@ -31,7 +33,11 @@ const Faq = () => {
                   <li className="grid gap-y-4">
                     <strong className={categoryCSS}>{category.name}</strong>
                     <ul className={questionWrapperCSS}>
-                      <QuestionsDisclosure category={category} />
+                      <QuestionsDisclosure
+                        category={category}
+                        setOpenDisclosureId={setOpenDisclosureId}
+                        openDisclosureId={openDisclosureId}
+                      />
                     </ul>
                   </li>
                 </ul>

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Button from "shared/Button";
 
-const UserHistoryButton = () => {
+const UserHistoryButton = ({ setProcess }) => {
   const [service, setService] = useState(false);
+
   return (
     <>
       <div className="flex justify-between gap-x-8 py-3.5 text-neutralgray-900 items-center">
@@ -20,7 +21,8 @@ const UserHistoryButton = () => {
       <button
         type="submit"
         className="w-full h-fit p-5 rounded-2xl bg-purple-700 single-24-b text-white active:bg-purple-800 hover:bg-purple-500 transition-colors duration-300 disabled:bg-neutralgray-500"
-        disabled=""
+        disabled={!service}
+        onClick={() => setProcess((prev) => prev + 1)}
       >
         다음
       </button>
