@@ -21,6 +21,7 @@ export const newsletterBrand = async (params) => {
   const { data } = await axios.get(`/newsletters/${params}`, {
     headers: headers,
   });
+  ``;
   return data;
 };
 
