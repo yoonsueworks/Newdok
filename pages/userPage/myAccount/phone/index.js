@@ -1,8 +1,10 @@
+import { useRouter } from "next/router";
 import Background from "shared/Background";
 import Button from "shared/Button";
 import AppBar from "shared/AppBar";
 
 const Phone = () => {
+  const router = useRouter();
   return (
     <>
       <div className="relative w-full">
@@ -12,7 +14,7 @@ const Phone = () => {
             shadow={true}
             textl="휴대폰 번호 변경"
             iconr={false}
-            func={() => history.back()}
+            func={() => router.push("/userPage/myAccount")}
           />
         </div>
       </div>

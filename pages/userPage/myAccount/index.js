@@ -1,15 +1,15 @@
 import { useRouter } from "next/router";
+import { useResetRecoilState } from "recoil";
+import { userDatasAtom, accessTokenAtom } from "service/atoms/atoms";
+import LocalStorage from "public/utils/LocalStorage";
 
 import Background2 from "shared/Background2";
 import ButtonText from "shared/ButtonText";
+import AppBar from "shared/AppBar";
 import ArrowRight from "icons/arrow_right_off.svg";
 import LogOut from "icons/logout_off.svg";
 
-import AppBar from "shared/AppBar";
 import { myaccount_menus } from "constants/userPage";
-import LocalStorage from "../../../public/utils/LocalStorage";
-import { useResetRecoilState } from "recoil";
-import { userDatasAtom, accessTokenAtom } from "service/atoms/atoms";
 
 const MyAccount = () => {
   const resetUserDatas = useResetRecoilState(userDatasAtom);
@@ -48,7 +48,7 @@ const MyAccount = () => {
             shadow={true}
             textl="계정 관리"
             iconr={false}
-            func={() => history.back()}
+            func={() => router.push("/userPage")}
           />
         </div>
         <div className="pt-24 h-full px-5 flex flex-col justify-between items-center pb-14">

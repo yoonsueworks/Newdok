@@ -9,6 +9,7 @@ import AppBar from "shared/AppBar";
 const Pswd = () => {
   const [inputType, setInputType] = useState(false);
   // TODO: 기능구현
+
   return (
     <>
       <div className="relative w-full">

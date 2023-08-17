@@ -37,6 +37,7 @@ export const useCheckPhoneNumber = () => {
       {
         enabled: false,
         retry: 0,
+        refetchInterval: 30 * 60 * 1000,
         onSuccess: () => {
           return queryClient.invalidateQueries();
         },
