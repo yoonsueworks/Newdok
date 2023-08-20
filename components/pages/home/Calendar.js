@@ -7,15 +7,24 @@ import NextIcon from "icons/arrow_right_off.svg";
 
 export default function ReactCalendar() {
   const [value, onChange] = useState(new Date());
-  const { monthlyArticles, setActiveDate, setFullActiveDate } =
+  const { monthlyArticles, setActiveDate, setFullActiveDate, setCalendarOpen } =
     useContext(CalendarContext);
+  const today = new Date();
+  const todayDate = today.getDate();
+
+  const isDateDisabled = (date) => {
+    const currentDate = date.getDate();
+    return currentDate > todayDate;
+  };
 
   const tileContent = ({ date }) => {
     const currentDate = Number(String(date).split(" ")[2]);
     // 달 따라서 값 확인하기 일치하지 않는 경우 안하기
 
     const hasMatchingArticles = monthlyArticles.some((el) => {
-      return el.id === currentDate && el.articles?.length > 0;
+      return (
+        el.publishDate === currentDate && el.receivedArticleList?.length > 0
+      );
     });
 
     return (
@@ -38,6 +47,7 @@ export default function ReactCalendar() {
     <div className="calendar-container z-30 absolute bg-white">
       <Calendar
         onChange={(e) => {
+          setCalendarOpen((prev) => !prev);
           setActiveDate(Number(String(e).split(" ")[2]));
           setFullActiveDate(
             e.toLocaleDateString(undefined, {
@@ -59,6 +69,7 @@ export default function ReactCalendar() {
         prevLabel={<PrevIcon onClick={() => console.log("요청")} />}
         next2Label={null}
         prev2Label={null}
+        tileDisabled={({ date }) => isDateDisabled(date)}
         tileContent={tileContent}
         showNeighboringMonth={false}
         minDetail="month"

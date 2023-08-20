@@ -2,8 +2,8 @@ import Image from "next/image";
 import SingupButtons from "shared/SignupButtons";
 
 const UnAuthorized = () => {
-  const wrapperCSS =
-    "w-full h-full flex flex-col gap-y-[57px] px-5 py-14 justify-between";
+  const wrapperCSS = "w-full h-full flex flex-col  px-5 py-14 justify-between";
+  // "w-full h-full flex flex-col gap-y-[57px] px-5 py-14 justify-between";
   const contentsCSS = "flex flex-col items-center";
   const text1 = "multiple-20-b mb-1 text-center";
   const text2 = "multiple-16-m mb-1";

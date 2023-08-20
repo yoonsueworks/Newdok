@@ -52,3 +52,11 @@ export const articleRead = async (params) => {
   });
   return data;
 };
+
+/* 뉴스레터 브랜드 조회 (회원) */
+export const monthlyArticles = async (params) => {
+  const { data } = await axios.get(`articles?publicationMonth=${params}`, {
+    headers: headers,
+  });
+  return data;
+};
