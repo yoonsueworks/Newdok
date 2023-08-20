@@ -10,7 +10,7 @@ import CheckIcon from "icons/check_off.svg";
 import CloseIcon from "icons/close_off.svg";
 import BackIcon from "icons/back_off.svg";
 
-const BrandInfo = ({ data, setOpen }) => {
+const BrandInfo = ({ data, setOpen, controlModal }) => {
   const {
     brandId,
     brandName,
@@ -19,6 +19,7 @@ const BrandInfo = ({ data, setOpen }) => {
     publicationCycle,
     imageUrl,
     isSubscribed,
+    subscribeCheck,
     subscribeUrl,
   } = data;
 
@@ -41,13 +42,15 @@ const BrandInfo = ({ data, setOpen }) => {
   const descriptionCSS = "multiple-16-m";
 
   const clickSubscribeBtn = () => {
-    console.log(userDatas);
-    if (userDatas) {
+    // unAuthorized
+    if (!userDatas?.nickname) {
+      controlModal(true);
+      return;
+    }
+    // authorized
+    if (userDatas?.nickname) {
       setOpen(true);
       copyClipboard();
-    }
-    if (!userDatas) {
-      console.log("open modal");
     }
   };
 
@@ -106,9 +109,14 @@ const BrandInfo = ({ data, setOpen }) => {
         <button
           type="button"
           onClick={clickSubscribeBtn}
-          className="w-full h-fit p-4 rounded-xl text-white single-20-b bg-purple-700 active:bg-purple-800 hover:bg-purple-400 transition-colors duration-300 "
+          disabled={isSubscribed === "CONFIRMED"}
+          className={`w-full h-fit p-4 rounded-xl text-white single-20-b bg-purple-700 active:bg-purple-800 hover:bg-purple-400 disabled:bg-neutralgray-500 transition-colors duration-300 `}
         >
-          {isSubscribed === ("INITIAL" || "CHECK") ? "구독하기" : "구독 중"}
+          {!userDatas?.nickname || isSubscribed === "INITIAL"
+            ? "구독하기"
+            : isSubscribed === "CHECK"
+            ? "구독 확인하기"
+            : "구독 중"}
         </button>
       </div>
     </div>
