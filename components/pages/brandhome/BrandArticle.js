@@ -1,4 +1,7 @@
+import { useDateEdit } from "public/hooks/useDateEdit";
+
 const BrandArticle = ({ func, data }) => {
+  const formattedDate = useDateEdit(data?.date);
   const wrapperCSS =
     "h-fit p-5 grid gap-y-2.5 rounded-lg border border-warmgray-20 bg-white";
 
@@ -8,7 +11,7 @@ const BrandArticle = ({ func, data }) => {
   return (
     <li className={wrapperCSS} onClick={func}>
       <span className={titleCSS}>{data.title}</span>
-      <span className={dateCSS}>{data.date}</span>
+      <span className={dateCSS}>{formattedDate}</span>
     </li>
   );
 };

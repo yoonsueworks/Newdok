@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
-import Header from "shared/Header";
+import { useRecoilState } from "recoil";
 
 import RecommendedBrands from "components/pages/browseAll/RecommendedBrands";
 import EveryBrands from "components/pages/browseAll/EveryBrands";
 import Background3 from "shared/Background3";
-import { useNewslettersRecommended } from "../../service/hooks/newsletters";
+import Header from "shared/Header";
+
+import { useNewslettersRecommended } from "service/hooks/newsletters";
+import { browseAllPageAtom } from "service/atoms/atoms";
 
 export default function BrowseAll() {
-  const [clickedTab, setClickedTab] = useState(1);
+  const [clickedTab, setClickedTab] = useRecoilState(browseAllPageAtom);
   const [statusCode, setStatusCode] = useState(null);
   const newsletterRecommend = useNewslettersRecommended();
 
-  const { isFetching, data, isLoading } = newsletterRecommend;
+  const { isFetching, data, isLoading, isError, error } = newsletterRecommend;
 
   const changeTab = (id) => {
     setClickedTab(id);
@@ -34,10 +37,10 @@ export default function BrowseAll() {
   ];
 
   useEffect(() => {
-    if (!isFetching) {
+    if (isError) {
       setStatusCode(newsletterRecommend?.error?.response?.data?.statusCode);
     }
-  }, [isFetching, newsletterRecommend.error]);
+  }, [isError, newsletterRecommend.error]);
 
   return (
     <div className="h-full w-full flex flex-col overflow-auto">

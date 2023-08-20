@@ -15,6 +15,11 @@ export const userDatasAtom = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const browseAllPageAtom = atom({
+  key: "browseAllPageAtom",
+  default: 1,
+});
+
 export const browseOptionsAtom = atom({
   key: "browseOptionsAtom",
   default: {

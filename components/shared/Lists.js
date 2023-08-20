@@ -6,6 +6,7 @@ import { useEffect } from "react";
 function ListedItem({ datas }) {
   const router = useRouter();
   const {
+    brandId,
     brandName,
     imageUrl,
     interests,
@@ -17,11 +18,11 @@ function ListedItem({ datas }) {
 
   return (
     <li
-      className="bg-white p-5 h-max w-full contentbox-border rounded-lg cursor-pointer"
-      onClick={() => router.push(`/brandHome/${id}`)}
+      className="bg-white p-5 h-max w-full border border-neutralgray-200 rounded-lg cursor-pointer"
+      onClick={() => router.push(`/brandHome/${brandId || id}`)}
     >
       <div className="flex gap-x-4">
-        <div className="w-58 h-58 rounded-full flex-shrink-0 contentbox-border relative">
+        <div className="w-58 h-58 rounded-full flex-shrink-0 border border-neutralgray-200 relative">
           <Image
             alt={brandName}
             src={imageUrl}
@@ -42,7 +43,7 @@ function ListedItem({ datas }) {
             <div className="flex items-center gap-x-2  mb-1">
               <h4 className="single-18-sb">{brandName}</h4>
               {isSubscribed === "CONFIRMED" && (
-                <div className="p-1 bg-purple-400 rounded-full w-fit h-fit  text-white single-12-sb">
+                <div className="p-1 bg-purple-400 rounded-full w-fit h-fit text-white single-12-sb">
                   구독 중
                 </div>
               )}
