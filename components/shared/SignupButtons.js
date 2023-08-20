@@ -13,8 +13,8 @@ const SingupButtons = () => {
         회원가입
       </button>
       <div className="flex items-center gap-x-2">
-        <span className="inline-block">이미 계정이 있나요?</span>
-        <ButtonText text="로그인" onClick={() => router.push("/login")} />
+        <span className="inline-block single-14-m">이미 계정이 있나요?</span>
+        <ButtonText text="로그인" func={() => router.push("/login")} />
       </div>
     </div>
   );

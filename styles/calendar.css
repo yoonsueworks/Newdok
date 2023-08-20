@@ -93,3 +93,9 @@
   color: white;
   background: #9362a9;
 }
+
+.react-calendar .tile-content::disabled {
+  opacity: 0.5; /* Adjust the opacity to your preference */
+  pointer-events: none; /* Disable pointer events for disabled dates */
+  /* Add any other styling you want for disabled dates */
+}

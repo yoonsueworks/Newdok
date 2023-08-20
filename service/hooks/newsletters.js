@@ -6,7 +6,8 @@ import {
   newsletterAllUnAuth,
   newsletterBrand,
   newsletterBrandUnAuth,
-  articleRead
+  articleRead,
+  monthlyArticles,
 } from "../api/neswletter";
 
 const token = LocalStorage.getItem("NDtoken");
@@ -57,6 +58,21 @@ export const useArticleRead = (params) => {
       queryKey: ["useArticleRead", params],
       queryFn: () => articleRead(params),
       // token ? newsletterBrand(params) : newsletterBrandUnAuth(params),
+    },
+    {
+      onSuccess: (data) => {
+        return data;
+      },
+      retry: 0,
+    }
+  );
+};
+
+export const useMonthlyArticles = (params) => {
+  return useQuery(
+    {
+      queryKey: ["monthlyArticles", params],
+      queryFn: () => monthlyArticles(params),
     },
     {
       onSuccess: (data) => {

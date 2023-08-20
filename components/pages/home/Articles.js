@@ -14,10 +14,11 @@ const Articles = () => {
   const today = dateLocaleKr.split(" ")[3];
   const [token, setToken] = useState(null);
 
-  const articles = monthlyArticles.filter((item) => item.id === activeDate)[0]
-    ?.articles;
+  const { publishDate, receivedUnread, receivedArticleList } =
+    monthlyArticles.filter((item) => item.publishDate === activeDate)[0];
+
   // TODO: 선택된 날짜 전달해오기
-  const articleLength = articles?.length;
+  const articleLength = receivedArticleList?.length;
 
   useEffect(() => {
     const loadedToken = LocalStorage.getItem("NDtoken");
@@ -41,13 +42,13 @@ const Articles = () => {
             <div className="w-fit flex gap-x-1 items-center single-14-m text-neutralgray-900">
               안읽음
               <div className="inline-block min-w-[20px] h-5 rounded-full bg-purple-400 text-xs justify-center p-1 text-white leading-none text-center">
-                3
+                {receivedUnread}
               </div>
             </div>
           </div>
           <div className="grid gap-y-2.5 pb-6">
-            {articles?.map((article, id) => {
-              return <Article key={id} html={article.html} />;
+            {receivedArticleList?.map((article, id) => {
+              return <Article key={id} article={article} />;
             })}
           </div>
         </Background>
