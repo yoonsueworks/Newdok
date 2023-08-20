@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useResetRecoilState } from "recoil";
 import { userDatasAtom, accessTokenAtom } from "service/atoms/atoms";
@@ -6,12 +7,15 @@ import LocalStorage from "public/utils/LocalStorage";
 import Background2 from "shared/Background2";
 import ButtonText from "shared/ButtonText";
 import AppBar from "shared/AppBar";
+import MessageModal from "shared/MessageModal";
 import ArrowRight from "icons/arrow_right_off.svg";
 import LogOut from "icons/logout_off.svg";
 
 import { myaccount_menus } from "constants/userPage";
 
 const MyAccount = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const resetUserDatas = useResetRecoilState(userDatasAtom);
   const resetAccessToken = useResetRecoilState(accessTokenAtom);
   const router = useRouter();
@@ -23,7 +27,7 @@ const MyAccount = () => {
   };
 
   const deleteToken = () => LocalStorage.removeItem("NDtoken");
-  const deleteNickname = () => LocalStorage.removeItem("NDNickname");
+  const deleteNickname = () => LocalStorage.removeItem("NDnickname");
   const deleteUserDatas = () => LocalStorage.removeItem("NDUserDatas");
 
   const handleLogOut = () => {
@@ -31,12 +35,12 @@ const MyAccount = () => {
     deleteToken();
     deleteNickname();
     deleteUserDatas();
-
-    /* 아톱 초기화 */
+    /* 아톰 초기화 */
     resetUserDatas();
     resetAccessToken();
 
-    routeTo("/login");
+    setIsModalOpen(false);
+    router.push("/");
   };
 
   return (
@@ -53,17 +57,17 @@ const MyAccount = () => {
         </div>
         <div className="pt-24 h-full px-5 flex flex-col justify-between items-center pb-14">
           <div className="gap-y-2.5 grid w-full">
-            {myaccount_menus.map((menu) => {
+            {myaccount_menus.map(({ id, name, path }) => {
               return (
                 <div
-                  key={menu.id}
+                  key={id}
                   className={buttonCSS}
-                  onClick={
-                    menu.id !== 3 ? () => routeTo(menu.path) : handleLogOut
-                  }
+                  onClick={() => {
+                    id !== 3 ? routeTo(path) : setIsModalOpen(true);
+                  }}
                 >
-                  {menu.name}
-                  {menu.id !== 3 ? (
+                  {name}
+                  {id !== 3 ? (
                     <ArrowRight width="24" height="24" />
                   ) : (
                     <LogOut width="24" height="24" />
@@ -81,6 +85,21 @@ const MyAccount = () => {
           />
         </div>
       </div>
+      <MessageModal
+        isOpen={isModalOpen}
+        controlModal={handleLogOut}
+        title="로그아웃"
+        info={["로그아웃할까요?"]}
+        button={
+          <button
+            type="submit"
+            className="w-full p-4 rounded-xl shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 bg-white single-20-b transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100 mt-5"
+            onClick={handleLogOut}
+          >
+            확인
+          </button>
+        }
+      />
     </Background2>
   );
 };

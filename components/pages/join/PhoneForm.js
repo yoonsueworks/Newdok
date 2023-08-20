@@ -3,10 +3,13 @@ import { useRouter } from "next/router";
 import { SignUpContext } from "context/SignUpContext";
 import { useForm } from "react-hook-form";
 
+import MessageModal from "shared/MessageModal";
+
 import { useAuthSms, useCheckPhoneNumber } from "service/hooks/user";
 import { phoneTextElement, phoneErrorMessage } from "constants/join";
 
 const PhoneForm = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);
   const { register, handleSubmit } = useForm({
     validateCriteriaMode: "all",
@@ -87,7 +90,7 @@ const PhoneForm = () => {
       return phoneErrorMessage.default;
     }
     if (timeout) {
-      return returnphoneErrorMessage.error_timeout;
+      return phoneErrorMessage.error_timeout;
     }
     if (authNumber && authChecked) {
       return phoneErrorMessage.error_failed;
@@ -107,6 +110,10 @@ const PhoneForm = () => {
       clearInterval(countdownInterval);
     };
   }, [isCountdownActive, seconds]);
+
+  useEffect(() => {
+    if (data) setIsModalOpen(true);
+  }, [data]);
 
   return (
     <form
@@ -209,47 +216,6 @@ const PhoneForm = () => {
             </p>
           </div>
         )}
-        {isPhoneAuthRequested && data ? (
-          <div className="bg-white rounded-2xl flex flex-col gap-y-5 w-full h-fit p-8">
-            <h6 className="single-24-b">중복 계정 안내</h6>
-            <div className="multiple-18-sb">
-              입력하신 번호로 이미 가입된 계정이 있어요.
-              <br />한 번호로 최대 3개의 계정을 만들 수 있어요.
-            </div>
-            <div className="bg-neutralgray-50 rounded-2xl w-full h-fit multiple-16-m text-neutralgray-900 p-4">
-              {data?.map((el) => {
-                return (
-                  <div key={el.id}>
-                    <span className="single-16-m">
-                      {el.loginId.replace(/^..../, "****")}
-                    </span>
-                    <br />
-                    <span className="single-14-m">
-                      {el.createdAt.replaceAll("-", ". ").slice(0, 12)} 가입
-                    </span>
-                    <br />
-                  </div>
-                );
-              })}
-            </div>
-            <div className="flex gap-x-2">
-              <button
-                type="submit"
-                className="w-full p-4 rounded-xl shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 bg-white single-20-b transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100"
-              >
-                계속 진행하기
-              </button>
-              <button
-                onClick={() => router.push("/login")}
-                className="w-full p-4 rounded-xl text-white bg-purple-700 single-20-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-              >
-                로그인
-              </button>
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
       </div>
       <button
         type="submit"
@@ -258,6 +224,51 @@ const PhoneForm = () => {
       >
         다음
       </button>
+      <MessageModal
+        isOpen={isModalOpen}
+        controlModal={setIsModalOpen}
+        title="중복 계정 안내"
+        info={[
+          "입력하신 번호로 이미 가입된 계정이 있어요.",
+          "한 번호로 최대 3개의 계정을 만들 수 있어요.",
+          <div
+            key={3}
+            className="bg-neutralgray-50 rounded-lg w-full h-fit multiple-16-m text-neutralgray-900 p-4 mt-4"
+          >
+            {data?.map((el) => {
+              return (
+                <div key={el.id}>
+                  <span className="single-16-m">
+                    {el.loginId.replace(/^..../, "****")}
+                  </span>
+                  <br />
+                  <span className="single-14-m">
+                    {el.createdAt.replaceAll("-", ". ").slice(0, 12)} 가입
+                  </span>
+                  <br />
+                </div>
+              );
+            })}
+          </div>,
+        ]}
+        button={
+          <div className="flex gap-x-2 mt-5" key={1}>
+            <button
+              type="submit"
+              className="w-full p-4 rounded-xl shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 bg-white single-20-b transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100"
+              onClick={() => setIsModalOpen(false)}
+            >
+              계속 진행하기
+            </button>
+            <button
+              onClick={() => router.push("/login")}
+              className="w-full p-4 rounded-xl text-white bg-purple-700 single-20-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
+            >
+              로그인
+            </button>
+          </div>
+        }
+      />
     </form>
   );
 };
