@@ -1,11 +1,32 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { browseAllPageAtom } from "service/atoms/atoms";
+import { browseOptionsAtom } from "service/atoms/atoms";
+import { days } from "constants/days";
 
 const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
   const router = useRouter();
+  const [browseOptions, setBrowseOptions] = useRecoilState(browseOptionsAtom);
+  const [, setClickedTab] = useRecoilState(browseAllPageAtom);
+
+  /* calendar에서 !오늘로 이동=false, 오늘=true */
+  const isDaySelected = (activeDate === dateLocaleKr) | !activeDate;
+  const selectedDay = activeDate.split(" ")[3];
+  const selectedDateString =
+    activeDate.split(" ")[1] + " " + activeDate.split(" ")[2] + "에 ";
+
+  /* @요일이 옵션으로 선택된 상태로 /browseAll로 이동하기,
+  백엔드 key 찾기, 탭 상태 세팅, 옵션 상태 세팅 */
   const handleGotoBtnClick = () => {
-    // TODO: setClickedTab 전역 상태로 조정
-    // TODO: atom 불러와서 설정한 다음에 라우터 푸시
+    const dayOption = days.filter((day) =>
+      isDaySelected ? day.name === today : day.name === selectedDay
+    )[0].id;
+    setClickedTab(2);
+    setBrowseOptions({
+      ...browseOptions,
+      days: [dayOption],
+    });
     router.push("/browseAll");
   };
 
@@ -21,12 +42,7 @@ const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
             priority
           />
           <div className="multiple-20-b mb-1 mt-5">
-            {(activeDate === dateLocaleKr) | !activeDate
-              ? "오늘 "
-              : activeDate.split(" ")[1] +
-                " " +
-                activeDate.split(" ")[2] +
-                "에 "}
+            {isDaySelected ? "오늘 " : selectedDateString}
             도착한 아티클이 없어요.
           </div>
           <div className="multiple-16-m mb-1">
@@ -38,7 +54,9 @@ const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
           type="button"
           onClick={handleGotoBtnClick}
           className="w-full h-fit p-4 rounded-xl single-20-b hover:bg-purple-50 active:bg-purple-100 text-purple-700 bg-white selectedchip-border  transition-colors duration-300"
-        >{`${today}에 발행되는 뉴스레터 보기`}</button>
+        >{`${
+          isDaySelected ? today : selectedDay
+        }에 발행되는 뉴스레터 보기`}</button>
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import Image from "next/image";
 
 import { useContext } from "react";
-import { GlobalContext } from "../../../pages/_app";
-import { atom, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
+import { GlobalContext } from "../../../pages/_app";
 
-import Button from "shared/Button";
 import Tags from "shared/Tags";
 import CheckIcon from "icons/check_off.svg";
+import CloseIcon from "icons/close_off.svg";
+import BackIcon from "icons/back_off.svg";
 
 const BrandInfo = ({ data, setOpen }) => {
   const {
@@ -18,6 +19,7 @@ const BrandInfo = ({ data, setOpen }) => {
     publicationCycle,
     imageUrl,
     isSubscribed,
+    subscribeUrl,
   } = data;
 
   const { setToastPopUp, setToastMessage } = useContext(GlobalContext);
@@ -50,49 +52,65 @@ const BrandInfo = ({ data, setOpen }) => {
   };
 
   return (
-    <div className={containerCSS}>
-      <div className={infosCSS}>
-        <div className={profileCSS}>
-          <div className="w-[100px] h-[100px] rounded-full flex-shrink-0 contentbox-border relative border border-neutralgray-200 flex justify-center items-center">
-            <Image
-              alt={brandName}
-              src={imageUrl}
-              fill
-              sizes="100"
-              quality={45}
-              loading="lazy"
-              placeholder="blur"
-              className={isSubscribed === "CHECK" ? "brightness-50" : ""}
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcNGFlPQAGEwJcG4PRAwAAAABJRU5ErkJggg=="
-              style={{
-                objectFit: "cover",
-                borderRadius: 50,
-              }}
-            />
-            {isSubscribed === "CHECK" && (
-              <div className="text-white single-16-b z-10">구독 확인 중</div>
-            )}
-          </div>
-          <div className={profileWrapperCSS}>
-            <Tags tags={interests} usage="brand" />
-            <div>
-              <h6 className={h6titleCSS}>{brandName}</h6>
-              <div className={dateCSS}>
-                <CheckIcon width="16" height="16" stroke="#171414" />
-                {publicationCycle}
+    <div>
+      <div className="bg-white flex justify-between p-2.5 items-center elevation-1-bottom z-10">
+        <div className="w-7.5 h-7.5 flex justify-center items-center bg-white shrink-0 cursor-pointer">
+          <BackIcon
+            width="24"
+            height="24"
+            className="shrink-0"
+            onClick={() => history.back()}
+          />
+        </div>
+        <div className="single-20-b">{data.brandName}</div>
+        <div className="w-7.5 h-7.5 flex justify-center items-center p-1.5">
+          <div className="w-6 h-6"></div>
+        </div>
+      </div>
+      <div className={containerCSS}>
+        <div className={infosCSS}>
+          <div className={profileCSS}>
+            <div className="w-[100px] h-[100px] rounded-full flex-shrink-0 contentbox-border relative border border-neutralgray-200 flex justify-center items-center">
+              <Image
+                alt={brandName}
+                src={imageUrl}
+                fill
+                sizes="100"
+                quality={45}
+                loading="lazy"
+                placeholder="blur"
+                className={isSubscribed === "CHECK" ? "brightness-50" : ""}
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcNGFlPQAGEwJcG4PRAwAAAABJRU5ErkJggg=="
+                style={{
+                  objectFit: "cover",
+                  borderRadius: 50,
+                }}
+              />
+              {isSubscribed === "CHECK" && (
+                <div className="text-white single-16-b z-10">구독 확인 중</div>
+              )}
+            </div>
+            <div className={profileWrapperCSS}>
+              <Tags tags={interests} usage="brand" />
+              <div>
+                <h6 className={h6titleCSS}>{brandName}</h6>
+                <div className={dateCSS}>
+                  <CheckIcon width="16" height="16" stroke="#171414" />
+                  {publicationCycle}
+                </div>
               </div>
             </div>
           </div>
+          <div className={descriptionCSS}>{detailDescription}</div>
         </div>
-        <div className={descriptionCSS}>{detailDescription}</div>
+        <button
+          type="button"
+          onClick={clickSubscribeBtn}
+          className="w-full h-fit p-4 rounded-xl text-white single-20-b bg-purple-700 active:bg-purple-800 hover:bg-purple-400 transition-colors duration-300 "
+        >
+          {isSubscribed === ("INITIAL" || "CHECK") ? "구독하기" : "구독 중"}
+        </button>
       </div>
-      <button
-        type="button"
-        onClick={clickSubscribeBtn}
-        className="w-full h-fit p-4 rounded-xl text-white single-20-b bg-purple-700 active:bg-purple-800 hover:bg-purple-400 transition-colors duration-300 "
-      >
-        {isSubscribed === ("INITIAL" || "CHECK") ? "구독하기" : "구독 중"}
-      </button>
     </div>
   );
 };

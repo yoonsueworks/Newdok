@@ -43,7 +43,7 @@ const BrandHome = () => {
               </button>
             </div>
             <iframe
-              src="https://newneek.co/"
+              src={data.subscribeUrl}
               width="100%"
               height="800px"
             ></iframe>

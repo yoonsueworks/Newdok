@@ -4,6 +4,7 @@ import NotRecommended from "components/pages/browseAll/NotRecommended";
 import Unauthorized from "components/pages/browseAll/Unauthorized";
 
 import Authorized from "components/pages/browseAll/Authorized";
+import CustomizedErrorComp from "shared/error/500";
 import Loading from "shared/Loading";
 
 export default function RecommendedLetters({ statusCode, data, isLoading }) {
@@ -51,6 +52,8 @@ export default function RecommendedLetters({ statusCode, data, isLoading }) {
         <NotRecommended />
       ) : statusCode === 401 ? (
         <Unauthorized />
+      ) : statusCode === 500 ? (
+        <CustomizedErrorComp />
       ) : (
         <Authorized
           shuffledArray={shuffledArray}
