@@ -5,9 +5,21 @@ import { GlobalContext } from "pages/_app";
 import { useRouter } from "next/router";
 import { useSignUp } from "service/hooks/user";
 
-const Terms = () => {
+import { BottomSheet } from "react-spring-bottom-sheet";
+import { NotionRenderer } from "react-notion";
+import CloseIcon from "icons/close_off.svg";
+import Loading from "shared/Loading";
+import "react-notion/src/styles.css";
+import "prismjs/themes/prism-tomorrow.css";
+
+const Terms = ({ blockMap }) => {
   const { userInfo, setUserInfo } = useContext(SignUpContext);
   const { userDatas, setUserDatas } = useContext(GlobalContext);
+
+  const [open, setOpen] = useState(false);
+  const [clickedTerm, setClickedTerm] = useState(null);
+  const [privacy, setPrivacy] = useState(null);
+  const [agreement, setAgreement] = useState(null);
 
   const [all, setAll] = useState(false);
   const [age, setAge] = useState(false);
@@ -37,13 +49,31 @@ const Terms = () => {
   };
 
   const submitUserInfo = async () => {
-    // await console.log(userInfo);
     await postSignUp();
     router.push("/userResearch");
   };
 
+  const handleTermClick = (e) => {
+    setClickedTerm(e.target.id / 1);
+    setOpen(true);
+  };
+
   useEffect(() => {
     setUserInfo(userInfo);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      "https://notion-api.splitbee.io/v1/page/82ef5aea46d84623b7b19bb951b6043c?pvs=4"
+    )
+      .then((res) => res.json())
+      .then((res) => setPrivacy(res));
+    fetch(
+      "https://notion-api.splitbee.io/v1/page/18aacf9713bc427a850ae8da92b69087?pvs=4"
+    )
+      .then((res) => res.json())
+      .then((res) => setAgreement(res));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -75,7 +105,16 @@ const Terms = () => {
             <label id="check2" htmlFor="check2"></label>
           </li>
           <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
-            <span>서비스 이용 동의 (필수)</span>
+            <span>
+              <span
+                className="underline underline-offset-2 cursor-pointer"
+                id={1}
+                onClick={handleTermClick}
+              >
+                서비스 이용
+              </span>
+              동의 (필수)
+            </span>
             <input
               type="checkbox"
               checked={service}
@@ -85,7 +124,16 @@ const Terms = () => {
             <label id="check3" htmlFor="check3"></label>
           </li>
           <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
-            <span>개인 정보 수집 및 이용 동의 (필수)</span>
+            <span>
+              <span
+                className="underline underline-offset-2 cursor-pointer"
+                id={2}
+                onClick={handleTermClick}
+              >
+                개인 정보 수집 및 이용
+              </span>
+              동의 (필수)
+            </span>
 
             <input
               type="checkbox"
@@ -105,8 +153,36 @@ const Terms = () => {
       >
         가입 완료
       </button>
+      <BottomSheet
+        open={open}
+        onDismiss={() => setOpen(false)}
+        snapPoints={({ maxHeight }) => [0.8 * maxHeight]}
+      >
+        <TermHeader
+          handleDismiss={() => setOpen(false)}
+          name={clickedTerm === 1 ? "서비스 이용 약관" : "개인 정보 처리 방침"}
+        />
+        <div className="w-full h-fit mt-16 pt-5 px-5">
+          <NotionRenderer blockMap={clickedTerm === 1 ? agreement : privacy} />
+        </div>
+      </BottomSheet>
     </div>
   );
 };
 
 export default Terms;
+
+const TermHeader = ({ handleDismiss, name }) => {
+  return (
+    <div className="w-full h-fit p-2.5 flex justify-between items-center elevation-1-bottom bg-white z-1 absolute">
+      <div className="w-11 h-11 bg-white"></div>
+      <div className="single-20-b text-neutralgray-900">{name}</div>
+      <div
+        className="w-11 h-11 bg-white flex justify-center items-center cursor-pointer"
+        onClick={() => handleDismiss()}
+      >
+        <CloseIcon width="32" height="32" />
+      </div>
+    </div>
+  );
+};

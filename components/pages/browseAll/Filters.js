@@ -4,6 +4,7 @@ import { industries } from "constants/industries";
 import { days } from "constants/days";
 
 const Filter = ({ text, type, id, func, browseOptions }) => {
+  if (id === 1 && type === "industries") return;
   const isSelected =
     browseOptions.findIndex((element) => element === id.toString()) !== -1;
 
@@ -25,7 +26,7 @@ const Filter = ({ text, type, id, func, browseOptions }) => {
   );
 };
 
-const Filters = () => {
+const Filters = ({ handleDismiss }) => {
   const [browseOptions, setBrowseOptions] = useRecoilState(browseOptionsAtom);
 
   const titleCSS = "single-18-b text-purple-700";
@@ -34,6 +35,10 @@ const Filters = () => {
 
   const handleOptionsClick = (e) => {
     const { name, id } = e.target;
+    if (!name) {
+      handleDismiss();
+      return;
+    }
     if (!browseOptions[name].includes(id)) {
       setBrowseOptions({
         ...browseOptions,
@@ -48,7 +53,7 @@ const Filters = () => {
   };
 
   return (
-    <div className="w-full bg-white px-5 pt-5 grid gap-y-8">
+    <div className="w-full px-5 pt-5 grid gap-y-8 mt-11">
       {FilterTypes.map(({ id, constants, type, title }) => {
         return (
           <div className="grid gap-y-4" key={id}>

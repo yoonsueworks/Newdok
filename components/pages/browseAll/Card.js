@@ -28,9 +28,11 @@ export default function Card({ datas }) {
           src={imageUrl}
         />
       </div>
-      <div className="h-fit p-5 grid gap-y-3">
-        <div className="single-18-sb">{brandName}</div>
-        <div className="multiple-14-m">{firstDescription}</div>
+      <div className="h-full p-5 flex flex-col justify-between">
+        <div className="grid gap-y-3">
+          <h6 className="single-18-sb">{brandName}</h6>
+          <p className="multiple-14-m">{firstDescription}</p>
+        </div>
         <Tags tags={interests} />
       </div>
     </div>
