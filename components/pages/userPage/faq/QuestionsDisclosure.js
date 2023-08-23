@@ -45,17 +45,16 @@ const QuestionsDisclosure = ({
 
                 {/* 답변 영역 : ArrowIcon 클릭 시 펼쳐짐 */}
                 <Disclosure.Panel>
-                  {openDisclosureId === question.id && (
-                    <div className="border-t border-neutralgray-100 mt-2.5">
-                      {question.answer.map((paragraph, id) => {
+                  <div className="grid gap-y-2.5 mt-4">
+                    {openDisclosureId === question.id &&
+                      question.answer.map((paragraph, id) => {
                         return (
-                          <p key={id} className="pt-2.5 text-neutralgray-600">
-                            {id < 1 ? "A. " + paragraph : paragraph}
+                          <p key={id} className="multiple-14-m text-purple-700">
+                            {paragraph}
                           </p>
                         );
                       })}
-                    </div>
-                  )}
+                  </div>
                 </Disclosure.Panel>
               </li>
             )}

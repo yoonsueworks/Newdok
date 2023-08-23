@@ -5,7 +5,7 @@ import Nickname from "shared/Nickname";
 const NotRecommended = () => {
   const router = useRouter();
   const routeToUserResearch = () => {
-    router.push("/userResearch");
+    router.push("/userPage/myInfo");
   };
 
   return (

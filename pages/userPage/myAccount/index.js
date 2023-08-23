@@ -87,7 +87,7 @@ const MyAccount = () => {
       </div>
       <MessageModal
         isOpen={isModalOpen}
-        controlModal={handleLogOut}
+        controlModal={() => setIsModalOpen(false)}
         title="로그아웃"
         info={["로그아웃할까요?"]}
         button={
