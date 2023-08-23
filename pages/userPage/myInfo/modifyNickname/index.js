@@ -79,13 +79,22 @@ const ModifyNickname = () => {
                 placeholder={userDatas.nickname}
                 className={`rounded-lg p-4 single-16-m input-border placeholder:text-neutralgray-900 focus:inputFocused-border
                 ${
-                  !nickname || (nickname && conditionControl.specialsIncluded)
+                  conditionControl.sameWithPreviousNickname
+                    ? "inputError-border"
+                    : !nickname ||
+                      (nickname && conditionControl.specialsIncluded)
                     ? "input-border"
-                    : "inputError-border"
+                    : ""
                 }`}
                 id="nickname"
               />
-              <p className={`text-neutralgray-500 single-12-m`}>
+              <p
+                className={`single-12-m ${
+                  conditionControl.sameWithPreviousNickname
+                    ? "text-error"
+                    : "text-neutralgray-500"
+                }`}
+              >
                 {getErrorMessage()}
               </p>
             </div>

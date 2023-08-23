@@ -65,7 +65,7 @@ export default function Lists({ datas }) {
       <ul className="grid gap-y-2.5">
         {datas?.length > 1 &&
           datas?.map((data) => {
-            return <ListedItem key={data.id} datas={data} />;
+            return <ListedItem key={data.id || data.brandId} datas={data} />;
           })}
       </ul>
     </>

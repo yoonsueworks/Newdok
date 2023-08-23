@@ -50,11 +50,11 @@ const PersonalInfoForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-y-8">
+        {/* 아래부터 닉네임 */}
         <div className="flex flex-col gap-y-2">
           <label htmlFor="nickname" className="single-14-m text-purple-700">
             닉네임
           </label>
-
           <input
             {...register("nickname", {
               required: true,
@@ -82,6 +82,8 @@ const PersonalInfoForm = () => {
             <p className={`text-error single-12-m`}>{getErrorMessage()}</p>
           )}
         </div>
+
+        {/* 아래부터 출생연도 */}
         <div className="flex flex-col gap-y-2">
           <label htmlFor="nickname" className="single-14-m text-purple-700">
             출생연도
@@ -125,10 +127,10 @@ const PersonalInfoForm = () => {
                     as="ul"
                     className="absolute w-full bg-white max-h-60 rounded-b-lg py-1 text-base overflow-auto border-2 border-purple-200 sm:text-sm"
                   >
-                    {Array.from({ length: 128 }, (_, index) => (
+                    {Array.from({ length: 66 }, (_, index) => (
                       <Listbox.Option
                         key={index}
-                        value={2023 - index}
+                        value={2010 - index}
                         className={({ active }) =>
                           `${
                             active
@@ -144,7 +146,7 @@ const PersonalInfoForm = () => {
                                 selected ? "font-medium" : "font-normal"
                               } block truncate`}
                             >
-                              {2023 - index}
+                              {2010 - index}
                             </span>
                             {selected && (
                               <span
@@ -177,11 +179,12 @@ const PersonalInfoForm = () => {
               </Listbox>
             )}
           />
-
           <p className="text-neutralgray-500 single-12-m">
             {nicknameErrorMessage.default_birthYear}
           </p>
         </div>
+
+        {/* 아래부터 성별 */}
         <div className="flex flex-col gap-y-2">
           <label htmlFor="nickname" className="single-14-m text-purple-700">
             성별
@@ -235,6 +238,9 @@ const PersonalInfoForm = () => {
               </>
             )}
           />
+          <p className="text-neutralgray-500 single-12-m">
+            {nicknameErrorMessage.default_gender}
+          </p>
         </div>
       </div>
       <button
