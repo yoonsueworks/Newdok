@@ -36,20 +36,36 @@ export const userCheckPhoneNumber = async (params) => {
   return data;
 };
 
+/* 전화번호 중복 확인2 0824 */
+export const userCheckPhoneNumber_2 = async (params) => {
+  const { data } = await axios.get(
+    `/users/check/phoneNumber?phoneNumber=${params}`
+  );
+  return data;
+};
+
 /* SMS 인증번호 전송 */
 export const userAuthSms = async (params) => {
   const { data } = await axios.post("/users/auth/SMS", params);
   return data;
 };
 
-/* 아이디 중복 확인 */
+/* 아이디 중복 확인 : 삭제 예정!! */
 export const userCheckLoginId = async (params) => {
   const response = await axios.get(`/users/check/loginId?loginId=${params}`);
   return response;
 };
 
+/* 비밀번호 찾기, 아이디 중복 확인 */
+export const userCheckLoginId_2 = async (params) => {
+  const { data } = await axios.get(`/users/check/loginId?loginId=${params}`);
+  return data;
+};
+
+/* 비밀번호 변경 */
 export const userResetPswd = async (params) => {
-  await axios.patch("/users/reset/password", params);
+  const { data } = await axios.patch("/users/mypage/password", params);
+  return data;
 };
 
 /* 사전조사 */

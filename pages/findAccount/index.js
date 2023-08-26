@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import Password from "components/pages/findAccount/pswd";
-import Id from "components/pages/findAccount/id";
+import FindPassword from "components/pages/findAccount/FindPassword";
+import FindId from "components/pages/findAccount/FindId";
 import AppBar from "shared/AppBar";
 
 const FindAccount = () => {
   const [clickedTab, setClickedTab] = useState(1);
   const router = useRouter();
   return (
-    <div className="h-screen">
+    <div className="h-full mb-32">
       <AppBar
         iconl={true}
         shadow={true}
@@ -35,7 +35,7 @@ const FindAccount = () => {
           );
         })}
       </div>
-      <div className="h-full py-14 px-5 flex flex-col bg-beige-100">
+      <div className="h-full py-14 px-5 bg-white">
         {Components[clickedTab - 1].comp}
       </div>
     </div>
@@ -49,6 +49,6 @@ const Buttons = [
   { id: 2, name: "비밀번호 찾기" },
 ];
 const Components = [
-  { id: 1, comp: <Id /> },
-  { id: 2, comp: <Password /> },
+  { id: 1, comp: <FindId /> },
+  { id: 2, comp: <FindPassword /> },
 ];
