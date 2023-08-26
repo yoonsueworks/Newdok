@@ -1,4 +1,5 @@
 export const useDateEdit = (utcTimestamp) => {
+  /* expected: 6월 14일 (수) 오전 5:57 */
   if (!utcTimestamp) return;
   const publishDate = utcTimestamp.split("T")[0].split("-");
   const publishTime = utcTimestamp.split("T")[1].split(":");

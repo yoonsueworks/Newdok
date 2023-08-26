@@ -3,7 +3,9 @@ import LocalStorage from "../../public/utils/LocalStorage";
 import {
   userSignUp,
   userLogin,
+  userCheckLoginId_2,
   userCheckLoginId,
+  userCheckPhoneNumber_2,
   userCheckPhoneNumber,
   userAuthSms,
   userResetPswd,
@@ -17,11 +19,47 @@ export const useAuthSms = () => {
   return useMutation({
     mutationKey: ["authorization-sms"],
     mutationFn: async (params) => {
-      const data = await userAuthSms(params);
+      await userAuthSms(params);
+    },
+    enabled: false,
+    onSuccess: (data) => {
       return data;
     },
     onError: (error) => {
-      alert(error);
+      return error;
+    },
+  });
+};
+
+//비밀번호 찾기에서 사용 중, params로 받는 차이
+export const useAuthSms_2 = (params) => {
+  return useMutation({
+    mutationKey: ["authorization-sms", params],
+    mutationFn: async (params) => {
+      await userAuthSms(params);
+    },
+    enabled: false,
+    onSuccess: (data) => {
+      return data;
+    },
+    onError: (error) => {
+      return error;
+    },
+  });
+};
+
+/* 리액트 쿼리 수정해서 새로운 요청 작성한 것! */
+export const useCheckPhoneNumber_2 = (params) => {
+  return useQuery({
+    queryKey: ["useCheckPhoneNumber_2", params],
+    queryFn: () => userCheckPhoneNumber_2(params),
+    enabled: false,
+    retry: 0,
+    onSuccess: (data) => {
+      return data;
+    },
+    onError: (error) => {
+      if (error.response.status === 400) return error;
     },
   });
 };
@@ -37,7 +75,6 @@ export const useCheckPhoneNumber = () => {
       {
         enabled: false,
         retry: 0,
-        refetchInterval: 30 * 60 * 1000,
         onSuccess: () => {
           return queryClient.invalidateQueries();
         },
@@ -69,12 +106,27 @@ export const useSignUp = () => {
   });
 };
 
+export const useCheckLoginId_2 = (params) => {
+  return useQuery({
+    queryKey: ["checkLoginId", params],
+    queryFn: () => userCheckLoginId_2(params),
+    enabled: false,
+    retry: 0,
+    onSuccess: (data) => {
+      return data;
+    },
+    onError: (error) => {
+      return error;
+    },
+  });
+};
+
 export const useCheckLoginId = (params) => {
   const queryClient = useQueryClient();
   return useQuery({
     queryKey: ["checkLoginId", params],
     queryFn: async () => {
-      const data = await userCheckLoginId(params);
+      userCheckLoginId(params);
       return data;
     },
     enabled: false,
@@ -128,4 +180,19 @@ export const useModifyIndustry = (params) => {
       enabled: false,
     }
   );
+};
+
+export const useResetPswd = (params) => {
+  return useMutation({
+    mutationKey: ["resetPswd", params],
+    mutationFn: (params) => userResetPswd(params),
+    enabled: false,
+    retry: 0,
+    onSuccess: (data) => {
+      return data;
+    },
+    onError: (error) => {
+      return error;
+    },
+  });
 };
