@@ -6,24 +6,32 @@ const BrandArticles = ({ data }) => {
   const containerCSS =
     "w-full px-5 py-8 grid gap-y-4 bg-purple-700 overflow-auto";
   const titleCSS = "text-white single-18-b";
-  const listCSS = "grid gap-y-2.5";
-  const reversedData = data.reverse();
-  console.log(data, reversedData);
+  const listCSS = "flex flex-col gap-y-2.5";
 
   return (
     <div className={containerCSS}>
       <span className={titleCSS}>지난 아티클 보기</span>
-      <ul className={listCSS}>
-        {reversedData.map((el) => {
-          return (
-            <BrandArticle
-              func={() => router.push(`/articleRead/${el.id}`)}
-              data={el}
-              key={el.id}
-            />
-          );
-        })}
-      </ul>
+
+      {data.length > 0 ? (
+        <ul className={listCSS}>
+          {data.map((el) => {
+            return (
+              <BrandArticle
+                func={() => router.push(`/articleRead/${el.id}`)}
+                data={el}
+                key={el.id}
+              />
+            );
+          })}
+        </ul>
+      ) : (
+        <div className="flex flex-col mt-24 items-center gap-y-1">
+          <div className="multiple-20-b text-white">
+            아티클을 준비하는 중이에요.
+          </div>
+          <span className="multiple-16-m text-white">조금만 기다려주세요!</span>
+        </div>
+      )}
     </div>
   );
 };

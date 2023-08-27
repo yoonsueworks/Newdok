@@ -80,5 +80,3 @@ const FILTERS = [
     name: "days",
   },
 ];
-
-// TODO: hover

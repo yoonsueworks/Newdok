@@ -72,7 +72,7 @@ export const useMonthlyArticles = (params) => {
   return useQuery(
     {
       queryKey: ["monthlyArticles", params],
-      queryFn: () => monthlyArticles(params),
+      queryFn: () => token && monthlyArticles(params),
     },
     {
       onSuccess: (data) => {

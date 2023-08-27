@@ -26,7 +26,7 @@ const Home = () => {
     setActiveDate: setActiveDate,
     fullActiveDate: fullActiveDate,
     setFullActiveDate: setFullActiveDate,
-    monthlyArticles: data,
+    monthlyArticles: data
   };
 
   useEffect(() => {

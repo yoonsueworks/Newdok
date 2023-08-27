@@ -21,7 +21,7 @@ export default function ReactCalendar() {
     const currentDate = Number(String(date).split(" ")[2]);
     // 달 따라서 값 확인하기 일치하지 않는 경우 안하기
 
-    const hasMatchingArticles = monthlyArticles.some((el) => {
+    const hasMatchingArticles = monthlyArticles?.some((el) => {
       return (
         el.publishDate === currentDate && el.receivedArticleList?.length > 0
       );
