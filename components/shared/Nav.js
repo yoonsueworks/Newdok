@@ -34,18 +34,7 @@ const Nav = () => {
     } else if (hasUserPage) {
       setPage(3);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    // const localAccessToken = LocalStorage.getItem("NDtoken");
-    // const localUserDatas = LocalStorage.getItem("NDUserDatas");
-    // if (localAccessToken) {
-    //   setAccessToken(localAccessToken);
-    //   setUserDatas(JSON.parse(localUserDatas));
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [hasBrowseAll, hasHome, hasUserPage]);
 
   return (
     <div className="w-full h-fit bg-white grid grid-cols-3 elevation-2-top pt-3.5 pb-5">

@@ -95,7 +95,9 @@ export const faqList = [
       {
         id: "generalInquiry_1",
         question: "1:1 문의를 하고 싶어요",
-        answer: ["", ""],
+        answer: [
+          "서비스 이용에 문의가 있으실 경우, 마이페이지 탭의 [서비스 피드백]을 통해 내용을 남겨주시거나 newdokcustomer@newdok.site 으로 메일을 보내주시면 빠른 시일 내에 도움을 드리겠습니다.",
+        ],
       },
     ],
   },
