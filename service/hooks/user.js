@@ -8,11 +8,13 @@ import {
   userCheckPhoneNumber_2,
   userCheckPhoneNumber,
   userAuthSms,
+  userAuthSms_2,
   userResetPswd,
   userPreInvestigate,
   userSubscriptionList,
   modifyNickname,
   modifyIndustry,
+  modifyPhoneNumber,
 } from "service/api/user";
 
 export const useAuthSms = () => {
@@ -35,9 +37,7 @@ export const useAuthSms = () => {
 export const useAuthSms_2 = (params) => {
   return useMutation({
     mutationKey: ["authorization-sms", params],
-    mutationFn: async (params) => {
-      await userAuthSms(params);
-    },
+    mutationFn: async (params) => await userAuthSms_2(params),
     enabled: false,
     onSuccess: (data) => {
       return data;
@@ -186,6 +186,21 @@ export const useResetPswd = (params) => {
   return useMutation({
     mutationKey: ["resetPswd", params],
     mutationFn: (params) => userResetPswd(params),
+    enabled: false,
+    retry: 0,
+    onSuccess: (data) => {
+      return data;
+    },
+    onError: (error) => {
+      return error;
+    },
+  });
+};
+
+export const useResetPhoneNumber = (params) => {
+  return useMutation({
+    mutationKey: ["resetPhoneNumber", params],
+    mutationFn: (params) => modifyPhoneNumber(params),
     enabled: false,
     retry: 0,
     onSuccess: (data) => {
