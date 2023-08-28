@@ -50,6 +50,12 @@ export const userAuthSms = async (params) => {
   return data;
 };
 
+/* SMS 인증번호 전송 */
+export const userAuthSms_2 = async (params) => {
+  const { data } = await axios.post("/users/auth/SMS", params);
+  return data;
+};
+
 /* 아이디 중복 확인 : 삭제 예정!! */
 export const userCheckLoginId = async (params) => {
   const response = await axios.get(`/users/check/loginId?loginId=${params}`);
@@ -99,6 +105,18 @@ export const modifyNickname = async (params) => {
 export const modifyIndustry = async (params) => {
   const { data } = await axios.patch(
     `/users/mypage/industry`,
+    JSON.stringify(params),
+    {
+      headers: headers,
+    }
+  );
+  return data;
+};
+
+/* 휴대폰 번호 변경 */
+export const modifyPhoneNumber = async (params) => {
+  const { data } = await axios.patch(
+    `/users/mypage/phoneNumber`,
     JSON.stringify(params),
     {
       headers: headers,
