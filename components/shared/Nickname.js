@@ -6,7 +6,6 @@ const Nickname = () => {
   const nickname = userDatas?.nickname;
 
   return <>{nickname}</>;
-
 };
 
 export default Nickname;

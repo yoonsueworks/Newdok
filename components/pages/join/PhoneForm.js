@@ -4,8 +4,9 @@ import { SignUpContext } from "context/SignUpContext";
 import { useForm } from "react-hook-form";
 
 import MessageModal from "shared/MessageModal";
+import InputLabel from "shared/InputLabel";
 
-import { useAuthSms, useCheckPhoneNumber } from "service/hooks/user";
+import { useAuthSms, useCheckPhoneNumber_2 } from "service/hooks/user";
 import { phoneTextElement, phoneErrorMessage } from "constants/join";
 
 const PhoneForm = () => {
@@ -27,12 +28,11 @@ const PhoneForm = () => {
   const [authCount, setAuthCount] = useState(1);
 
   /* 요청 처리, 응답 관련 */
-  const [error, setError] = useState(null);
   const [data, setData] = useState(null);
   const [code, setCode] = useState(null);
 
   const authorizeSms = useAuthSms();
-  const checkPhoneNumber = useCheckPhoneNumber();
+  const checkPhoneNumber = useCheckPhoneNumber_2(phoneNumber);
 
   const timeout = seconds === 0;
   const authChecked = Number(authNumber) !== code;
@@ -51,37 +51,39 @@ const PhoneForm = () => {
   /* SMS 코드 요청, 코드 세팅 */
   const authorize = async () => {
     const form = { phoneNumber: phoneNumber };
-    try {
-      const result = await authorizeSms.mutateAsync(form);
-      setCode(result.code);
-    } catch (error) {
-      console.log(error?.response);
-    }
+    const result = await authorizeSms.mutateAsync(form);
+    if (!authorizeSms.data) setCode(result?.code);
   };
 
   /* 휴대폰 번호 중복 체크 */
   const handleCheckPhoneNumber = async () => {
-    try {
-      const data = await checkPhoneNumber(phoneNumber);
-      /* 중복 회원 */
-      setData(data);
-      setError(null);
-    } catch (error) {
-      /* 미등록 */
-      setError(error?.response.data);
-    }
+    const { data, error } = await checkPhoneNumber.refetch();
+    /* 중복 회원 */
+    if (data) setData(data);
+    /* 미등록 */
+    if (error) setError(error?.response.data);
+  };
+
+  const handleQueries = () => {
+    authorize();
+    handleCheckPhoneNumber();
+  };
+
+  const handleTimer = () => {
+    setSeconds(180);
+    setIsCountdownActive(true);
+  };
+
+  const handleActions = () => {
+    setIsPhoneAuthRequested(true);
+    setAuthCount((prev) => prev + 1);
   };
 
   const handlePhoneAuth = (e) => {
     e.preventDefault();
-
-    setIsPhoneAuthRequested(true);
-    setSeconds(180);
-    setIsCountdownActive(true);
-    setAuthCount((prev) => prev + 1);
-
-    authorize();
-    handleCheckPhoneNumber();
+    handleActions();
+    handleTimer();
+    handleQueries();
   };
 
   /* 인증번호 인풋 메시지 세팅을 위한 유효성 검사 */
@@ -122,9 +124,7 @@ const PhoneForm = () => {
     >
       <div className="flex flex-col gap-y-8">
         <div className="flex flex-col  gap-y-2">
-          <label htmlFor="phoneNumber" className="single-14-m text-purple-700">
-            휴대폰 번호
-          </label>
+          <InputLabel htmlFor="phoneNumber" text="휴대폰 번호" />
           <div className="flex gap-x-2">
             <input
               {...register("phoneNumber", {
@@ -169,12 +169,8 @@ const PhoneForm = () => {
         </div>
         {isPhoneAuthRequested && (
           <div className="flex flex-col gap-y-2">
-            <label
-              htmlFor="phoneNumber"
-              className="single-14-m text-purple-700"
-            >
-              인증 번호
-            </label>
+
+            <InputLabel htmlFor="authorization" text="인증 번호" />
             <div
               className={`flex rounded-lg p-4 justify-between items-center input-border focus-within:inputFocused-border 
               ${timeout && "inputError-border"}

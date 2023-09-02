@@ -1,9 +1,11 @@
 import { useContext, useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { useRouter } from "next/router";
 
 import { SignUpContext } from "context/SignUpContext";
 import { GlobalContext } from "pages/_app";
-import { useRouter } from "next/router";
 import { useSignUp } from "service/hooks/user";
+import { userDatasAtom } from "service/atoms/atoms";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
 import { NotionRenderer } from "react-notion";
@@ -14,7 +16,7 @@ import "prismjs/themes/prism-tomorrow.css";
 
 const Terms = ({ blockMap }) => {
   const { userInfo, setUserInfo } = useContext(SignUpContext);
-  const { userDatas, setUserDatas } = useContext(GlobalContext);
+  const [, setUserDatas] = useRecoilState(userDatasAtom);
 
   const [open, setOpen] = useState(false);
   const [clickedTerm, setClickedTerm] = useState(null);
