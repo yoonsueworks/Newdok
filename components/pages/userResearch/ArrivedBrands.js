@@ -1,15 +1,20 @@
+import { useContext } from "react";
+import { GlobalContext } from "../../../pages/_app";
+import { useGetUserResearch } from "service/hooks/user";
+
 const ArrivedBrands = () => {
+  const { research } = useContext(GlobalContext);
+  const { data, error, isLoading } = useGetUserResearch(research);
+  console.log(data);
+
   return (
     <ul
       className="grid gap-y-2.5 w-full overflow-auto scroll-smooth"
       id="onboardInterestsBox"
     >
-      <ArrivedBrand />
-      <ArrivedBrand />
-      <ArrivedBrand />
-      <ArrivedBrand />
-      <ArrivedBrand />
-      <ArrivedBrand />
+      {data?.map((brand, id) => {
+        return <ArrivedBrand key={id} />;
+      })}
     </ul>
   );
 };
