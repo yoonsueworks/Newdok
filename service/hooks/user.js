@@ -8,7 +8,6 @@ import {
   userCheckPhoneNumber_2,
   userCheckPhoneNumber,
   userAuthSms,
-  userAuthSms_2,
   userResetPswd,
   userPreInvestigate,
   userSubscriptionList,
@@ -17,27 +16,10 @@ import {
   modifyPhoneNumber,
 } from "service/api/user";
 
-export const useAuthSms = () => {
+export const useAuthSms = (params) => {
   return useMutation({
-    mutationKey: ["authorization-sms"],
-    mutationFn: async (params) => {
-      await userAuthSms(params);
-    },
-    enabled: false,
-    onSuccess: (data) => {
-      return data;
-    },
-    onError: (error) => {
-      return error;
-    },
-  });
-};
-
-//비밀번호 찾기에서 사용 중, params로 받는 차이
-export const useAuthSms_2 = (params) => {
-  return useMutation({
-    mutationKey: ["authorization-sms", params],
-    mutationFn: async (params) => await userAuthSms_2(params),
+    mutationKey: ["authorization-sms-1", params],
+    mutationFn: async (params) => await userAuthSms(params),
     enabled: false,
     onSuccess: (data) => {
       return data;
@@ -52,7 +34,7 @@ export const useAuthSms_2 = (params) => {
 export const useCheckPhoneNumber_2 = (params) => {
   return useQuery({
     queryKey: ["useCheckPhoneNumber_2", params],
-    queryFn: () => userCheckPhoneNumber_2(params),
+    queryFn: async () => await userCheckPhoneNumber_2(params),
     enabled: false,
     retry: 0,
     onSuccess: (data) => {
@@ -62,28 +44,6 @@ export const useCheckPhoneNumber_2 = (params) => {
       if (error.response.status === 400) return error;
     },
   });
-};
-
-export const useCheckPhoneNumber = () => {
-  const queryClient = useQueryClient();
-  return (phoneNumber) => {
-    return queryClient.fetchQuery(
-      ["checkPhoneNumber", phoneNumber],
-      async () => {
-        return userCheckPhoneNumber(phoneNumber);
-      },
-      {
-        enabled: false,
-        retry: 0,
-        onSuccess: () => {
-          return queryClient.invalidateQueries();
-        },
-        onError: (error) => {
-          throw error;
-        },
-      }
-    );
-  };
 };
 
 export const useSignUp = () => {
@@ -122,34 +82,29 @@ export const useCheckLoginId_2 = (params) => {
 };
 
 export const useCheckLoginId = (params) => {
-  const queryClient = useQueryClient();
   return useQuery({
     queryKey: ["checkLoginId", params],
-    queryFn: async () => {
-      userCheckLoginId(params);
-      return data;
-    },
+    queryFn: async () => userCheckLoginId(params),
     enabled: false,
     retry: 0,
-    throwOnError: true,
     onSuccess: (data) => {
       return data;
+    },
+    onError: (error) => {
+      return error;
     },
   });
 };
 
 export const useUserSubscriptionList = () => {
-  return useQuery(
-    {
-      queryKey: "getSubscriptionList",
-      queryFn: () => userSubscriptionList(),
+  return useQuery({
+    queryKey: "getSubscriptionList",
+    queryFn: () => userSubscriptionList(),
+    onSuccess: (data) => {
+      return data;
     },
-    {
-      onSuccess: (data) => {
-        return data;
-      },
-    }
-  );
+    retry: 3,
+  });
 };
 
 export const useModifyNickname = (params) => {

@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { SignUpContext } from "context/SignUpContext";
 import { Listbox } from "@headlessui/react";
 
+import InputLabel from "shared/InputLabel";
 import { nicknameErrorMessage } from "constants/join";
 
 const PersonalInfoForm = () => {
@@ -52,9 +53,7 @@ const PersonalInfoForm = () => {
       <div className="flex flex-col gap-y-8">
         {/* 아래부터 닉네임 */}
         <div className="flex flex-col gap-y-2">
-          <label htmlFor="nickname" className="single-14-m text-purple-700">
-            닉네임
-          </label>
+          <InputLabel htmlFor="nickname" text="닉네임" />
           <input
             {...register("nickname", {
               required: true,
@@ -85,9 +84,7 @@ const PersonalInfoForm = () => {
 
         {/* 아래부터 출생연도 */}
         <div className="flex flex-col gap-y-2">
-          <label htmlFor="nickname" className="single-14-m text-purple-700">
-            출생연도
-          </label>
+          <InputLabel htmlFor="birthYear" text="출생연도" />
           <Controller
             name="birthYear"
             control={control}
@@ -186,9 +183,7 @@ const PersonalInfoForm = () => {
 
         {/* 아래부터 성별 */}
         <div className="flex flex-col gap-y-2">
-          <label htmlFor="nickname" className="single-14-m text-purple-700">
-            성별
-          </label>
+          <InputLabel htmlFor="gender" text="성별" />
           <Controller
             name="gender"
             control={control}

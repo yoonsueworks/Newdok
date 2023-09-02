@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { CalendarContext } from "context/CalendarContext";
 
 import Articles from "components/pages/home/Articles";
@@ -26,7 +26,7 @@ const Home = () => {
     setActiveDate: setActiveDate,
     fullActiveDate: fullActiveDate,
     setFullActiveDate: setFullActiveDate,
-    monthlyArticles: data
+    monthlyArticles: data,
   };
 
   useEffect(() => {
@@ -62,5 +62,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const HTML = `<!DOCTYPE html><html><body></body></html>`;

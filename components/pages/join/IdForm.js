@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { SignUpContext } from "context/SignUpContext";
 import { useCheckLoginId } from "service/hooks/user";
+import InputLabel from "shared/InputLabel";
 import { idErrorMessage, idPlaceholderText } from "constants/join";
 
 const IdForm = () => {
@@ -13,11 +14,11 @@ const IdForm = () => {
   const [loginIdExist, setLoginIdExist] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
 
-  const { refetch, data } = useCheckLoginId(loginId);
+  const { refetch, data, error, isError } = useCheckLoginId(loginId);
 
   /* 페이지 제출 */
   const onSubmit = (data) => {
-    if (loginIdExist) {
+    if (isError) {
       setUserInfo({ ...userInfo, ...data });
       setStep((prev) => prev + 1);
     } else return;
@@ -26,9 +27,7 @@ const IdForm = () => {
   /* ID 중복 확인 */
   const handleIdCheck = async () => {
     await refetch();
-    const success = Boolean(data);
-    setLoginIdExist(success);
-    console.log(loginId, loginIdExist, "loginIdExist");
+    setLoginIdExist(data);
   };
 
   /* id 입력값 제어 : 특수문자 차단, 대문자 소문자로 교체 */
@@ -74,10 +73,10 @@ const IdForm = () => {
     if (loginIdExist === null) {
       return "아이디 중복 여부를 확인해주세요.";
     }
-    if (loginIdExist) {
+    if (data) {
       return idErrorMessage.error_exist;
     }
-    if (!loginIdExist && loginId) {
+    if (error?.response?.data?.statusCode === 400) {
       return "사용 가능한 아이디입니다.";
     }
     return "아이디 중복 여부를 확인해주세요.";
@@ -89,9 +88,7 @@ const IdForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-y-2">
-        <label htmlFor="loginId" className="single-14-m text-purple-700">
-          아이디
-        </label>
+        <InputLabel htmlFor="loginId" text="아이디" />
         <div className="flex gap-x-2">
           <input
             {...register("loginId", {
@@ -117,6 +114,7 @@ const IdForm = () => {
           <button
             type="button"
             disabled={!loginId}
+            a
             onClick={handleIdCheck}
             className="w-fit h-fit shrink-0 bg-purple-700 text-white hover:bg-purple-500 p-4 shrink-0 rounded-xl single-20-b cursor-pointer transition-colors duration-300  disabled:bg-neutralgray-500 disabled:cursor-default disabled:text-white disabled:border-0"
           >
@@ -125,7 +123,11 @@ const IdForm = () => {
         </div>
         <p
           className={`${
-            loginIdExist ? "text-neutralgray-500" : "text-error"
+            isError
+              ? "text-neutralgray-500"
+              : !isChecked
+              ? "text-error"
+              : "text-neutralgray-500"
           } single-12-m`}
         >
           {getErrorMessage()}
@@ -135,7 +137,7 @@ const IdForm = () => {
       <button
         type="submit"
         className="mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-        disabled={conditionControl.isVacant}
+        disabled={!error}
       >
         다음
       </button>

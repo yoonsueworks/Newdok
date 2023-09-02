@@ -34,7 +34,6 @@ export default function UserResearch() {
       </div>
     ),
     2: <IndustryDropDown />,
-    // 2: <Job />,
     3: <Interest />,
     4: <ArrivedBrands />,
   };
