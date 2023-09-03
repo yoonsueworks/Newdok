@@ -125,3 +125,15 @@ export const modifyPhoneNumber = async (params) => {
   );
   return data;
 };
+
+/* 관심사 변경 */
+export const modifyInterests = async (params) => {
+  const { data } = await axios.patch(
+    "/users/mypage/interest",
+    JSON.stringify(params),
+    {
+      headers: headers,
+    }
+  );
+  return data;
+};

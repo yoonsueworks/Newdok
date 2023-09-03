@@ -1,9 +1,5 @@
 export const industries = [
   {
-    id: 1,
-    name: "모든 산업",
-  },
-  {
     id: 2,
     name: "IT・게임・통신",
   },

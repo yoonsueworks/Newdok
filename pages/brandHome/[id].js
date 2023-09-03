@@ -7,6 +7,8 @@ import BrandInfo from "components/pages/brandHome/BrandInfo";
 
 import Background2 from "shared/Background2";
 import Loading from "shared/Loading";
+import Nav from "shared/Nav";
+
 import CloseIcon from "icons/close_off.svg";
 import MessageModal from "shared/MessageModal";
 
@@ -28,13 +30,14 @@ const BrandHome = () => {
     <>
       {data ? (
         <>
-          <div className="w-full h-full bg-purple-700">
+          <div className="w-full h-full bg-purple-700 relative">
             <BrandInfo
               data={data}
               setOpen={setOpen}
               controlModal={setIsModalOpen}
             />
             <BrandArticles data={data.brandArticleList} />
+            <Nav />
           </div>
           <BottomSheet
             open={open}

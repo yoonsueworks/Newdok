@@ -9,7 +9,7 @@ const headers = {
 };
 
 /* 개인화 추천 뉴스레터 */
-export const newsletterRecommend = async () => {
+export const getRecommend = async () => {
   const { data } = await axios.get("/newsletters/recommend", {
     headers: headers,
   });

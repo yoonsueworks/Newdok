@@ -54,13 +54,22 @@ const SignIn = () => {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
+  const handlePrevClick = () => {
+    const referrer = document.referrer;
+    if (referrer.includes("userPage")) {
+      router.push("/home");
+    } else {
+      history.back();
+    }
+  };
+
   return (
     <>
       <AppBar
         iconl={true}
         textl={""}
         iconr={false}
-        func={() => history.back()}
+        func={handlePrevClick}
         shadow={true}
       />
       <div className="w-full h-screen pb-14 flex flex-col justify-between px-5 pt-14 items-center">

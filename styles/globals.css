@@ -95,12 +95,12 @@ html {
     margin-bottom: 80px;
   }
 
-  /* #onboardIndustryBox {
-    height: 236px;
-  } */
-
   #onboardInterestsBox {
     height: 350px;
+  }
+
+  #modifyInterestsBox {
+    height: 480px;
   }
 
   #gif {
