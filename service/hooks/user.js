@@ -17,6 +17,8 @@ import {
   modifyInterests,
 } from "service/api/user";
 
+const token = LocalStorage.getItem("NDtoken");
+
 export const useAuthSms = (params) => {
   return useMutation({
     mutationKey: ["authorization-sms-1", params],
@@ -100,7 +102,7 @@ export const useCheckLoginId = (params) => {
 export const useUserSubscriptionList = () => {
   return useQuery({
     queryKey: "getSubscriptionList",
-    queryFn: () => userSubscriptionList(),
+    queryFn: () => token && userSubscriptionList(),
     onSuccess: (data) => {
       return data;
     },

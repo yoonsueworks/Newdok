@@ -2,12 +2,12 @@ import { useEffect, useState, useMemo } from "react";
 
 import NotRecommended from "components/pages/browseAll/NotRecommended";
 import Unauthorized from "components/pages/browseAll/Unauthorized";
-
 import Authorized from "components/pages/browseAll/Authorized";
 import CustomizedErrorComp from "shared/error/500";
 import Loading from "shared/Loading";
+import LocalStorage from "public/utils/LocalStorage";
 
-export default function RecommendedLetters({ statusCode, data, isLoading }) {
+const RecommendedLetters = ({ statusCode, data, isLoading }) => {
   const [shuffledArray, setShuffledArray] = useState(null);
   const [intersection, setIntersection] = useState([]);
   const intersectionArr = useMemo(() => {
@@ -17,6 +17,8 @@ export default function RecommendedLetters({ statusCode, data, isLoading }) {
   const unionArr = useMemo(() => {
     return union;
   }, [union]);
+
+  const token = LocalStorage.getItem("NDtoken");
 
   const shuffleArray = (array) => {
     if (!array) return;
@@ -46,12 +48,12 @@ export default function RecommendedLetters({ statusCode, data, isLoading }) {
 
   return (
     <div className="w-full h-full">
-      {isLoading ? (
+      {!token ? (
+        <Unauthorized />
+      ) : isLoading ? (
         <Loading />
       ) : statusCode === 400 ? (
         <NotRecommended />
-      ) : statusCode === 401 ? (
-        <Unauthorized />
       ) : statusCode === 500 ? (
         <CustomizedErrorComp />
       ) : (
@@ -63,4 +65,5 @@ export default function RecommendedLetters({ statusCode, data, isLoading }) {
       )}
     </div>
   );
-}
+};
+export default RecommendedLetters;

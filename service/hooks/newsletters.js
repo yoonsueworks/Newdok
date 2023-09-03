@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import LocalStorage from "public/utils/LocalStorage";
 import {
-  newsletterRecommend,
+  getRecommend,
   newsletterAll,
   newsletterAllUnAuth,
   newsletterBrand,
@@ -13,27 +13,34 @@ import {
 const token = LocalStorage.getItem("NDtoken");
 
 export const useNewslettersRecommended = () => {
-  return useQuery("newsletterRecommend", newsletterRecommend, {
+  return useQuery({
+    queryKey: ["getRecommend"],
+    queryFn: () => token && getRecommend(),
+    onSuccess: (data) => {
+      return data;
+    },
+    onError: (error) => {
+      return error;
+    },
     retry: 0,
-    refetchInterval: 30 * 60 * 1000,
-    staleTime: 30 * 60 * 1000,
+    refetchInterval: 60 * 1000,
+    staleTime: 60 * 1000,
   });
 };
 
 export const useBrowseAll = (params) => {
-  return useQuery(
-    {
-      queryKey: ["browseAll", params],
-      queryFn: () =>
-        token ? newsletterAll(params) : newsletterAllUnAuth(params),
+  return useQuery({
+    queryKey: ["browseAll", params],
+    queryFn: () =>
+      token ? newsletterAll(params) : newsletterAllUnAuth(params),
+    onSuccess: (data) => {
+      return data;
     },
-    {
-      onSuccess: (data) => {
-        return data;
-      },
-      retry: 0,
-    }
-  );
+    onError: (error) => {
+      return error;
+    },
+    retry: 0,
+  });
 };
 
 export const useNewsletterBrand = (params) => {
