@@ -7,12 +7,14 @@ import SettingIcon from "icons/setting_off.svg";
 import AppBar from "shared/AppBar";
 
 import { industries } from "constants/industries";
+import { interests } from "constants/interests";
 
 const MyInfo = () => {
   const router = useRouter();
   const userDatas = useRecoilValue(userDatasAtom);
   const { nickname, industryId } = userDatas;
   // TODO: 관심사 추가
+  console.log(userDatas);
 
   const MyInfoInputs = [
     {
@@ -33,7 +35,7 @@ const MyInfo = () => {
       id: 3,
       title: "관심사",
       placeholder: "관심사를 설정해 주세요.",
-      value: "관심사가 있으면 ? 관심사.map() : 없으면 인풋",
+      value: interests?.length === 0 ? "" : userDatas.interests,
       routeTo: router.asPath + "/modifyInterest",
     },
   ];
@@ -58,20 +60,43 @@ const MyInfo = () => {
             <br />
             뉴스레터를 추천해 드려요.
           </div>
-          <div className="flex flex-col gap-y-4">
+          <div className="w-full flex flex-col gap-y-4">
             {MyInfoInputs.map((userInfo) => {
               return (
-                <div key={userInfo.id} className="flex flex-col gap-y-2">
+                <div
+                  key={userInfo.id}
+                  className="w-full flex flex-col gap-y-2 flex-wrap"
+                >
                   <div className="single-14-m text-purple-700">
                     {userInfo.title}
                   </div>
-                  <div className="flex justify-between gap-x-2">
-                    <input
-                      className="w-full contentbox-border p-4 single-16-m text-neutralgray-900"
-                      readOnly
-                      placeholder={userInfo.placeholder}
-                      value={userInfo.value}
-                    />
+                  <div
+                    className={`flex  ${
+                      userInfo.id <= 2 || !userDatas.interests
+                        ? "justify-between gap-x-2"
+                        : "flex-wrap gap-x-2.5 gap-y-2.5"
+                      // : ""
+                    }`}
+                  >
+                    {userInfo.id <= 2 || !userDatas.interests ? (
+                      <input
+                        className="w-full contentbox-border p-4 single-16-m text-neutralgray-900"
+                        readOnly
+                        placeholder={userInfo.placeholder}
+                        value={userInfo.value}
+                      />
+                    ) : (
+                      // <div className="w-full flex flex-wrap gap-y-2.5 gap-x-2.5">
+                      userDatas.interests.map((interest) => {
+                        return (
+                          <Interest
+                            interest={interest}
+                            key={interest.interestId}
+                          />
+                        );
+                      })
+                      // </div>
+                    )}
                     <button
                       onClick={() => router.push(userInfo.routeTo)}
                       className="p-4 bg-purple-700 rounded-xl hover:bg-purple-500 active:bg-purple-800 transition-colors duration-300"
@@ -90,3 +115,11 @@ const MyInfo = () => {
 };
 
 export default MyInfo;
+
+const Interest = ({ interest }) => {
+  return (
+    <div className="w-fit rounded-2xl bg-white p-4 single-16-m text-neutralgray-900 shrink-0 input-border flex justify-center items-center">
+      {interests[interest.interestId - 1].name}
+    </div>
+  );
+};

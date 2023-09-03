@@ -14,6 +14,7 @@ import {
   modifyNickname,
   modifyIndustry,
   modifyPhoneNumber,
+  modifyInterests,
 } from "service/api/user";
 
 export const useAuthSms = (params) => {
@@ -108,33 +109,37 @@ export const useUserSubscriptionList = () => {
 };
 
 export const useModifyNickname = (params) => {
-  return useMutation(
-    {
-      mutationKey: ["modifyNickname", params],
-      mutationFn: (params) => modifyNickname(params),
+  return useMutation({
+    mutationKey: ["modifyNickname", params],
+    mutationFn: (params) => modifyNickname(params),
+    onSuccess: (data) => {
+      return data;
     },
-    {
-      onSuccess: (data) => {
-        return data;
-      },
-      enabled: false,
-    }
-  );
+    enabled: false,
+  });
 };
 
 export const useModifyIndustry = (params) => {
-  return useMutation(
-    {
-      mutationKey: ["modifyIndustry", params],
-      mutationFn: (params) => modifyIndustry(params),
+  return useMutation({
+    mutationKey: ["modifyIndustry", params],
+    mutationFn: (params) => modifyIndustry(params),
+    onSuccess: (data) => {
+      return data;
     },
-    {
-      onSuccess: (data) => {
-        return data;
-      },
-      enabled: false,
-    }
-  );
+    enabled: false,
+  });
+};
+
+export const useModifyInterests = (params) => {
+  return useMutation({
+    mutationKey: ["modifyInterests", params],
+    mutationFn: (params) => modifyInterests(params),
+    onSuccess: (data) => {
+      return data;
+    },
+    enabled: false,
+    retry: 0,
+  });
 };
 
 export const useResetPswd = (params) => {
