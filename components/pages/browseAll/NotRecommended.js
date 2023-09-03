@@ -11,7 +11,7 @@ const NotRecommended = () => {
   return (
     <>
       <div className="w-full h-full flex flex-col justify-between pb-14 px-5 pt-24 items-center">
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <Image
             src="/images/signup_300.png"
             alt="추천 뉴스레터 일러스트"

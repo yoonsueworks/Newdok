@@ -3,12 +3,17 @@ import { CalendarContext } from "context/CalendarContext";
 
 import UnAuthorized from "components/pages/home/UnAuthorized";
 import LocalStorage from "public/utils/LocalStorage";
+
 import Arrivals from "./Arrivals";
 import Received from "./Received";
+
+import { useUserSubscriptionList } from "service/hooks/user";
+import NoSubscription from "./NoSubsciption";
 
 const Articles = () => {
   const { monthlyArticles, activeDate, fullActiveDate, dateLocaleKr } =
     useContext(CalendarContext);
+  const { data, isLoading, isError } = useUserSubscriptionList();
   const today = dateLocaleKr.split(" ")[3];
   const [token, setToken] = useState(null);
 
@@ -25,6 +30,8 @@ const Articles = () => {
     <>
       {!token ? (
         <UnAuthorized />
+      ) : data?.length === 0 ? (
+        <NoSubscription />
       ) : !articleLength ? (
         <Arrivals
           today={today}

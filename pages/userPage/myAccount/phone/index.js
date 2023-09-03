@@ -7,7 +7,7 @@ import Background from "shared/Background";
 import AppBar from "shared/AppBar";
 import LocalStorage from "public/utils/LocalStorage";
 import { phoneTextElement, phoneErrorMessage } from "constants/join";
-import { useAuthSms_2, useResetPhoneNumber } from "service/hooks/user";
+import { useAuthSms, useResetPhoneNumber } from "service/hooks/user";
 
 const Phone = () => {
   const { register, handleSubmit, watch } = useForm();
@@ -25,7 +25,7 @@ const Phone = () => {
   const timeout = seconds <= 0;
 
   const form = { phoneNumber: newPhoneNumber };
-  const authorizeSms = useAuthSms_2();
+  const authorizeSms = useAuthSms();
   const resetPhoneNumber = useResetPhoneNumber();
   const router = useRouter();
 
