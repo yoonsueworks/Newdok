@@ -13,23 +13,19 @@ export default function Interest() {
   const scrollContainerRef = useRef(null);
   const gradientRef = useRef(null);
 
-  const getUserInterests = (e) => {
-    const clickedId = Number.parseInt(e.target.value);
-    if (userInterests.includes(clickedId)) return;
-
-    userInterests.includes(clickedId)
-      ? filterUserInterests(clickedId)
-      : setUserInterests([...userInterests, clickedId]);
+  const filterUserInterests = (clickedId) => {
+    setUserInterests(userInterests.filter((c) => c !== clickedId));
   };
 
-  const filterUserInterests = (clickedId) => {
-    setUserInterests((userInterests) =>
-      userInterests.filter((c) => c !== clickedId)
-    );
+  const getUserInterests = (e) => {
+    const clickedId = Number.parseInt(e.target.value);
+    if (userInterests.includes(clickedId)) filterUserInterests(clickedId);
+    if (!userInterests.includes(clickedId))
+      setUserInterests([...userInterests, clickedId]);
   };
 
   const activateButton = () => {
-    setIsActivated(userInterests.length > 0 ? true : false);
+    setIsActivated(userInterests.length >= 3);
     handleProgressWithOption(interestsArr > 0 ? 4 : 3);
   };
 
