@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
   };
 
   //added :하이드레이션 오류 방지
-  React.useEffect(() => {
+  useEffect(() => {
     setHydrated(true);
   }, []);
   if (!hydrated) {
@@ -57,11 +57,12 @@ function MyApp({ Component, pageProps }) {
             {(router.pathname.includes("home") ||
               router.pathname === "/browseAll") && <GNB />}
             <Component {...pageProps} />
-            <div>
+            <div className="z-10">
               {toast && <ToastPopUp toastMessage={toastMessage} />}
               {(router.pathname.includes("home") ||
                 router.pathname === "/userPage" ||
                 router.pathname === "/browseAll") && <Nav />}
+              {/* "articleRead", "brandHome"은 각각 [id].js에서 관리 */}
             </div>
           </GlobalContext.Provider>
         </Layout>
