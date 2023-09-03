@@ -37,7 +37,7 @@ const Nav = () => {
   }, [hasBrowseAll, hasHome, hasUserPage]);
 
   return (
-    <div className="w-full h-fit bg-white grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
+    <div className="w-full h-fit sticky bottom-0 bg-white grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
       {NAV_MENUS.map((menu) => {
         return (
           <li

@@ -80,22 +80,24 @@ export default function Job() {
                 id="onboardIndustryBox"
                 className={`z-0 overflow-scroll cursor-pointer rounded-b-lg ${height} border-x-2 border-b-2 border-purple-200`}
               >
-                {industries?.map((ind) => (
+                {industries?.map((ind) => {
                   <Listbox.Option key={ind.id} value={ind} as={Fragment}>
-                    {({ active }) => (
-                      <li
-                        className={`${
-                          active
-                            ? "text-neutralgray-900"
-                            : "bg-white text-neutralgray-900"
-                        } flex justify-between p-4 single-16-m font-medium transition-colors duration-120 hover:bg-purple-50 active:bg-purple-50`}
-                        onClick={() => setClickArea(false)}
-                      >
-                        {ind.name}
-                      </li>
-                    )}
-                  </Listbox.Option>
-                ))}
+                    {({ active }) => {
+                      return (
+                        <li
+                          className={`${
+                            active
+                              ? "text-neutralgray-900"
+                              : "bg-white text-neutralgray-900"
+                          } flex justify-between p-4 single-16-m font-medium transition-colors duration-120 hover:bg-purple-50 active:bg-purple-50`}
+                          onClick={() => setClickArea(false)}
+                        >
+                          {ind.name}
+                        </li>
+                      );
+                    }}
+                  </Listbox.Option>;
+                })}
               </Listbox.Options>
             )}
           </Transition>

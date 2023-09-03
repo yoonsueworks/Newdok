@@ -5,10 +5,10 @@ import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
 import { GlobalContext } from "../../../pages/_app";
 
+import BrandInfoBar from "shared/BrandInfoBar";
 import Tags from "shared/Tags";
+
 import CheckIcon from "icons/check_off.svg";
-import CloseIcon from "icons/close_off.svg";
-import BackIcon from "icons/back_off.svg";
 
 const BrandInfo = ({ data, setOpen, controlModal }) => {
   const {
@@ -32,7 +32,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
     setToastMessage("mailCopied");
   };
 
-  const containerCSS = "w-full h-fit grid py-8 px-5 gap-y-6 bg-beige-100 ";
+  const containerCSS = "w-full h-fit grid py-8 px-5 gap-y-6";
   const infosCSS = "grid gap-y-5";
   const profileCSS = "flex gap-x-5";
 
@@ -55,21 +55,8 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
   };
 
   return (
-    <div>
-      <div className="bg-white flex justify-between p-2.5 items-center elevation-1-bottom z-10">
-        <div className="w-7.5 h-7.5 flex justify-center items-center bg-white shrink-0 cursor-pointer">
-          <BackIcon
-            width="24"
-            height="24"
-            className="shrink-0"
-            onClick={() => history.back()}
-          />
-        </div>
-        <div className="single-20-b">{data.brandName}</div>
-        <div className="w-7.5 h-7.5 flex justify-center items-center p-1.5">
-          <div className="w-6 h-6"></div>
-        </div>
-      </div>
+    <div className="bg-beige-100 absolute top-0 sticky">
+      <BrandInfoBar name={data.brandName} />
       <div className={containerCSS}>
         <div className={infosCSS}>
           <div className={profileCSS}>
