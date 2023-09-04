@@ -31,19 +31,19 @@ export default function ReactCalendar() {
   };
 
   const clickPrevBtn = async () => {
-    await refetch(activeMonth - 1);
-    setMonthlyArticles(data);
-    console.log(data);
-    // console.log(monthlyArticles);
-    setActiveMonth(activeMonth - 1);
+    const newActiveMonth = activeMonth - 1;
+    await refetchData(newActiveMonth);
   };
 
   const clickNextBtn = async () => {
-    await refetch();
-    setMonthlyArticles(data);
-    console.log(data);
-    // console.log(monthlyArticles);
-    setActiveMonth(activeMonth + 1);
+    const newActiveMonth = activeMonth + 1;
+    await refetchData(newActiveMonth);
+  };
+
+  const refetchData = async (newActiveMonth) => {
+    // const { refetch, data } = await refetch(newActiveMonth);
+    // setMonthlyArticles(data);
+    setActiveMonth(newActiveMonth);
   };
 
   return (
@@ -71,8 +71,8 @@ export default function ReactCalendar() {
         }
         // nextLabel={<NextIcon onClick={clickNextBtn} />}
         nextLabel={<NextIcon id="next" onClick={() => console.log("요청")} />}
-        prevLabel={<PrevIcon id="prev" onClick={clickPrevBtn} />}
-        // prevLabel={<PrevIcon onClick={() => console.log("요청")} />}
+        // prevLabel={<PrevIcon id="prev" onClick={clickPrevBtn} />}
+        prevLabel={<PrevIcon onClick={() => console.log("요청")} />}
         next2Label={null}
         prev2Label={null}
         tileDisabled={({ date }) => isDateDisabled(date)}
