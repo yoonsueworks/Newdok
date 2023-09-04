@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Clock from "icons/time_off.svg";
+import BrandName from "shared/BrandName";
+import PublicationCycle from "shared/PublicationCycle";
 
 const ListItem = ({ subscriptionList }) => {
   const cardCSS =
@@ -28,13 +30,8 @@ const ListItem = ({ subscriptionList }) => {
               />
             </div>
             <div className="grid gap-y-2">
-              <div className="single-18-sb text-neutralgray-900">
-                {brandName}
-              </div>
-              <div className="flex single-12-m text-neutralgray-900 items-center gap-x-1">
-                <Clock width="16" height="16" />
-                {publicationCycle}
-              </div>
+              <BrandName brandName={brandName} />
+              <PublicationCycle publicationCycle={publicationCycle} />
             </div>
           </li>
         );
