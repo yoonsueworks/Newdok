@@ -1,35 +1,56 @@
-import { useContext } from "react";
-import { GlobalContext } from "pages/_app";
-
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Tags from "./Tags";
+import { useEffect } from "react";
 
 function ListedItem({ datas }) {
-  const { setOpenModal } = useContext(GlobalContext);
-  const { name, image_url, interests, second_description } = datas;
+  const router = useRouter();
+  const {
+    brandId,
+    brandName,
+    imageUrl,
+    interests,
+    secondDescription,
+    shortDescription,
+    id,
+    isSubscribed,
+  } = datas;
 
   return (
     <li
-      onClick={() => setOpenModal(datas)}
-      className="bg-white p-6 h-max w-full border border-solid border-1 border-warmgray-20 rounded-2xl  cursor-pointer "
+      className="bg-white p-5 h-max w-full border border-neutralgray-200 rounded-lg cursor-pointer"
+      onClick={() => router.push(`/brandHome/${brandId || id}`)}
     >
       <div className="flex gap-x-4">
-        <div className="w-58 h-58 rounded-full flex-shrink-0 border border-solid border-1 border-warmgray-20 relative">
+        <div className="w-58 h-58 rounded-full flex-shrink-0 border border-neutralgray-200 relative">
           <Image
-            alt=";t"
-            src={image_url}
+            alt={brandName}
+            src={imageUrl}
             fill
             sizes="100"
+            quality={45}
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcNGFlPQAGEwJcG4PRAwAAAABJRU5ErkJggg=="
             style={{
               objectFit: "cover",
               borderRadius: 50,
             }}
           />
         </div>
-        <div>
-          <h4 className="header_3 mb-1">{name}</h4>
-          <div className="caption_2_1 break-keep w-full">
-            <span className="block">{second_description}</span>
+        <div className="flex flex-col gap-y-4">
+          <div className="grid gap-y-3">
+            <div className="flex items-center gap-x-2  mb-1">
+              <h4 className="single-18-sb">{brandName}</h4>
+              {isSubscribed === "CONFIRMED" && (
+                <div className="p-1 bg-purple-400 rounded-full w-fit h-fit text-white single-12-sb">
+                  구독 중
+                </div>
+              )}
+            </div>
+            <div className="single-14-m break-keep w-full">
+              {secondDescription || shortDescription}
+            </div>
           </div>
           <Tags tags={interests} />
         </div>
@@ -40,10 +61,13 @@ function ListedItem({ datas }) {
 
 export default function Lists({ datas }) {
   return (
-    <ul className="px-5 grid gap-y-2.5 mb-9">
-      {datas?.map((data) => {
-        return <ListedItem key={data.id} datas={data} />;
-      })}
-    </ul>
+    <>
+      <ul className="grid gap-y-2.5">
+        {datas?.length > 1 &&
+          datas?.map((data) => {
+            return <ListedItem key={data.id || data.brandId} datas={data} />;
+          })}
+      </ul>
+    </>
   );
 }

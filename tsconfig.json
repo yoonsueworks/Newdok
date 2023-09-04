@@ -26,10 +26,17 @@
       "styles/*": ["styles/*"],
       "constants/*": ["constants/*"],
       "api/*": ["public/api/*"],
-      "icons/*": ["public/assets/*"]
+      "icons/*": ["public/assets/*"],
+      "context/*": ["context/*"],
+      "service/*": ["public/service/*"]
     },
     "incremental": true
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "pages/api/user-research/index.js"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/api/userResearch/index.js",
+    "components/pages/userResearch/Texts.js"
+  ]
 }

@@ -1,28 +1,47 @@
-import Article from "./Article";
+import { useContext, useEffect, useState } from "react";
+import { CalendarContext } from "context/CalendarContext";
+
+import UnAuthorized from "components/pages/home/UnAuthorized";
+import LocalStorage from "public/utils/LocalStorage";
+
+import Arrivals from "./Arrivals";
+import Received from "./Received";
+
+import { useUserSubscriptionList } from "service/hooks/user";
+import NoSubscription from "./NoSubsciption";
 
 const Articles = () => {
-  const wrapperCSS = "w-full h-fit px-4 grid gap-y-4";
-  const titleCSS = "w-full flex justify-between";
-  const readStateCSS = "w-fit flex gap-x-1 items-center";
-  const badgeCSS =
-    "inline-block min-w-[20px] h-5 rounded-full bg-purple-400 text-xs justify-center p-1 text-white leading-none text-center";
-  const articlesCSS = "grid gap-y-2.5";
+  const { monthlyArticles, activeDate, fullActiveDate, dateLocaleKr } =
+    useContext(CalendarContext);
+  const { data, isLoading, isError } = useUserSubscriptionList();
+  const today = dateLocaleKr.split(" ")[3];
+  const [token, setToken] = useState(null);
+
+  const articleLength = monthlyArticles?.filter(
+    (item) => item.publishDate === activeDate
+  )[0].receivedArticleList?.length;
+
+  useEffect(() => {
+    const loadedToken = LocalStorage.getItem("NDtoken");
+    setToken(loadedToken);
+  }, []);
 
   return (
-    <div className={wrapperCSS}>
-      <div className={titleCSS}>
-        <span>N개의 아티클이 도착했어요.</span>
-        <div className={readStateCSS}>
-          안읽음
-          <div className={badgeCSS}>3</div>
-        </div>
-      </div>
-      <div className={articlesCSS}>
-        <Article />
-        <Article />
-        <Article />
-      </div>
-    </div>
+    <>
+      {!token ? (
+        <UnAuthorized />
+      ) : data?.length === 0 ? (
+        <NoSubscription />
+      ) : !articleLength ? (
+        <Arrivals
+          today={today}
+          activeDate={fullActiveDate}
+          dateLocaleKr={dateLocaleKr}
+        />
+      ) : (
+        <Received />
+      )}
+    </>
   );
 };
 

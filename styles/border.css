@@ -1,0 +1,24 @@
+@tailwind utilities;
+
+@variants {
+  .contentbox-border {
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px inset #cac5c4;
+    background: #fff;
+  }
+  .border-none {
+    box-shadow: 0 0 0 0px inset;
+  }
+  .selectedchip-border {
+    box-shadow: 0 0 0 1px inset #674188;
+  }
+  .inputFocused-border {
+    box-shadow: 0 0 0 2px inset #bf9ece;
+  }
+  .input-border {
+    box-shadow: 0 0 0 1px inset #cac5c4;
+  }
+  .inputError-border {
+    box-shadow: 0 0 0 1px inset #ea0730;
+  }
+}

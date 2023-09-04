@@ -1,28 +1,19 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
-
-import Button from "shared/Button";
-import Topbar from "shared/Topbar";
+import { useRouter } from "next/router";
+import LocalStorage from "public/utils/LocalStorage";
 
 export default function Home() {
   const router = useRouter();
+  const token = LocalStorage.getItem("NDtoken");
 
-  const routeSignup = () => router.push("/signup");
-  const routeLogin = () => router.push("/login");
-
-  const routeOnbooarding = () => router.push("/onboarding");
-
-  const cookieOrToken = false;
-
-  // useEffect(() => {
-  //   const checkUserToken = async () => {
-  //     cookieOrToken ? routeHome() : routeOnbooarding();
-  //   };
-
-  //   checkUserToken();
-  // });
-  // TODO: 토큰 확인 후 페이지 라우팅
+  useEffect(() => {
+    const checkUserToken = async () => {
+      await router.push(token ? "/home" : "/introduction");
+    };
+    setTimeout(() => checkUserToken(), 800);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

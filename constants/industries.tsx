@@ -53,7 +53,7 @@ export const industries = [
   },
   {
     id: 15,
-    name: "자영업",
+    name: "창업・자영업",
   },
   {
     id: 16,

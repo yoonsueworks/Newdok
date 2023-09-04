@@ -1,41 +1,74 @@
-import React, { createContext, useState, useMemo } from "react";
+import React, { createContext, useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/router";
-import Layout from "./Layout";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { RecoilRoot } from "recoil";
+
+import ToastPopUp from "shared/ToastPopUp";
 import HeadComp from "shared/HeadComp";
 import Nav from "shared/Nav";
+import GNB from "shared/GNB";
+import Layout from "./Layout";
+import LocalStorage from "public/utils/LocalStorage";
 import "styles/globals.css";
 
 export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
-  const [intersection, setIntersection] = useState([]);
-  const intersectionArr = useMemo(() => {
-    return intersection;
-  }, [intersection]);
-  const [union, setUnion] = useState([]);
-  const unionArr = useMemo(() => {
-    return union;
-  }, [union]);
+  const [userDatas, setUserDatas] = useState(null);
+  const [toast, setToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [hydrated, setHydrated] = React.useState(false);
 
+  const queryClient = new QueryClient();
   const router = useRouter();
 
-  const value = {
-    intersection: intersectionArr,
-    union: unionArr,
-    setIntersection: setIntersection,
-    setUnion: setUnion,
+  const setToastPopUp = () => {
+    setToast(true);
+    setTimeout(() => setToast(false), 1500);
   };
 
+  const token = LocalStorage.getItem("NDtoken");
+
+  const value = {
+    userDatas: userDatas,
+    setUserDatas: setUserDatas,
+    token: token,
+    setToastPopUp: setToastPopUp,
+    toast: toast,
+    setToastMessage: setToastMessage,
+    toastMessage: toastMessage,
+  };
+
+  //added :하이드레이션 오류 방지
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+  if (!hydrated) {
+    return null;
+  }
+
   return (
-    <Layout>
-      <GlobalContext.Provider value={value}>
-        <HeadComp />
-        <Component {...pageProps} />
-        {(router.pathname.includes("home") ||
-          router.pathname === "/myPage" ||
-          router.pathname === "/lookaround") && <Nav />}
-      </GlobalContext.Provider>
-    </Layout>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <GlobalContext.Provider value={value}>
+            <HeadComp />
+            {(router.pathname.includes("home") ||
+              router.pathname === "/browseAll") && <GNB />}
+            <Component {...pageProps} />
+            <div className="z-10">
+              {toast && <ToastPopUp toastMessage={toastMessage} />}
+              {(router.pathname.includes("home") ||
+                router.pathname === "/userPage" ||
+                router.pathname === "/browseAll") && <Nav />}
+              {/* "articleRead", "brandHome"은 각각 [id].js에서 관리 */}
+            </div>
+          </GlobalContext.Provider>
+        </Layout>
+        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 }
 

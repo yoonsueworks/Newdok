@@ -1,22 +1,63 @@
-import Button from "shared/Button";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { browseAllPageAtom } from "service/atoms/atoms";
+import { browseOptionsAtom } from "service/atoms/atoms";
+import { days } from "constants/days";
 
-const Arrivals = () => {
-  const wrapperCSS = "w-full h-fit grid gap-y-[119px] p-5";
-  const contentsCSS = "flex flex-col items-center";
-  const imageCSS = "w-[390px] h-[200px] border mb-5";
-  const text1 = "header_2 mb-1";
-  const text2 = "text-sm mb-1";
+const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
+  const router = useRouter();
+  const [browseOptions, setBrowseOptions] = useRecoilState(browseOptionsAtom);
+  const [, setClickedTab] = useRecoilState(browseAllPageAtom);
+
+  /* calendar에서 !오늘로 이동=false, 오늘=true */
+  const isDaySelected = (activeDate === dateLocaleKr) | !activeDate;
+  const selectedDay = activeDate.split(" ")[3];
+  const selectedDateString =
+    activeDate.split(" ")[1] + " " + activeDate.split(" ")[2] + "에 ";
+
+  /* @요일이 옵션으로 선택된 상태로 /browseAll로 이동하기,
+  백엔드 key 찾기, 탭 상태 세팅, 옵션 상태 세팅 */
+  const handleGotoBtnClick = () => {
+    const dayOption = days.filter((day) =>
+      isDaySelected ? day.name === today : day.name === selectedDay
+    )[0].id;
+    setClickedTab(2);
+    setBrowseOptions({
+      ...browseOptions,
+      days: [dayOption],
+    });
+    router.push("/browseAll");
+  };
 
   return (
-    <div className={wrapperCSS}>
-      <div className={contentsCSS}>
-        <div className={imageCSS}>image</div>
-        <div className={text1}>오늘 도착한 아티클이 없어요.</div>
-        <div className={text2}>
-          <span>구독 신청 이후 수신된 아티클만 볼 수 있어요.</span>
+    <div className="w-full h-full justify-between bg-beige-100">
+      <div className="w-full h-full px-5 pt-24 pb-14 flex flex-col justify-between">
+        <div className="flex flex-col items-center">
+          <Image
+            src="/images/empty_today_300.png"
+            alt="사용자 정보와 관련된 일러스트"
+            width={500}
+            height={300}
+            priority
+          />
+          <div className="multiple-20-b mb-1 mt-5">
+            {isDaySelected ? "오늘 " : selectedDateString}
+            도착한 아티클이 없어요.
+          </div>
+          <div className="multiple-16-m mb-1">
+            <span>구독 신청 이후 수신된 아티클만 볼 수 있어요.</span>
+          </div>
         </div>
+
+        <button
+          type="button"
+          onClick={handleGotoBtnClick}
+          className="w-full h-fit p-4 rounded-xl single-20-b hover:bg-purple-50 active:bg-purple-100 text-purple-700 bg-white selectedchip-border  transition-colors duration-300"
+        >{`${
+          isDaySelected ? today : selectedDay
+        }에 발행되는 뉴스레터 보기`}</button>
       </div>
-      <Button text="금요일에 발행되는 뉴스레터 보기" mode="ghost" />
     </div>
   );
 };
