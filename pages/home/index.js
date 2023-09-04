@@ -13,9 +13,11 @@ const Home = () => {
   const [dateLocaleKr, setDateLocaleKr] = useState("");
   const [activeDate, setActiveDate] = useState("");
   const [fullActiveDate, setFullActiveDate] = useState("");
+  const [activeMonth, setActiveMonth] = useState("");
+  const [monthlyArticles, setMonthlyArticles] = useState([]);
   const date = new Date();
   const thisMonth = date.getMonth() + 1;
-  const { data, isLoading } = useMonthlyArticles(thisMonth);
+  const { refetch, data, isLoading } = useMonthlyArticles(thisMonth);
 
   const calendarContextValues = {
     setCalendarOpen: setCalendarOpen,
@@ -26,6 +28,9 @@ const Home = () => {
     setActiveDate: setActiveDate,
     fullActiveDate: fullActiveDate,
     setFullActiveDate: setFullActiveDate,
+    activeMonth: activeMonth,
+    setActiveMonth: setActiveMonth,
+    setMonthlyArticles: setMonthlyArticles,
     monthlyArticles: data,
   };
 
@@ -37,7 +42,11 @@ const Home = () => {
       day: "numeric",
     });
     setDateLocaleKr(currentDate);
+    setFullActiveDate(currentDate);
     setActiveDate(new Date().getDate());
+    setActiveMonth(new Date().getMonth() + 1);
+    setMonthlyArticles(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
