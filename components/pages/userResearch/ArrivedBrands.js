@@ -8,6 +8,7 @@ import PublicationCycle from "shared/PublicationCycle";
 
 import Loading from "shared/Loading";
 
+// TODO: 0904 사전설문 반영된 사용자 데이터 받아오기
 const ArrivedBrands = () => {
   const { research } = useContext(GlobalContext);
   const { data, error, isLoading, isError } = useGetUserResearch(research);

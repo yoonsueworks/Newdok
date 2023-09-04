@@ -12,7 +12,6 @@ const ListItem = ({ subscriptionList }) => {
       {subscriptionList.map(({ id, brandName, imageUrl, publicationCycle }) => {
         return (
           <li key={id} className={cardCSS}>
-            {/* <div className="w-12 h-12 rounded-full bg-black contentbox-border"></div> */}
             <div className="w-[48px] h-[48px] rounded-full flex-shrink-0 contentbox-border relative border border-neutralgray-200 flex justify-center items-center">
               <Image
                 alt={brandName}
