@@ -89,3 +89,15 @@ export const useMonthlyArticles = (params) => {
     }
   );
 };
+
+export const useMonthlyArticlesOnClick = (params) => {
+  return useQuery({
+    queryKey: ["monthlyArticles", params],
+    queryFn: () => token && monthlyArticles(params),
+    enabled: false,
+    onSuccess: (data) => {
+      return data;
+    },
+    retry: 0,
+  });
+};

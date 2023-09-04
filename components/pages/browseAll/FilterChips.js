@@ -11,8 +11,8 @@ const FilterChips = ({ func, sortOption }) => {
   const resetBrowseOptions = useResetRecoilState(browseOptionsAtom);
 
   return (
-    <div className="flex justify-between items-center pb-4">
-      <div className="flex gap-x-1">
+    <div className="flex justify-between items-center pb-4 gap-x-4">
+      <div className="flex gap-x-1 overflow-scroll">
         {FILTERS.map(({ id, text, name }) => {
           return id === 1 ? (
             <FilterChip
@@ -50,7 +50,7 @@ const FilterChips = ({ func, sortOption }) => {
         })}
       </div>
       <button
-        className="flex gap-x-1 items-center single-14-sb cursor-pointer"
+        className="flex gap-x-1 items-center single-14-sb cursor-pointer shrink-0"
         onClick={resetBrowseOptions}
         type="button"
       >
