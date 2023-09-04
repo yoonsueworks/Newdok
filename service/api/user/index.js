@@ -75,10 +75,11 @@ export const userResetPswd = async (params) => {
 };
 
 /* 사전조사 */
-export const userPreInvestigate = async () => {
-  await axios.get(`/users/preInvestigate/${params}`, {
-    headers: { Authorization: token },
+export const getUserResearch = async (params) => {
+  const { data } = await axios.get(`/users/preInvestigate?${params}`, {
+    headers: headers,
   });
+  return data;
 };
 
 /* 구독 리스트 보기 */

@@ -1,15 +1,14 @@
 import { useState, useContext } from "react";
-import { GlobalContext } from "pages/_app";
 import Image from "next/image";
 
-import Job from "components/pages/userResearch/Job";
-import Interest from "components/pages/userResearch/Interest";
+import { useResearchQuery } from "public/hooks/UserResearch";
+import { GlobalContext } from "pages/_app";
 import ArrivedBrands from "components/pages/userResearch/ArrivedBrands";
+import Interest from "components/pages/userResearch/Interest";
+import UserResearchLayout from "./steps/UserResearchLayout";
 import IndustryDropDown from "shared/IndustryDropDown";
 
 import { pages } from "constants/user_research_pages";
-import { useResearchQuery } from "../../public/hooks/UserResearch";
-import UserResearchLayout from "./steps/UserResearchLayout";
 
 export default function UserResearch() {
   const [page, setPage] = useState(1);

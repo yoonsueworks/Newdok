@@ -2,27 +2,10 @@ import Button from "shared/Button";
 import { useContext } from "react";
 import { useRouter } from "next/router";
 import { GlobalContext } from "pages/_app";
-import { FetchResearchResult } from "pages/api/userResearch";
 
 const Buttons = ({ infos }) => {
-  const {
-    clickNext,
-    clickBefore,
-    isActivated,
-    research,
-    userInfos,
-    intersection,
-    setIntersection,
-    setUnion,
-    setPage,
-  } = useContext(GlobalContext);
+  const { clickNext, isActivated, setPage } = useContext(GlobalContext);
   const router = useRouter();
-
-  const fetchResearch = async () => {
-    const data = await FetchResearchResult(research, userInfos?.interests);
-    setIntersection(data);
-    setPage((prev) => prev + 1);
-  };
 
   return (
     <div className="px-5">
@@ -49,7 +32,7 @@ const Buttons = ({ infos }) => {
         <div className="flex space-x-4">
           <Button
             mode="alive"
-            func={fetchResearch}
+            func={clickNext}
             state={isActivated}
             size="big"
             text="다음"

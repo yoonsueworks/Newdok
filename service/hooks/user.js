@@ -9,8 +9,8 @@ import {
   userCheckPhoneNumber,
   userAuthSms,
   userResetPswd,
-  userPreInvestigate,
   userSubscriptionList,
+  getUserResearch,
   modifyNickname,
   modifyIndustry,
   modifyPhoneNumber,
@@ -89,6 +89,20 @@ export const useCheckLoginId = (params) => {
     queryKey: ["checkLoginId", params],
     queryFn: async () => userCheckLoginId(params),
     enabled: false,
+    retry: 0,
+    onSuccess: (data) => {
+      return data;
+    },
+    onError: (error) => {
+      return error;
+    },
+  });
+};
+
+export const useGetUserResearch = (params) => {
+  return useQuery({
+    queryKey: ["getUserResearch", params],
+    queryFn: () => getUserResearch(params),
     retry: 0,
     onSuccess: (data) => {
       return data;
