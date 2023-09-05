@@ -3,15 +3,17 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
+import { useModifyNickname } from "service/hooks/user";
 
 import Background2 from "shared/Background2";
-import { useModifyNickname } from "service/hooks/user";
+import InputLabel from "shared/InputLabel";
+
 import { nicknameErrorMessage } from "constants/join";
 import LocalStorage from "../../../../public/utils/LocalStorage";
 
 const ModifyNickname = () => {
   const router = useRouter();
-  const { mutate, data } = useModifyNickname();
+  const { mutate, data, error } = useModifyNickname();
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
 
   const { register, handleSubmit, watch } = useForm({});
@@ -26,8 +28,11 @@ const ModifyNickname = () => {
         LocalStorage.setItem("NDUserDatas", data);
         router.push("/userPage/myInfo");
       },
-      onError: () => {
-        alert("닉네임 변경에 실패했습니다.");
+      onError: (error) => {
+        if (error.response.status === 401) {
+          alert("만료된 토큰입니다.");
+          router.push("/login");
+        }
       },
     });
   };
@@ -67,9 +72,7 @@ const ModifyNickname = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col gap-y-2">
-              <label htmlFor="nickname" className="single-14-m text-purple-700">
-                닉네임
-              </label>
+              <InputLabel htmlFor="nickname" text="닉네임" />
               <input
                 {...register("nickname", {
                   required: true,

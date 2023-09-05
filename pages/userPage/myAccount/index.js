@@ -76,13 +76,15 @@ const MyAccount = () => {
               );
             })}
           </div>
-          <ButtonText
+          <div></div>
+          {/* 베타 테스트 기간에는 회원탈퇴 기능 비활성화 */}
+          {/* <ButtonText
             text="회원탈퇴"
             size="medium"
             func={() => {
               router.push("/leaveId");
             }}
-          />
+          /> */}
         </div>
       </div>
       <MessageModal

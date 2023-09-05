@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
+import InputLabel from "shared/InputLabel";
 import Background from "shared/Background";
 import AppBar from "shared/AppBar";
+
 import LocalStorage from "public/utils/LocalStorage";
 import { phoneTextElement, phoneErrorMessage } from "constants/join";
 import { useAuthSms, useResetPhoneNumber } from "service/hooks/user";
@@ -109,12 +111,7 @@ const Phone = () => {
         >
           <div className="grid gap-y-8">
             <div className="grid gap-y-2">
-              <label
-                className="single-14-m text-purple-700"
-                htmlFor="newPhoneNumber"
-              >
-                휴대폰 번호
-              </label>
+              <InputLabel htmlFor="newPhoneNumber" text="휴대폰 번호" />
               <div className="flex gap-x-2 justify-between">
                 <input
                   {...register("newPhoneNumber", {
@@ -151,12 +148,7 @@ const Phone = () => {
             </div>
             {authCount > 0 && (
               <div className="flex flex-col gap-y-2">
-                <label
-                  htmlFor="authNumber"
-                  className="single-14-m text-purple-700"
-                >
-                  인증 번호
-                </label>
+                <InputLabel htmlFor="authNumber" text="인증 번호" />
                 <div
                   className={`flex rounded-lg p-4 justify-between items-center bg-white input-border focus-within:inputFocused-border 
                 ${

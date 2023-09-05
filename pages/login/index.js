@@ -39,6 +39,7 @@ const SignIn = () => {
   const setLoggedInDatas = (data) => {
     setAccessToken(data.accessToken);
     setUserDatas(data.user);
+    console.log(data);
 
     LocalStorage.setItem("NDtoken", data?.accessToken);
     LocalStorage.setItem("NDnickname", data?.user.nickname);

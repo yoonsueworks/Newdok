@@ -48,6 +48,7 @@ export default function EveryBrands() {
         <FilterChips func={handleOpen} sortOption={sortOption} />
         <Lists datas={data} />
       </div>
+
       <BottomSheet open={openSort} onDismiss={() => handleDismiss(1)}>
         <form className="grid gap-y-8 pb-14" onSubmit={handleSubmit}>
           <FilterHeader handleDismiss={handleSubmit} filter="정렬" type={1} />
