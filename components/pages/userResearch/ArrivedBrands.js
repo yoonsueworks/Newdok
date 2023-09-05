@@ -12,7 +12,7 @@ import Loading from "shared/Loading";
 const ArrivedBrands = () => {
   const { research } = useContext(GlobalContext);
   const { data, error, isLoading, isError } = useGetUserResearch(research);
-
+// TODO:
   // const data = [
   //   {
   //     brandName: "NewNeek",
