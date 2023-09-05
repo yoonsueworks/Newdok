@@ -12,7 +12,7 @@ import { interests } from "constants/interests";
 const ModifyInterest = () => {
   const router = useRouter();
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
-  const prevInterests = userDatas.interests.map(
+  const prevInterests = userDatas?.interests.map(
     (interest) => interest.interestId
   );
 
@@ -39,12 +39,12 @@ const ModifyInterest = () => {
     const result = await modifyInterests.mutateAsync(form);
     if (result) {
       setUserDatas(result);
-      alert("관심사 변경이 완료되었습니다.")
-      router.push("/userPage/myInfo")
+      alert("관심사 변경이 완료되었습니다.");
+      router.push("/userPage/myInfo");
     }
     if (!result) {
-      alert("관심사 변경에 실패하였습니다.")
-      router.push("/userPage/myInfo")
+      alert("관심사 변경에 실패하였습니다.");
+      router.push("/userPage/myInfo");
     }
   };
 
