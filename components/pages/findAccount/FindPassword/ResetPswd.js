@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
 import PasswordChild from "shared/PasswordChild";
+import InputLabel from "shared/InputLabel";
 import { pswdText, pswdErrorMessage } from "constants/join";
 import { useResetPswd } from "service/hooks/user";
 
@@ -77,9 +78,7 @@ const ResetPswd = ({ loginId }) => {
         </div>
         <div className="flex flex-col gap-y-4">
           <div className="flex flex-col gap-y-2">
-            <label htmlFor="pswd" className="single-14-m text-purple-700">
-              비밀번호
-            </label>
+            <InputLabel htmlFor="pswd" text="비밀번호" />
             <div
               className={
                 inputDivStyle +
@@ -114,9 +113,7 @@ const ResetPswd = ({ loginId }) => {
             <p className="text-error single-12-m">{getErrorMessage()}</p>
           </div>
           <div className="flex flex-col gap-y-2">
-            <label htmlFor="pswdCheck" className="single-14-m text-purple-700">
-              비밀번호 확인
-            </label>
+            <InputLabel htmlFor="pswdCheck" text="비밀번호 확인" />
             <div
               className={
                 inputDivStyle +

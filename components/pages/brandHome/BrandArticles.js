@@ -3,35 +3,40 @@ import BrandArticle from "./BrandArticle";
 
 const BrandArticles = ({ data }) => {
   const router = useRouter();
-  const containerCSS =
-    "w-full px-5 py-8 grid gap-y-4 bg-purple-700 overflow-auto";
-  const titleCSS = "text-white single-18-b";
+  const containerCSS = "mt-9 py-8 bg-purple-700 h-full px-5";
+  const titleCSS =
+    "text-white single-18-b bg-purple-700 w-full pt-8 px-5 pb-4 absolute";
   const listCSS = "flex flex-col gap-y-2.5";
 
   return (
-    <div className={containerCSS}>
-      <span className={titleCSS}>지난 아티클 보기</span>
-
-      {data.length > 0 ? (
-        <ul className={listCSS}>
-          {data.map((el) => {
-            return (
-              <BrandArticle
-                func={() => router.push(`/articleRead/${el.id}`)}
-                data={el}
-                key={el.id}
-              />
-            );
-          })}
-        </ul>
-      ) : (
-        <div className="flex flex-col mt-24 items-center gap-y-1">
-          <div className="multiple-20-b text-white">
-            아티클을 준비하는 중이에요.
-          </div>
-          <span className="multiple-16-m text-white">조금만 기다려주세요!</span>
+    <div className="w-full h-full">
+      <div className={titleCSS}>지난 아티클 보기</div>
+      <div className={containerCSS}>
+        <div className="overflow-scroll">
+          {data.length > 0 ? (
+            <ul className={listCSS}>
+              {data.map((el) => {
+                return (
+                  <BrandArticle
+                    func={() => router.push(`/articleRead/${el.id}`)}
+                    data={el}
+                    key={el.id}
+                  />
+                );
+              })}
+            </ul>
+          ) : (
+            <div className="flex flex-col mt-24 items-center gap-y-1">
+              <div className="multiple-20-b text-white">
+                아티클을 준비하는 중이에요.
+              </div>
+              <span className="multiple-16-m text-white">
+                조금만 기다려주세요!
+              </span>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

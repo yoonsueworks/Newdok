@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SignUpContext } from "context/SignUpContext";
 
 import PasswordChild from "shared/PasswordChild";
+import InputLabel from "shared/InputLabel";
 import { pswdText, pswdErrorMessage } from "constants/join";
 
 const PswdForm = () => {
@@ -25,7 +26,6 @@ const PswdForm = () => {
   const conditionControl = {
     length: password.length < 8,
     combination: /^(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]*$/,
-    // combination: /^[a-zA-Z0-9]*$/,
     match: password !== passwordCheck,
     btnDisabled: !password || !passwordCheck,
     hasValues: password && passwordCheck,
@@ -60,9 +60,7 @@ const PswdForm = () => {
     >
       <div className="flex flex-col gap-y-8">
         <div className="flex flex-col gap-y-2">
-          <label htmlFor="password" className="single-14-m text-purple-700">
-            비밀번호
-          </label>
+          <InputLabel htmlFor="password" text="비밀번호" />
           <div
             className={
               inputDivStyle +
@@ -97,12 +95,7 @@ const PswdForm = () => {
           <p className="text-error single-12-m">{getErrorMessage()}</p>
         </div>
         <div className="flex flex-col gap-y-2">
-          <label
-            htmlFor="passwordCheck"
-            className="single-14-m text-purple-700"
-          >
-            비밀번호 확인
-          </label>
+          <InputLabel htmlFor="passwordCheck" text="비밀번호 확인" />
           <div
             className={
               inputDivStyle +
