@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
 
 import Background2 from "shared/Background2";
@@ -11,13 +11,13 @@ import { interests } from "constants/interests";
 
 const ModifyInterest = () => {
   const router = useRouter();
-  const userDatas = useRecoilValue(userDatasAtom);
+  const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
   const prevInterests = userDatas.interests.map(
     (interest) => interest.interestId
   );
 
   const [userInterests, setUserInterests] = useState(prevInterests);
-  const { mutateAsync, data, isError } = useModifyInterests({
+  const modifyInterests = useModifyInterests({
     interestIds: userInterests,
   });
 
@@ -34,11 +34,23 @@ const ModifyInterest = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const clickChangeSubmit = async () => {
+    const form = { interestIds: userInterests };
+    const result = await modifyInterests.mutateAsync(form);
+    if (result) {
+      setUserDatas(result);
+      alert("관심사 변경이 완료되었습니다.")
+      router.push("/userPage/myInfo")
+    }
+    if (!result) {
+      alert("관심사 변경에 실패하였습니다.")
+      router.push("/userPage/myInfo")
+    }
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await mutateAsync({ interestIds: userInterests });
-    console.log(data);
-    // if (!isError) router.push("/userPage/myInfo");
+    clickChangeSubmit();
   };
 
   const submitBtnCondition =
@@ -106,4 +118,4 @@ const ModifyInterest = () => {
 };
 export default ModifyInterest;
 
-// TODO: BE수정 후, style, recoil 세팅
+// TODO: style
