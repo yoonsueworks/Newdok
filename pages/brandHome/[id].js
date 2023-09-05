@@ -30,13 +30,14 @@ const BrandHome = () => {
     <>
       {data ? (
         <>
-          <div className="w-full h-full bg-purple-700 relative">
+          <div className="w-full h-full bg-purple-700 flex flex-col justify-between">
             <BrandInfo
               data={data}
               setOpen={setOpen}
               controlModal={setIsModalOpen}
             />
             <BrandArticles data={data.brandArticleList} />
+
             <Nav />
           </div>
           <BottomSheet

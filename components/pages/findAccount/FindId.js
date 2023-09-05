@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useCheckPhoneNumber_2 } from "service/hooks/user";
 import MessageModal from "shared/MessageModal";
+import InputLabel from "shared/InputLabel";
 import Found from "./FindId/FoundId";
 
 const FindId = () => {
@@ -46,9 +47,7 @@ const FindId = () => {
                 휴대폰 번호를 입력해 주세요.
               </div>
               <div className="grid gap-y-2">
-                <label className="single-14-m text-purple-700">
-                  휴대폰 번호
-                </label>
+                <InputLabel htmlFor="phoneNumber" text="휴대폰 번호" />
                 <input
                   {...register("phoneNumber", {
                     required: {

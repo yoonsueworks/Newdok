@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+
+import InputLabel from "shared/InputLabel";
 import { phoneTextElement, phoneErrorMessage } from "constants/join";
 
 const MessageSent = ({ code, setComponent, authorize }) => {
@@ -66,12 +68,7 @@ const MessageSent = ({ code, setComponent, authorize }) => {
 
         {
           <div className="w-full flex flex-col gap-y-2">
-            <label
-              htmlFor="phoneNumber"
-              className="single-14-m text-purple-700"
-            >
-              인증 번호
-            </label>
+            <InputLabel htmlFor="authNumber" text="인증 번호" />
             <div className="flex w-full gap-x-2">
               <div
                 className={`w-full flex rounded-lg p-4 justify-between items-center input-border focus-within:inputFocused-border 

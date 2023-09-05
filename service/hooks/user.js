@@ -146,12 +146,15 @@ export const useModifyIndustry = (params) => {
   });
 };
 
-export const useModifyInterests = (params) => {
+export const useModifyInterests = () => {
   return useMutation({
-    mutationKey: ["modifyInterests", params],
-    mutationFn: (params) => modifyInterests(params),
+    mutationKey: ["modifyInterests"],
+    mutationFn: async (params) => await modifyInterests(params),
     onSuccess: (data) => {
       return data;
+    },
+    onError: (error) => {
+      return error;
     },
     enabled: false,
     retry: 0,
