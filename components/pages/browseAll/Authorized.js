@@ -3,7 +3,7 @@ import RefreshIcon from "icons/refresh_off.svg";
 import Nickname from "shared/Nickname";
 import Lists from "shared/Lists";
 
-const UnAuthorized = ({ shuffledArray, shuffleUnion, intersectionArr }) => {
+const Authorized = ({ shuffledArray, shuffleUnion, intersectionArr }) => {
   return (
     <>
       <div className="scroll-smooth">
@@ -27,4 +27,4 @@ const UnAuthorized = ({ shuffledArray, shuffleUnion, intersectionArr }) => {
   );
 };
 
-export default UnAuthorized;
+export default Authorized;
