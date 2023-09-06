@@ -19,9 +19,9 @@ export default function UserResearchLayout({ infos, comp }) {
           func={() => history.back()}
         />
         <ProgressBar type="userResearch" />
-        <div className="mt-14 px-5 h-full">
+        <div className="mt-14 px-5 h-full mb-14">
           <Texts infos={infos} className="mb-7" />
-          <div className="overflow-hidden h-max-[437px]">{comp}</div>
+          {comp}
         </div>
       </div>
 

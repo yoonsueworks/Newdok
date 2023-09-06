@@ -68,7 +68,6 @@ const Pswd = () => {
     if (error) alert("에러가 발생하였습니다.");
   };
 
-  console.log(conditionControl.pswdCheckLengthShort);
   const inputDivStyle = `w-full flex justify-between items-center bg-white rounded-lg p-4 input-border focus-within:inputFocused-border `;
 
   return (

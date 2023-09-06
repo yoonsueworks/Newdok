@@ -14,13 +14,15 @@ const UserResearchPage = ({ infos }) => {
           <br />
           {infos?.header_1_2}
           <br />
-          {page === 1 && <Nickname />}
+          {/* {page === 1 && <Nickname />} */}
           {infos?.header_1_3}
         </div>
         <div className="multiple-16-m text-neutralgray-900 mb-1">
           {infos?.caption}
           <br />
           {infos?.caption_2}
+          <br />
+          {infos?.caption_3}
         </div>
       </div>
     </div>

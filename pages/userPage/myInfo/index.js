@@ -13,8 +13,6 @@ const MyInfo = () => {
   const router = useRouter();
   const userDatas = useRecoilValue(userDatasAtom);
   const { nickname, industryId } = userDatas;
-  // TODO: 관심사 추가
-  console.log(userDatas);
 
   const MyInfoInputs = [
     {
@@ -28,7 +26,7 @@ const MyInfo = () => {
       id: 2,
       title: "종사 산업",
       placeholder: "산업군을 설정해 주세요.",
-      value: industryId ? industries[industryId - 1].name : "",
+      value: industryId ? industries[industryId - 2].name : "",
       routeTo: router.asPath + "/modifyIndustry",
     },
     {
@@ -75,7 +73,6 @@ const MyInfo = () => {
                       userInfo.id <= 2 || !userDatas.interests
                         ? "justify-between gap-x-2"
                         : "flex-wrap gap-x-2.5 gap-y-2.5"
-                      // : ""
                     }`}
                   >
                     {userInfo.id <= 2 || !userDatas.interests ? (
@@ -86,7 +83,6 @@ const MyInfo = () => {
                         value={userInfo.value}
                       />
                     ) : (
-                      // <div className="w-full flex flex-wrap gap-y-2.5 gap-x-2.5">
                       userDatas.interests.map((interest) => {
                         return (
                           <Interest
@@ -95,7 +91,6 @@ const MyInfo = () => {
                           />
                         );
                       })
-                      // </div>
                     )}
                     <button
                       onClick={() => router.push(userInfo.routeTo)}

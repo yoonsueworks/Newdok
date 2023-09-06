@@ -114,7 +114,6 @@ const IdForm = () => {
           <button
             type="button"
             disabled={!loginId}
-            a
             onClick={handleIdCheck}
             className="w-fit h-fit shrink-0 bg-purple-700 text-white hover:bg-purple-500 p-4 shrink-0 rounded-xl single-20-b cursor-pointer transition-colors duration-300  disabled:bg-neutralgray-500 disabled:cursor-default disabled:text-white disabled:border-0"
           >

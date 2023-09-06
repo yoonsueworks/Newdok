@@ -1,11 +1,34 @@
-import Button from "shared/Button";
 import { useContext } from "react";
 import { useRouter } from "next/router";
-import { GlobalContext } from "pages/_app";
+import { GlobalContext } from "../../../pages/_app";
+import { useRecoilState } from "recoil";
+import { userDatasAtom } from "service/atoms/atoms";
+import { useGetUserResearch } from "service/hooks/user";
+
+import Button from "shared/Button";
 
 const Buttons = ({ infos }) => {
-  const { clickNext, isActivated, setPage } = useContext(GlobalContext);
+  const value = useContext(GlobalContext);
+  const { clickNext, isActivated, research, setResponseData } = value;
   const router = useRouter();
+
+  const [, setUserDatas] = useRecoilState(userDatasAtom);
+  const { refetch } = useGetUserResearch(research);
+
+  const handleGetResultClick = async () => {
+    const result = await refetch();
+    if (result.isSuccess) {
+      clickNext();
+      setUserDatas(result?.data?.user);
+      setResponseData(result?.data?.data);
+    }
+    if (result.isError) {
+      alert(
+        "회원가입 시 사전조사를 하신 회원의 경우 마이페이지에서 산업군, 관심사 변경이 가능합니다."
+      );
+      router.push("/userPage/myInfo");
+    }
+  };
 
   return (
     <div className="px-5">
@@ -32,7 +55,7 @@ const Buttons = ({ infos }) => {
         <div className="flex space-x-4">
           <Button
             mode="alive"
-            func={clickNext}
+            func={handleGetResultClick}
             state={isActivated}
             size="big"
             text="다음"
