@@ -26,7 +26,6 @@ export default function Interest() {
 
   const activateButton = () => {
     setIsActivated(userInterests.length >= 3);
-    handleProgressWithOption(interestsArr > 0 ? 4 : 3);
   };
 
   const resetUserInterests = () => {

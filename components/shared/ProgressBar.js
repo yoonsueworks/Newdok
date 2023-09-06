@@ -11,14 +11,14 @@ export default function ProgressBar({ type }) {
     if (type === "userResearch") {
       setStyle({
         width: `${progress * 25}%`,
-        BackgroundColor: "#674188",
+        backgroundColor: "#674188",
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress]);
 
   return (
-    <div className={`${S.progress} h-1 w-full bg-purple=700`}>
+    <div className={`${S.progress} h-1 w-full bg-beige-100`}>
       <div className={`${S.changable}`} style={style}></div>
     </div>
   );

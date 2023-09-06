@@ -5,12 +5,12 @@ import { useNewsletterBrand } from "service/hooks/newsletters";
 import BrandArticles from "components/pages/brandHome/BrandArticles";
 import BrandInfo from "components/pages/brandHome/BrandInfo";
 
+import MessageModal from "shared/MessageModal";
 import Background2 from "shared/Background2";
 import Loading from "shared/Loading";
 import Nav from "shared/Nav";
 
 import CloseIcon from "icons/close_off.svg";
-import MessageModal from "shared/MessageModal";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
 

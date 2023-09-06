@@ -13,6 +13,7 @@ import CloseIcon from "icons/close_off.svg";
 import Loading from "shared/Loading";
 import "react-notion/src/styles.css";
 import "prismjs/themes/prism-tomorrow.css";
+import LocalStorage from "../../../public/utils/LocalStorage";
 
 const Terms = ({ blockMap }) => {
   const { userInfo, setUserInfo } = useContext(SignUpContext);
@@ -35,11 +36,12 @@ const Terms = ({ blockMap }) => {
   const postSignUp = async () => {
     try {
       const result = await signUp.mutateAsync(userInfo);
-      console.log(result);
       /* 응답으로 받은 사용자 데이터 전역으로 설정 */
       setUserDatas(result.user);
+      LocalStorage.setItem("NDtoken", result?.accessToken);
     } catch (error) {
       console.log(error?.response);
+      alert("회원가입에 실패하였습니다." + error?.response.status);
     }
   };
 
