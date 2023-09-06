@@ -15,7 +15,6 @@ import "styles/globals.css";
 export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
-  const [userDatas, setUserDatas] = useState(null);
   const [toast, setToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [hydrated, setHydrated] = React.useState(false);
@@ -31,8 +30,6 @@ function MyApp({ Component, pageProps }) {
   const token = LocalStorage.getItem("NDtoken");
 
   const value = {
-    userDatas: userDatas,
-    setUserDatas: setUserDatas,
     token: token,
     setToastPopUp: setToastPopUp,
     toast: toast,

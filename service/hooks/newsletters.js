@@ -64,7 +64,6 @@ export const useArticleRead = (params) => {
     {
       queryKey: ["useArticleRead", params],
       queryFn: () => articleRead(params),
-      // token ? newsletterBrand(params) : newsletterBrandUnAuth(params),
     },
     {
       onSuccess: (data) => {

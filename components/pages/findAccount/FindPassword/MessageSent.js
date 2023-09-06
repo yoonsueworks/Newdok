@@ -16,8 +16,7 @@ const MessageSent = ({ code, setComponent, authorize }) => {
   const timeout = seconds < 0;
 
   const onSubmit = () => {
-    if (authChecked) console.log("d");
-    setComponent("resetPswd");
+    if (authChecked) setComponent("resetPswd");
   };
 
   /* 재전송 버튼 클릭 시 요청 */

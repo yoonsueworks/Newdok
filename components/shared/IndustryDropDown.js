@@ -28,7 +28,6 @@ export default function IndustryDropDown() {
   const height = " h-64 sm:h-80 md:h-80 lg:h-80 xl:h-80";
 
   const addUserResearch = () => {
-    selected && globalContextValue.handleProgressWithOption(2);
     selected && globalContextValue.setIsActivated(true);
     globalContextValue.setUserInfos({ industry: selected.id });
   };
@@ -59,7 +58,7 @@ export default function IndustryDropDown() {
               ${selected === false ? labelCSS : selectedCSS} `}
             >
               {userDatas.industryId && !selected
-                ? industries[userDatas.industryId - 1].name
+                ? industries[userDatas.industryId - 2].name
                 : selected
                 ? selected.name
                 : "산업군 선택"}

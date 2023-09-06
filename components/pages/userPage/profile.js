@@ -17,7 +17,6 @@ const Profile = ({ email, copyClipboard }) => {
     "w-full p-3.5 flex gap-x-1 justify-center items-center rounded-[10px] bg-white shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 hover:bg-purple-50 active:bg-purple-100 cursor-pointer single-18-b transition-colors duration-300";
 
   const handleQuestionClick = () => {
-    console.log("d");
     setIsModalOpen(true);
   };
 

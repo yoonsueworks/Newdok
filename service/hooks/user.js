@@ -61,7 +61,6 @@ export const useSignUp = () => {
     onSuccess: (data) => {
       LocalStorage.setItem("NDtoken", data.accessToken);
       LocalStorage.setItem("NDuserName", data.user.nickname);
-      console.log(data, "onsuccess");
     },
     onError: (error) => {
       return { error };
@@ -102,8 +101,11 @@ export const useCheckLoginId = (params) => {
 export const useGetUserResearch = (params) => {
   return useQuery({
     queryKey: ["getUserResearch", params],
-    queryFn: () => getUserResearch(params),
+    queryFn: async () => await getUserResearch(params),
     retry: 0,
+    enabled: false,
+    refetchInterval: 60 * 5 * 1000,
+    staleTime: 60 * 5 * 1000,
     onSuccess: (data) => {
       return data;
     },
