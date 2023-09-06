@@ -59,7 +59,7 @@ export default function IndustryDropDown() {
               ${selected === false ? labelCSS : selectedCSS} `}
             >
               {userDatas.industryId && !selected
-                ? industries[userDatas.industryId - 1].name
+                ? industries[userDatas.industryId - 2].name
                 : selected
                 ? selected.name
                 : "산업군 선택"}
