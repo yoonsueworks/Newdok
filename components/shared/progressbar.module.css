@@ -2,6 +2,7 @@
   height: 4px;
   width: 100%;
   background-color: #f7efe5;
+  transition: all 1s ease-out;
 }
 .changable {
   height: 4px;
