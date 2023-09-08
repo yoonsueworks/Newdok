@@ -1,7 +1,8 @@
+import Image from "next/image";
 import { useContext, useState } from "react";
+import { GlobalContext } from "../../../pages/_app";
 import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
-import { GlobalContext } from "../../../pages/_app";
 
 import CloseIcon from "icons/close_off.svg";
 import BrandList from "./BrandList";

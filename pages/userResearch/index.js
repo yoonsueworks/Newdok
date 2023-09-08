@@ -15,7 +15,7 @@ import { pages } from "constants/user_research_pages";
 
 export default function UserResearch() {
   const router = useRouter();
-  // const [page, setPage] = useState(4);
+
   const [page, setPage] = useState(1);
   const [step, setStep] = useState(0);
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
@@ -47,7 +47,7 @@ export default function UserResearch() {
   const handleProgress = (condition) => {
     condition === true
       ? setProgress((prev) => Number.parseInt(prev) + 1)
-      : setProgress((prev) => Number.parseInt(prev) - 2);
+      : setProgress((prev) => Number.parseInt(prev) - 1);
   };
 
   const clickNext = () => {
@@ -60,7 +60,7 @@ export default function UserResearch() {
     setPage((prev) => prev - 1);
     setStep(step - 1);
     handleProgress(false);
-    value.resetUserInterests();
+    value?.resetUserInterests();
   };
 
   value.clickNext = clickNext;
@@ -72,7 +72,7 @@ export default function UserResearch() {
   value.setIsActivated = setIsActivated;
   value.isActivated = isActivated;
   value.progress = progress;
-  value.handleProgress = handleProgress;
+  value.handleProgress = handleProgress; // setProgress
   value.research = queryParams;
   value.setPage = setPage;
   value.page = page;
