@@ -6,7 +6,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { Pagination } from "swiper";
-import S from "./OnBoardingSwiper.module.scss";
 
 const OnBoardingSwiper = () => {
   const pagination = {
@@ -15,25 +14,10 @@ const OnBoardingSwiper = () => {
       return '<span class="' + className + '">' + "</span>";
     },
   };
-  const swiperStyles = {
-    "--swiper-pagination-bullet-inactive-color": "#D8C4E1",
-    "--swiper-pagination-bullet-inactive-opacity": "1",
-    "--swiper-pagination-bullet-width": "20px",
-    "--swiper-pagination-bullet-height": "4px",
-    "--swiper-pagination-bullet-border-radius": "4px",
-    "--swiper-pagination-bullet-active-color": "#674188",
-    "--swiper-pagination-bullet-active-background": "#674188",
-  };
-  //TODO: swiper pagination active color 오류 해결 필요
 
   return (
     <>
-      <Swiper
-        pagination={pagination}
-        modules={[Pagination]}
-        className={`${S.mySwiper} w-full`}
-        style={swiperStyles}
-      >
+      <Swiper pagination={pagination} modules={[Pagination]} className="w-full">
         {ONBOARDING_SWIPER_CARDS.map((card) => {
           return (
             <SwiperSlide
