@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 import { GlobalContext } from "../../../pages/_app";
 import { useRecoilState } from "recoil";
-import { userDatasAtom } from "service/atoms/atoms";
+import { userDatasAtom, userResearchAtom } from "service/atoms/atoms";
 import { useGetUserResearch } from "service/hooks/user";
 
 import Button from "shared/Button";
@@ -13,14 +13,15 @@ const Buttons = ({ infos }) => {
   const router = useRouter();
 
   const [, setUserDatas] = useRecoilState(userDatasAtom);
+  const resetResearchValues = useRecoilState(userResearchAtom);
   const { refetch } = useGetUserResearch(research);
 
   const handleGetResultClick = async () => {
     const result = await refetch();
     if (result.isSuccess) {
-      clickNext();
       setUserDatas(result?.data?.user);
       setResponseData(result?.data?.data);
+      clickNext();
     }
     if (result.isError) {
       alert(
@@ -28,6 +29,11 @@ const Buttons = ({ infos }) => {
       );
       router.push("/userPage/myInfo");
     }
+  };
+
+  const handleGoToMain = () => {
+    resetResearchValues();
+    router.push("/home");
   };
 
   return (
@@ -68,7 +74,7 @@ const Buttons = ({ infos }) => {
           text="메인으로"
           state={true}
           size="big"
-          func={() => router.push("/home")}
+          func={handleGoToMain}
         />
       )}
     </div>
