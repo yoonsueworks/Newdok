@@ -4,7 +4,6 @@ import axios from "axios";
 export const articles = async (params) => {
   await axios.get(`/articles?publicationMonth=${params}`);
 };
-// string
 // TODO: token 추가
 
 /* 아티클 읽기 */

@@ -1,0 +1,24 @@
+/* Bullets */
+
+.swiper-pagination-bullet {
+  width: 20px !important;
+  height: 4px !important;
+  border-radius: 4px !important;
+  background: #d8c4e1 !important;
+  color: #d8c4e1 !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-clickable .swiper-pagination-bullet {
+  cursor: pointer;
+}
+
+.swiper-pagination-bullet-active {
+  background: #674188 !important;
+  width: 32px !important;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  margin: 8px !important;
+}
