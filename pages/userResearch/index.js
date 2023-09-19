@@ -12,7 +12,6 @@ import UserResearchLayout from "./steps/UserResearchLayout";
 import IndustryDropDown from "shared/IndustryDropDown";
 
 import { pages } from "constants/user_research_pages";
-import LocalStorage from "../../public/utils/LocalStorage";
 
 export default function UserResearch() {
   const router = useRouter();
@@ -77,8 +76,6 @@ export default function UserResearch() {
   value.research = queryParams;
   value.setPage = setPage;
   value.page = page;
-
-  
 
   return <UserResearchLayout infos={pages[page]} comp={comps[page]} />;
 }
