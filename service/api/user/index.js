@@ -1,12 +1,6 @@
 import axios from "../../axios";
+import { headers } from "../../headers";
 import LocalStorage from "public/utils/LocalStorage";
-
-const token = LocalStorage.getItem("NDtoken");
-
-const headers = {
-  Authorization: `Bearer ${token}`,
-  "Content-Type": "application/json",
-};
 
 export const handleLoginErrors = async (error) => {
   const statusCode = error.response.status;
@@ -77,7 +71,10 @@ export const userResetPswd = async (params) => {
 /* 사전조사 */
 export const getUserResearch = async (params) => {
   const { data } = await axios.get(`/users/preInvestigate?${params}`, {
-    headers: headers,
+    headers: {
+      Authorization: `Bearer ${LocalStorage.getItem("NDtoken")}`,
+      "Content-Type": "application/json",
+    },
   });
   return data;
 };

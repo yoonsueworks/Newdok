@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { usePostLogin } from "service/hooks/login";
-import { useRecoilState } from "recoil";
-import { accessTokenAtom, userDatasAtom } from "service/atoms/atoms";
-import LocalStorage from "../../public/utils/LocalStorage";
-import { useForm } from "react-hook-form";
 
-import BottomTextButtons from "components/pages/login/BottomTextButtons";
-import PasswordChild from "shared/PasswordChild";
+import { useRecoilState } from "recoil";
+import { useForm } from "react-hook-form";
+import { usePostLogin } from "service/hooks/login";
+import { accessTokenAtom, userDatasAtom } from "service/atoms/atoms";
+
 import AppBar from "shared/AppBar";
+import PasswordChild from "shared/PasswordChild";
+import BottomTextButtons from "components/pages/login/BottomTextButtons";
+import LocalStorage from "../../public/utils/LocalStorage";
 
 const SignIn = () => {
   const { register, handleSubmit } = useForm();
@@ -23,6 +24,15 @@ const SignIn = () => {
   const [, setAccessToken] = useRecoilState(accessTokenAtom);
   const [, setUserDatas] = useRecoilState(userDatasAtom);
 
+  const setLoggedInDatas = (data) => {
+    setAccessToken(data.accessToken);
+    setUserDatas(data.user);
+
+    LocalStorage.setItem("NDtoken", data?.accessToken);
+    LocalStorage.setItem("NDnickname", data?.user.nickname);
+    LocalStorage.setItem("NDuserDatas", JSON.stringify(data?.user));
+  };
+
   const onSubmit = async () => {
     await mutate(userInfo, {
       onSuccess: (data) => {
@@ -34,15 +44,6 @@ const SignIn = () => {
         console.log(error);
       },
     });
-  };
-
-  const setLoggedInDatas = (data) => {
-    setAccessToken(data.accessToken);
-    setUserDatas(data.user);
-
-    LocalStorage.setItem("NDtoken", data?.accessToken);
-    LocalStorage.setItem("NDnickname", data?.user.nickname);
-    LocalStorage.setItem("NDUserDatas", JSON.stringify(data?.user));
   };
 
   const getErrorMessage = () => {

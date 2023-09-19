@@ -12,7 +12,7 @@ import { interests } from "constants/interests";
 const ModifyInterest = () => {
   const router = useRouter();
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
-  const prevInterests = userDatas?.interests.map(
+  const prevInterests = userDatas?.interests?.map(
     (interest) => interest.interestId
   );
 
@@ -83,7 +83,7 @@ const ModifyInterest = () => {
                 className="w-full grid grid-cols-2 gap-4 overflow-scroll mb-16"
                 id="modifyInterestsBox"
               >
-                {interests.map((interest) => {
+                {interests?.map((interest) => {
                   return (
                     <button
                       type="button"

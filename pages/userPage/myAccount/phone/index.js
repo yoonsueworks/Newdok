@@ -73,7 +73,7 @@ const Phone = () => {
   };
 
   useEffect(() => {
-    const userDatas = JSON.parse(LocalStorage.getItem("NDUserDatas"));
+    const userDatas = JSON.parse(LocalStorage.getItem("NDuserDatas"));
     setPhoneNumber(userDatas.phoneNumber);
   }, []);
 

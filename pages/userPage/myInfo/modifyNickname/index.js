@@ -24,8 +24,8 @@ const ModifyNickname = () => {
     await mutate(body, {
       onSuccess: (data) => {
         setUserDatas(data);
-        LocalStorage.setItem("NDNickname", nickname);
-        LocalStorage.setItem("NDUserDatas", data);
+        LocalStorage.setItem("NDnickname", nickname);
+        LocalStorage.setItem("NDuserDatas", data);
         router.push("/userPage/myInfo");
       },
       onError: (error) => {

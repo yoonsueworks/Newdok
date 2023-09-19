@@ -34,7 +34,7 @@ export const fetchlogin = async (params) => {
     if (response.ok && data.accessToken) {
       LocalStorage.setItem("NDtoken", data?.accessToken);
       LocalStorage.setItem("NDnickname", data?.user.nickname);
-      LocalStorage.setItem("NDUserDatas", JSON.stringify(data?.user));
+      LocalStorage.setItem("NDuserDatas", JSON.stringify(data?.user));
       return true; // Login successful
     } else {
       return false; // Login failed

@@ -12,6 +12,7 @@ import UserResearchLayout from "./steps/UserResearchLayout";
 import IndustryDropDown from "shared/IndustryDropDown";
 
 import { pages } from "constants/user_research_pages";
+import LocalStorage from "../../public/utils/LocalStorage";
 
 export default function UserResearch() {
   const router = useRouter();
@@ -77,15 +78,7 @@ export default function UserResearch() {
   value.setPage = setPage;
   value.page = page;
 
-  // useEffect(() => {
-  //   if (userDatas.industryId !== null) {
-  //     alert(
-  //       "회원가입 시 사전조사를 하신 회원의 경우 마이페이지에서 산업군, 관심사 변경이 가능합니다."
-  //     );
-  //     router.push("/userPage/myInfo");
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  
 
   return <UserResearchLayout infos={pages[page]} comp={comps[page]} />;
 }

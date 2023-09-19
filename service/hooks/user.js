@@ -60,7 +60,8 @@ export const useSignUp = () => {
     throwOnError: true,
     onSuccess: (data) => {
       LocalStorage.setItem("NDtoken", data.accessToken);
-      LocalStorage.setItem("NDuserName", data.user.nickname);
+      LocalStorage.setItem("NDnickname", data.user.nickname);
+      LocalStorage.setItem("NDuserDatas", data.user);
     },
     onError: (error) => {
       return { error };
