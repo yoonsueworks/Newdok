@@ -14,6 +14,10 @@ const MyInfo = () => {
   const userDatas = useRecoilValue(userDatasAtom);
   const { nickname, industryId } = userDatas;
 
+  const interestInputCondition =
+    !userDatas.interests ||
+    userDatas.interests.length === 0;
+
   const MyInfoInputs = [
     {
       id: 1,
@@ -33,10 +37,11 @@ const MyInfo = () => {
       id: 3,
       title: "관심사",
       placeholder: "관심사를 설정해 주세요.",
-      value: interests?.length === 0 ? "" : userDatas.interests,
+      value: interestInputCondition ? "" : userDatas.interests,
       routeTo: router.asPath + "/modifyInterest",
     },
   ];
+
 
   return (
     <>
@@ -70,12 +75,14 @@ const MyInfo = () => {
                   </div>
                   <div
                     className={`flex  ${
-                      userInfo.id <= 2 || !userDatas.interests
+                      userInfo.id <= 2 ||
+                      interestInputCondition
                         ? "justify-between gap-x-2"
                         : "flex-wrap gap-x-2.5 gap-y-2.5"
                     }`}
                   >
-                    {userInfo.id <= 2 || !userDatas.interests ? (
+                    {userInfo.id <= 2 ||
+                    interestInputCondition ? (
                       <input
                         className="w-full contentbox-border p-4 single-16-m text-neutralgray-900"
                         readOnly

@@ -38,7 +38,6 @@ const Terms = ({ blockMap }) => {
       const result = await signUp.mutateAsync(userInfo);
       /* 응답으로 받은 사용자 데이터 전역으로 설정 */
       setUserDatas(result.user);
-      LocalStorage.setItem("NDtoken", result?.accessToken);
     } catch (error) {
       console.log(error?.response);
       alert("회원가입에 실패하였습니다." + error?.response.status);

@@ -22,7 +22,7 @@ const ModifyIndustry = () => {
     await mutate(body, {
       onSuccess: (data) => {
         setUserDatas(data);
-        LocalStorage.setItem("NDUserDatas", data);
+        LocalStorage.setItem("NDuserDatas", data);
         router.push("/userPage/myInfo");
       },
       onError: () => {

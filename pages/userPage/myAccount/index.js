@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useResetRecoilState } from "recoil";
 import { userDatasAtom, accessTokenAtom } from "service/atoms/atoms";
-import LocalStorage from "public/utils/LocalStorage";
 
 import Background2 from "shared/Background2";
 import ButtonText from "shared/ButtonText";
@@ -26,15 +25,10 @@ const MyAccount = () => {
     router.push(path);
   };
 
-  const deleteToken = () => LocalStorage.removeItem("NDtoken");
-  const deleteNickname = () => LocalStorage.removeItem("NDnickname");
-  const deleteUserDatas = () => LocalStorage.removeItem("NDUserDatas");
-
   const handleLogOut = () => {
     /* 로컬 스토리지 삭제 */
-    deleteToken();
-    deleteNickname();
-    deleteUserDatas();
+    localStorage.clear();
+
     /* 아톰 초기화 */
     resetUserDatas();
     resetAccessToken();
