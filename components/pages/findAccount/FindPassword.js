@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
-import { useCheckLoginId_2, useAuthSms } from "service/hooks/user";
+import { useCheckLoginId, useAuthSms } from "service/hooks/user";
 import MessageModal from "shared/MessageModal";
 import MessageSent from "./FindPassword/MessageSent";
 import ResetPswd from "./FindPassword/ResetPswd";
@@ -16,7 +16,7 @@ const FindPassword = () => {
   const { register, handleSubmit, watch } = useForm({});
   const loginId = watch("loginId");
 
-  const { data, refetch, isLoading, isError } = useCheckLoginId_2(loginId);
+  const { data, refetch, isLoading, isError } = useCheckLoginId(loginId);
   const authorizeSms = useAuthSms();
 
   /* loginId 제출 */
