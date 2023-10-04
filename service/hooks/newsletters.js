@@ -2,12 +2,12 @@ import { useQuery } from "react-query";
 import LocalStorage from "public/utils/LocalStorage";
 import {
   getRecommend,
-  newsletterAll,
-  newsletterAllUnAuth,
-  newsletterBrand,
-  newsletterBrandUnAuth,
-  articleRead,
-  monthlyArticles,
+  getNewsletterAll,
+  getNewsletterAllUnauth,
+  getNewsletterBrand,
+  getNewsletterBrandUnauth,
+  getBrandRead,
+  getMonthlyArticles,
 } from "../api/neswletter";
 
 const token = LocalStorage.getItem("NDtoken");
@@ -32,7 +32,7 @@ export const useBrowseAll = (params) => {
   return useQuery({
     queryKey: ["browseAll", params],
     queryFn: () =>
-      token ? newsletterAll(params) : newsletterAllUnAuth(params),
+      token ? getNewsletterAll(params) : getNewsletterAllUnauth(params),
     onSuccess: (data) => {
       return data;
     },
@@ -44,59 +44,47 @@ export const useBrowseAll = (params) => {
 };
 
 export const useNewsletterBrand = (params) => {
-  return useQuery(
-    {
-      queryKey: ["useNewsletterBrand", params],
-      queryFn: () =>
-        token ? newsletterBrand(params) : newsletterBrandUnAuth(params),
+  return useQuery({
+    queryKey: ["useNewsletterBrand", params],
+    queryFn: () =>
+      token ? getNewsletterBrand(params) : getNewsletterBrandUnauth(params),
+    onSuccess: (data) => {
+      return data;
     },
-    {
-      onSuccess: (data) => {
-        return data;
-      },
-      retry: 0,
-    }
-  );
+    retry: 0,
+  });
 };
 
-export const useArticleRead = (params) => {
-  return useQuery(
-    {
-      queryKey: ["useArticleRead", params],
-      queryFn: () => articleRead(params),
+export const useBrandRead = (params) => {
+  return useQuery({
+    queryKey: ["useBrandRead", params],
+    queryFn: () => getBrandRead(params),
+    onSuccess: (data) => {
+      return data;
     },
-    {
-      onSuccess: (data) => {
-        return data;
-      },
-      retry: 0,
-    }
-  );
+    retry: 0,
+  });
 };
 
 export const useMonthlyArticles = (params) => {
-  return useQuery(
-    {
-      queryKey: ["monthlyArticles", params],
-      queryFn: () => token && monthlyArticles(params),
+  return useQuery({
+    queryKey: ["useMonthlyArticles", params],
+    queryFn: () => token && getMonthlyArticles(params),
+    onSuccess: (data) => {
+      return data;
     },
-    {
-      onSuccess: (data) => {
-        return data;
-      },
-      retry: 0,
-    }
-  );
+    retry: 0,
+  });
 };
 
 export const useMonthlyArticlesOnClick = (params) => {
   return useQuery({
-    queryKey: ["monthlyArticles", params],
-    queryFn: () => token && monthlyArticles(params),
-    enabled: false,
+    queryKey: ["getMonthlyArticlesOnClick", params],
+    queryFn: () => token && getMonthlyArticles(params),
     onSuccess: (data) => {
       return data;
     },
+    enabled: false,
     retry: 0,
   });
 };

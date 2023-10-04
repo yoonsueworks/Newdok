@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { userLogin, handleLoginErrors } from "service/api/user";
+import { postLogin, handleLoginErrors } from "service/api/user";
 import LocalStorage from "../../public/utils/LocalStorage";
 import API from "../../config";
 
@@ -13,7 +13,7 @@ export const usePostLogin = (params) => {
   return useMutation({
     mutationKey: ["login", params],
     mutationFn: async (params) => {
-      const data = await userLogin(params);
+      const data = await postLogin(params);
       return data;
     },
   });

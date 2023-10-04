@@ -54,7 +54,7 @@ const ModifyInterest = () => {
   };
 
   const submitBtnCondition =
-    userInterests.length < 3 || userInterests === prevInterests;
+    userInterests?.length < 3 || userInterests === prevInterests;
 
   return (
     <div className="pb-16 w-full h-full">
@@ -90,7 +90,7 @@ const ModifyInterest = () => {
                       key={interest.id}
                       id={interest.id}
                       className={`p-4 h-14 rounded-2xl single-16-m flex justify-center items-center cursor-pointer transition-colors duration-300 ${
-                        userInterests.includes(interest.id)
+                        userInterests?.includes(interest.id)
                           ? "bg-purple-400 text-white hover:bg-purple-500 active:bg-purple-800 selectedchip-border"
                           : "bg-white text-neutralgray-900 input-border hover:bg-purple-50 active:bg-purple-100"
                       }`}
