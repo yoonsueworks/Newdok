@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import MessageModal from "shared/MessageModal";
 import InputLabel from "shared/InputLabel";
 
-import { useAuthSms, useCheckPhoneNumber_2 } from "service/hooks/user";
+import { useAuthSms, useCheckPhoneNumber } from "service/hooks/user";
 import { phoneTextElement, phoneErrorMessage } from "constants/join";
 
 const PhoneForm = () => {
@@ -32,7 +32,7 @@ const PhoneForm = () => {
   const [code, setCode] = useState(null);
 
   const authorizeSms = useAuthSms();
-  const checkPhoneNumber = useCheckPhoneNumber_2(phoneNumber);
+  const checkPhoneNumber = useCheckPhoneNumber(phoneNumber);
 
   const timeout = seconds === 0;
   const authChecked = Number(authNumber) !== code;
@@ -169,7 +169,6 @@ const PhoneForm = () => {
         </div>
         {isPhoneAuthRequested && (
           <div className="flex flex-col gap-y-2">
-
             <InputLabel htmlFor="authorization" text="인증 번호" />
             <div
               className={`flex rounded-lg p-4 justify-between items-center input-border focus-within:inputFocused-border 
