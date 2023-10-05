@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { userDatasAtom } from "service/atoms/atoms";
 import { useNewsletterBrand } from "service/hooks/newsletters";
 
 import BrandArticles from "components/pages/brandHome/BrandArticles";
@@ -7,6 +9,7 @@ import BrandInfo from "components/pages/brandHome/BrandInfo";
 
 import MessageModal from "shared/MessageModal";
 import Background2 from "shared/Background2";
+import ToastPopUp from "shared/ToastPopUp";
 import Loading from "shared/Loading";
 import Nav from "shared/Nav";
 
@@ -15,9 +18,15 @@ import CloseIcon from "icons/close_off.svg";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import LocalStorage from "public/utils/LocalStorage";
 
+
+
 const BrandHome = () => {
+  const [userDatas] = useRecoilState(userDatasAtom);
+
   const [open, setOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isToastVisible, setIsToastVisible] = useState(false);
+
   const router = useRouter();
   const pathBrandId = router.asPath.split("/")[2];
   const { data } = useNewsletterBrand(pathBrandId);
@@ -50,6 +59,13 @@ const BrandHome = () => {
     }
   };
 
+  const handleSubscribeClick = () => {
+    window.navigator.clipboard.writeText(userDatas.subscribeEmail);
+    setOpen(true);
+    setIsToastVisible(true);
+    setTimeout(() => setIsToastVisible(false), 1500);
+  };
+
   return (
     <>
       {data ? (
@@ -57,7 +73,7 @@ const BrandHome = () => {
           <div className="w-full h-full bg-purple-700 flex flex-col justify-between">
             <BrandInfo
               data={data}
-              setOpen={setOpen}
+              setOpen={handleSubscribeClick}
               controlModal={setIsModalOpen}
             />
             <BrandArticles data={data.brandArticleList} />
@@ -69,23 +85,38 @@ const BrandHome = () => {
             onDismiss={() => setOpen(false)}
             snapPoints={({ maxHeight }) => [0.9 * maxHeight]}
           >
-            <div className="flex justify-between p-2.5 items-center">
-              <div className="w-7.5 h-7.5 flex justify-center items-center bg-white shrink-0">
-                <CloseIcon width="24" height="24" stroke="white" fill="white" />
+            <div>
+              <div className="relative">
+                <div className="flex justify-between p-2.5 items-center elevation-1-bottom z-1 ">
+                  <div className="w-7.5 h-7.5 flex justify-center items-center bg-white shrink-0">
+                    <CloseIcon
+                      width="24"
+                      height="24"
+                      stroke="white"
+                      fill="white"
+                    />
+                  </div>
+                  <div className="single-20-b">{data.brandName} 구독하기</div>
+                  <button
+                    className="w-7.5 h-7.5 flex justify-center items-center p-1.5"
+                    onClick={() => setOpen(false)}
+                  >
+                    <CloseIcon width="24" height="24" />
+                  </button>
+                </div>
+                <div className="absolute w-full">
+                  <ToastPopUp
+                    toastMessage="mailCopied"
+                    isVisible={isToastVisible}
+                  />
+                </div>
               </div>
-              <div className="single-20-b">{data.brandName} 구독하기</div>
-              <button
-                className="w-7.5 h-7.5 flex justify-center items-center p-1.5"
-                onClick={() => setOpen(false)}
-              >
-                <CloseIcon width="24" height="24" />
-              </button>
+              <iframe
+                src={data.subscribeUrl}
+                width="100%"
+                height="800px"
+              ></iframe>
             </div>
-            <iframe
-              src={data.subscribeUrl}
-              width="100%"
-              height="800px"
-            ></iframe>
           </BottomSheet>
           <MessageModal
             isOpen={isModalOpen}

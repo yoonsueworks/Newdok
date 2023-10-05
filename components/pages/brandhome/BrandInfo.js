@@ -1,13 +1,9 @@
 import Image from "next/image";
-
-import { useContext } from "react";
 import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
-import { GlobalContext } from "../../../pages/_app";
 
 import BrandInfoBar from "shared/BrandInfoBar";
 import Tags from "shared/Tags";
-
 import TimeIcon from "icons/time_off.svg";
 
 const BrandInfo = ({ data, setOpen, controlModal }) => {
@@ -23,14 +19,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
     subscribeUrl,
   } = data;
 
-  const { setToastPopUp, setToastMessage } = useContext(GlobalContext);
   const [userDatas] = useRecoilState(userDatasAtom);
-
-  const copyClipboard = () => {
-    window.navigator.clipboard.writeText(userDatas.subscribeEmail);
-    setToastPopUp();
-    setToastMessage("mailCopied");
-  };
 
   const containerCSS = "w-full h-fit grid py-8 px-5 gap-y-6";
   const infosCSS = "grid gap-y-5";
@@ -54,8 +43,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
     }
     // authorized
     if (userDatas?.nickname) {
-      setOpen(true);
-      copyClipboard();
+      setOpen();
     }
   };
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { userDatasAtom, userResearchAtom } from "service/atoms/atoms";
+import { userDatasAtom, userResearchAtom,infoChangeSuccessAtom } from "service/atoms/atoms";
 import { useModifyIndustry } from "service/hooks/user";
 import LocalStorage from "public/utils/LocalStorage";
 
@@ -13,6 +13,10 @@ const ModifyIndustry = () => {
   const router = useRouter();
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
   const [userResearch, setUserResearch] = useRecoilState(userResearchAtom);
+  const [infoChangeSuccess, setInfoChangeSuccess] =
+    useRecoilState(infoChangeSuccessAtom);
+
+
 
   const { mutate } = useModifyIndustry();
 
@@ -23,6 +27,7 @@ const ModifyIndustry = () => {
       onSuccess: (data) => {
         setUserDatas(data);
         LocalStorage.setItem("NDuserDatas", data);
+        setInfoChangeSuccess("industryChanged")
         router.push("/userPage/myInfo");
       },
       onError: () => {

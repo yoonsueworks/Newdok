@@ -29,6 +29,13 @@ export const browseOptionsAtom = atom({
   },
 });
 
+
+export const infoChangeSuccessAtom = atom({
+  key: "infoChangeSuccessAtom",
+  default: "",
+});
+
+
 export const userResearchAtom = atom({
   key: "userResearchAtom",
   default: { industryId: null, interests: [] },

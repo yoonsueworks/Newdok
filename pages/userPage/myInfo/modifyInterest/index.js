@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { userDatasAtom } from "service/atoms/atoms";
+import { userDatasAtom,infoChangeSuccessAtom } from "service/atoms/atoms";
 
 import Background2 from "shared/Background2";
 import AppBar from "shared/AppBar";
@@ -12,6 +12,8 @@ import { interests } from "constants/interests";
 const ModifyInterest = () => {
   const router = useRouter();
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
+  const [, setInfoChangeSuccess] = useRecoilState(infoChangeSuccessAtom);
+
   const prevInterests = userDatas?.interests?.map(
     (interest) => interest.interestId
   );
@@ -39,7 +41,7 @@ const ModifyInterest = () => {
     const result = await modifyInterests.mutateAsync(form);
     if (result) {
       setUserDatas(result);
-      alert("관심사 변경이 완료되었습니다.");
+      setInfoChangeSuccess("interestChanged");
       router.push("/userPage/myInfo");
     }
     if (!result) {
