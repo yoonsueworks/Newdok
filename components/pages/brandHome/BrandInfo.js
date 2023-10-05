@@ -8,7 +8,7 @@ import { GlobalContext } from "../../../pages/_app";
 import BrandInfoBar from "shared/BrandInfoBar";
 import Tags from "shared/Tags";
 
-import CheckIcon from "icons/check_off.svg";
+import TimeIcon from "icons/time_off.svg";
 
 const BrandInfo = ({ data, setOpen, controlModal }) => {
   const {
@@ -44,6 +44,11 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
   const clickSubscribeBtn = () => {
     // unAuthorized
     if (!userDatas?.nickname) {
+      controlModal(true);
+      return;
+    }
+    // authorized & subscribed
+    if (isSubscribed === "CHECK") {
       controlModal(true);
       return;
     }
@@ -85,7 +90,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
               <div>
                 <h6 className={h6titleCSS}>{brandName}</h6>
                 <div className={dateCSS}>
-                  <CheckIcon width="16" height="16" stroke="#171414" />
+                  <TimeIcon width="16" height="16" stroke="#171414" />
                   {publicationCycle}
                 </div>
               </div>
