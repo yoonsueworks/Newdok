@@ -8,8 +8,10 @@ import Background from "shared/Background";
 import AppBar from "shared/AppBar";
 
 import LocalStorage from "public/utils/LocalStorage";
+import { useRecoilState } from "recoil";
 import { phoneTextElement, phoneErrorMessage } from "constants/join";
 import { useAuthSms, useResetPhoneNumber } from "service/hooks/user";
+import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
 
 const Phone = () => {
   const { register, handleSubmit, watch } = useForm();
@@ -30,6 +32,9 @@ const Phone = () => {
   const authorizeSms = useAuthSms();
   const resetPhoneNumber = useResetPhoneNumber();
   const router = useRouter();
+
+  const [userDatas] = useRecoilState(userDatasAtom);
+  const [, setInfoChangeSuccess] = useRecoilState(infoChangeSuccessAtom);
 
   /* 조건 제어 : input border, error */
   const conditionControl = {
@@ -56,7 +61,14 @@ const Phone = () => {
   /* 코드 일치 시 제출 활성화, 변경 요청 */
   const onSubmit = async () => {
     await resetPhoneNumber.mutateAsync(form);
-    if (resetPhoneNumber.isError) router.push("/userPage/myAccount");
+    if (resetPhoneNumber.isSuccess) {
+      router.push("/userPage/myAccount");
+      setInfoChangeSuccess("phoneNumberChanged");
+    }
+    if (resetPhoneNumber.isError) {
+      router.push("/userPage/myAccount"); 
+      setInfoChangeSuccess("phoneNumberFailed");
+    };
     // TODO: toastify
   };
 
@@ -73,8 +85,8 @@ const Phone = () => {
   };
 
   useEffect(() => {
-    const userDatas = JSON.parse(LocalStorage.getItem("NDuserDatas"));
     setPhoneNumber(userDatas.phoneNumber);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

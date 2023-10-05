@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useRecoilValue } from "recoil";
-import { userDatasAtom } from "service/atoms/atoms";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
 
-import Background from "shared/Background";
+import Background2 from "shared/Background2";
+import ToastPopUp from "shared/ToastPopUp";
 import SettingIcon from "icons/setting_off.svg";
 import AppBar from "shared/AppBar";
 
@@ -11,12 +13,15 @@ import { interests } from "constants/interests";
 
 const MyInfo = () => {
   const router = useRouter();
+  const [isToastVisible, setIsToastVisible] = useState(false);
   const userDatas = useRecoilValue(userDatasAtom);
+  const [infoChangeSuccess, setInfoChangeSuccess] = useRecoilState(
+    infoChangeSuccessAtom
+  );
   const { nickname, industryId } = userDatas;
 
   const interestInputCondition =
-    !userDatas.interests ||
-    userDatas.interests.length === 0;
+    !userDatas.interests || userDatas.interests.length === 0;
 
   const MyInfoInputs = [
     {
@@ -42,6 +47,17 @@ const MyInfo = () => {
     },
   ];
 
+  /* 요청 성공 시 infoChangeSuccess 변화에 따라 토스트 팝업 노출 */
+  useEffect(() => {
+    if (infoChangeSuccess) {
+      setIsToastVisible(true);
+      setTimeout(() => {
+        setIsToastVisible(false);
+        setInfoChangeSuccess("");
+      }, 1500);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -56,62 +72,68 @@ const MyInfo = () => {
           />
         </div>
       </div>
-      <Background>
-        <div className="w-full h-full pt-24 pb-14 flex flex-col gap-y-8">
-          <div className="multiple-24-b">
-            등록하신 정보에 맞춰
-            <br />
-            뉴스레터를 추천해 드려요.
-          </div>
-          <div className="w-full flex flex-col gap-y-4">
-            {MyInfoInputs.map((userInfo) => {
-              return (
-                <div
-                  key={userInfo.id}
-                  className="w-full flex flex-col gap-y-2 flex-wrap"
-                >
-                  <div className="single-14-m text-purple-700">
-                    {userInfo.title}
-                  </div>
+      <Background2>
+        <div className="w-full h-full pt-24 pb-14 flex flex-col justify-between">
+          <div className="flex flex-col gap-y-8 px-5">
+            <div className="multiple-24-b">
+              등록하신 정보에 맞춰
+              <br />
+              뉴스레터를 추천해 드려요.
+            </div>
+            <div className="w-full flex flex-col gap-y-4">
+              {MyInfoInputs.map((userInfo) => {
+                return (
                   <div
-                    className={`flex  ${
-                      userInfo.id <= 2 ||
-                      interestInputCondition
-                        ? "justify-between gap-x-2"
-                        : "flex-wrap gap-x-2.5 gap-y-2.5"
-                    }`}
+                    key={userInfo.id}
+                    className="w-full flex flex-col gap-y-2 flex-wrap"
                   >
-                    {userInfo.id <= 2 ||
-                    interestInputCondition ? (
-                      <input
-                        className="w-full contentbox-border p-4 single-16-m text-neutralgray-900"
-                        readOnly
-                        placeholder={userInfo.placeholder}
-                        value={userInfo.value}
-                      />
-                    ) : (
-                      userDatas.interests.map((interest) => {
-                        return (
-                          <Interest
-                            interest={interest}
-                            key={interest.interestId}
-                          />
-                        );
-                      })
-                    )}
-                    <button
-                      onClick={() => router.push(userInfo.routeTo)}
-                      className="p-4 bg-purple-700 rounded-xl hover:bg-purple-500 active:bg-purple-800 transition-colors duration-300"
+                    <div className="single-14-m text-purple-700">
+                      {userInfo.title}
+                    </div>
+                    <div
+                      className={`flex  ${
+                        userInfo.id <= 2 || interestInputCondition
+                          ? "justify-between gap-x-2"
+                          : "flex-wrap gap-x-2.5 gap-y-2.5"
+                      }`}
                     >
-                      <SettingIcon width="24" height="24" fill="white" />
-                    </button>
+                      {userInfo.id <= 2 || interestInputCondition ? (
+                        <input
+                          className="w-full contentbox-border p-4 single-16-m text-neutralgray-900"
+                          readOnly
+                          placeholder={userInfo.placeholder}
+                          value={userInfo.value}
+                        />
+                      ) : (
+                        userDatas.interests.map((interest) => {
+                          return (
+                            <Interest
+                              interest={interest}
+                              key={interest.interestId}
+                            />
+                          );
+                        })
+                      )}
+                      <button
+                        onClick={() => router.push(userInfo.routeTo)}
+                        className="p-4 bg-purple-700 rounded-xl hover:bg-purple-500 active:bg-purple-800 transition-colors duration-300"
+                      >
+                        <SettingIcon width="24" height="24" fill="white" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+          </div>
+          <div className="w-full">
+            <ToastPopUp
+              isVisible={isToastVisible}
+              toastMessage={infoChangeSuccess}
+            />
           </div>
         </div>
-      </Background>
+      </Background2>
     </>
   );
 };

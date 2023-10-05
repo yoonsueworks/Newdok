@@ -2,7 +2,7 @@ import AppBar from "shared/AppBar";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { userDatasAtom } from "service/atoms/atoms";
+import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
 import { useModifyNickname } from "service/hooks/user";
 
 import Background2 from "shared/Background2";
@@ -15,6 +15,7 @@ const ModifyNickname = () => {
   const router = useRouter();
   const { mutate, data, error } = useModifyNickname();
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
+  const [, setInfoChangeSuccess] = useRecoilState(infoChangeSuccessAtom);
 
   const { register, handleSubmit, watch } = useForm({});
   const nickname = watch("nickname");
@@ -27,6 +28,7 @@ const ModifyNickname = () => {
         LocalStorage.setItem("NDnickname", nickname);
         LocalStorage.setItem("NDuserDatas", data);
         router.push("/userPage/myInfo");
+        setInfoChangeSuccess("nicknameChanged");
       },
       onError: (error) => {
         if (error.response.status === 401) {
