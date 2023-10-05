@@ -6,7 +6,7 @@ export const useDateEdit = (utcTimestamp) => {
 
   const date = new Date(utcTimestamp);
   const daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-  const dayOfWeek = daysOfWeek[date.getDay()];
+  const dayOfWeek = daysOfWeek[date.getDay() - 1];
 
   const morNoonTime =
     publishTime[0] / 1 <= 12 ? publishTime[0] / 1 : publishTime[0] / 1 - 12;
