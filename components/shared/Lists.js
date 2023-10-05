@@ -44,7 +44,8 @@ function ListedItem({ datas }) {
               <h4 className="single-18-sb">{brandName}</h4>
               {isSubscribed === "CONFIRMED" && (
                 <div className="p-1 bg-purple-400 rounded-full w-fit h-fit text-white single-12-sb">
-                  구독 중
+                  {/* 구독 중 */}
+                  {isSubscribed}
                 </div>
               )}
             </div>

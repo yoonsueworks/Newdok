@@ -13,6 +13,7 @@ import Nav from "shared/Nav";
 import CloseIcon from "icons/close_off.svg";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
+import LocalStorage from "public/utils/LocalStorage";
 
 const BrandHome = () => {
   const [open, setOpen] = useState(false);
@@ -21,9 +22,32 @@ const BrandHome = () => {
   const pathBrandId = router.asPath.split("/")[2];
   const { data } = useNewsletterBrand(pathBrandId);
 
+  const isLoggedIn = LocalStorage.getItem("NDtoken");
+
+  const notAuthInfoMessage = [
+    "구독 신청은 회원가입이 필요해요.",
+    "회원가입 후 간편하게 뉴스레터를 받아 보세요!",
+  ];
+  const authInfoMessage = [
+    "구독 신청을 완료하기 위해 구독 확인 메일의 확인 버튼을 눌러주세요.",
+    <div
+      key={3}
+      className="bg-neutralgray-50 rounded-lg w-full h-fit multiple-16-m text-neutralgray-900 p-4 mt-4"
+    >
+      구독 확인 메일은 홈에서 확인할 수 있어요.
+    </div>,
+  ];
+
   const handleModalClose = () => {
     setIsModalOpen(false);
-    router.push("/join");
+    if (isLoggedIn) {
+      router.push("/home");
+      return;
+    }
+    if (isLoggedIn) {
+      router.push("/join");
+      return;
+    }
   };
 
   return (
@@ -66,11 +90,8 @@ const BrandHome = () => {
           <MessageModal
             isOpen={isModalOpen}
             controlModal={setIsModalOpen}
-            title="회원가입 안내"
-            info={[
-              "구독 신청은 회원가입이 필요해요.",
-              "회원가입 후 간편하게 뉴스레터를 받아 보세요!",
-            ]}
+            title={isLoggedIn ? "구독 확인하기" : "회원가입 안내"}
+            info={isLoggedIn ? authInfoMessage : notAuthInfoMessage}
             button={
               <div className="mt-5">
                 <button
@@ -78,7 +99,7 @@ const BrandHome = () => {
                   onClick={handleModalClose}
                   className="w-full h-fit p-4 rounded-xl single-20-b hover:bg-purple-500 active:bg-purple-800 text-white bg-purple-700 transition-colors duration-300"
                 >
-                  회원가입
+                  {isLoggedIn ? "메일 확인하기" : "회원가입"}
                 </button>
               </div>
             }
