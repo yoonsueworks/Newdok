@@ -11,7 +11,7 @@ const Received = () => {
     (item) => item.publishDate === activeDate
   )[0];
   const articleLength = receivedArticleList?.length;
-  
+
   return (
     <>
       <Background>

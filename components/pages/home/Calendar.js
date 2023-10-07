@@ -1,29 +1,36 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { CalendarContext } from "../../../context/CalendarContext";
 
 import Calendar from "react-calendar";
 import PrevIcon from "icons/arrow_left_off.svg";
 import NextIcon from "icons/arrow_right_off.svg";
 
-import { useMonthlyArticlesOnClick } from "service/hooks/newsletters";
+import {
+  useMonthlyArticlesOnClickPrev,
+  useMonthlyArticlesOnClickNext,
+} from "service/hooks/newsletters";
 
 export default function ReactCalendar() {
-  const [value, onChange] = useState(new Date());
   const {
     monthlyArticles,
     fullActiveDate,
     setActiveDate,
+    setMonthlyArticles,
     setFullActiveDate,
     setCalendarOpen,
     activeMonth,
     setActiveMonth,
-    setMonthlyArticles,
   } = useContext(CalendarContext);
   const today = new Date();
   const todayDate = today.getDate();
-  const { refetch, data, isLoading } = useMonthlyArticlesOnClick(
-    activeMonth - 1
+  const [value, onChange] = useState(new Date());
+  const [articles, setArticles] = useState(monthlyArticles);
+  const [monthLabel, setMonthLabel] = useState(
+    `${today.getUTCFullYear()}년 ${today.getMonth() + 1}월`
   );
+
+  const prevRequest = useMonthlyArticlesOnClickPrev(activeMonth - 1);
+  const nextRequest = useMonthlyArticlesOnClickNext(activeMonth + 1);
 
   const isDateDisabled = (date) => {
     const currentDate = date.getDate();
@@ -32,22 +39,27 @@ export default function ReactCalendar() {
 
   const clickPrevBtn = async () => {
     const newActiveMonth = activeMonth - 1;
-    await refetchData(newActiveMonth);
+    const { data } = await prevRequest.refetch(newActiveMonth);
+    setArticles(data);
+    setMonthlyArticles(data);
+    setActiveMonth(newActiveMonth);
+    setMonthLabel(`${today.getUTCFullYear()}년 ${newActiveMonth}월`);
   };
 
   const clickNextBtn = async () => {
     const newActiveMonth = activeMonth + 1;
-    await refetchData(newActiveMonth);
+    const { data } = await nextRequest.refetch(newActiveMonth);
+    setArticles(data);
+    setMonthlyArticles(data);
+    setActiveMonth(newActiveMonth);
+    setMonthLabel(`${today.getUTCFullYear()}년 ${newActiveMonth}월`);
   };
 
-  const refetchData = async (newActiveMonth) => {
-    // const { refetch, data } = await refetch(newActiveMonth);
-    // setMonthlyArticles(data);
-    setActiveMonth(newActiveMonth);
+  const customNavigationLabel = ({ view }) => {
+    return `${monthLabel}`;
   };
 
   return (
-    // TODO: next, prev 버튼 클릭 시 요청 보내기
     <div className="calendar-container z-30 absolute bg-white">
       <Calendar
         onChange={(e) => {
@@ -69,18 +81,18 @@ export default function ReactCalendar() {
         formatDay={(locale, date) =>
           date.toLocaleString("en", { day: "numeric" })
         }
-        // nextLabel={<NextIcon onClick={clickNextBtn} />}
-        nextLabel={<NextIcon id="next" onClick={() => console.log("요청")} />}
-        // prevLabel={<PrevIcon id="prev" onClick={clickPrevBtn} />}
-        prevLabel={<PrevIcon onClick={() => console.log("요청")} />}
+        nextLabel={<NextIcon onClick={clickNextBtn} />}
+        prevLabel={<PrevIcon id="prev" onClick={clickPrevBtn} />}
         next2Label={null}
         prev2Label={null}
         tileDisabled={({ date }) => isDateDisabled(date)}
         tileContent={({ date }) => {
-          return <TileContent date={date} monthlyArticles={monthlyArticles} />;
+          return <TileContent date={date} monthlyArticles={articles} />;
         }}
+        navigationLabel={customNavigationLabel}
         showNeighboringMonth={false}
         minDetail="month"
+        maxDetail="month"
         className="react-calendar"
       />
     </div>
@@ -89,8 +101,6 @@ export default function ReactCalendar() {
 
 const TileContent = ({ date, monthlyArticles }) => {
   const currentDate = Number(String(date).split(" ")[2]);
-  // 달 따라서 값 확인하기 일치하지 않는 경우 안하기
-
   const hasMatchingArticles = monthlyArticles?.some((el) => {
     return el.publishDate === currentDate && el.receivedArticleList?.length > 0;
   });
