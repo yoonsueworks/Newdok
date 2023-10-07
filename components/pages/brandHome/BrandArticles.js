@@ -4,13 +4,10 @@ import BrandArticle from "./BrandArticle";
 const BrandArticles = ({ data }) => {
   const router = useRouter();
   const containerCSS = "mt-9 py-8 bg-purple-700 h-full px-5";
-  const titleCSS =
-    "text-white single-18-b bg-purple-700 w-full pt-8 px-5 pb-4 absolute";
   const listCSS = "flex flex-col gap-y-2.5";
 
   return (
     <div className="w-full h-full">
-      <div className={titleCSS}>지난 아티클 보기</div>
       <div className={containerCSS}>
         <div className="overflow-scroll">
           {data.length > 0 ? (
