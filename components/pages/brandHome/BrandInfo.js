@@ -48,7 +48,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
   };
 
   return (
-    <div className="bg-beige-100 absolute top-0 sticky">
+    <div className="bg-beige-100 absolute top-0 z-1">
       <BrandInfoBar name={data.brandName} />
       <div className={containerCSS}>
         <div className={infosCSS}>
@@ -98,9 +98,6 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
             ? "구독 확인하기"
             : "구독 중"}
         </button>
-      </div>
-      <div className="text-white single-18-b bg-purple-700 w-full pt-8 px-5 pb-4">
-        지난 아티클 보기
       </div>
     </div>
   );
