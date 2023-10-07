@@ -99,6 +99,9 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
             : "구독 중"}
         </button>
       </div>
+      <div className="text-white single-18-b bg-purple-700 w-full pt-8 px-5 pb-4">
+        지난 아티클 보기
+      </div>
     </div>
   );
 };
