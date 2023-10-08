@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import { CalendarContext } from "context/CalendarContext";
 
 import Articles from "components/pages/home/Articles";
@@ -7,6 +8,7 @@ import ToolBar from "components/pages/home/ToolBar";
 import Loading from "shared/Loading";
 
 import { useMonthlyArticles } from "service/hooks/newsletters";
+import { monthlyArticlesAtom, monthValueAtom } from "service/atoms/atoms";
 
 const Home = () => {
   const [calendarOpen, setCalendarOpen] = useState(false);
@@ -14,10 +16,17 @@ const Home = () => {
   const [activeDate, setActiveDate] = useState("");
   const [fullActiveDate, setFullActiveDate] = useState("");
   const [activeMonth, setActiveMonth] = useState("");
-  const [monthlyArticles, setMonthlyArticles] = useState([]);
+  const [activeStartDate, setActiveStartDate] = useState(new Date());
+  // 외부 함수에서 value 갱신 시 activeStartDate 또한 업데이트 해야 라이브러리에서 값 갱신 됨 (activeStartDate, onActiveStartDateChange)
+  const [monthlyArticles, setMonthlyArticles] =
+    useRecoilState(monthlyArticlesAtom);
+  const [value, onChange] = useRecoilState(monthValueAtom);
   const date = new Date();
   const thisMonth = date.getMonth() + 1;
-  const { refetch, data, isLoading } = useMonthlyArticles(thisMonth);
+  const { data, isLoading } = useMonthlyArticles(thisMonth);
+  const [monthLabel, setMonthLabel] = useState(
+    `${date.getUTCFullYear()}년 ${date.getMonth() + 1}월`
+  );
 
   const calendarContextValues = {
     setCalendarOpen: setCalendarOpen,
@@ -30,9 +39,13 @@ const Home = () => {
     setFullActiveDate: setFullActiveDate,
     activeMonth: activeMonth,
     setActiveMonth: setActiveMonth,
-    setMonthlyArticles: setMonthlyArticles,
-    monthlyArticles: data,
+    monthLabel: monthLabel,
+    setMonthLabel: setMonthLabel,
+    activeStartDate:activeStartDate,
+setActiveStartDate:setActiveStartDate,
   };
+
+
 
   useEffect(() => {
     const currentDate = new Date().toLocaleDateString(undefined, {
@@ -45,9 +58,12 @@ const Home = () => {
     setFullActiveDate(currentDate);
     setActiveDate(new Date().getDate());
     setActiveMonth(new Date().getMonth() + 1);
-    setMonthlyArticles(data);
+    if (data) {
+      setMonthlyArticles(data);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [data]);
+  
 
   return (
     <>

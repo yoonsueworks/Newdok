@@ -10,12 +10,14 @@ import Nav from "shared/Nav";
 import GNB from "shared/GNB";
 import Layout from "./Layout";
 import LocalStorage from "public/utils/LocalStorage";
+
 import "styles/globals.css";
 
 export const GlobalContext = createContext(null);
 
 function MyApp({ Component, pageProps }) {
   const [hydrated, setHydrated] = React.useState(false);
+
   const queryClient = new QueryClient();
   const router = useRouter();
 
