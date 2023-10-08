@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
 import { useResearchQuery } from "public/hooks/UserResearch";
@@ -31,6 +31,17 @@ export default function UserResearch() {
     1: (
       <div className="w-full">
         <Image
+          src="/images/signup_300_2.png"
+          alt="뉴독 일러스트"
+          width={500}
+          height={500}
+          loading="lazy"
+        />
+      </div>
+    ),
+    2: (
+      <div className="w-full">
+        <Image
           src="/images/signup_300.png"
           alt="사용자 정보와 관련된 일러스트"
           width={500}
@@ -39,9 +50,9 @@ export default function UserResearch() {
         />
       </div>
     ),
-    2: <IndustryDropDown />,
-    3: <Interest />,
-    4: <ArrivedBrands />,
+    3: <IndustryDropDown />,
+    4: <Interest />,
+    5: <ArrivedBrands />,
   };
 
   const handleProgress = (condition) => {
