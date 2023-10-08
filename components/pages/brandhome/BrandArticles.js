@@ -3,8 +3,7 @@ import BrandArticle from "./BrandArticle";
 
 const BrandArticles = ({ data }) => {
   const router = useRouter();
-  const containerCSS = "mt-9 py-8 bg-purple-700 h-full px-5";
-
+  const containerCSS = "pb-8 bg-purple-700 h-full px-5";
   const listCSS = "flex flex-col gap-y-2.5";
 
   return (
