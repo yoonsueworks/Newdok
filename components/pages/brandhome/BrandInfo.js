@@ -24,7 +24,6 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
   const containerCSS = "w-full h-fit grid py-8 px-5 gap-y-6";
   const infosCSS = "grid gap-y-5";
   const profileCSS = "flex gap-x-5";
-
   const profileWrapperCSS = "flex flex-col gap-y-4";
   const h6titleCSS = "single-24-b text-purple-700 mb-2";
   const dateCSS = "single-14-m flex items-center gap-x-1";
