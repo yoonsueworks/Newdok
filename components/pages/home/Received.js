@@ -1,16 +1,21 @@
 import { useContext } from "react";
+import { useRecoilState } from "recoil";
+import { monthlyArticlesAtom } from "service/atoms/atoms";
 import { CalendarContext } from "context/CalendarContext";
 
 import Background from "shared/Background";
 import Article from "./Article";
 
 const Received = () => {
-  const { monthlyArticles, activeDate } = useContext(CalendarContext);
+  const [monthlyArticles, setMonthlyArticles] =
+    useRecoilState(monthlyArticlesAtom);
+  const { activeDate } = useContext(CalendarContext);
 
   const { receivedUnread, receivedArticleList } = monthlyArticles?.filter(
     (item) => item.publishDate === activeDate
   )[0];
   const articleLength = receivedArticleList?.length;
+
 
   return (
     <>

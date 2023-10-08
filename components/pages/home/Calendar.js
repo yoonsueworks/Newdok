@@ -1,4 +1,6 @@
 import React, { useState, useContext } from "react";
+import { useRecoilState } from "recoil";
+import { monthlyArticlesAtom, monthValueAtom } from "service/atoms/atoms";
 import { CalendarContext } from "../../../context/CalendarContext";
 
 import Calendar from "react-calendar";
@@ -12,29 +14,51 @@ import {
 
 export default function ReactCalendar() {
   const {
-    monthlyArticles,
     fullActiveDate,
     setActiveDate,
-    setMonthlyArticles,
+    activeDate,
     setFullActiveDate,
     setCalendarOpen,
     activeMonth,
     setActiveMonth,
+    monthLabel,
+    setMonthLabel,
+    activeStartDate,
+    setActiveStartDate,
   } = useContext(CalendarContext);
   const today = new Date();
   const todayDate = today.getDate();
-  const [value, onChange] = useState(new Date());
+
+  const [monthlyArticles, setMonthlyArticles] =
+    useRecoilState(monthlyArticlesAtom);
+  const [value, onChange] = useRecoilState(monthValueAtom);
   const [articles, setArticles] = useState(monthlyArticles);
-  const [monthLabel, setMonthLabel] = useState(
-    `${today.getUTCFullYear()}년 ${today.getMonth() + 1}월`
-  );
 
   const prevRequest = useMonthlyArticlesOnClickPrev(activeMonth - 1);
   const nextRequest = useMonthlyArticlesOnClickNext(activeMonth + 1);
 
   const isDateDisabled = (date) => {
     const currentDate = date.getDate();
-    return currentDate > todayDate;
+    const currentMonth = today.getMonth() + 1;
+    if (activeMonth < currentMonth) return false;
+    if (activeMonth > currentMonth) return true;
+    if (activeMonth === currentMonth) return currentDate > todayDate;
+  };
+
+  const calculateMonth = (active) => {
+    const currentDate = new Date(today.getFullYear(), activeMonth - 1);
+    const currentDates = currentDate.toLocaleDateString().split(".");
+    const previousMonth = new Date(
+      currentDates[0] / 1,
+      currentDates[1] / 1 - 2,
+      todayDate
+    );
+    const nextMonth = new Date(
+      currentDates[0] / 1,
+      currentDates[1] / 1 + 1,
+      todayDate
+    );
+    return active === "prev" ? previousMonth : nextMonth;
   };
 
   const clickPrevBtn = async () => {
@@ -44,6 +68,7 @@ export default function ReactCalendar() {
     setMonthlyArticles(data);
     setActiveMonth(newActiveMonth);
     setMonthLabel(`${today.getUTCFullYear()}년 ${newActiveMonth}월`);
+    onChange(calculateMonth("prev"));
   };
 
   const clickNextBtn = async () => {
@@ -53,10 +78,20 @@ export default function ReactCalendar() {
     setMonthlyArticles(data);
     setActiveMonth(newActiveMonth);
     setMonthLabel(`${today.getUTCFullYear()}년 ${newActiveMonth}월`);
+    onChange(calculateMonth("next"));
   };
 
   const customNavigationLabel = ({ view }) => {
     return `${monthLabel}`;
+  };
+
+  const tileClassName = ({ date }) => {
+    // Add your logic here to determine if a date should have a special CSS class
+    // For example, you can check if it's the currently selected date and return a class accordingly
+    if (date.getDate() === activeDate) {
+      return "selected-date"; // Apply a CSS class for the selected date
+    }
+    return ""; // No special class for other dates
   };
 
   return (
@@ -74,26 +109,32 @@ export default function ReactCalendar() {
             })
           );
           onChange();
+          console.log("Clicked date:", e);
         }}
         value={value}
-        locale="ko-KO"
-        calendarType="US"
+        // 외부 함수에서 value 갱신 시 activeStartDate 또한 업데이트 해야 라이브러리에서 값 갱신 됨 (activeStartDate, onActiveStartDateChange)
+        activeStartDate={activeStartDate}
+        onActiveStartDateChange={({ activeStartDate }) =>
+          setActiveStartDate(activeStartDate)
+        }
         formatDay={(locale, date) =>
           date.toLocaleString("en", { day: "numeric" })
         }
+        locale="ko-KO"
+        calendarType="US"
+        minDetail="month"
+        maxDetail="month"
         nextLabel={<NextIcon onClick={clickNextBtn} />}
         prevLabel={<PrevIcon id="prev" onClick={clickPrevBtn} />}
         next2Label={null}
         prev2Label={null}
         tileDisabled={({ date }) => isDateDisabled(date)}
+        tileClassName={tileClassName}
         tileContent={({ date }) => {
           return <TileContent date={date} monthlyArticles={articles} />;
         }}
-        navigationLabel={customNavigationLabel}
         showNeighboringMonth={false}
-        minDetail="month"
-        maxDetail="month"
-        className="react-calendar"
+        navigationLabel={customNavigationLabel}
       />
     </div>
   );
