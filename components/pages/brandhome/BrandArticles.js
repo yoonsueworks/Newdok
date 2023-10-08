@@ -7,7 +7,7 @@ const BrandArticles = ({ data }) => {
   const listCSS = "flex flex-col gap-y-2.5";
 
   return (
-    <div className="w-full h-full z-0">
+    <div className="w-full h-full">
       <div className={containerCSS}>
         <div className="overflow-scroll">
           {data.length > 0 ? (

@@ -24,7 +24,6 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
   const containerCSS = "w-full h-fit grid py-8 px-5 gap-y-6";
   const infosCSS = "grid gap-y-5";
   const profileCSS = "flex gap-x-5";
-
   const profileWrapperCSS = "flex flex-col gap-y-4";
   const h6titleCSS = "single-24-b text-purple-700 mb-2";
   const dateCSS = "single-14-m flex items-center gap-x-1";
@@ -48,7 +47,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
   };
 
   return (
-    <div className="bg-beige-100 absolute top-0 z-1">
+    <div className="bg-beige-100 sticky top-0">
       <BrandInfoBar name={data.brandName} />
       <div className={containerCSS}>
         <div className={infosCSS}>
@@ -98,6 +97,9 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
             ? "구독 확인하기"
             : "구독 중"}
         </button>
+      </div>
+      <div className="text-white single-18-b bg-purple-700 w-full pt-8 px-5 pb-4">
+        지난 아티클 보기
       </div>
     </div>
   );

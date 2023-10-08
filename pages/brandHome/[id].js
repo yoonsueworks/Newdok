@@ -75,7 +75,6 @@ const BrandHome = () => {
               controlModal={setIsModalOpen}
             />
             <BrandArticles data={data.brandArticleList} />
-
             <Nav />
           </div>
           <BottomSheet
