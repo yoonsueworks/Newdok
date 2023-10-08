@@ -18,8 +18,6 @@ import CloseIcon from "icons/close_off.svg";
 import { BottomSheet } from "react-spring-bottom-sheet";
 import LocalStorage from "public/utils/LocalStorage";
 
-
-
 const BrandHome = () => {
   const [userDatas] = useRecoilState(userDatasAtom);
 
@@ -70,7 +68,7 @@ const BrandHome = () => {
     <>
       {data ? (
         <>
-          <div className="w-full h-full bg-purple-700 flex flex-col justify-between">
+          <div className="w-full h-full bg-purple-700 flex flex-col justify-between relative">
             <BrandInfo
               data={data}
               setOpen={handleSubscribeClick}
