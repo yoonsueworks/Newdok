@@ -4,7 +4,6 @@ import { industries } from "constants/industries";
 import { days } from "constants/days";
 
 const Filter = ({ text, type, id, func, browseOptions }) => {
-  if (id === 1 && type === "industries") return;
   const isSelected =
     browseOptions.findIndex((element) => element === id.toString()) !== -1;
 
