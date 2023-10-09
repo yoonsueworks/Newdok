@@ -71,13 +71,21 @@ const Buttons = ({ infos }) => {
             onboarding="관심사를"
           />
         </div>
-      ) : (
+      ) : infos?.id === 1 ? (
         <Button
           mode="ghost"
           text="다음"
           state={true}
           size="big"
           func={clickNext}
+        />
+      ) : (
+        <Button
+          mode="ghost"
+          text="다음"
+          state={true}
+          size="big"
+          func={handleGoToMain}
         />
       )}
     </div>

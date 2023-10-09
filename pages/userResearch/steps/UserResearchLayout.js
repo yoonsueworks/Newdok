@@ -15,13 +15,16 @@ export default function UserResearchLayout({ infos, comp }) {
 
   const conditionFirstPage = page === 1;
   const conditionSecondPage = page === 2;
+  const conditionFifthPage = page === 5;
 
   return (
     <div className="w-full h-full pb-14 flex flex-col content-between">
       <div className="flex flex-col h-full bg-white">
         <div className="elevation-1-bottom">
           <AppBar
-            iconl={!conditionFirstPage && !conditionSecondPage}
+            iconl={
+              !conditionFirstPage && !conditionSecondPage && !conditionFifthPage
+            }
             textl={""}
             iconr={conditionFirstPage || conditionSecondPage}
             func={handlePageBtn}
