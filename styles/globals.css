@@ -50,6 +50,10 @@ body {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
   background-color: #ffffff;
   -webkit-overflow-scrolling: touch;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 html {
@@ -64,11 +68,7 @@ html {
 #buttonPlacementMain {
   row-gap: 166px;
 }
-/* 
-#onboardIndustryBox {
-  height: 300px;
-}
- */
+
 #onboardInterestsBox {
   height: 420px;
 }
@@ -135,17 +135,15 @@ a {
 * {
   box-sizing: border-box;
   transition: 0.3s;
-
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
 }
 
 input,
 textarea {
   outline: none;
+  -moz-user-select: auto;
+  -webkit-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
 }
 
 body::-webkit-scrollbar {
