@@ -55,9 +55,11 @@ const MessageModal = ({
                   className="single-24-b text-neutralgray-900 mb-5 flex justify-between"
                 >
                   <div>{title}</div>
-                  <button type="button" onClick={() => controlModal(false)}>
-                    <CloseIcon width="24" height="24" />
-                  </button>
+                  {title !== "중복 계정 안내" && (
+                    <button type="button" onClick={() => controlModal(false)}>
+                      <CloseIcon width="24" height="24" />
+                    </button>
+                  )}
                 </Dialog.Title>
                 <div className="mt-2">
                   <div className="multiple-18-sb text-neutralgray-900">
