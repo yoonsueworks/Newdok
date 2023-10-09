@@ -35,7 +35,7 @@ const MyInfo = () => {
       id: 2,
       title: "종사 산업",
       placeholder: "산업군을 설정해 주세요.",
-      value: industryId ? industries[industryId - 2].name : "",
+      value: industryId ? industries[industryId - 1].name : "",
       routeTo: router.asPath + "/modifyIndustry",
     },
     {

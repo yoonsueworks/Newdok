@@ -38,7 +38,6 @@ export default function IndustryDropDown() {
       addUserResearch();
     } else {
       setUserResearch({ ...userResearch, industryId: selected.id });
-      console.log(userDatas);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
@@ -59,8 +58,7 @@ export default function IndustryDropDown() {
               ${selected === false ? labelCSS : selectedCSS} `}
             >
               {userDatas.industryId && !selected
-                ? industries[userDatas.industryId - 2].name +
-                  userDatas.industryId
+                ? industries[userDatas.industryId - 1].name
                 : selected
                 ? selected.name
                 : "산업군 선택"}
