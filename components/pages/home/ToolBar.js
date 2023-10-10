@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CalendarContext } from "../../../context/CalendarContext";
 
 import Calendar from "icons/calendar_off.svg";
@@ -6,13 +6,7 @@ import Close from "icons/close_off.svg";
 
 const ToolBar = () => {
   const value = useContext(CalendarContext);
-  const {
-    dateLocaleKr,
-    calendarOpen,
-    setCalendarOpen,
-    fullActiveDate,
-    activeDate,
-  } = value;
+  const { dateLocaleKr, calendarOpen, setCalendarOpen, fullActiveDate } = value;
 
   const handleCalendar = () => {
     setCalendarOpen((prev) => !prev);

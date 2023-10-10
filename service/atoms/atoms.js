@@ -24,8 +24,14 @@ export const monthlyArticlesAtom = atom({
   key: "monthlyArticlesAtom",
   default: [],
 });
+
 export const monthValueAtom = atom({
   key: "monthValueAtom",
+  default: new Date(),
+});
+
+export const dateValueAtom = atom({
+  key: "dateValueAtom",
   default: new Date(),
 });
 
