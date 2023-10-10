@@ -8,7 +8,11 @@ import ToolBar from "components/pages/home/ToolBar";
 import Loading from "shared/Loading";
 
 import { useMonthlyArticles } from "service/hooks/newsletters";
-import { monthlyArticlesAtom, monthValueAtom } from "service/atoms/atoms";
+import {
+  monthlyArticlesAtom,
+  monthValueAtom,
+  dateValueAtom,
+} from "service/atoms/atoms";
 
 const Home = () => {
   const [calendarOpen, setCalendarOpen] = useState(false);
@@ -21,6 +25,8 @@ const Home = () => {
   const [monthlyArticles, setMonthlyArticles] =
     useRecoilState(monthlyArticlesAtom);
   const [value, onChange] = useRecoilState(monthValueAtom);
+  const [dateValue, setDateValue] = useRecoilState(dateValueAtom);
+
   const date = new Date();
   const thisMonth = date.getMonth() + 1;
   const { data, isLoading } = useMonthlyArticles(thisMonth);
@@ -41,29 +47,46 @@ const Home = () => {
     setActiveMonth: setActiveMonth,
     monthLabel: monthLabel,
     setMonthLabel: setMonthLabel,
-    activeStartDate:activeStartDate,
-setActiveStartDate:setActiveStartDate,
+    activeStartDate: activeStartDate,
+    setActiveStartDate: setActiveStartDate,
   };
 
-
-
   useEffect(() => {
-    const currentDate = new Date().toLocaleDateString(undefined, {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-    setDateLocaleKr(currentDate);
-    setFullActiveDate(currentDate);
-    setActiveDate(new Date().getDate());
-    setActiveMonth(new Date().getMonth() + 1);
-    if (data) {
-      setMonthlyArticles(data);
+    // 과거 날짜의 뉴스레터 확인하고 다시 돌아왔을 경우
+    if (String(dateValue).substring(0, 15) !== String(date).substring(0, 15)) {
+      const savedDate = new Date(String(dateValue));
+      const currentDate = savedDate.toLocaleDateString(undefined, {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      setDateLocaleKr(currentDate);
+      setFullActiveDate(currentDate);
+      setActiveDate(savedDate.getDate());
+      setActiveMonth(savedDate.getMonth() + 1);
+      setMonthLabel(
+        `${savedDate.getUTCFullYear()}년 ${savedDate.getMonth() + 1}월`
+      );
+      setActiveStartDate(new Date(String(dateValue)));
+    } else {
+      // 오늘 날짜, 최초 홈에 접근
+      const currentDate = new Date().toLocaleDateString(undefined, {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      setDateLocaleKr(currentDate);
+      setFullActiveDate(currentDate);
+      setActiveDate(new Date().getDate());
+      setActiveMonth(new Date().getMonth() + 1);
+      if (data) {
+        setMonthlyArticles(data);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
-  
 
   return (
     <>

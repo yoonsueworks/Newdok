@@ -88,6 +88,7 @@ export const modifyIndustry = async (params) => {
       headers: headers,
     }
   );
+  console.log(headers);
   return data;
 };
 

@@ -95,12 +95,12 @@
 
 .selected-date abbr {
   border-radius: 50%;
-  color: black;
-  border: 1.5px solid #674188;
+  color: white;
+  background: #9362a9;
 }
 
 .react-calendar__tile--now abbr {
   border-radius: 50%;
-  color: white;
-  background: #9362a9;
+  color: black;
+  border: 1.5px solid #674188;
 }
