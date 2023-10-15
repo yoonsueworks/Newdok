@@ -135,7 +135,6 @@ export default function ReactCalendar() {
               day: "numeric",
             })
           );
-
           setDateValue(e); //페이지 이동 시 특정 날짜 상태 유지
           onChange();
         }}
@@ -143,7 +142,12 @@ export default function ReactCalendar() {
         // 외부 함수에서 value 갱신 시 activeStartDate 또한 업데이트 해야 라이브러리에서 값 갱신 됨 (activeStartDate, onActiveStartDateChange)
         activeStartDate={activeStartDate}
         onActiveStartDateChange={({ activeStartDate }) => {
-          if (futureMonthCondition) return;
+          const clickedMonth = activeStartDate.getTime();
+          const timeGap = clickedMonth - today.getTime();
+
+          if (timeGap > 0) {
+            return;
+          }
           // 미래 월로 이동 금지
           setActiveStartDate(activeStartDate);
         }}
