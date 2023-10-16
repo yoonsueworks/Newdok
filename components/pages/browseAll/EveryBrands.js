@@ -55,11 +55,12 @@ export default function EveryBrands() {
           <div className="mt-16 pt-8 grid gap-y-8 h-fit">
             {["인기순", "최신 등록순"].map((el, id) => {
               return (
-                <li 
-                key={id}
+                <li
+                  key={id}
                   className="px-5 list-none flex justify-between items-center"
                 >
-                    <span className="single-18-m">{el}</span>
+                  <span className="single-18-m">{el}</span>
+                  <div className="w-[19px] h-[19px] shrink-0 flex items-center">
                     <input
                       type="radio"
                       name="order"
@@ -67,7 +68,7 @@ export default function EveryBrands() {
                       onChange={(e) => setSortOption(e.target.value)}
                       checked={sortOption === el}
                     />
-
+                  </div>
                 </li>
               );
             })}
