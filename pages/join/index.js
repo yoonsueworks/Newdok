@@ -43,9 +43,9 @@ const description = {
 };
 
 const forms = {
-  1: <PhoneForm />,
-  2: <IdForm />,
-  3: <PswdForm />,
-  4: <PersonalInfoForm />,
+  // 1: <PhoneForm />,
+  // 2: <IdForm />,
+  // 3: <PswdForm />,
+  1: <PersonalInfoForm />,
   5: <Terms />,
 };
