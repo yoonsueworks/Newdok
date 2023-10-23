@@ -64,6 +64,13 @@ const SignIn = () => {
     }
   };
 
+  const handleEnterKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onSubmit();
+    }
+  };
+
   return (
     <>
       <AppBar
@@ -84,6 +91,7 @@ const SignIn = () => {
           <form
             className="flex flex-col justify-between gap-y-4 w-full h-full"
             onSubmit={handleSubmit(onSubmit)}
+            onKeyPress={handleEnterKeyPress}
           >
             <div className="flex flex-col gap-y-4">
               <input
