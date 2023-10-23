@@ -93,14 +93,15 @@
   /* Add any other styling you want for disabled dates */
 }
 
-.selected-date abbr {
-  border-radius: 50%;
-  color: white;
-  background: #9362a9;
-}
-
 .react-calendar__tile--now abbr {
   border-radius: 50%;
   color: black;
   border: 1.5px solid #674188;
+}
+
+.selected-date abbr {
+  border-radius: 50%;
+  color: white;
+  background: #9362a9;
+  border: 0px;
 }
