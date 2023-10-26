@@ -72,6 +72,8 @@ export const useMonthlyArticles = (params) => {
       return data;
     },
     retry: 0,
+    refetchInterval: 60 * 2 * 1000,
+    staleTime: 60 * 2 * 1000,
   });
 };
 
