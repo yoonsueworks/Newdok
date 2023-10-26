@@ -23,8 +23,6 @@ export const useNewslettersRecommended = () => {
       return error;
     },
     retry: 0,
-    refetchInterval: 60 * 1000,
-    staleTime: 60 * 1000,
   });
 };
 
