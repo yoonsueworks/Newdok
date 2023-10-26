@@ -23,6 +23,8 @@ export const useNewslettersRecommended = () => {
       return error;
     },
     retry: 0,
+    staleTime: Infinity,
+    cacheTime: Infinity,
   });
 };
 
