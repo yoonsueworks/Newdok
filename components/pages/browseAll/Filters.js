@@ -14,10 +14,10 @@ const Filter = ({ text, type, id, func, browseOptions }) => {
       name={type}
       className={`${type === "days" ? "w-full" : "w-fit"} ${
         isSelected || id === browseOptions[0]
-          ? "bg-purple-400 selectedchip-border text-white"
-          : "bg-white input-border text-neutralgray-900"
+          ? "bg-purple-400 selectedchip-border text-white hover:bg-purple-600 hover:text-white hover:selectedchip-border"
+          : "bg-white input-border text-neutralgray-900 hover:bg-purple-50 hover:text-neutralgray-900 hover:input-border"
       }
-      p-4 rounded-2xl text-center whitespace-nowrap hover:bg-purple-50 hover:input-border hover:text-neutralgray-900 transition-colors duration-300 cursor-pointer `}
+      p-4 rounded-2xl text-center whitespace-nowrap transition-colors duration-300 cursor-pointer `}
       onClick={func}
     >
       {text}
