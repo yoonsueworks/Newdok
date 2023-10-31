@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { browseOptionsAtom } from "service/atoms/atoms";
 
@@ -7,8 +8,13 @@ import AlignIcon from "icons/align_off.svg";
 import Refresh from "icons/refresh_off.svg";
 
 const FilterChips = ({ func, sortOption }) => {
+  const [rotation, setRotation] = useState(0);
   const [browseOptions, setBrowseOptions] = useRecoilState(browseOptionsAtom);
   const resetBrowseOptions = useResetRecoilState(browseOptionsAtom);
+
+  const clickRefresh = () => {
+    setRotation(rotation + 360);
+  };
 
   return (
     <div className="flex justify-between items-center pb-4 gap-x-4">
@@ -51,11 +57,22 @@ const FilterChips = ({ func, sortOption }) => {
       </div>
       <button
         className="flex gap-x-1 items-center single-14-sb cursor-pointer shrink-0"
-        onClick={resetBrowseOptions}
+        onClick={() => {
+          clickRefresh();
+          resetBrowseOptions();
+        }}
         type="button"
       >
         <span>초기화</span>
-        <Refresh width="20" height="20" />
+        <Refresh
+          width="20"
+          height="20"
+          style={{
+            transform: `rotate(${rotation}deg)`,
+          }}
+          className={`transition-all duration-500`}
+          onClick={clickRefresh}
+        />
       </button>
     </div>
   );
