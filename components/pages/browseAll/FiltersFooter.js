@@ -8,7 +8,7 @@ const FiltersFooter = ({ onApply }) => {
 
   const [rotation, setRotation] = useState(0);
   const clickRefresh = () => {
-    setRotation(rotation + 360); // Set rotation to 360 degrees
+    setRotation(rotation + 360);
   };
 
   return (

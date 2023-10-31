@@ -13,7 +13,7 @@ const FilterChips = ({ func, sortOption }) => {
   const resetBrowseOptions = useResetRecoilState(browseOptionsAtom);
 
   const clickRefresh = () => {
-    setRotation(rotation + 360); // Set rotation to 360 degrees
+    setRotation(rotation + 360);
   };
 
   return (
