@@ -40,6 +40,7 @@ const PhoneForm = () => {
 
   /* 페이지 제출 */
   const onSubmit = (data) => {
+    console.log(authNumber, code);
     if (!authChecked) {
       const { authorization, ...formData } = data;
       setUserInfo({ ...userInfo, ...formData });
@@ -53,7 +54,7 @@ const PhoneForm = () => {
   const authorize = async () => {
     const form = { phoneNumber: phoneNumber };
     const result = await authorizeSms.mutateAsync(form);
-    if (authorizeSms.data) setCode(result?.code);
+    if (result) setCode(result?.code);
   };
 
   /* 휴대폰 번호 중복 체크 */
