@@ -53,7 +53,7 @@ const PhoneForm = () => {
   const authorize = async () => {
     const form = { phoneNumber: phoneNumber };
     const result = await authorizeSms.mutateAsync(form);
-    if (authorizeSms.data) setCode(result?.code);
+    if (result) setCode(result?.code);
   };
 
   /* 휴대폰 번호 중복 체크 */
@@ -216,9 +216,14 @@ const PhoneForm = () => {
               )}
             </div>
             <p
-              className={` single-12-m ${
-                timeout ? "text-error" : "text-neutralgray-500"
+              className={`single-12-m  ${
+                authNumber.length < 1
+                  ? "text-neutralgray-500"
+                  : timeout || authChecked
+                  ? "text-error"
+                  : "text-neutralgray-500"
               }`}
+              //
             >
               {validatePhoneNumber()}
             </p>
