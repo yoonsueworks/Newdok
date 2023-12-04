@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { userDatasAtom,infoChangeSuccessAtom } from "service/atoms/atoms";
+import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
 
 import PasswordChild from "shared/PasswordChild";
 import Background from "shared/Background";
@@ -63,6 +63,7 @@ const Pswd = () => {
   const onSubmit = async () => {
     await mutate({
       loginId: userDatas.loginId,
+      prevPassword: prevPswd,
       password: pswd,
     });
     if (data) {
