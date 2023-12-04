@@ -40,7 +40,6 @@ const PhoneForm = () => {
 
   /* 페이지 제출 */
   const onSubmit = (data) => {
-    console.log(authNumber, code);
     if (!authChecked) {
       const { authorization, ...formData } = data;
       setUserInfo({ ...userInfo, ...formData });
@@ -217,9 +216,14 @@ const PhoneForm = () => {
               )}
             </div>
             <p
-              className={` single-12-m ${
-                timeout ? "text-error" : "text-neutralgray-500"
+              className={`single-12-m  ${
+                authNumber.length < 1
+                  ? "text-neutralgray-500"
+                  : timeout || authChecked
+                  ? "text-error"
+                  : "text-neutralgray-500"
               }`}
+              //
             >
               {validatePhoneNumber()}
             </p>
