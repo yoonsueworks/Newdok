@@ -32,7 +32,7 @@ export const getCheckPhoneNumber = async (params) => {
 
 /* SMS 인증번호 전송 */
 export const postAuthSms = async (params) => {
-  const { data } = await axios.post("/users/auth/SMS", params);
+  const { data } = await axios.post("/auth/SMS", params);
   return data;
 };
 
