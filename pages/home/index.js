@@ -30,9 +30,6 @@ const Home = () => {
   const date = new Date();
   const thisMonth = date.getMonth() + 1;
   const { data, isLoading } = useMonthlyArticles(thisMonth);
-  const [monthLabel, setMonthLabel] = useState(
-    `${date.getUTCFullYear()}년 ${date.getMonth() + 1}월`
-  );
 
   const calendarContextValues = {
     setCalendarOpen: setCalendarOpen,
@@ -45,8 +42,6 @@ const Home = () => {
     setFullActiveDate: setFullActiveDate,
     activeMonth: activeMonth,
     setActiveMonth: setActiveMonth,
-    monthLabel: monthLabel,
-    setMonthLabel: setMonthLabel,
     activeStartDate: activeStartDate,
     setActiveStartDate: setActiveStartDate,
   };
