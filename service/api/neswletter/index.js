@@ -17,7 +17,7 @@ export const getRecommend = async () => {
 };
 
 /* 뉴스레터 브랜드 조회 (회원) */
-export const newsletterBrand = async (params) => {
+export const getNewsletterBrand = async (params) => {
   const { data } = await axios.get(`/newsletters/${params}`, {
     headers: headers,
   });
@@ -26,13 +26,13 @@ export const newsletterBrand = async (params) => {
 };
 
 /* 뉴스레터 브랜드 조회 (비회원) */
-export const newsletterBrandUnAuth = async (params) => {
+export const getNewsletterBrandUnauth = async (params) => {
   const { data } = await axios.get(`/newsletters/${params}/non-member`);
   return data;
 };
 
 /* 모든 뉴스레터 브랜드 조회 : 둘러보기 */
-export const newsletterAll = async (params) => {
+export const getNewsletterAll = async (params) => {
   const { data } = await axios.get(`/newsletters?${params}`, {
     headers: headers,
   });
@@ -40,13 +40,13 @@ export const newsletterAll = async (params) => {
 };
 
 /* 모든 뉴스레터 브랜드 조회 : 둘러보기(비회원) */
-export const newsletterAllUnAuth = async (params) => {
+export const getNewsletterAllUnauth = async (params) => {
   const { data } = await axios.get(`/newsletters/non-member?${params}`);
   return data;
 };
 
 /* 뉴스레터 브랜드 조회 (회원) */
-export const articleRead = async (params) => {
+export const getBrandRead = async (params) => {
   const { data } = await axios.get(`/articles/${params}`, {
     headers: headers,
   });
@@ -54,7 +54,7 @@ export const articleRead = async (params) => {
 };
 
 /* 월간 데이터 조회 (회원) */
-export const monthlyArticles = async (params) => {
+export const getMonthlyArticles = async (params) => {
   const { data } = await axios.get(`articles?publicationMonth=${params}`, {
     headers: headers,
   });

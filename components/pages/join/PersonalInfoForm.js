@@ -1,9 +1,10 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { SignUpContext } from "context/SignUpContext";
 import { Listbox } from "@headlessui/react";
 
 import InputLabel from "shared/InputLabel";
+import ArrowIcon from "icons/arrow_down_off.svg";
 import { nicknameErrorMessage } from "constants/join";
 
 const PersonalInfoForm = () => {
@@ -14,6 +15,8 @@ const PersonalInfoForm = () => {
   const [nickname, setNickname] = useState("");
   const [birthYear, setBirthYear] = useState(null);
   const [isGenderSelected, setIsGenderSelected] = useState(false);
+  const [clickArea, setClickArea] = useState(false);
+  const birthYearRef = useRef(null);
 
   const onSubmit = (data) => {
     const birthYearAsString = data.birthYear.toString();
@@ -44,6 +47,24 @@ const PersonalInfoForm = () => {
     setIsGenderSelected(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    // 출생연도 리스트박스 영역 밖에서 클릭 시 발생하는 이벤트
+    function handleFocus(e) {
+      if (
+        birthYearRef.current.id === "listbox" &&
+        !birthYearRef.current.contains(e.target)
+      ) {
+        setClickArea(false);
+      }
+    }
+
+    // 마우스 없으면 이벤트리스너 삭제
+    document.addEventListener("mouseup", handleFocus);
+    return () => {
+      document.removeEventListener("mouseup", handleFocus);
+    };
+  }, [birthYearRef]);
 
   return (
     <form
@@ -90,39 +111,45 @@ const PersonalInfoForm = () => {
             control={control}
             defaultValue={"선택"}
             rules={{
-              required: "Please select your birth year",
+              required: "출생연도를 입력해주세요.",
             }}
             render={({ field }) => (
               <Listbox
+                ref={birthYearRef}
                 value={field.value}
                 onChange={(value) => {
                   field.onChange(value);
+                  setClickArea(false);
                 }}
               >
-                <div className="relative input-border rounded-lg focus:inputFocused-border">
-                  <Listbox.Button className="text-gray-900 w-full text-left shadow-sm focus:inputFocused-border rounded-lg">
-                    <span className="block truncate single-16-m p-4">
+                <div
+                  className={`relative focus:inputFocused-border  ${
+                    clickArea
+                      ? "rounded-t-lg inputFocused-border"
+                      : "rounded-lg input-border "
+                  } `}
+                  id="listbox"
+                >
+                  <Listbox.Button
+                    className={`text-gray-900 w-full text-left focus:inputFocused-border p-4 flex justify-between items-center ${
+                      clickArea ? "rounded-t-lg" : "rounded-lg"
+                    }`}
+                    onClick={() => setClickArea((prev) => !prev)}
+                  >
+                    <span className="block truncate single-16-m">
                       {field.value ? field.value : "선택"}
                     </span>
-                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                      <svg
-                        className="h-5 w-5 text-gray-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
+                    <span className="items-center pointer-events-none">
+                      <ArrowIcon
+                        className={`${
+                          clickArea ? "rotate-180" : ""
+                        } transition-transform duration-500`}
+                      />
                     </span>
                   </Listbox.Button>
                   <Listbox.Options
                     as="ul"
-                    className="absolute w-full bg-white max-h-60 rounded-b-lg py-1 text-base overflow-auto border-2 border-purple-200 sm:text-sm"
+                    className="absolute w-full bg-white max-h-60 rounded-b-lg py-1 text-base overflow-auto border-r-2 border-b-2 border-l-2 border-purple-200 sm:text-sm"
                   >
                     {Array.from({ length: 66 }, (_, index) => (
                       <Listbox.Option
@@ -145,28 +172,6 @@ const PersonalInfoForm = () => {
                             >
                               {2010 - index}
                             </span>
-                            {selected && (
-                              <span
-                                className={`${
-                                  active ? "text-blue-600" : "text-blue-600"
-                                }
-                            absolute inset-y-0 left-0 flex items-center pl-3`}
-                              >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-5 w-5"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </span>
-                            )}
                           </>
                         )}
                       </Listbox.Option>

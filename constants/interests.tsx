@@ -1,7 +1,7 @@
 export const interests = [
   {
     id: 1,
-    name: "경제・시사・상식",
+    name: "경제・시사",
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ export const interests = [
   },
   {
     id: 14,
-    name: "미술・디자인・전시",
+    name: "미술・디자인",
   },
   {
     id: 15,
@@ -61,7 +61,7 @@ export const interests = [
   },
   {
     id: 16,
-    name: "게임",
+    name: "게임・스포츠",
   },
   {
     id: 17,

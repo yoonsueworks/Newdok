@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { userDatasAtom } from "service/atoms/atoms";
+import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
 
 import PasswordChild from "shared/PasswordChild";
 import Background from "shared/Background";
@@ -18,6 +18,7 @@ const Pswd = () => {
   const router = useRouter();
   const { register, watch, handleSubmit } = useForm();
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
+  const [, setInfoChangeSuccess] = useRecoilState(infoChangeSuccessAtom);
   const { data, isLoading, isError, mutate, error } = useResetPswd();
 
   const [prevPswd, setPrevPswd] = useState(null);
@@ -62,9 +63,13 @@ const Pswd = () => {
   const onSubmit = async () => {
     await mutate({
       loginId: userDatas.loginId,
+      prevPassword: prevPswd,
       password: pswd,
     });
-    if (data) router.push("/userPage/myAccount");
+    if (data) {
+      router.push("/userPage/myAccount");
+      setInfoChangeSuccess("pwChanged");
+    }
     if (error) alert("에러가 발생하였습니다.");
   };
 

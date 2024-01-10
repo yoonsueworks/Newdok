@@ -1,4 +1,4 @@
-import { useArticleRead } from "service/hooks/newsletters";
+import { useBrandRead } from "service/hooks/newsletters";
 import { useRouter } from "next/router";
 
 import ArticleTitle from "components/pages/articleRead/ArticleTitle";
@@ -10,7 +10,7 @@ import Nav from "shared/Nav";
 const ArticleRead = () => {
   const router = useRouter();
   const pathBrandId = router.asPath.split("/")[2];
-  const { data } = useArticleRead(pathBrandId);
+  const { data } = useBrandRead(pathBrandId);
 
   return (
     <div className="w-full h-full relative">

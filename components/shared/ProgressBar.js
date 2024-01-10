@@ -7,7 +7,7 @@ export default function ProgressBar({ type }) {
   const [style, setStyle] = useState({});
   const { progress } = useContext(GlobalContext);
   const pathnameResearch = "userResearch";
-  const percent = (progress - 1) * 25; // Calculate percent based on progress
+  const percent = (progress - 2) * 25;
 
   useEffect(() => {
     if (type === pathnameResearch) {

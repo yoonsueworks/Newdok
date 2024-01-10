@@ -60,12 +60,15 @@ export default function EveryBrands() {
                   className="px-5 list-none flex justify-between items-center"
                 >
                   <span className="single-18-m">{el}</span>
-                  <input
-                    type="radio"
-                    name="order"
-                    value={el}
-                    onChange={(e) => setSortOption(e.target.value)}
-                  />
+                  <div className="w-[19px] h-[19px] shrink-0 flex items-center">
+                    <input
+                      type="radio"
+                      name="order"
+                      value={el}
+                      onChange={(e) => setSortOption(e.target.value)}
+                      checked={sortOption === el}
+                    />
+                  </div>
                 </li>
               );
             })}

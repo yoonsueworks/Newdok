@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useCheckPhoneNumber_2 } from "service/hooks/user";
+import { useCheckPhoneNumber } from "service/hooks/user";
 import MessageModal from "shared/MessageModal";
 import InputLabel from "shared/InputLabel";
 import Found from "./FindId/FoundId";
@@ -12,7 +12,7 @@ const FindId = () => {
   const phoneNumber = watch("phoneNumber");
 
   const { data, refetch, isLoading, isError } =
-    useCheckPhoneNumber_2(phoneNumber);
+    useCheckPhoneNumber(phoneNumber);
 
   const onSubmit = () => {
     refetch();

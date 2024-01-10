@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
 
 import CloseIcon from "icons/close_off.svg";
+import ToastPopUp from "shared/ToastPopUp";
 import BrandList from "./BrandList";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
@@ -12,6 +13,7 @@ import { BottomSheet } from "react-spring-bottom-sheet";
 const ArrivedBrands = () => {
   const [open, setOpen] = useState(false);
   const [clickedBrand, setCickedBrand] = useState({ brandName: "", id: "" });
+  const [isToastVisible, setIsToastVisible] = useState(false);
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
   const { responseData } = useContext(GlobalContext);
 
@@ -23,6 +25,8 @@ const ArrivedBrands = () => {
     window.navigator.clipboard.writeText(userDatas.subscribeEmail);
     setCickedBrand(filteredBrand);
     setOpen(true);
+    setIsToastVisible(true);
+    setTimeout(() => setIsToastVisible(false), 1500);
   };
 
   return (
@@ -47,6 +51,9 @@ const ArrivedBrands = () => {
           >
             <CloseIcon width="24" height="24" />
           </button>
+        </div>
+        <div className="absolute w-full">
+          <ToastPopUp toastMessage="mailCopied" isVisible={isToastVisible} />
         </div>
         <iframe
           src={clickedBrand.subscribeUrl}

@@ -85,17 +85,23 @@
 .react-calendar__tile--active abbr {
   /* active tile */
   border-radius: 50%;
-  background-color: #efe7f2;
-}
-
-.react-calendar__tile--now abbr {
-  border-radius: 50%;
-  color: white;
-  background: #9362a9;
 }
 
 .react-calendar .tile-content::disabled {
   opacity: 0.5; /* Adjust the opacity to your preference */
   pointer-events: none; /* Disable pointer events for disabled dates */
   /* Add any other styling you want for disabled dates */
+}
+
+.react-calendar__tile--now abbr {
+  border-radius: 50%;
+  color: black;
+  border: 1.5px solid #674188;
+}
+
+.selected-date abbr {
+  border-radius: 50%;
+  color: white;
+  background: #9362a9;
+  border: 0px;
 }

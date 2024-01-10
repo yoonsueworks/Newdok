@@ -20,6 +20,21 @@ export const browseAllPageAtom = atom({
   default: 1,
 });
 
+export const monthlyArticlesAtom = atom({
+  key: "monthlyArticlesAtom",
+  default: [],
+});
+
+export const monthValueAtom = atom({
+  key: "monthValueAtom",
+  default: new Date(),
+});
+
+export const dateValueAtom = atom({
+  key: "dateValueAtom",
+  default: new Date(),
+});
+
 export const browseOptionsAtom = atom({
   key: "browseOptionsAtom",
   default: {
@@ -27,6 +42,11 @@ export const browseOptionsAtom = atom({
     days: [],
     sortOption: "인기순",
   },
+});
+
+export const infoChangeSuccessAtom = atom({
+  key: "infoChangeSuccessAtom",
+  default: "",
 });
 
 export const userResearchAtom = atom({

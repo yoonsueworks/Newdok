@@ -1,14 +1,10 @@
 import Image from "next/image";
-
-import { useContext } from "react";
 import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
-import { GlobalContext } from "../../../pages/_app";
 
 import BrandInfoBar from "shared/BrandInfoBar";
 import Tags from "shared/Tags";
-
-import CheckIcon from "icons/check_off.svg";
+import TimeIcon from "icons/time_off.svg";
 
 const BrandInfo = ({ data, setOpen, controlModal }) => {
   const {
@@ -23,19 +19,11 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
     subscribeUrl,
   } = data;
 
-  const { setToastPopUp, setToastMessage } = useContext(GlobalContext);
   const [userDatas] = useRecoilState(userDatasAtom);
-
-  const copyClipboard = () => {
-    window.navigator.clipboard.writeText(userDatas.subscribeEmail);
-    setToastPopUp();
-    setToastMessage("mailCopied");
-  };
 
   const containerCSS = "w-full h-fit grid py-8 px-5 gap-y-6";
   const infosCSS = "grid gap-y-5";
   const profileCSS = "flex gap-x-5";
-
   const profileWrapperCSS = "flex flex-col gap-y-4";
   const h6titleCSS = "single-24-b text-purple-700 mb-2";
   const dateCSS = "single-14-m flex items-center gap-x-1";
@@ -47,15 +35,19 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
       controlModal(true);
       return;
     }
+    // authorized & subscribed
+    if (isSubscribed === "CHECK") {
+      controlModal(true);
+      return;
+    }
     // authorized
     if (userDatas?.nickname) {
-      setOpen(true);
-      copyClipboard();
+      setOpen();
     }
   };
 
   return (
-    <div className="bg-beige-100 absolute top-0 sticky">
+    <div className="bg-beige-100 sticky top-0">
       <BrandInfoBar name={data.brandName} />
       <div className={containerCSS}>
         <div className={infosCSS}>
@@ -85,7 +77,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
               <div>
                 <h6 className={h6titleCSS}>{brandName}</h6>
                 <div className={dateCSS}>
-                  <CheckIcon width="16" height="16" stroke="#171414" />
+                  <TimeIcon width="16" height="16" stroke="#171414" />
                   {publicationCycle}
                 </div>
               </div>
@@ -105,6 +97,9 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
             ? "구독 확인하기"
             : "구독 중"}
         </button>
+      </div>
+      <div className="text-white single-18-b bg-purple-700 w-full pt-8 px-5 pb-4">
+        지난 아티클 보기
       </div>
     </div>
   );

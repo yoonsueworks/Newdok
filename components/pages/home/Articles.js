@@ -1,17 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { CalendarContext } from "context/CalendarContext";
+import { useRecoilState } from "recoil";
+import { monthlyArticlesAtom } from "service/atoms/atoms";
 
 import UnAuthorized from "components/pages/home/UnAuthorized";
 import LocalStorage from "public/utils/LocalStorage";
 
+import { useUserSubscriptionList } from "service/hooks/user";
 import Arrivals from "./Arrivals";
 import Received from "./Received";
-
-import { useUserSubscriptionList } from "service/hooks/user";
 import NoSubscription from "./NoSubsciption";
 
 const Articles = () => {
-  const { monthlyArticles, activeDate, fullActiveDate, dateLocaleKr } =
+  const [monthlyArticles, setMonthlyArticles] =
+    useRecoilState(monthlyArticlesAtom);
+  const { activeDate, fullActiveDate, dateLocaleKr } =
     useContext(CalendarContext);
   const { data, isLoading, isError } = useUserSubscriptionList();
   const today = dateLocaleKr.split(" ")[3];
@@ -19,7 +22,7 @@ const Articles = () => {
 
   const articleLength = monthlyArticles?.filter(
     (item) => item.publishDate === activeDate
-  )[0].receivedArticleList?.length;
+  )[0]?.receivedArticleList?.length;
 
   useEffect(() => {
     const loadedToken = LocalStorage.getItem("NDtoken");
