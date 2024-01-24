@@ -2,7 +2,7 @@ import axios from "axios";
 
 const config = {
   baseURL:
-    process.env.NODE_ENV !== "develop"
+    process.env.NODE_ENV === "develop"
       ? "http://13.209.189.93"
       : "https://newdok.shop",
 };
