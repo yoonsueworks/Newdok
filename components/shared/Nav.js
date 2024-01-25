@@ -9,13 +9,10 @@ import MailBoxOff from "icons/mail_box_off.svg";
 import MailBoxOn from "icons/mail_box_on.svg";
 import ProfileOff from "icons/profile_off.svg";
 import ProfileOn from "icons/profile_on.svg";
-import LocalStorage from "public/utils/LocalStorage";
 
 const Nav = () => {
   const router = useRouter();
   const [page, setPage] = useState(null);
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
-  const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
 
   const hasBrowseAll = router.pathname === "/browseAll";
   const hasUserPage = router.pathname.includes("/userPage");

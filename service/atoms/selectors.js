@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { browseOptionsAtom } from "service/atoms/atoms";
+import { browseOptionsAtom, accessTokenAtom } from "service/atoms/atoms";
 
 export const browseOptionsQuerySelector = selector({
   key: "browseOptionsQuery",
@@ -16,5 +16,17 @@ export const browseOptionsQuerySelector = selector({
         ? "&day=" + browseOptions.days.join("&day=")
         : "";
     return orderQuery + industryQuery + dayQuery;
+  },
+});
+
+export const authSelector = selector({
+  key: "authSelector",
+  get: ({ get }) => {
+    const isUserAuthenticated = get(accessTokenAtom);
+    if (isUserAuthenticated) {
+      return true;
+    } else {
+      return false;
+    }
   },
 });
