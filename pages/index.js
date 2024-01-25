@@ -1,17 +1,15 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import LocalStorage from "public/utils/LocalStorage";
+import { useRecoilValue } from "recoil";
+import { authSelector } from "service/atoms/selectors";
 
 export default function Home() {
   const router = useRouter();
-  const token = LocalStorage.getItem("NDtoken");
+  const isAuthenticated = useRecoilValue(authSelector);
 
   useEffect(() => {
-    const checkUserToken = async () => {
-      await router.push(token ? "/home" : "/introduction");
-    };
-    setTimeout(() => checkUserToken(), 800);
+    router.push(isAuthenticated ? "/home" : "/introduction");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
