@@ -44,7 +44,6 @@ const Home = () => {
     setActiveMonth: setActiveMonth,
     activeStartDate: activeStartDate,
     setActiveStartDate: setActiveStartDate,
-    // setMonthLabel: setMonthLabel,
   };
 
   useEffect(() => {
@@ -61,9 +60,6 @@ const Home = () => {
       setFullActiveDate(currentDate);
       setActiveDate(savedDate.getDate());
       setActiveMonth(savedDate.getMonth() + 1);
-      // setMonthLabel(
-      //   `${savedDate.getUTCFullYear()}년 ${savedDate.getMonth() + 1}월`
-      // );
       setActiveStartDate(new Date(String(dateValue)));
     } else {
       // 오늘 날짜, 최초 홈에 접근
@@ -76,7 +72,6 @@ const Home = () => {
       setDateLocaleKr(currentDate);
       setFullActiveDate(currentDate);
       setActiveDate(new Date().getDate());
-      // setMonthLabel(`${date.getUTCFullYear()}년 ${date.getMonth() + 1}월`);
       setActiveMonth(new Date().getMonth() + 1);
       if (data) {
         setMonthlyArticles(data);
