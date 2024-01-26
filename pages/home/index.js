@@ -80,6 +80,7 @@ const Home = () => {
       setDateLocaleKr(currentDate);
       setFullActiveDate(currentDate);
       setActiveDate(new Date().getDate());
+      setMonthLabel(`${date.getUTCFullYear()}년 ${date.getMonth() + 1}월`);
       setActiveMonth(new Date().getMonth() + 1);
       if (data) {
         setMonthlyArticles(data);

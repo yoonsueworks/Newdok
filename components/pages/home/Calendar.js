@@ -106,7 +106,6 @@ export default function ReactCalendar() {
     );
 
     onChange(calculateMonth("next"));
-    // TODO: 버튼 눌렀을 때 연도 올라가고 내려가는거 수정
   };
 
   const customNavigationLabel = ({ view }) => {
