@@ -71,45 +71,30 @@ export default function ReactCalendar() {
     return active === "prev" ? previousMonth : nextMonth;
   };
 
+  const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const yearlyCondition = months.indexOf(activeMonth);
+
   // < 버튼 클릭 시
   const clickPrevBtn = async () => {
-    const prevYear = activeMonth > 1;
-    const newActiveMonth = prevYear ? activeMonth - 1 : 12;
+    const newActiveMonth = yearlyCondition === 1 ? 12 : activeMonth - 1;
     const { data } = await prevRequest.refetch(newActiveMonth);
     setArticles(data);
     setMonthlyArticles(data);
     setActiveMonth(newActiveMonth);
     setActiveDate(null); // 미리 선택된 날짜 없음
-    setMonthLabel(
-      `${
-        prevYear ? today.getUTCFullYear() : today.getUTCFullYear() - 1
-      }년 ${newActiveMonth}월`
-    );
     onChange(calculateMonth("prev"));
   };
 
   // > 버튼 클릭 시
   const clickNextBtn = async () => {
     if (futureMonthCondition) return;
-
-    const nextYear = activeMonth < 12;
-    const newActiveMonth = nextYear ? activeMonth + 1 : 1;
+    const newActiveMonth = yearlyCondition === 11 ? 1 : activeMonth + 1;
     const { data } = await nextRequest.refetch(newActiveMonth);
     setArticles(data);
     setMonthlyArticles(data);
     setActiveMonth(newActiveMonth);
     setActiveDate(null); // 미리 선택된 날짜 없음
-    setMonthLabel(
-      `${
-        nextYear ? activeStartDate.getUTCFullYear() : today.getUTCFullYear() + 1
-      }년 ${newActiveMonth}월`
-    );
-
     onChange(calculateMonth("next"));
-  };
-
-  const customNavigationLabel = ({ view }) => {
-    return `${monthLabel}`;
   };
 
   const tileClassName = ({ date }) => {
@@ -167,7 +152,6 @@ export default function ReactCalendar() {
           return <TileContent date={date} monthlyArticles={articles} />;
         }}
         showNeighboringMonth={false}
-        navigationLabel={customNavigationLabel}
       />
     </div>
   );
