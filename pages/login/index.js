@@ -71,15 +71,8 @@ const SignIn = () => {
   };
 
   return (
-    <>
-      <AppBar
-        iconl={true}
-        textl={""}
-        iconr={false}
-        func={handlePrevClick}
-        shadow={true}
-      />
-      <div className="w-full h-screen pb-14 flex flex-col justify-between px-5 pt-14 items-center">
+    <div className="w-full h-screen flex items-center justify-center">
+      <div className="w-full xl:w-[768px] xl:p-28 md:py-28 md:px-10 h-screen pb-14 flex flex-col justify-between items-center px-5 pt-14">
         <div className="flex flex-col gap-y-16 content-between items-center h-full w-full">
           <Image
             src="/images/logo_3_black.png"
@@ -88,7 +81,7 @@ const SignIn = () => {
             height="45"
           />
           <form
-            className="flex flex-col justify-between gap-y-4 w-full h-full"
+            className="flex flex-col w-full sm:justify-between md:justify-start xl:justify-start gap-y-8 w-full h-full"
             onSubmit={handleSubmit(onSubmit)}
             onKeyDown={handleEnterKeyPress}
           >
@@ -106,7 +99,7 @@ const SignIn = () => {
                 id="loginId"
                 onChange={(e) => handleUserInfo(e)}
               />
-              <div className="flex flex-col gap-y-2">
+              <div className="flex flex-col">
                 <div className="input-border flex w-full h-fit rounded-lg p-4 h-fit single-16-m text-neutralgray-900">
                   <input
                     {...register("password", {
@@ -127,18 +120,20 @@ const SignIn = () => {
                 </p>
               </div>
             </div>
-            <button
-              type="submit"
-              disabled={!userInfo.loginId || !userInfo.password}
-              className="h-fit p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-            >
-              로그인
-            </button>
+            <div className="h-fit w-full">
+              <button
+                type="submit"
+                disabled={!userInfo.loginId || !userInfo.password}
+                className="h-fit w-full p-5 mb-8 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
+              >
+                로그인
+              </button>
+              <BottomTextButtons />
+            </div>
           </form>
         </div>
-        <BottomTextButtons />
       </div>
-    </>
+    </div>
   );
 };
 
