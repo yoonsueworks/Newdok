@@ -3,15 +3,16 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 import { useRecoilState, useRecoilValue } from "recoil";
+import { accessTokenAtom, userDatasAtom } from "service/atoms/atoms";
+import { authSelector } from "service/atoms/selectors";
+
 import { useForm } from "react-hook-form";
 import { usePostLogin } from "service/hooks/login";
-import { accessTokenAtom, userDatasAtom } from "service/atoms/atoms";
 
 import AppBar from "shared/AppBar";
 import PasswordChild from "shared/PasswordChild";
 import BottomTextButtons from "components/pages/login/BottomTextButtons";
 import LocalStorage from "../../public/utils/LocalStorage";
-import { authSelector } from "service/atoms/selectors";
 
 const SignIn = () => {
   const { register, handleSubmit } = useForm();

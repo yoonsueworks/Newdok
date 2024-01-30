@@ -11,7 +11,7 @@ const PasswordChild = ({ setInputType, type }) => {
       e.preventDefault();
     },
   };
-  return type === true ? <ViewIconOff {...props} /> : <ViewIconOn {...props} />;
+  return type === true ? <ViewIconOn {...props} /> : <ViewIconOff {...props} />;
 };
 
 export default PasswordChild;
