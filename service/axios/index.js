@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const config = {
-  baseURL: "https://newdok.shop",
+  baseURL:
+    process.env.NODE_ENV === "develop"
+      ? "http://13.209.189.93"
+      : "https://newdok.shop",
 };
 
 const instance = axios.create(config);
