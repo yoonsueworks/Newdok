@@ -25,8 +25,6 @@ export default function ReactCalendar() {
     setCalendarOpen,
     activeMonth,
     setActiveMonth,
-    monthLabel,
-    setMonthLabel,
     activeStartDate,
     setActiveStartDate,
   } = useContext(CalendarContext);

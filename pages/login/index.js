@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { accessTokenAtom, userDatasAtom } from "service/atoms/atoms";
+import { authSelector } from "service/atoms/selectors";
+
 import { useForm } from "react-hook-form";
 import { usePostLogin } from "service/hooks/login";
-import { accessTokenAtom, userDatasAtom } from "service/atoms/atoms";
 
 import AppBar from "shared/AppBar";
 import PasswordChild from "shared/PasswordChild";
@@ -23,14 +25,12 @@ const SignIn = () => {
   const { mutate } = usePostLogin(userInfo);
   const [, setAccessToken] = useRecoilState(accessTokenAtom);
   const [, setUserDatas] = useRecoilState(userDatasAtom);
+  const isAuthenticated = useRecoilValue(authSelector);
 
   const setLoggedInDatas = (data) => {
     setAccessToken(data.accessToken);
     setUserDatas(data.user);
-
     LocalStorage.setItem("NDtoken", data?.accessToken);
-    LocalStorage.setItem("NDnickname", data?.user.nickname);
-    LocalStorage.setItem("NDuserDatas", JSON.stringify(data?.user));
   };
 
   const onSubmit = async () => {
@@ -56,8 +56,7 @@ const SignIn = () => {
   };
 
   const handlePrevClick = () => {
-    const referrer = document.referrer;
-    if (referrer.includes("userPage")) {
+    if (isAuthenticated) {
       router.push("/home");
     } else {
       history.back();
@@ -91,7 +90,7 @@ const SignIn = () => {
           <form
             className="flex flex-col justify-between gap-y-4 w-full h-full"
             onSubmit={handleSubmit(onSubmit)}
-            onKeyPress={handleEnterKeyPress}
+            onKeyDown={handleEnterKeyPress}
           >
             <div className="flex flex-col gap-y-4">
               <input

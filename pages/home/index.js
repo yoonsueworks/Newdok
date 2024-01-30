@@ -60,9 +60,6 @@ const Home = () => {
       setFullActiveDate(currentDate);
       setActiveDate(savedDate.getDate());
       setActiveMonth(savedDate.getMonth() + 1);
-      setMonthLabel(
-        `${savedDate.getUTCFullYear()}년 ${savedDate.getMonth() + 1}월`
-      );
       setActiveStartDate(new Date(String(dateValue)));
     } else {
       // 오늘 날짜, 최초 홈에 접근
