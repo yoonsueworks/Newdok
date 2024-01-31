@@ -130,13 +130,13 @@ const PswdForm = () => {
           <p className="text-error single-12-m">{getCheckErrorMessage()}</p>
         </div>
       </div>
-      <button
+      {/* <button
         type="submit"
         className="mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
         disabled={conditionControl.btnDisabled}
       >
         다음
-      </button>
+      </button> */}
     </form>
   );
 };

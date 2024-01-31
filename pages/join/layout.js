@@ -1,27 +1,26 @@
 import AppBar from "shared/AppBar";
 
 const SignUpLayout = ({ description, forms, step, setStep }) => {
+  const children = forms.props.children;
+
   return (
     <>
-      <AppBar
-        iconl={true}
-        textl={""}
-        iconr={false}
-        func={
-          step > 1 ? () => setStep((prev) => prev - 1) : () => history.back()
-        }
-        shadow={false}
-      />
-      <div className="w-full bg-beige-100 h-1">
-        <div
-          className="bg-purple-700 h-1"
-          style={{ width: `${step * 20}%` }}
-        ></div>
-      </div>
-      <div className="w-full h-screen py-14 px-5 flex flex-col justify-between gap-y-7">
-        <div className="h-fit">{description}</div>
-        {forms}
-      </div>
+      {step === 1 ? (
+        <div className="w-full h-screen py-14 px-5 flex flex-col justify-between gap-y-7">
+          <div className="h-fit">{description}</div>
+          <div className="h-full flex flex-col justify-between">{forms}</div>
+        </div>
+      ) : (
+        <div className="w-full h-screen overflow-scroll py-14 px-5 flex flex-col gap-y-7">
+          <div className="h-fit">{description}</div>
+          <div className="">
+            <div className="h-fit">{children[0]}</div>
+            <div className="h-fit">{children[1]}</div>
+            <div className="h-fit">{children[2]}</div>
+            <div className="h-fit">{children[3]}</div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
