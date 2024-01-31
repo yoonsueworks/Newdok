@@ -84,7 +84,7 @@ const IdForm = () => {
 
   return (
     <form
-      className="h-full overflow-scroll w-full flex flex-col justify-between"
+      className="h-full overflow-scroll w-full flex flex-col"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-y-2">
@@ -133,13 +133,13 @@ const IdForm = () => {
         </p>
       </div>
 
-      <button
+      {/* <button
         type="submit"
         className="mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
         disabled={!error}
       >
         다음
-      </button>
+      </button> */}
     </form>
   );
 };
