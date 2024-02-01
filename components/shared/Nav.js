@@ -15,8 +15,10 @@ const Nav = () => {
   const [page, setPage] = useState(null);
 
   const hasBrowseAll = router.pathname === "/browseAll";
-  const hasUserPage = router.pathname.includes("/userPage");
+  const hasManageSubscription = router.pathname === "/manageSubscription";
   const hasHome = router.pathname === "/home";
+  const hasBookmark = router.pathname === "/bookmark";
+  const hasUserPage = router.pathname.includes("/userPage");
 
   const clickMenu = (menu) => {
     setPage(menu.id);
@@ -26,15 +28,19 @@ const Nav = () => {
   useEffect(() => {
     if (hasBrowseAll) {
       setPage(1);
-    } else if (hasHome) {
+    } else if (hasManageSubscription) {
       setPage(2);
-    } else if (hasUserPage) {
+    } else if (hasHome) {
       setPage(3);
+    } else if (hasBookmark) {
+      setPage(4);
+    } else if (hasUserPage) {
+      setPage(5);
     }
-  }, [hasBrowseAll, hasHome, hasUserPage]);
+  }, [hasBrowseAll, hasHome, hasUserPage, hasManageSubscription, hasBookmark]);
 
   return (
-    <div className=" sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col bg-white grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
+    <div className=" sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col bg-white grid grid-cols-5 elevation-2-top pt-3.5 pb-5">
       {NAV_MENUS.map((menu) => {
         return (
           <li
@@ -63,7 +69,9 @@ export default Nav;
 
 const MENU_NAMES = {
   RECOMMENDED: "recommended",
+  MANAGESUBSCRIPTION: "manageSubscription",
   HOME: "home",
+  BOOKMARK: "bookmark",
   userPage: "userPage",
 };
 
@@ -78,6 +86,14 @@ const NAV_MENUS = [
   },
   {
     id: 2,
+    name_kr: "구독관리",
+    name_eng: MENU_NAMES.MANAGESUBSCRIPTION,
+    state_on: <HomeOn width="32" height="32" />,
+    state_off: <HomeOff width="32" height="32" />,
+    path: "/manageSubscription",
+  },
+  {
+    id: 3,
     name_kr: "홈",
     name_eng: MENU_NAMES.HOME,
     state_on: <HomeOn width="32" height="32" />,
@@ -85,7 +101,15 @@ const NAV_MENUS = [
     path: "/home",
   },
   {
-    id: 3,
+    id: 4,
+    name_kr: "북마크함",
+    name_eng: MENU_NAMES.BOOKMARK,
+    state_on: <HomeOn width="32" height="32" />,
+    state_off: <HomeOff width="32" height="32" />,
+    path: "/home",
+  },
+  {
+    id: 5,
     name_kr: "마이페이지",
     name_eng: MENU_NAMES.userPage,
     state_on: <ProfileOn width="32" height="32" />,
