@@ -1,6 +1,7 @@
 @tailwind utilities;
 
 @variants {
+  /* ver 2.0 */
   /* line height, letter-spacing */
 
   .single-32-b,
@@ -164,5 +165,126 @@
   .multiple-12-sb,
   .multiple-12-m {
     @apply text-xs;
+  }
+
+  /* ver 3.0 */
+  .display-l {
+    /* Display Medium */
+    font-size: 45px;
+    line-height: 54px; /* 120% */
+  }
+
+  .display-m {
+    /* Display Large */
+    font-size: 57px;
+    line-height: 64px; /* 112.281% */
+  }
+
+  .display-s {
+    /* Display Small */
+    font-size: 36px;
+    line-height: 44px; /* 122.222% */
+  }
+
+  .headline-l {
+    /* Headline Large */
+    font-size: 32px;
+    line-height: 42px; /* 131.25% */
+  }
+
+  .headline-m {
+    /* Headline Medium */
+    font-size: 28px;
+    line-height: 38px; /* 135.714% */
+  }
+
+  .headline-s {
+    /* Headline Small */
+    font-size: 24px;
+    line-height: 32px; /* 133.333% */
+  }
+
+  .title-l {
+    /* Title Large */
+    font-size: 22px;
+    line-height: 28px; /* 127.273% */
+  }
+
+  .title-m {
+    /* Title Medium */
+    font-size: 18px;
+    line-height: 26px; /* 144.444% */
+  }
+
+  .title-s {
+    /* Title Small */
+    font-size: 16px;
+    line-height: 24px; /* 150% */
+  }
+
+  .body-l {
+    /* Body Large */
+    font-size: 16px;
+    line-height: 24px; /* 150% */
+  }
+
+  .body-m {
+    /* Body Medium */
+    font-size: 14px;
+    line-height: 20px; /* 142.857% */
+  }
+
+  .body-s {
+    /* Body Small */
+    font-size: 12px;
+    line-height: 16px; /* 133.333% */
+  }
+
+  .label-l {
+    /* Label Large */
+    font-size: 14px;
+    line-height: 20px; /* 142.857% */
+  }
+
+  .label-m {
+    /* Label Medium */
+    font-size: 12px;
+    line-height: 16px; /* 133.333% */
+  }
+
+  .label-s {
+    /* Label Small */
+    font-size: 11px;
+    line-height: 16px; /* 145.455% */
+  }
+
+  .display-l,
+  .display-m,
+  .display-s,
+  .headline-l,
+  .headline-m,
+  .headline-s,
+  .title-l,
+  .title-m,
+  .title-s,
+  .body-l,
+  .body-m,
+  .body-s,
+  .label-l,
+  .label-m,
+  .label-s {
+    font-family: Pretendard;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .display-l,
+  .display-m,
+  .display-s,
+  .headline-l,
+  .headline-m,
+  .headline-s,
+  .title-l {
+    letter-spacing: -1%;
   }
 }

@@ -31,13 +31,6 @@ const Buttons = ({ infos }) => {
       console.log(result.isError);
       return;
     }
-
-    // if (result.isError) {
-    //   alert(
-    //     "회원가입 시 사전조사를 하신 회원의 경우 마이페이지에서 산업군, 관심사 변경이 가능합니다."
-    //   );
-    //   router.push("/userPage/myInfo");
-    // }
   };
 
   const handleGoToMain = () => {
@@ -47,7 +40,7 @@ const Buttons = ({ infos }) => {
 
   return (
     <div className="px-5">
-      {infos?.id === 1 ? (
+      {infos?.id === 2 ? (
         <Button
           mode="default"
           text="시작하기"
@@ -56,7 +49,7 @@ const Buttons = ({ infos }) => {
           // func={testfunc}
           func={clickNext}
         />
-      ) : infos?.id === 2 ? (
+      ) : infos?.id === 3 ? (
         <div>
           <Button
             mode="alive"
@@ -67,7 +60,7 @@ const Buttons = ({ infos }) => {
             onboarding="산업군을"
           />
         </div>
-      ) : infos?.id === 3 ? (
+      ) : infos?.id === 4 ? (
         <div className="flex space-x-4">
           <Button
             mode="alive"
@@ -78,10 +71,18 @@ const Buttons = ({ infos }) => {
             onboarding="관심사를"
           />
         </div>
+      ) : infos?.id === 1 ? (
+        <Button
+          mode="ghost"
+          text="다음"
+          state={true}
+          size="big"
+          func={clickNext}
+        />
       ) : (
         <Button
           mode="ghost"
-          text="메인으로"
+          text="다음"
           state={true}
           size="big"
           func={handleGoToMain}

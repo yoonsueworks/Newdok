@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import MessageModal from "shared/MessageModal";
 import InputLabel from "shared/InputLabel";
 
-import { useAuthSms, useCheckPhoneNumber_2 } from "service/hooks/user";
+import { useAuthSms, useCheckPhoneNumber } from "service/hooks/user";
 import { phoneTextElement, phoneErrorMessage } from "constants/join";
 
 const PhoneForm = () => {
@@ -26,13 +26,14 @@ const PhoneForm = () => {
   const [seconds, setSeconds] = useState(180);
   const [isCountdownActive, setIsCountdownActive] = useState(false);
   const [authCount, setAuthCount] = useState(1);
+  const [continueProcess, setContinueProcess] = useState(false);
 
   /* 요청 처리, 응답 관련 */
   const [data, setData] = useState(null);
   const [code, setCode] = useState(null);
 
   const authorizeSms = useAuthSms();
-  const checkPhoneNumber = useCheckPhoneNumber_2(phoneNumber);
+  const checkPhoneNumber = useCheckPhoneNumber(phoneNumber);
 
   const timeout = seconds === 0;
   const authChecked = Number(authNumber) !== code;
@@ -52,7 +53,7 @@ const PhoneForm = () => {
   const authorize = async () => {
     const form = { phoneNumber: phoneNumber };
     const result = await authorizeSms.mutateAsync(form);
-    if (!authorizeSms.data) setCode(result?.code);
+    if (result) setCode(result?.code);
   };
 
   /* 휴대폰 번호 중복 체크 */
@@ -60,13 +61,19 @@ const PhoneForm = () => {
     const { data, error } = await checkPhoneNumber.refetch();
     /* 중복 회원 */
     if (data) setData(data);
-    /* 미등록 */
-    if (error) setError(error?.response.data);
   };
 
-  const handleQueries = () => {
-    authorize();
-    handleCheckPhoneNumber();
+  const handleQueries = async () => {
+    if (continueProcess) {
+      authorize();
+    }
+    await handleCheckPhoneNumber();
+    if (checkPhoneNumber.error) {
+      authorize();
+      setContinueProcess(true);
+    } else {
+      return;
+    }
   };
 
   const handleTimer = () => {
@@ -84,6 +91,12 @@ const PhoneForm = () => {
     handleActions();
     handleTimer();
     handleQueries();
+  };
+
+  const clickContinue = () => {
+    setIsModalOpen(false);
+    authorize();
+    setContinueProcess(true);
   };
 
   /* 인증번호 인풋 메시지 세팅을 위한 유효성 검사 */
@@ -167,9 +180,8 @@ const PhoneForm = () => {
             {isPhoneAuthRequested && phoneErrorMessage.authRequested}
           </p>
         </div>
-        {isPhoneAuthRequested && (
+        {isPhoneAuthRequested && continueProcess && (
           <div className="flex flex-col gap-y-2">
-
             <InputLabel htmlFor="authorization" text="인증 번호" />
             <div
               className={`flex rounded-lg p-4 justify-between items-center input-border focus-within:inputFocused-border 
@@ -204,9 +216,14 @@ const PhoneForm = () => {
               )}
             </div>
             <p
-              className={` single-12-m ${
-                timeout ? "text-error" : "text-neutralgray-500"
+              className={`single-12-m  ${
+                authNumber.length < 1
+                  ? "text-neutralgray-500"
+                  : timeout || authChecked
+                  ? "text-error"
+                  : "text-neutralgray-500"
               }`}
+              //
             >
               {validatePhoneNumber()}
             </p>
@@ -249,19 +266,30 @@ const PhoneForm = () => {
         ]}
         button={
           <div className="flex gap-x-2 mt-5" key={1}>
-            <button
-              type="submit"
-              className="w-full p-4 rounded-xl shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 bg-white single-20-b transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100"
-              onClick={() => setIsModalOpen(false)}
-            >
-              계속 진행하기
-            </button>
-            <button
-              onClick={() => router.push("/login")}
-              className="w-full p-4 rounded-xl text-white bg-purple-700 single-20-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-            >
-              로그인
-            </button>
+            {data?.length >= 3 ? (
+              <button
+                onClick={() => router.push("/login")}
+                className="w-full p-4 rounded-xl text-white bg-purple-700 single-20-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
+              >
+                로그인
+              </button>
+            ) : (
+              <>
+                <button
+                  type="submit"
+                  className={`w-full p-4 rounded-xl single-20-b ${"transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100 bg-white text-purple-700 shadow-[inset_0_0px_0px_1px_#674188]"}`}
+                  onClick={clickContinue}
+                >
+                  계속 진행하기
+                </button>
+                <button
+                  onClick={() => router.push("/login")}
+                  className="w-full p-4 rounded-xl text-white bg-purple-700 single-20-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
+                >
+                  로그인
+                </button>
+              </>
+            )}
           </div>
         }
       />

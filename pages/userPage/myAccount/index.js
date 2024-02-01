@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useResetRecoilState } from "recoil";
-import { userDatasAtom, accessTokenAtom } from "service/atoms/atoms";
+import { useResetRecoilState, useRecoilState } from "recoil";
+import {
+  userDatasAtom,
+  accessTokenAtom,
+  infoChangeSuccessAtom,
+} from "service/atoms/atoms";
 
+import MessageModal from "shared/MessageModal";
 import Background2 from "shared/Background2";
+import ToastPopUp from "shared/ToastPopUp";
 import ButtonText from "shared/ButtonText";
 import AppBar from "shared/AppBar";
-import MessageModal from "shared/MessageModal";
 import ArrowRight from "icons/arrow_right_off.svg";
 import LogOut from "icons/logout_off.svg";
 
@@ -14,9 +19,13 @@ import { myaccount_menus } from "constants/userPage";
 
 const MyAccount = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isToastVisible, setIsToastVisible] = useState(false);
 
   const resetUserDatas = useResetRecoilState(userDatasAtom);
   const resetAccessToken = useResetRecoilState(accessTokenAtom);
+  const [infoChangeSuccess, setInfoChangeSuccess] = useRecoilState(
+    infoChangeSuccessAtom
+  );
   const router = useRouter();
   const buttonCSS =
     "w-full h-fit flex justify-between items-center contentbox-border p-5 single-18-b cursor-pointer";
@@ -37,6 +46,18 @@ const MyAccount = () => {
     router.push("/");
   };
 
+  /* 요청 성공 시 infoChangeSuccess 변화에 따라 토스트 팝업 노출 */
+  useEffect(() => {
+    if (infoChangeSuccess) {
+      setIsToastVisible(true);
+      setTimeout(() => {
+        setIsToastVisible(false);
+        setInfoChangeSuccess("");
+      }, 1500);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Background2>
       <div className="h-full relative w-full">
@@ -49,8 +70,8 @@ const MyAccount = () => {
             func={() => router.push("/userPage")}
           />
         </div>
-        <div className="pt-24 h-full px-5 flex flex-col justify-between items-center pb-14">
-          <div className="gap-y-2.5 grid w-full">
+        <div className="pt-24 h-full flex flex-col justify-between items-center pb-14">
+          <div className="gap-y-2.5 grid w-full px-5 ">
             {myaccount_menus.map(({ id, name, path }) => {
               return (
                 <div
@@ -70,7 +91,12 @@ const MyAccount = () => {
               );
             })}
           </div>
-          <div></div>
+          <div className="w-full">
+            <ToastPopUp
+              toastMessage={infoChangeSuccess}
+              isVisible={isToastVisible}
+            />
+          </div>
           {/* 베타 테스트 기간에는 회원탈퇴 기능 비활성화 */}
           {/* <ButtonText
             text="회원탈퇴"

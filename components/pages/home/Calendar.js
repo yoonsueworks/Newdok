@@ -1,53 +1,109 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import { useRecoilState } from "recoil";
+import {
+  monthlyArticlesAtom,
+  monthValueAtom,
+  dateValueAtom,
+} from "service/atoms/atoms";
 import { CalendarContext } from "../../../context/CalendarContext";
 
 import Calendar from "react-calendar";
 import PrevIcon from "icons/arrow_left_off.svg";
 import NextIcon from "icons/arrow_right_off.svg";
 
-import { useMonthlyArticlesOnClick } from "service/hooks/newsletters";
+import {
+  useMonthlyArticlesOnClickPrev,
+  useMonthlyArticlesOnClickNext,
+} from "service/hooks/newsletters";
 
 export default function ReactCalendar() {
-  const [value, onChange] = useState(new Date());
   const {
-    monthlyArticles,
     fullActiveDate,
     setActiveDate,
+    activeDate,
     setFullActiveDate,
     setCalendarOpen,
     activeMonth,
     setActiveMonth,
-    setMonthlyArticles,
+    activeStartDate,
+    setActiveStartDate,
   } = useContext(CalendarContext);
   const today = new Date();
   const todayDate = today.getDate();
-  const { refetch, data, isLoading } = useMonthlyArticlesOnClick(
-    activeMonth - 1
-  );
+  const currentMonth = today.getMonth() + 1;
+
+  const futureMonthCondition =
+    `${today.getFullYear()}.${currentMonth}` ===
+    `${today.getFullYear()}.${activeMonth}`;
+
+  const [monthlyArticles, setMonthlyArticles] =
+    useRecoilState(monthlyArticlesAtom);
+  const [value, onChange] = useRecoilState(monthValueAtom);
+  const [dateValue, setDateValue] = useRecoilState(dateValueAtom);
+  const [articles, setArticles] = useState(monthlyArticles);
+
+  const prevRequest = useMonthlyArticlesOnClickPrev(activeMonth - 1);
+  const nextRequest = useMonthlyArticlesOnClickNext(activeMonth + 1);
 
   const isDateDisabled = (date) => {
     const currentDate = date.getDate();
-    return currentDate > todayDate;
+    if (activeMonth < currentMonth) return false;
+    if (activeMonth > currentMonth) return true;
+    if (activeMonth === currentMonth) return currentDate > todayDate;
   };
 
+  const calculateMonth = (active) => {
+    const currentDate = new Date(today.getFullYear(), activeMonth - 1);
+    const currentDates = currentDate.toLocaleDateString().split(".");
+    const previousMonth = new Date(
+      currentDates[0] / 1,
+      currentDates[1] / 1 - 2,
+      todayDate
+    );
+    const nextMonth = new Date(
+      currentDates[0] / 1,
+      currentDates[1] / 1 + 1,
+      todayDate
+    );
+
+    return active === "prev" ? previousMonth : nextMonth;
+  };
+
+  const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const yearlyCondition = months.indexOf(activeMonth);
+
+  // < 버튼 클릭 시
   const clickPrevBtn = async () => {
-    const newActiveMonth = activeMonth - 1;
-    await refetchData(newActiveMonth);
-  };
-
-  const clickNextBtn = async () => {
-    const newActiveMonth = activeMonth + 1;
-    await refetchData(newActiveMonth);
-  };
-
-  const refetchData = async (newActiveMonth) => {
-    // const { refetch, data } = await refetch(newActiveMonth);
-    // setMonthlyArticles(data);
+    const newActiveMonth = yearlyCondition === 1 ? 12 : activeMonth - 1;
+    const { data } = await prevRequest.refetch(newActiveMonth);
+    setArticles(data);
+    setMonthlyArticles(data);
     setActiveMonth(newActiveMonth);
+    setActiveDate(null); // 미리 선택된 날짜 없음
+    onChange(calculateMonth("prev"));
+  };
+
+  // > 버튼 클릭 시
+  const clickNextBtn = async () => {
+    if (futureMonthCondition) return;
+    const newActiveMonth = yearlyCondition === 11 ? 1 : activeMonth + 1;
+    const { data } = await nextRequest.refetch(newActiveMonth);
+    setArticles(data);
+    setMonthlyArticles(data);
+    setActiveMonth(newActiveMonth);
+    setActiveDate(null); // 미리 선택된 날짜 없음
+    onChange(calculateMonth("next"));
+  };
+
+  const tileClassName = ({ date }) => {
+    if (date.getDate() === activeDate) {
+      return "selected-date";
+      // 선택된 타일 css 클라스 명 부여
+    }
+    return "";
   };
 
   return (
-    // TODO: next, prev 버튼 클릭 시 요청 보내기
     <div className="calendar-container z-30 absolute bg-white">
       <Calendar
         onChange={(e) => {
@@ -61,27 +117,39 @@ export default function ReactCalendar() {
               day: "numeric",
             })
           );
+          setDateValue(e); //페이지 이동 시 특정 날짜 상태 유지
           onChange();
         }}
         value={value}
-        locale="ko-KO"
-        calendarType="US"
+        // 외부 함수에서 value 갱신 시 activeStartDate 또한 업데이트 해야 라이브러리에서 값 갱신 됨 (activeStartDate, onActiveStartDateChange)
+        activeStartDate={activeStartDate}
+        onActiveStartDateChange={({ activeStartDate }) => {
+          const clickedMonth = activeStartDate.getTime();
+          const timeGap = clickedMonth - today.getTime();
+
+          if (timeGap > 0) {
+            return;
+          }
+          // 미래 월로 이동 금지
+          setActiveStartDate(activeStartDate);
+        }}
         formatDay={(locale, date) =>
           date.toLocaleString("en", { day: "numeric" })
         }
-        // nextLabel={<NextIcon onClick={clickNextBtn} />}
-        nextLabel={<NextIcon id="next" onClick={() => console.log("요청")} />}
-        // prevLabel={<PrevIcon id="prev" onClick={clickPrevBtn} />}
-        prevLabel={<PrevIcon onClick={() => console.log("요청")} />}
+        locale="ko-KO"
+        calendarType="US"
+        minDetail="month"
+        maxDetail="month"
+        nextLabel={<NextIcon id="next" onClick={clickNextBtn} />}
+        prevLabel={<PrevIcon id="prev" onClick={clickPrevBtn} />}
         next2Label={null}
         prev2Label={null}
         tileDisabled={({ date }) => isDateDisabled(date)}
+        tileClassName={tileClassName}
         tileContent={({ date }) => {
-          return <TileContent date={date} monthlyArticles={monthlyArticles} />;
+          return <TileContent date={date} monthlyArticles={articles} />;
         }}
         showNeighboringMonth={false}
-        minDetail="month"
-        className="react-calendar"
       />
     </div>
   );
@@ -89,8 +157,6 @@ export default function ReactCalendar() {
 
 const TileContent = ({ date, monthlyArticles }) => {
   const currentDate = Number(String(date).split(" ")[2]);
-  // 달 따라서 값 확인하기 일치하지 않는 경우 안하기
-
   const hasMatchingArticles = monthlyArticles?.some((el) => {
     return el.publishDate === currentDate && el.receivedArticleList?.length > 0;
   });

@@ -1,15 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import LocalStorage from "../../public/utils/LocalStorage";
 import {
-  userSignUp,
-  userLogin,
-  userCheckLoginId_2,
-  userCheckLoginId,
-  userCheckPhoneNumber_2,
-  userCheckPhoneNumber,
-  userAuthSms,
-  userResetPswd,
-  userSubscriptionList,
+  postSignUp,
+  postLogin,
+  getCheckLoginId,
+  getCheckPhoneNumber,
+  postAuthSms,
+  patchResetPassword,
+  getSubscriptionList,
   getUserResearch,
   modifyNickname,
   modifyIndustry,
@@ -22,7 +20,7 @@ const token = LocalStorage.getItem("NDtoken");
 export const useAuthSms = (params) => {
   return useMutation({
     mutationKey: ["authorization-sms-1", params],
-    mutationFn: async (params) => await userAuthSms(params),
+    mutationFn: async (params) => await postAuthSms(params),
     enabled: false,
     onSuccess: (data) => {
       return data;
@@ -34,10 +32,10 @@ export const useAuthSms = (params) => {
 };
 
 /* 리액트 쿼리 수정해서 새로운 요청 작성한 것! */
-export const useCheckPhoneNumber_2 = (params) => {
+export const useCheckPhoneNumber = (params) => {
   return useQuery({
-    queryKey: ["useCheckPhoneNumber_2", params],
-    queryFn: async () => await userCheckPhoneNumber_2(params),
+    queryKey: ["useCheckPhoneNumber", params],
+    queryFn: async () => await getCheckPhoneNumber(params),
     enabled: false,
     retry: 0,
     onSuccess: (data) => {
@@ -52,7 +50,7 @@ export const useCheckPhoneNumber_2 = (params) => {
 export const useSignUp = () => {
   return useMutation({
     mutationFn: async (params) => {
-      const response = await userSignUp(params);
+      const response = await postSignUp(params);
       return response;
     },
     enabled: false,
@@ -69,25 +67,10 @@ export const useSignUp = () => {
   });
 };
 
-export const useCheckLoginId_2 = (params) => {
-  return useQuery({
-    queryKey: ["checkLoginId", params],
-    queryFn: () => userCheckLoginId_2(params),
-    enabled: false,
-    retry: 0,
-    onSuccess: (data) => {
-      return data;
-    },
-    onError: (error) => {
-      return error;
-    },
-  });
-};
-
 export const useCheckLoginId = (params) => {
   return useQuery({
     queryKey: ["checkLoginId", params],
-    queryFn: async () => userCheckLoginId(params),
+    queryFn: () => getCheckLoginId(params),
     enabled: false,
     retry: 0,
     onSuccess: (data) => {
@@ -119,7 +102,7 @@ export const useGetUserResearch = (params) => {
 export const useUserSubscriptionList = () => {
   return useQuery({
     queryKey: "getSubscriptionList",
-    queryFn: () => token && userSubscriptionList(),
+    queryFn: () => token && getSubscriptionList(),
     onSuccess: (data) => {
       return data;
     },
@@ -167,15 +150,15 @@ export const useModifyInterests = () => {
 export const useResetPswd = (params) => {
   return useMutation({
     mutationKey: ["resetPswd", params],
-    mutationFn: (params) => userResetPswd(params),
-    enabled: false,
-    retry: 0,
+    mutationFn: (params) => patchResetPassword(params),
     onSuccess: (data) => {
       return data;
     },
     onError: (error) => {
       return error;
     },
+    enabled: false,
+    retry: 0,
   });
 };
 
@@ -183,13 +166,13 @@ export const useResetPhoneNumber = (params) => {
   return useMutation({
     mutationKey: ["resetPhoneNumber", params],
     mutationFn: (params) => modifyPhoneNumber(params),
-    enabled: false,
-    retry: 0,
     onSuccess: (data) => {
       return data;
     },
     onError: (error) => {
       return error;
     },
+    enabled: false,
+    retry: 0,
   });
 };
