@@ -1,17 +1,27 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
+import { useRecoilValue } from "recoil";
+import { authSelector } from "service/atoms/selectors";
+
 import { useForm } from "react-hook-form";
 
 const Search = () => {
   const [component, setComponent] = useState("searchQuery");
+  const isAuthenticated = useRecoilValue(authSelector);
+
   const { register, handleSubmit, watch, setFocus } = useForm({});
   const query = watch("query");
   const router = useRouter();
 
   const onSubmit = () => {
     router.push({
-      pathname: "/searchResult",
+      pathname: "/search/authSearchResult",
+
+      // pathname: isAuthenticated
+      //   ? "/search/authSearchResult"
+      //   : "/search/unAuthSearchResult",
+      // TODO: pathname 기획 방향에 따라 추후 수정가능성 있음
       query: { query },
     });
   };
