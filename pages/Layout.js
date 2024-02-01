@@ -11,7 +11,9 @@ export default function Layout({ children }) {
       {children}
       {(router.pathname.includes("home") ||
         router.pathname === "/userPage" ||
-        router.pathname === "/browseAll") && <Nav />}
+        router.pathname === "/browseAll" ||
+        router.pathname === "/bookmark" ||
+        router.pathname === "/manageSubscription") && <Nav />}
     </div>
   );
 }

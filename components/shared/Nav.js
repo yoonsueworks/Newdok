@@ -106,7 +106,7 @@ const NAV_MENUS = [
     name_eng: MENU_NAMES.BOOKMARK,
     state_on: <HomeOn width="32" height="32" />,
     state_off: <HomeOff width="32" height="32" />,
-    path: "/home",
+    path: "/bookmark",
   },
   {
     id: 5,

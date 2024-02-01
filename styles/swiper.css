@@ -22,3 +22,9 @@
   .swiper-pagination-bullet {
   margin: 8px !important;
 }
+
+/* swiper for bookmark page */
+.swiper-slide-active {
+  border-radius: 4px !important;
+  background-color: #d8c4e1 !important;
+}
