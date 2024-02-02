@@ -31,11 +31,18 @@ const Bookmark = () => {
     <div className="w-full">
       <div>Bookmark</div>
       <div className="flex">
+        <div className="icon-arrow-long-right review-swiper-button-prev">
+          이전으로\◀️
+        </div>
+
         <Swiper
           slidesPerView={"auto"}
           centeredSlides={false}
           spaceBetween={30}
-          navigation={true}
+          navigation={{
+            nextEl: ".review-swiper-button-next",
+            prevEl: ".review-swiper-button-prev",
+          }}
           //   pagination={pagination}
           modules={[Navigation, Pagination]}
           className="mySwiper"
@@ -51,6 +58,9 @@ const Bookmark = () => {
             ))}
           </div>
         </Swiper>
+        <div className="icon-arrow-long-left review-swiper-button-next">
+          다음으로\▶️
+        </div>
       </div>
       <div>
         <div>총 개수</div>
@@ -61,37 +71,3 @@ const Bookmark = () => {
 };
 
 export default Bookmark;
-
-// import React, { useRef, useState } from "react";
-// // Import Swiper React components
-// import { Swiper, SwiperSlide } from "swiper/react";
-
-// // Import Swiper styles
-// import "swiper/css";
-// import "swiper/css/pagination";
-
-// // import required modules
-// import { Pagination } from "swiper";
-
-// export default function Bookmark() {
-
-//   return (
-//     <>
-//       <Swiper
-
-//         modules={[Pagination]}
-//         className="mySwiper"
-//       >
-//         <SwiperSlide>Slide 1</SwiperSlide>
-//         <SwiperSlide>Slide 2</SwiperSlide>
-//         <SwiperSlide>Slide 3</SwiperSlide>
-//         <SwiperSlide>Slide 4</SwiperSlide>
-//         <SwiperSlide>Slide 5</SwiperSlide>
-//         <SwiperSlide>Slide 6</SwiperSlide>
-//         <SwiperSlide>Slide 7</SwiperSlide>
-//         <SwiperSlide>Slide 8</SwiperSlide>
-//         <SwiperSlide>Slide 9</SwiperSlide>
-//       </Swiper>
-//     </>
-//   );
-// }

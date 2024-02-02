@@ -23,8 +23,12 @@
   margin: 8px !important;
 }
 
-/* swiper for bookmark page */
-.swiper-slide-active {
-  border-radius: 4px !important;
-  background-color: #d8c4e1 !important;
+/* .swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+  right: -20px;
 }
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
+  /* background-image:url(assets/img/swiper-left.png); */
+/* left: -20px; */
+/* } */
