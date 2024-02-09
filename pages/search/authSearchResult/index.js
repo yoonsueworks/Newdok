@@ -48,7 +48,7 @@ const NoNewsletter = () => {
       <div>찾는 뉴스레터가 없다면 등록을 요청해보세요</div>
       <button
         onClick={() =>
-          window.open("https://7xrdp4cp24a.typeform.com/to/LkhC9zd")
+          window.open("https://7xrdp4cp24a.typeform.com/to/Lkh7C9zd")
         }
       >
         뉴스레터 등록 요청하기
