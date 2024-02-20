@@ -42,13 +42,19 @@ export default function ReactCalendar() {
   const [dateValue, setDateValue] = useRecoilState(dateValueAtom);
   const [articles, setArticles] = useState(monthlyArticles);
 
-  const prevRequest = useMonthlyArticlesOnClickPrev(activeMonth - 1);
-  const nextRequest = useMonthlyArticlesOnClickNext(activeMonth + 1);
+  const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const yearlyCondition = months.indexOf(activeMonth);
+  const newActiveMonthPrev = yearlyCondition === 0 ? 12 : activeMonth - 1;
+  const newActiveMonthNext = yearlyCondition === 11 ? 1 : activeMonth + 1;
 
+  const prevRequest = useMonthlyArticlesOnClickPrev(newActiveMonthPrev);
+  const nextRequest = useMonthlyArticlesOnClickNext(newActiveMonthNext);
+
+  // 미래 날짜(일, 월) 클릭 방지
   const isDateDisabled = (date) => {
     const currentDate = date.getDate();
-    if (activeMonth < currentMonth) return false;
-    if (activeMonth > currentMonth) return true;
+    // if (activeMonth < currentMonth) return false;
+    // if (activeMonth > currentMonth) return true;
     if (activeMonth === currentMonth) return currentDate > todayDate;
   };
 
@@ -69,16 +75,12 @@ export default function ReactCalendar() {
     return active === "prev" ? previousMonth : nextMonth;
   };
 
-  const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const yearlyCondition = months.indexOf(activeMonth);
-
   // < 버튼 클릭 시
   const clickPrevBtn = async () => {
-    const newActiveMonth = yearlyCondition === 1 ? 12 : activeMonth - 1;
-    const { data } = await prevRequest.refetch(newActiveMonth);
+    const { data } = await prevRequest.refetch(newActiveMonthPrev);
     setArticles(data);
     setMonthlyArticles(data);
-    setActiveMonth(newActiveMonth);
+    setActiveMonth(newActiveMonthPrev);
     setActiveDate(null); // 미리 선택된 날짜 없음
     onChange(calculateMonth("prev"));
   };
@@ -86,11 +88,11 @@ export default function ReactCalendar() {
   // > 버튼 클릭 시
   const clickNextBtn = async () => {
     if (futureMonthCondition) return;
-    const newActiveMonth = yearlyCondition === 11 ? 1 : activeMonth + 1;
-    const { data } = await nextRequest.refetch(newActiveMonth);
+
+    const { data } = await nextRequest.refetch(newActiveMonthNext);
     setArticles(data);
     setMonthlyArticles(data);
-    setActiveMonth(newActiveMonth);
+    setActiveMonth(newActiveMonthNext);
     setActiveDate(null); // 미리 선택된 날짜 없음
     onChange(calculateMonth("next"));
   };
