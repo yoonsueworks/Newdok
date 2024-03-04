@@ -180,7 +180,8 @@ body::-webkit-scrollbar-thumb {
 input#check1,
 input#check2,
 input#check3,
-input#check4 {
+input#check4,
+input#check5 {
   display: none;
 }
 
@@ -191,6 +192,8 @@ input#check1
   input#check3
   + label
   input#check4
+  + label
+  + input#check5
   + label {
   cursor: pointer;
   transition: 0.15s ease-in-out;
@@ -199,7 +202,8 @@ input#check1
 label#check1::before,
 label#check2::before,
 label#check3::before,
-label#check4::before {
+label#check4::before,
+label#check5::before {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -212,7 +216,8 @@ label#check4::before {
 input#check1 + label#check1:before,
 input#check2 + label#check2:before,
 input#check3 + label#check3:before,
-input#check4 + label#check4:before {
+input#check4 + label#check4:before,
+input#check5 + label#check5:before {
   background-color: white;
   content: "";
   display: inline-block;
@@ -227,7 +232,8 @@ input#check4 + label#check4:before {
 input#check1 + label#check1:hover::before,
 input#check2 + label#check2:hover::before,
 input#check3 + label#check3:hover::before,
-input#check4 + label#check4:hover::before {
+input#check4 + label#check4:hover::before,
+input#check5 + label#check5:hover::before {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -242,7 +248,8 @@ input#check4 + label#check4:hover::before {
 input#check1:checked + label#check1:before,
 input#check2:checked + label#check2:before,
 input#check3:checked + label#check3:before,
-input#check4:checked + label#check4:before {
+input#check4:checked + label#check4:before,
+input#check5:checked + label#check5:before {
   /* content: url("/public/assets/check_for_checkbox.svg"); */
   background-color: #674188;
   border: 2px solid #674188;

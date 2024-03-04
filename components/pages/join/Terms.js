@@ -9,11 +9,10 @@ import { userDatasAtom } from "service/atoms/atoms";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
 import { NotionRenderer } from "react-notion";
+import ArrowRight from "icons/arrow_right_off.svg";
 import CloseIcon from "icons/close_off.svg";
-import Loading from "shared/Loading";
 import "react-notion/src/styles.css";
 import "prismjs/themes/prism-tomorrow.css";
-import LocalStorage from "../../../public/utils/LocalStorage";
 
 const Terms = ({ blockMap }) => {
   const { userInfo, setUserInfo } = useContext(SignUpContext);
@@ -21,12 +20,13 @@ const Terms = ({ blockMap }) => {
 
   const [open, setOpen] = useState(false);
   const [clickedTerm, setClickedTerm] = useState(null);
-  const [privacy, setPrivacy] = useState(null);
-  const [agreement, setAgreement] = useState(null);
+  const [privacyClicked, setPrivacyClicked] = useState(null);
+  const [agreementClicked, setAgreementClicked] = useState(null);
 
   const [all, setAll] = useState(false);
   const [age, setAge] = useState(false);
   const [service, setService] = useState(false);
+  const [privacy, setPrivacy] = useState(false);
   const [marketing, setMarketing] = useState(false);
 
   const router = useRouter();
@@ -46,9 +46,10 @@ const Terms = ({ blockMap }) => {
   };
 
   const handleCheckbox = () => {
-    const check = all ? false : true;
+    const check = !all;
     setAge(check);
     setService(check);
+    setPrivacy(check);
     setMarketing(check);
   };
 
@@ -72,12 +73,12 @@ const Terms = ({ blockMap }) => {
       "https://notion-api.splitbee.io/v1/page/82ef5aea46d84623b7b19bb951b6043c?pvs=4"
     )
       .then((res) => res.json())
-      .then((res) => setPrivacy(res));
+      .then((res) => setPrivacyClicked(res));
     fetch(
       "https://notion-api.splitbee.io/v1/page/18aacf9713bc427a850ae8da92b69087?pvs=4"
     )
       .then((res) => res.json())
-      .then((res) => setAgreement(res));
+      .then((res) => setAgreementClicked(res));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -85,74 +86,91 @@ const Terms = ({ blockMap }) => {
     <div className="h-full overflow-scroll w-full flex flex-col justify-between">
       <div className="flex flex-col gap-y-[14px]">
         <div className="flex justify-between border-b border-purple-200 pb-4">
-          <span className="single-20-b text-purple-700">전체 약관 동의</span>
-          <input
-            type="checkbox"
-            checked={all || (age && service && marketing)}
-            id="check1"
-            onChange={() => {
-              setAll((prev) => !prev);
-              handleCheckbox();
-            }}
-          />
-          <label id="check1" htmlFor="check1"></label>
+          <div className="flex items-center gap-x-2">
+            <input
+              type="checkbox"
+              checked={all || (age && service && privacy)}
+              id="check1"
+              onChange={() => {
+                setAll((prev) => !prev);
+                handleCheckbox();
+              }}
+            />
+            <label id="check1" htmlFor="check1"></label>
+            <span className="single-20-b text-purple-700">전체 약관 동의</span>
+          </div>
         </div>
         <ul>
-          <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
-            <span>만 14세 이상 확인 (필수)</span>
-            <input
-              type="checkbox"
-              checked={age}
-              id="check2"
-              onChange={() => setAge((prev) => !prev)}
-            />
-            <label id="check2" htmlFor="check2"></label>
+          <li className="flex justify-between py-3.5">
+            <div className="flex items-center gap-x-2">
+              <input
+                type="checkbox"
+                checked={age}
+                id="check2"
+                onChange={() => setAge((prev) => !prev)}
+              />
+              <label id="check2" htmlFor="check2"></label>
+              <span className="single-16-m text-neutralgray-900">
+                만 14세 이상 확인 (필수)
+              </span>
+            </div>
           </li>
           <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
-            <span>
-              <span
-                className="underline underline-offset-2 cursor-pointer"
-                id={1}
-                onClick={handleTermClick}
-              >
-                서비스 이용
-              </span>
-              동의 (필수)
-            </span>
-            <input
-              type="checkbox"
-              checked={service}
-              id="check3"
-              onChange={() => setService((prev) => !prev)}
+            <div className="flex items-center gap-x-2">
+              <input
+                type="checkbox"
+                checked={service}
+                id="check3"
+                onChange={() => setService((prev) => !prev)}
+              />
+              <label id="check3" htmlFor="check3"></label>
+              <span>서비스 이용 동의 (필수)</span>
+            </div>
+            <ArrowRight
+              width="24"
+              height="24"
+              className="cursor-pointer"
+              id={1}
+              onClick={handleTermClick}
             />
-            <label id="check3" htmlFor="check3"></label>
           </li>
           <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
-            <span>
-              <span
-                className="underline underline-offset-2 cursor-pointer"
-                id={2}
-                onClick={handleTermClick}
-              >
-                개인 정보 수집 및 이용
-              </span>
-              동의 (필수)
-            </span>
-
-            <input
-              type="checkbox"
-              checked={marketing}
-              id="check4"
-              onChange={() => setMarketing((prev) => !prev)}
+            <div className="flex items-center gap-x-2">
+              <input
+                type="checkbox"
+                checked={privacy}
+                id="check4"
+                onChange={() => setPrivacy((prev) => !prev)}
+              />
+              <label id="check4" htmlFor="check4"></label>
+              <span>개인 정보 수집 및 이용 동의 (필수)</span>
+            </div>
+            <ArrowRight
+              width="24"
+              height="24"
+              className="cursor-pointer"
+              id={2}
+              onClick={handleTermClick}
             />
-            <label id="check4" htmlFor="check4"></label>
+          </li>
+          <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
+            <div className="flex items-center gap-x-2">
+              <input
+                type="checkbox"
+                checked={marketing}
+                id="check5"
+                onChange={() => setMarketing((prev) => !prev)}
+              />
+              <label id="check5" htmlFor="check5"></label>
+              <span>마케팅 활용/광고성 정보 수신 동의 (선택)</span>
+            </div>
           </li>
         </ul>
       </div>
       <button
         type="submit"
         className="mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-        disabled={!(age && service && marketing)}
+        disabled={!(age && service && privacy)}
         onClick={submitUserInfo}
       >
         가입 완료
