@@ -10,7 +10,7 @@ import PersonalInfoForm from "components/pages/join/PersonalInfoForm";
 import Terms from "components/pages/join/Terms";
 
 const Join = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [userInfo, setUserInfo] = useState({});
 
   const value = {

@@ -7,21 +7,12 @@ import { GlobalContext } from "pages/_app";
 import { useSignUp } from "service/hooks/user";
 import { userDatasAtom } from "service/atoms/atoms";
 
-import { BottomSheet } from "react-spring-bottom-sheet";
-import { NotionRenderer } from "react-notion";
 import ArrowRight from "icons/arrow_right_off.svg";
 import CloseIcon from "icons/close_off.svg";
-import "react-notion/src/styles.css";
-import "prismjs/themes/prism-tomorrow.css";
 
-const Terms = ({ blockMap }) => {
+const Terms = () => {
   const { userInfo, setUserInfo } = useContext(SignUpContext);
   const [, setUserDatas] = useRecoilState(userDatasAtom);
-
-  const [open, setOpen] = useState(false);
-  const [clickedTerm, setClickedTerm] = useState(null);
-  const [privacyClicked, setPrivacyClicked] = useState(null);
-  const [agreementClicked, setAgreementClicked] = useState(null);
 
   const [all, setAll] = useState(false);
   const [age, setAge] = useState(false);
@@ -31,6 +22,11 @@ const Terms = ({ blockMap }) => {
 
   const router = useRouter();
   const signUp = useSignUp(userInfo);
+
+  const [serviceLink, privacyLink] = [
+    "https://newdok.notion.site/18aacf9713bc427a850ae8da92b69087",
+    "https://newdok.notion.site/82ef5aea46d84623b7b19bb951b6043c?pvs=4",
+  ];
 
   /* userInfo post 요청 */
   const postSignUp = async () => {
@@ -53,34 +49,18 @@ const Terms = ({ blockMap }) => {
     setMarketing(check);
   };
 
+  const openLink = (e) => {
+    window.open(e.target.id === 1 + "" ? serviceLink : privacyLink);
+  };
+
   const submitUserInfo = async () => {
     await postSignUp();
     router.push("/userResearch");
   };
 
-  const handleTermClick = (e) => {
-    setClickedTerm(e.target.id / 1);
-    setOpen(true);
-  };
-
   useEffect(() => {
     setUserInfo(userInfo);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    fetch(
-      "https://notion-api.splitbee.io/v1/page/82ef5aea46d84623b7b19bb951b6043c?pvs=4"
-    )
-      .then((res) => res.json())
-      .then((res) => setPrivacyClicked(res));
-    fetch(
-      "https://notion-api.splitbee.io/v1/page/18aacf9713bc427a850ae8da92b69087?pvs=4"
-    )
-      .then((res) => res.json())
-      .then((res) => setAgreementClicked(res));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setUserInfo, userInfo]);
 
   return (
     <div className="h-full overflow-scroll w-full flex flex-col justify-between">
@@ -131,7 +111,7 @@ const Terms = ({ blockMap }) => {
               height="24"
               className="cursor-pointer"
               id={1}
-              onClick={handleTermClick}
+              onClick={openLink}
             />
           </li>
           <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
@@ -150,7 +130,7 @@ const Terms = ({ blockMap }) => {
               height="24"
               className="cursor-pointer"
               id={2}
-              onClick={handleTermClick}
+              onClick={openLink}
             />
           </li>
           <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
@@ -175,36 +155,8 @@ const Terms = ({ blockMap }) => {
       >
         가입 완료
       </button>
-      <BottomSheet
-        open={open}
-        onDismiss={() => setOpen(false)}
-        snapPoints={({ maxHeight }) => [0.8 * maxHeight]}
-      >
-        <TermHeader
-          handleDismiss={() => setOpen(false)}
-          name={clickedTerm === 1 ? "서비스 이용 약관" : "개인 정보 처리 방침"}
-        />
-        <div className="w-full h-fit mt-16 pt-5 px-5">
-          <NotionRenderer blockMap={clickedTerm === 1 ? agreement : privacy} />
-        </div>
-      </BottomSheet>
     </div>
   );
 };
 
 export default Terms;
-
-const TermHeader = ({ handleDismiss, name }) => {
-  return (
-    <div className="w-full h-fit p-2.5 flex justify-between items-center elevation-1-bottom bg-white z-1 absolute">
-      <div className="w-11 h-11 bg-white"></div>
-      <div className="single-20-b text-neutralgray-900">{name}</div>
-      <div
-        className="w-11 h-11 bg-white flex justify-center items-center cursor-pointer"
-        onClick={() => handleDismiss()}
-      >
-        <CloseIcon width="32" height="32" />
-      </div>
-    </div>
-  );
-};

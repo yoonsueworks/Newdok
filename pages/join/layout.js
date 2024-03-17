@@ -11,7 +11,7 @@ const SignUpLayout = ({ description, forms, step, setStep }) => {
           <div className="h-full flex flex-col justify-between">{forms}</div>
         </div>
       ) : (
-        <div className="w-full h-screen overflow-scroll py-14 px-5 flex flex-col gap-y-7">
+        <div className="w-full xl:w-[768px] h-screen overflow-scroll py-14 px-5 flex flex-col gap-y-7">
           <div className="h-fit">{description}</div>
           <div className="flex flex-col gap-y-8">
             <div className="h-fit">{children[0]}</div>
