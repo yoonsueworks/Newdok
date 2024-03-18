@@ -3,12 +3,10 @@ import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
 
 import { SignUpContext } from "context/SignUpContext";
-import { GlobalContext } from "pages/_app";
 import { useSignUp } from "service/hooks/user";
 import { userDatasAtom } from "service/atoms/atoms";
 
 import ArrowRight from "icons/arrow_right_off.svg";
-import CloseIcon from "icons/close_off.svg";
 
 const Terms = () => {
   const { userInfo, setUserInfo } = useContext(SignUpContext);
