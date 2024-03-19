@@ -1,12 +1,30 @@
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+
+import { useRecoilValue } from "recoil";
+import { authSelector } from "service/atoms/selectors";
+
 import { useForm } from "react-hook-form";
 
 const Search = () => {
   const [component, setComponent] = useState("searchQuery");
+  const isAuthenticated = useRecoilValue(authSelector);
+
   const { register, handleSubmit, watch, setFocus } = useForm({});
   const query = watch("query");
+  const router = useRouter();
 
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    router.push({
+      pathname: "/search/authSearchResult",
+
+      // pathname: isAuthenticated
+      //   ? "/search/authSearchResult"
+      //   : "/search/unAuthSearchResult",
+      // TODO: pathname 기획 방향에 따라 추후 수정가능성 있음
+      query: { query },
+    });
+  };
 
   const components = {
     searchQuery: (
@@ -22,11 +40,16 @@ const Search = () => {
                   value: true,
                   message: "뉴스레터 브랜드명, 키워드 검색",
                 },
-                pattern: /^(?=.*[a-z])(?=.*\d)[a-z\d]{6,12}$/,
               })}
               maxLength="12"
               placeholder="뉴스레터 브랜드명, 키워드 검색"
               className="rounded-lg p-4 single-16-m focus:inputFocused-border input-border"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  handleSubmit(onSubmit)();
+                }
+              }}
             />
           </div>
         </div>
@@ -54,7 +77,5 @@ const Search = () => {
 };
 
 export default Search;
-
-// TODO: 제출, 상태값 보존, 스타일링 일괄
 
 // TODO: 제출, 상태값 보존, 스타일링 일괄
