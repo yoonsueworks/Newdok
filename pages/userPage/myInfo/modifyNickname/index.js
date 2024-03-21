@@ -1,19 +1,19 @@
-import AppBar from "shared/AppBar";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
 import { useModifyNickname } from "service/hooks/user";
+import LocalStorage from "public/utils/LocalStorage";
 
 import Background2 from "shared/Background2";
 import InputLabel from "shared/InputLabel";
+import AppBar from "shared/AppBar";
 
 import { nicknameErrorMessage } from "constants/join";
-import LocalStorage from "../../../../public/utils/LocalStorage";
 
 const ModifyNickname = () => {
   const router = useRouter();
-  const { mutate, data, error } = useModifyNickname();
+  const { mutate } = useModifyNickname();
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
   const [, setInfoChangeSuccess] = useRecoilState(infoChangeSuccessAtom);
 
@@ -44,6 +44,11 @@ const ModifyNickname = () => {
   const conditionControl = {
     specialsIncluded: specials.test(nickname),
     sameWithPreviousNickname: userDatas.nickname === nickname,
+    nicknameInput: conditionControl.sameWithPreviousNickname
+      ? "inputError-border"
+      : !nickname || (nickname && conditionControl.specialsIncluded)
+      ? "input-border"
+      : "",
   };
 
   const getErrorMessage = () => {
