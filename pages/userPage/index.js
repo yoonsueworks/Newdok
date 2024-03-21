@@ -30,9 +30,7 @@ const UserPage = () => {
           email={userDatas.subscribeEmail}
           copyClipboard={copyClipboard}
         />
-        <div className="w-full h-fit px-5 bg-beige-100 overflow-scroll">
-          <Menus />
-        </div>
+        <Menus />
       </div>
       <ToastPopUp toastMessage="mailCopied" isVisible={isToastVisible} />
     </div>
