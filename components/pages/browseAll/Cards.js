@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
-
 import { Mousewheel } from "swiper";
 
 import Card from "./Card";
@@ -12,7 +11,7 @@ import { GlobalContext } from "pages/_app";
 
 export default function Cards({ datas }) {
   const { intersection } = useContext(GlobalContext);
-  const [shuffledArray, setShuffledArray] = useState(intersection);
+  const [, setShuffledArray] = useState(intersection);
 
   const shuffleArray = (array) => {
     if (!array) return;
@@ -51,12 +50,6 @@ export default function Cards({ datas }) {
               <Card datas={data} />
             </SwiperSlide>
           ))}
-        {/* {shuffledArray?.length > 0 &&
-          shuffledArray?.map((datas) => (
-            <SwiperSlide key={datas.id} className={S.swiperSlide}>
-              <Card datas={datas} />
-            </SwiperSlide>
-          ))} */}
       </Swiper>
     </>
   );

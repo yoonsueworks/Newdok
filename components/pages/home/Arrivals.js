@@ -3,8 +3,10 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { browseAllPageAtom } from "service/atoms/atoms";
 import { browseOptionsAtom } from "service/atoms/atoms";
-import { days } from "constants/days";
+
 import Reload from "shared/Reload";
+
+import { days } from "constants/days";
 
 const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
   const router = useRouter();
