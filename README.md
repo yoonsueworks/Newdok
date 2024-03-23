@@ -39,4 +39,4 @@
 
 ### 💻  URL
 
-https://newdok.vercel.app/home
+https://newdok.vercel.app
