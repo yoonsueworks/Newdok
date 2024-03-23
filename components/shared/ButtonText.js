@@ -1,12 +1,4 @@
-interface ButtonProps {
-  func: () => void;
-  mode: string;
-  state: Boolean;
-  size: string;
-  text: string;
-}
-
-const ButtonText = (props: ButtonProps) => {
+const ButtonText = (props) => {
   const { func, text, size } = props;
   const sizeCSS =
     size === "big"

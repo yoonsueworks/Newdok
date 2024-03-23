@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { SignUpContext } from "context/SignUpContext";
 
-import SignUpLayout from "./layout";
+import PersonalInfoForm from "components/pages/join/PersonalInfoForm";
 import Description from "components/pages/join/Description";
 import PhoneForm from "components/pages/join/PhoneForm";
 import PswdForm from "components/pages/join/PswdForm";
 import IdForm from "components/pages/join/IdForm";
-import PersonalInfoForm from "components/pages/join/PersonalInfoForm";
 import Terms from "components/pages/join/Terms";
+import SignUpLayout from "./layout";
 
 const Join = () => {
   const [step, setStep] = useState(1);

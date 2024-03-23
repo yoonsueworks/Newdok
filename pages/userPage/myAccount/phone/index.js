@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
-
 import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
+import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
+import { useAuthSms, useResetPhoneNumber } from "service/hooks/user";
 
 import InputLabel from "shared/InputLabel";
 import Background from "shared/Background";
 import AppBar from "shared/AppBar";
 
-import LocalStorage from "public/utils/LocalStorage";
-import { useRecoilState } from "recoil";
 import { phoneTextElement, phoneErrorMessage } from "constants/join";
-import { useAuthSms, useResetPhoneNumber } from "service/hooks/user";
-import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
+import { useForm } from "react-hook-form";
 
 const Phone = () => {
   const { register, handleSubmit, watch } = useForm();
@@ -66,23 +64,27 @@ const Phone = () => {
       setInfoChangeSuccess("phoneNumberChanged");
     }
     if (resetPhoneNumber.isError) {
-      router.push("/userPage/myAccount"); 
+      router.push("/userPage/myAccount");
       setInfoChangeSuccess("phoneNumberFailed");
-    };
+    }
     // TODO: toastify
   };
 
   const validatePhoneNumber = () => {
     if (timeout) {
       return phoneErrorMessage.error_timeout;
-    }
-    if (!authNumber) {
+    } else if (!authNumber) {
       return phoneErrorMessage.default;
-    }
-    if (authNumber && !authChecked) {
+    } else if (authNumber && !authChecked) {
       return phoneErrorMessage.error_failed;
     }
   };
+
+  const phoneTimer = timeout
+    ? phoneTextElement.timeoutBtn
+    : `${Math.floor(seconds / 60)
+        .toString()
+        .padStart(2, "0")}:${(seconds % 60).toString().padStart(2, "0")}`;
 
   useEffect(() => {
     setPhoneNumber(userDatas.phoneNumber);
@@ -185,13 +187,7 @@ const Phone = () => {
                         timeout ? "text-error" : "text-information"
                       }`}
                     >
-                      {timeout
-                        ? phoneTextElement.timeoutBtn
-                        : `${Math.floor(seconds / 60)
-                            .toString()
-                            .padStart(2, "0")}:${(seconds % 60)
-                            .toString()
-                            .padStart(2, "0")}`}
+                      {phoneTimer}
                     </span>
                   )}
                 </div>
