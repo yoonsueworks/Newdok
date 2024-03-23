@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { browseOptionsAtom } from "service/atoms/atoms";
 import { browseOptionsQuerySelector } from "service/atoms/selectors";
+import { browseOptionsAtom } from "service/atoms/atoms";
 import { useBrowseAll } from "service/hooks/newsletters";
 
 import FiltersFooter from "./FiltersFooter";
@@ -28,6 +28,7 @@ export default function EveryBrands() {
       setOpen(true);
     }
   };
+
   const handleDismiss = (id) => {
     if (id === 1) {
       setOpenSort(false);

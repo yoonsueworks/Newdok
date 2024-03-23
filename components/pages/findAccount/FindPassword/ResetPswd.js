@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import { useResetPswd } from "service/hooks/user";
 
 import PasswordChild from "shared/PasswordChild";
 import InputLabel from "shared/InputLabel";
+
 import { pswdText, pswdErrorMessage } from "constants/join";
-import { useResetPswd } from "service/hooks/user";
+
+import { useForm } from "react-hook-form";
 
 const ResetPswd = ({ loginId }) => {
   const { register, handleSubmit } = useForm();
@@ -18,7 +20,7 @@ const ResetPswd = ({ loginId }) => {
   const passwordValidation = /^(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]*$/;
   const router = useRouter();
 
-  const { data, isLoading, isError, mutate } = useResetPswd({
+  const { data, isError, mutate } = useResetPswd({
     loginId: loginId,
     password: pswd,
   });

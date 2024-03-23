@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
-import { useRouter } from "next/router";
 
 import Profile from "components/pages/userPage/Profile";
 import Menus from "components/pages/userPage/Menus";

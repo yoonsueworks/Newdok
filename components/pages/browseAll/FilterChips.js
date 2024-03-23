@@ -44,13 +44,11 @@ const FilterChips = ({ func, sortOption }) => {
               state={browseOptions[name].length}
               open={() => func(id)}
             >
-              <div>
-                <FilterOffIcon
-                  width="16"
-                  height="16"
-                  fill={browseOptions[name].length !== 0 ? "white" : "#171414"}
-                />
-              </div>
+              <FilterOffIcon
+                width="16"
+                height="16"
+                fill={browseOptions[name].length !== 0 ? "white" : "#171414"}
+              />
             </FilterChip>
           );
         })}
