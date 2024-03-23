@@ -284,7 +284,7 @@ const PhoneForm = () => {
               className={`w-full p-4 rounded-xl single-20-b ${"transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100 bg-white text-purple-700 shadow-[inset_0_0px_0px_1px_#674188]"}`}
               onClick={clickJoinProcessContinue}
             >
-              {data?.length >= 3 ? "ID/PW 찾기" : "계속 진행"}
+              {data?.length >= 3 ? "ID/PW 찾기" : "계속 진행하기"}
             </button>
             <button
               onClick={clickLogin}
