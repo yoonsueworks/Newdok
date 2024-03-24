@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { atom, useRecoilState } from "recoil";
-import { userDatasAtom, accessTokenAtom } from "service/atoms/atoms";
+import { userCurrentPlaceAtom } from "service/atoms/atoms";
 
 import HomeOff from "icons/home_off.svg";
 import HomeOn from "icons/home_on.svg";
@@ -16,27 +16,17 @@ import BookmarkOn from "icons/bookmark_on.svg";
 
 const Nav = () => {
   const router = useRouter();
-  const [page, setPage] = useState(null);
-
-  const hasBrowseAll = router.pathname === "/browseAll";
-  const hasUserPage = router.pathname.includes("/userPage");
-  const hasHome = router.pathname === "/home";
-  
+  const [userCurrentPlace, setUserCurrentPlace] =
+    useRecoilState(userCurrentPlaceAtom);
 
   const clickMenu = (menu) => {
-    setPage(menu.id);
+    setUserCurrentPlace(menu.path);
     router.push(menu.path);
   };
 
   useEffect(() => {
-    if (hasBrowseAll) {
-      setPage(1);
-    } else if (hasHome) {
-      setPage(2);
-    } else if (hasUserPage) {
-      setPage(3);
-    }
-  }, [hasBrowseAll, hasHome, hasUserPage]);
+    setUserCurrentPlace(router.pathname);
+  }, [setUserCurrentPlace, router.pathname]);
 
   return (
     <div className=" sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col bg-white grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
@@ -47,10 +37,12 @@ const Nav = () => {
             key={menu.id}
             onClick={() => clickMenu(menu)}
           >
-            <div>{page === menu.id ? menu.state_on : menu.state_off}</div>
+            <div>
+              {menu.path === userCurrentPlace ? menu.state_on : menu.state_off}
+            </div>
             <span
               className={
-                page === menu.id
+                menu.path === userCurrentPlace
                   ? "text-purple-700 font-bold"
                   : "text-warmgray-100 "
               }

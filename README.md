@@ -39,4 +39,8 @@
 
 ### 💻  URL
 
+<<<<<<< HEAD
+https://newdok.vercel.app
+=======
 https://newdok.vercel.app/home
+>>>>>>> 8e1517d0e57902d3b454df1ad6d3d0150e720e79
