@@ -8,6 +8,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      xs: { min: "1px", max: "359px" },
+      sm: "360px",
+      md: "768px",
+      xl: "1280px",
+    },
     extend: {
       spacing: {
         0: "0",
