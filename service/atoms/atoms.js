@@ -54,3 +54,8 @@ export const userResearchAtom = atom({
   default: { industryId: null, interests: [] },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const userCurrentPlaceAtom = atom({
+  key: "userCurrentPlaceAtom",
+  default: "",
+});
