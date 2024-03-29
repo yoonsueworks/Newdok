@@ -29,7 +29,7 @@ const Nav = () => {
   }, [setUserCurrentPlace, router.pathname]);
 
   return (
-    <div className=" sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col bg-white grid grid-cols-3 elevation-2-top pt-3.5 pb-5">
+    <div className=" sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col bg-white grid grid-cols-5 elevation-2-top pt-3.5 pb-5">
       {NAV_MENUS.map((menu) => {
         return (
           <li
@@ -60,6 +60,7 @@ export default Nav;
 
 const MENU_NAMES = {
   RECOMMENDED: "recommended",
+  MANAGESUBSCRIPTION: "manageSubscription",
   HOME: "home",
   USERPAGE: "userPage",
   BOOKMARK: "bookmark",
@@ -77,6 +78,14 @@ const NAV_MENUS = [
   },
   {
     id: 2,
+    name_kr: "구독관리",
+    name_eng: MENU_NAMES.MANAGESUBSCRIPTION,
+    state_on: <HomeOn width="32" height="32" />,
+    state_off: <HomeOff width="32" height="32" />,
+    path: "/manageSubscription",
+  },
+  {
+    id: 3,
     name_kr: "홈",
     name_eng: MENU_NAMES.HOME,
     state_on: <HomeOn width="32" height="32" />,
@@ -84,7 +93,15 @@ const NAV_MENUS = [
     path: "/home",
   },
   {
-    id: 3,
+    id: 4,
+    name_kr: "북마크함",
+    name_eng: MENU_NAMES.BOOKMARK,
+    state_on: <HomeOn width="32" height="32" />,
+    state_off: <HomeOff width="32" height="32" />,
+    path: "/bookmark",
+  },
+  {
+    id: 5,
     name_kr: "마이페이지",
     name_eng: MENU_NAMES.USERPAGE,
     state_on: <ProfileOn width="32" height="32" />,
