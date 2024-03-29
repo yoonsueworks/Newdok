@@ -5,6 +5,7 @@ import Unauthorized from "components/pages/browseAll/Unauthorized";
 import Authorized from "components/pages/browseAll/Authorized";
 import CustomizedErrorComp from "shared/error/500";
 import Loading from "shared/Loading";
+
 import LocalStorage from "public/utils/LocalStorage";
 
 const RecommendedLetters = ({ statusCode, data, isLoading }) => {

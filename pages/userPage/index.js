@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
-import { useRouter } from "next/router";
 
 import Profile from "components/pages/userPage/Profile";
 import Menus from "components/pages/userPage/Menus";
@@ -30,9 +30,7 @@ const UserPage = () => {
           email={userDatas.subscribeEmail}
           copyClipboard={copyClipboard}
         />
-        <div className="w-full h-fit px-5 bg-beige-100 overflow-scroll">
-          <Menus />
-        </div>
+        <Menus />
       </div>
       <ToastPopUp toastMessage="mailCopied" isVisible={isToastVisible} />
     </div>

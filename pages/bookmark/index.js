@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -68,6 +69,10 @@ const Bookmark = () => {
       </div>
     </div>
   );
+=======
+const Bookmark = () => {
+  return <div>북마크함</div>;
+>>>>>>> 6e51bc512ac904bc714955d710a553638e91923a
 };
 
 export default Bookmark;

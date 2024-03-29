@@ -29,10 +29,9 @@ const PersonalInfoForm = () => {
     btnDisabled: !nickname || birthYear === "선택",
   };
 
+  const nicknameTested = conditionControl.specials.test(nickname);
+
   const getErrorMessage = () => {
-    if (!nickname) return nicknameErrorMessage.default_nickname;
-    if (nickname && conditionControl.specials.test(nickname))
-      return nicknameErrorMessage.default_nickname;
     if (nickname && !conditionControl.specials.test(nickname))
       return nicknameErrorMessage.error_nickname;
   };
@@ -68,12 +67,12 @@ const PersonalInfoForm = () => {
 
   return (
     <form
-      className="h-full overflow-scroll w-full flex flex-col justify-between"
+      className="h-fit w-full flex flex-col justify-between"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-y-8">
         {/* 아래부터 닉네임 */}
-        <div className="flex flex-col gap-y-2">
+        <div className="flex flex-col ">
           <InputLabel htmlFor="nickname" text="닉네임" />
           <input
             {...register("nickname", {
@@ -82,10 +81,9 @@ const PersonalInfoForm = () => {
             })}
             maxLength="12"
             placeholder="12자 이내, 특수문자 사용 불가"
-            className={`rounded-lg p-4 single-16-m input-border focus:inputFocused-border 
+            className={`rounded-lg p-4 single-16-m input-border focus:inputFocused-border mt-2 
             ${
-              !nickname ||
-              (nickname && conditionControl.specials.test(nickname))
+              !nickname || (nickname && nicknameTested)
                 ? "input-border"
                 : "inputError-border"
             }`}
@@ -93,13 +91,8 @@ const PersonalInfoForm = () => {
             id="nickname"
           />
 
-          {!nickname ||
-          (nickname && conditionControl.specials.test(nickname)) ? (
-            <p className={`text-neutralgray-500 single-12-m`}>
-              {getErrorMessage()}
-            </p>
-          ) : (
-            <p className={`text-error single-12-m`}>{getErrorMessage()}</p>
+          {!nicknameTested && (
+            <p className={`text-error single-12-m mt-2`}>{getErrorMessage()}</p>
           )}
         </div>
 
@@ -243,13 +236,6 @@ const PersonalInfoForm = () => {
           </p>
         </div>
       </div>
-      <button
-        type="submit"
-        className="mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-        disabled={conditionControl.btnDisabled}
-      >
-        다음
-      </button>
     </form>
   );
 };

@@ -1,5 +1,6 @@
 import { useRecoilState } from "recoil";
 import { browseOptionsAtom } from "service/atoms/atoms";
+
 import { industries } from "constants/industries";
 import { days } from "constants/days";
 
@@ -28,10 +29,6 @@ const Filter = ({ text, type, id, func, browseOptions }) => {
 const Filters = ({ handleDismiss }) => {
   const [browseOptions, setBrowseOptions] = useRecoilState(browseOptionsAtom);
 
-  const titleCSS = "single-18-b text-purple-700";
-  const wrapCSS = "flex flex-wrap gap-2.5";
-  const gridCSS = "grid grid-cols-4 gap-2.5";
-
   const handleOptionsClick = (e) => {
     const { name, id } = e.target;
     if (!name) {
@@ -56,8 +53,14 @@ const Filters = ({ handleDismiss }) => {
       {FilterTypes.map(({ id, constants, type, title }) => {
         return (
           <div className="grid gap-y-4" key={id}>
-            <span className={titleCSS}>{title}</span>
-            <div className={type === "industries" ? wrapCSS : gridCSS}>
+            <span className="single-18-b text-purple-700">{title}</span>
+            <div
+              className={
+                type === "industries"
+                  ? "flex flex-wrap gap-2.5"
+                  : "grid grid-cols-4 gap-2.5"
+              }
+            >
               {constants.map(({ id, name }) => {
                 return (
                   <Filter

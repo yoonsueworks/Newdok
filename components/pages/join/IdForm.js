@@ -84,12 +84,12 @@ const IdForm = () => {
 
   return (
     <form
-      className="h-full overflow-scroll w-full flex flex-col justify-between"
+      className="h-full overflow-scroll w-full flex flex-col"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="flex flex-col gap-y-2">
+      <div className="flex flex-col">
         <InputLabel htmlFor="loginId" text="아이디" />
-        <div className="flex gap-x-2">
+        <div className="flex gap-x-2 pt-2">
           <input
             {...register("loginId", {
               required: idErrorMessage.default,
@@ -120,26 +120,20 @@ const IdForm = () => {
             중복 확인
           </button>
         </div>
-        <p
-          className={`${
-            isError
-              ? "text-neutralgray-500"
-              : !isChecked
-              ? "text-error"
-              : "text-neutralgray-500"
-          } single-12-m`}
-        >
-          {getErrorMessage()}
-        </p>
+        {loginId && (
+          <p
+            className={`${
+              isError
+                ? "text-neutralgray-500"
+                : !isChecked
+                ? "text-error"
+                : "text-neutralgray-500"
+            } single-12-m pt-2`}
+          >
+            {getErrorMessage()}
+          </p>
+        )}
       </div>
-
-      <button
-        type="submit"
-        className="mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-        disabled={!error}
-      >
-        다음
-      </button>
     </form>
   );
 };

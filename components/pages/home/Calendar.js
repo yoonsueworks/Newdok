@@ -5,16 +5,16 @@ import {
   monthValueAtom,
   dateValueAtom,
 } from "service/atoms/atoms";
-import { CalendarContext } from "../../../context/CalendarContext";
-
-import Calendar from "react-calendar";
-import PrevIcon from "icons/arrow_left_off.svg";
-import NextIcon from "icons/arrow_right_off.svg";
-
 import {
   useMonthlyArticlesOnClickPrev,
   useMonthlyArticlesOnClickNext,
 } from "service/hooks/newsletters";
+
+import PrevIcon from "icons/arrow_left_off.svg";
+import NextIcon from "icons/arrow_right_off.svg";
+
+import { CalendarContext } from "context/CalendarContext";
+import Calendar from "react-calendar";
 
 export default function ReactCalendar() {
   const {
@@ -50,11 +50,9 @@ export default function ReactCalendar() {
   const prevRequest = useMonthlyArticlesOnClickPrev(newActiveMonthPrev);
   const nextRequest = useMonthlyArticlesOnClickNext(newActiveMonthNext);
 
-  // 미래 날짜(일, 월) 클릭 방지
+  /* 미래 날짜(일, 월) 클릭 방지 */
   const isDateDisabled = (date) => {
     const currentDate = date.getDate();
-    // if (activeMonth < currentMonth) return false;
-    // if (activeMonth > currentMonth) return true;
     if (activeMonth === currentMonth) return currentDate > todayDate;
   };
 
@@ -75,7 +73,7 @@ export default function ReactCalendar() {
     return active === "prev" ? previousMonth : nextMonth;
   };
 
-  // < 버튼 클릭 시
+  /* < 버튼 클릭 시 */
   const clickPrevBtn = async () => {
     const { data } = await prevRequest.refetch(newActiveMonthPrev);
     setArticles(data);
@@ -85,7 +83,7 @@ export default function ReactCalendar() {
     onChange(calculateMonth("prev"));
   };
 
-  // > 버튼 클릭 시
+  /* > 버튼 클릭 시 */
   const clickNextBtn = async () => {
     if (futureMonthCondition) return;
 
@@ -99,8 +97,7 @@ export default function ReactCalendar() {
 
   const tileClassName = ({ date }) => {
     if (date.getDate() === activeDate) {
-      return "selected-date";
-      // 선택된 타일 css 클라스 명 부여
+      return "selected-date"; // 선택된 타일 css 클라스 명 부여
     }
     return "";
   };
@@ -119,11 +116,11 @@ export default function ReactCalendar() {
               day: "numeric",
             })
           );
-          setDateValue(e); //페이지 이동 시 특정 날짜 상태 유지
+          setDateValue(e); // 페이지 이동 시 특정 날짜 상태 유지
           onChange();
         }}
         value={value}
-        // 외부 함수에서 value 갱신 시 activeStartDate 또한 업데이트 해야 라이브러리에서 값 갱신 됨 (activeStartDate, onActiveStartDateChange)
+        /*  외부 함수에서 value 갱신 시 activeStartDate 또한 업데이트 해야 라이브러리에서 값 갱신 됨 (activeStartDate, onActiveStartDateChange) */
         activeStartDate={activeStartDate}
         onActiveStartDateChange={({ activeStartDate }) => {
           const clickedMonth = activeStartDate.getTime();
