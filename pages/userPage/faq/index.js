@@ -10,7 +10,7 @@ const Faq = () => {
   const [openDisclosureId, setOpenDisclosureId] = useState(null);
 
   return (
-    <>
+    <div className="md:w-full md:flex md:flex-col">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar
@@ -46,7 +46,7 @@ const Faq = () => {
           </div>
         </div>
       </Background>
-    </>
+    </div>
   );
 };
 

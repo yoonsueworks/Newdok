@@ -7,7 +7,7 @@ import { policy_menus } from "constants/userPage";
 const Policy = () => {
   const router = useRouter();
   return (
-    <>
+    <div className="md:w-full md:flex md:flex-col">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar
@@ -35,7 +35,7 @@ const Policy = () => {
           })}
         </div>
       </Background>
-    </>
+    </div>
   );
 };
 
