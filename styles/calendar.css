@@ -2,6 +2,11 @@
   transition: 0s !important;
 }
 
+.react-calendar {
+  width: 100%;
+  background-color: white;
+}
+
 .react-calendar__navigation {
   display: flex;
   padding: 16px;
@@ -104,4 +109,25 @@
   color: white;
   background: #9362a9;
   border: 0px;
+}
+
+@media (min-width: 1280px) {
+  .react-calendar {
+    width: 100%;
+  }
+  .react-calendar__navigation {
+    padding-left: 176px;
+    padding-right: 176px;
+  }
+
+  .react-calendar__month-view__weekdays {
+    padding: 16px;
+    padding-left: 200px;
+    padding-right: 200px;
+  }
+  .react-calendar__month-view__days {
+    padding: 16px;
+    padding-left: 200px;
+    padding-right: 200px;
+  }
 }

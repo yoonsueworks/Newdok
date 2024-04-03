@@ -96,6 +96,9 @@ module.exports = {
         success: "#16892C",
         information: "#0079D0",
       },
+      zIndex: {
+        100: "100",
+      },
     },
   },
   plugins: [],

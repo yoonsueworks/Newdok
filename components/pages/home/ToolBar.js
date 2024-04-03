@@ -13,7 +13,7 @@ const ToolBar = () => {
   };
 
   return (
-    <div className="w-full px-5 py-2.5 bg-purple-400 text-white single-20-b">
+    <div className="w-full px-5 py-2.5 bg-purple-400 text-white single-20-b xl:px-44 z-[100]">
       <div className="h-11 flex flex-row justify-between items-center">
         <span>{fullActiveDate || dateLocaleKr}</span>
 
