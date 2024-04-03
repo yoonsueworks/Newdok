@@ -10,14 +10,17 @@ import {
   useMonthlyArticlesOnClickNext,
 } from "service/hooks/newsletters";
 
+import ToolBar from "components/pages/home/ToolBar";
 import PrevIcon from "icons/arrow_left_off.svg";
 import NextIcon from "icons/arrow_right_off.svg";
+import RefreshIcon from "icons/refresh_off.svg";
 
 import { CalendarContext } from "context/CalendarContext";
 import Calendar from "react-calendar";
 
 export default function ReactCalendar() {
   const {
+    dateLocaleKr,
     fullActiveDate,
     setActiveDate,
     activeDate,
@@ -103,53 +106,75 @@ export default function ReactCalendar() {
   };
 
   return (
-    <div className="calendar-container z-30 absolute bg-white">
-      <Calendar
-        onChange={(e) => {
-          setCalendarOpen((prev) => !prev);
-          setActiveDate(Number(String(e).split(" ")[2]));
-          setFullActiveDate(
-            e.toLocaleDateString(undefined, {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })
-          );
-          setDateValue(e); // 페이지 이동 시 특정 날짜 상태 유지
-          onChange();
-        }}
-        value={value}
-        /*  외부 함수에서 value 갱신 시 activeStartDate 또한 업데이트 해야 라이브러리에서 값 갱신 됨 (activeStartDate, onActiveStartDateChange) */
-        activeStartDate={activeStartDate}
-        onActiveStartDateChange={({ activeStartDate }) => {
-          const clickedMonth = activeStartDate.getTime();
-          const timeGap = clickedMonth - today.getTime();
+    <div className="flex flex-col items-center relative">
+      <div className="flex flex-col items-center justify-center calendar-container z-30 absolute sm:w-full md:w-full xl:w-full  shadow-[0_0_0_99999px_rgba(0,0,0,0.5)] z-[100]">
+        <ToolBar />
+        <Calendar
+          onChange={(e) => {
+            // 클릭 시 날짜 설정 및 캘린더 닫기
+            setCalendarOpen((prev) => !prev);
+            setActiveDate(Number(String(e).split(" ")[2]));
+            setFullActiveDate(
+              e.toLocaleDateString(undefined, {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            );
+            setDateValue(e); // 페이지 이동 시 특정 날짜 상태 유지
+            onChange();
+          }}
+          value={value}
+          /*  외부 함수에서 value 갱신 시 activeStartDate 또한 업데이트 해야 라이브러리에서 값 갱신 됨 (activeStartDate, onActiveStartDateChange) */
+          activeStartDate={activeStartDate}
+          onActiveStartDateChange={({ activeStartDate }) => {
+            const clickedMonth = activeStartDate.getTime();
+            const timeGap = clickedMonth - today.getTime();
 
-          if (timeGap > 0) {
-            return;
+            if (timeGap > 0) {
+              return;
+            }
+            // 미래 월로 이동 금지
+            setActiveStartDate(activeStartDate);
+          }}
+          formatDay={(locale, date) =>
+            date.toLocaleString("en", { day: "numeric" })
           }
-          // 미래 월로 이동 금지
-          setActiveStartDate(activeStartDate);
-        }}
-        formatDay={(locale, date) =>
-          date.toLocaleString("en", { day: "numeric" })
-        }
-        locale="ko-KO"
-        calendarType="US"
-        minDetail="month"
-        maxDetail="month"
-        nextLabel={<NextIcon id="next" onClick={clickNextBtn} />}
-        prevLabel={<PrevIcon id="prev" onClick={clickPrevBtn} />}
-        next2Label={null}
-        prev2Label={null}
-        tileDisabled={({ date }) => isDateDisabled(date)}
-        tileClassName={tileClassName}
-        tileContent={({ date }) => {
-          return <TileContent date={date} monthlyArticles={articles} />;
-        }}
-        showNeighboringMonth={false}
-      />
+          locale="ko-KO"
+          calendarType="US"
+          minDetail="month"
+          maxDetail="month"
+          nextLabel={<NextIcon id="next" onClick={clickNextBtn} />}
+          prevLabel={<PrevIcon id="prev" onClick={clickPrevBtn} />}
+          next2Label={null}
+          prev2Label={null}
+          tileDisabled={({ date }) => isDateDisabled(date)}
+          tileClassName={tileClassName}
+          tileContent={({ date }) => {
+            return <TileContent date={date} monthlyArticles={articles} />;
+          }}
+          showNeighboringMonth={false}
+        />
+        {/* 오늘 refresh 버튼 */}
+        <button
+          className="flex justify-center items-center absolute bottom-[-50px] bg-white p-2 rounded-full border border-neutralgray-200"
+          onClick={() => {
+            // 클릭 시 날짜 설정 및 캘린더 닫기
+            setCalendarOpen((prev) => !prev);
+            setActiveDate(Number(dateLocaleKr.split(" ")[2]));
+            setFullActiveDate(dateLocaleKr);
+            onChange();
+          }}
+        >
+          <span className="pr-1.5 single-16-m">오늘</span>
+          <RefreshIcon
+            width="16"
+            height="16"
+            className={`transition-all duration-500`}
+          />
+        </button>
+      </div>
     </div>
   );
 }
