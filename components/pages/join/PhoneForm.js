@@ -112,8 +112,9 @@ const PhoneForm = () => {
   };
 
   /* 아래 두 함수: 계정이 1개 이상인 경우 모달용 함수*/
-  const clickJoinProcessContinue = (e) => {
-    if (e.target.id === 1 + "") router.push("/findAccount");
+  const clickJoinProcessContinue = (e, idInfos) => {
+    if (Number(e.target.id) === 1 && idInfos < 3) setIsModalOpen(false);
+    if (Number(e.target.id) === 1 && idInfos >= 3) router.push("/findAccount");
     else {
       setIsModalOpen(false);
       authorize();
@@ -282,7 +283,7 @@ const PhoneForm = () => {
               type="button"
               id={1}
               className={`w-full p-4 rounded-xl single-20-b ${"transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100 bg-white text-purple-700 shadow-[inset_0_0px_0px_1px_#674188]"}`}
-              onClick={clickJoinProcessContinue}
+              onClick={(e) => clickJoinProcessContinue(e, data?.length)}
             >
               {data?.length >= 3 ? "ID/PW 찾기" : "계속 진행하기"}
             </button>

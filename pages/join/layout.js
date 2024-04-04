@@ -6,8 +6,10 @@ const SignUpLayout = ({ description, forms, step, setStep }) => {
 
   return (
     <>
-      <div className="w-full flex flex-col xl:items-center xl:justify-center h-screen">
-        <div className="w-full xl:w-[768px] pt-14 xl:px-28 px-5 pb-8">
+      <div className="w-full flex flex-col xl:items-center xl:justify-center h-screen overflow-scroll">
+        <div
+          className={`w-full xl:w-[768px] pt-14 pb-8 xl:px-28 sm:px-5 md:px-5`}
+        >
           <Image
             src="/images/Newdok_Logo-Horizontal_300.png"
             alt="newdok"
@@ -16,12 +18,14 @@ const SignUpLayout = ({ description, forms, step, setStep }) => {
           />
         </div>
         {step === 1 ? (
-          <div className="w-full xl:w-[768px] h-full justify-between pb-14 px-5 xl:px-28 flex flex-col gap-y-7">
+          <div
+            className={`w-full xl:w-[768px] h-full justify-between pb-14 flex flex-col gap-y-7 xl:px-28`}
+          >
             <div className="h-fit">{description}</div>
             <div className="h-full flex flex-col justify-between">{forms}</div>
           </div>
         ) : (
-          <div className="w-full xl:w-[768px] h-full overflow-scroll pb-14 px-5 flex flex-col gap-y-7">
+          <div className="w-full xl:w-[768px] h-full overflow-scroll pb-14 px-5 flex flex-col gap-y-7 xl:px-28 sm:px-5 md:px-5">
             <div className="h-fit">{description}</div>
             <div className="flex flex-col gap-y-8">
               <div className="h-fit">{children[0]}</div>
