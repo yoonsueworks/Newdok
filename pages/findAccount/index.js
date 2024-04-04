@@ -9,7 +9,7 @@ const FindAccount = () => {
   const [clickedTab, setClickedTab] = useState(1);
   const router = useRouter();
   return (
-    <div className="h-full mb-32">
+    <div className="w-full h-full mb-32 flex flex-col items-center">
       <AppBar
         iconl={true}
         shadow={true}
@@ -35,7 +35,7 @@ const FindAccount = () => {
           );
         })}
       </div>
-      <div className="h-full py-14 px-5 bg-white">
+      <div className="h-full py-14 px-5 bg-whit xl:w-[768px] xl:px-28">
         {Components[clickedTab - 1].comp}
       </div>
     </div>
