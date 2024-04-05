@@ -60,7 +60,7 @@ const MyInfo = () => {
   }, []);
 
   return (
-    <>
+    <div className="w-full">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar
@@ -134,7 +134,7 @@ const MyInfo = () => {
           </div>
         </div>
       </Background2>
-    </>
+    </div>
   );
 };
 

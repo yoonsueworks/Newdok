@@ -8,7 +8,7 @@ const Menus = () => {
   const router = useRouter();
 
   return (
-    <div className="w-full h-fit flex flex-col gap-y-2.5 px-5 pt-8">
+    <div className="w-full h-fit flex flex-col items-center justify-center gap-y-2.5 px-5 pt-8 xl:w-[786px] xl:px-0">
       {userPage_menus.map((menu) => {
         return (
           <div
