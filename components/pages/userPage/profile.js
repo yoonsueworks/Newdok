@@ -22,7 +22,7 @@ const Profile = ({ email, copyClipboard }) => {
 
   return (
     <div className="flex items-center justify-center w-full pt-14 pb-8 px-5 bg-white xl:px-28">
-      <div className="w-full xl:w-[786px] grid gap-x-6 gap-y-6">
+      <div className="w-full px-5 grid gap-x-6 gap-y-6">
         <div className="grid gap-y-4">
           <div className="single-24-b text-neutralgray-900">
             <Nickname />
