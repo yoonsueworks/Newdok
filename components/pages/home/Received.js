@@ -19,7 +19,7 @@ const Received = () => {
 
   return (
     <div className="flex justify-center w-full h-full px-5 bg-beige-100 overflow-scroll">
-      <div className="flex flex-col w-full h-full sm:w-full md:w-full xl:w-[80%]  px-5 bg-beige-100 overflow-scroll">
+      <div className="flex flex-col w-full h-full sm:w-full md:w-full xl:px-28 bg-beige-100 overflow-scroll">
         <div className="flex w-full flex justify-between items-center pt-7 pb-6 single-20-b text-neutralgray-900">
           <span>{articleLength}개의 아티클이 도착했어요.</span>
           <Reload />
