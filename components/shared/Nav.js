@@ -29,11 +29,11 @@ const Nav = () => {
   }, [setUserCurrentPlace, router.pathname]);
 
   return (
-    <div className=" sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-6 md:gap-y-8 bg-white grid grid-cols-5 elevation-2-top pt-3.5 pb-5">
+    <div className="sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-6 md:gap-y-8 xl:px-12 xl:items-start bg-white grid grid-cols-5 elevation-2-top pt-3.5 pb-5">
       {NAV_MENUS.map((menu) => {
         return (
           <li
-            className="list-none text-center flex flex-col gap-y-1 justify-center align-center items-center single-12-m"
+            className="list-none text-center flex flex-col xl:flex-row xl:gap-x-2 gap-y-1 justify-center align-center items-center single-12-m"
             key={menu.id}
             onClick={() => clickMenu(menu)}
           >
@@ -41,11 +41,11 @@ const Nav = () => {
               {menu.path === userCurrentPlace ? menu.state_on : menu.state_off}
             </div>
             <span
-              className={
+              className={`shrink-0 w-fit break-keep ${
                 menu.path === userCurrentPlace
                   ? "text-purple-700 font-bold"
                   : "text-warmgray-100 "
-              }
+              }`}
             >
               {menu.name_kr}
             </span>
