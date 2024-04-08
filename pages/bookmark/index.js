@@ -1,13 +1,9 @@
 import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
-
-// import required modules
 
 const Bookmark = () => {
   const userInterests = [
@@ -19,13 +15,6 @@ const Bookmark = () => {
     { id: 6, name: "경제 정치 김밥떡볶이" },
     { id: 7, name: "경제 정치 엔터테인먼트" },
   ];
-
-  //   const pagination = {
-  //     clickable: true,
-  //     renderBullet: function (index, className) {
-  //       return '<span class="' + className + '">' + (index + 1) + "</span>";
-  //     },
-  //   };
 
   return (
     <div className="w-full">
@@ -71,3 +60,9 @@ const Bookmark = () => {
 };
 
 export default Bookmark;
+
+// TODO:
+// 1. 북마크 카테고리 요청
+// 1. 1) 카테고리 아이디, 카테고리 명 e.g)[{interest:경제.시사, interestId:1}]
+// 2. 선택된 카테고리의 북마크된 아티클 요청 (초기 요청은 무조건 전체)
+// 2. 1) {totalAmount: 33, articles:[{month:11월, articles: [{id: 0 ,  brand: "", brandId: "", title: "", articleId: 10231, sampleText: "", brandImage:"", publishedAt:"", }, {}]}, {month:12월}]}
