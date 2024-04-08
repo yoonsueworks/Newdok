@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUserSubscriptionList } from "service/hooks/user";
-import ListItem from "components/pages/userPage/subscriptionList/ListItem";
+import ListItem from "components/pages/ManageSubscription/ListItem";
 import Loading from "shared/Loading";
+import ManageSubscription from "../../../pages/manageSubscription/index";
 
 const StoppedSubscription = () => {
   const { data, isLoading } = useUserSubscriptionList();
