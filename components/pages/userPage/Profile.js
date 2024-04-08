@@ -22,7 +22,7 @@ const Profile = ({ email, copyClipboard }) => {
 
   return (
     <div className="flex items-center justify-center w-full pt-14 pb-8 px-5 bg-white xl:px-28">
-      <div className="w-full px-5 grid gap-x-6 gap-y-6">
+      <div className="w-full grid gap-x-6 gap-y-6 flex">
         <div className="grid gap-y-4">
           <div className="single-24-b text-neutralgray-900">
             <Nickname />
@@ -46,15 +46,6 @@ const Profile = ({ email, copyClipboard }) => {
           </div>
         </div>
         <div className="flex justify-between gap-x-2.5">
-          <button
-            type="button"
-            className={buttonCSS}
-            onClick={() => {
-              router.push("/userPage/subscriptionList");
-            }}
-          >
-            <ListIcon width="20" height="20" fill="#674188" /> 구독 리스트 보기
-          </button>
           <button
             type="button"
             className={buttonCSS}
