@@ -13,7 +13,8 @@ export default function Layout({ children }) {
         router.pathname === "/bookmark" ||
         router.pathname === "/manageSubscription" ||
         router.pathname.includes("brandHome") ||
-        router.pathname.includes("articleRead")) && <Nav />}
+        router.pathname.includes("articleRead") ||
+        router.pathname.includes("search")) && <Nav />}
     </div>
   );
 }
