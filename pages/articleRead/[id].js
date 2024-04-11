@@ -23,9 +23,6 @@ const ArticleRead = () => {
               <div dangerouslySetInnerHTML={{ __html: data.articleHTML }}></div>
             )}
           </div>
-          <div className="sticky bottom-0">
-            <Nav />
-          </div>
         </>
       ) : (
         <Background2>
