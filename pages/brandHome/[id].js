@@ -68,14 +68,13 @@ const BrandHome = () => {
     <>
       {data ? (
         <>
-          <div className="w-full h-full bg-purple-700 flex flex-col justify-between relative">
+          <div className="w-full h-full bg-purple-700 flex flex-col justify-between relative overflow-scroll">
             <BrandInfo
               data={data}
               setOpen={handleSubscribeClick}
               controlModal={setIsModalOpen}
             />
             <BrandArticles data={data.brandArticleList} />
-            <Nav />
           </div>
           <BottomSheet
             open={open}

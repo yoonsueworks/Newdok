@@ -5,15 +5,15 @@ import GNB from "shared/GNB";
 export default function Layout({ children }) {
   const router = useRouter();
   return (
-    <div className="flex xs:w-full xs:flex-col  sm:flex-col md:flex-row-reverse justify-between h-screen overflow-scroll">
-      {/* {(router.pathname.includes("home") ||
-        router.pathname === "/browseAll") && <GNB />} */}
+    <div className="flex xs:w-full xs:flex-col sm:flex-col md:flex-row-reverse xl:flex-row-reverse justify-between h-screen overflow-scroll">
       {children}
       {(router.pathname.includes("home") ||
         router.pathname === "/userPage" ||
         router.pathname === "/browseAll" ||
         router.pathname === "/bookmark" ||
-        router.pathname === "/manageSubscription") && <Nav />}
+        router.pathname === "/manageSubscription" ||
+        router.pathname.includes("brandHome") ||
+        router.pathname.includes("articleRead")) && <Nav />}
     </div>
   );
 }
