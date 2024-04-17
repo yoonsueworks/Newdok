@@ -20,7 +20,6 @@ const SearchBar = () => {
   const handleChange = (e) => {
     setSearchKeyword(e.target.value);
     if (e.key === "Enter") {
-      e.preventDefault();
       handleSubmit(onSubmit)();
     }
   };
