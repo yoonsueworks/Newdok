@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { atom, useRecoilState } from "recoil";
 import { userCurrentPlaceAtom } from "service/atoms/atoms";
@@ -29,29 +30,47 @@ const Nav = () => {
   }, [setUserCurrentPlace, router.pathname]);
 
   return (
-    <div className="sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-6 md:gap-y-8 xl:flex xl:flex-col xl:px-12 xl:items-start xl:gap-y-8 bg-white grid grid-cols-5 elevation-2-top pt-3.5 pb-5">
-      {NAV_MENUS.map((menu) => {
-        return (
-          <li
-            className="list-none text-center flex flex-col xl:flex-row xl:gap-x-2 gap-y-1 justify-center align-center items-center single-12-m"
-            key={menu.id}
-            onClick={() => clickMenu(menu)}
-          >
-            <div>
-              {menu.path === userCurrentPlace ? menu.state_on : menu.state_off}
-            </div>
-            <span
-              className={`shrink-0 w-fit break-keep ${
-                menu.path === userCurrentPlace
-                  ? "text-purple-700 font-bold"
-                  : "text-warmgray-100 "
-              }`}
+    <div className="sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-6 xl:px-12 xl:flex xl:flex-col bg-white elevation-2-top pt-3.5 pb-5 gap-y-12">
+      <Image
+        src="/images/Newdok_Logo-Horizontal_300.png"
+        alt="newdok"
+        width="106"
+        height="24"
+        className="mt-2 xl:block md:hidden sm:hidden xs:hidden"
+      />
+      <Image
+        src="/images/newdok_logo_symbol.png"
+        alt="newdok"
+        width="40"
+        height="40"
+        className="mt-2 xl:hidden md:block sm:hidden xs:hidden"
+      />
+      <div className="flex justify-between xs:px-5 sm:px-5 md:flex md:flex-col md:gap-y-8 xl:items-start xl:flex xl:flex-col xl:gap-y-8">
+        {NAV_MENUS.map((menu) => {
+          return (
+            <li
+              className="list-none text-center flex flex-col xl:flex-row xl:gap-x-2 gap-y-1 justify-center align-center items-center single-12-m"
+              key={menu.id}
+              onClick={() => clickMenu(menu)}
             >
-              {menu.name_kr}
-            </span>
-          </li>
-        );
-      })}
+              <div>
+                {menu.path === userCurrentPlace
+                  ? menu.state_on
+                  : menu.state_off}
+              </div>
+              <span
+                className={`shrink-0 w-fit break-keep ${
+                  menu.path === userCurrentPlace
+                    ? "text-purple-700 font-bold"
+                    : "text-warmgray-100 "
+                }`}
+              >
+                {menu.name_kr}
+              </span>
+            </li>
+          );
+        })}
+      </div>
     </div>
   );
 };

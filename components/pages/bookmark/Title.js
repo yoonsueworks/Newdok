@@ -1,12 +1,15 @@
+import { useRouter } from "next/router";
+
 import UserInterestsButton from "./UserInterestsButton";
 import TotalSort from "./TotalSort";
 
 const Title = ({ totalAmount }) => {
+  const router = useRouter();
   return (
     <div>
       <div className="flex justify-between">
         <h6>북마크함</h6>
-        <div>검색</div>
+        <div onClick={() => router.push("/search")}>검색</div>
       </div>
       <UserInterestsButton userInterests={userInterests} />
       <TotalSort totalAmount={totalAmount} />

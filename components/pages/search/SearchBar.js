@@ -19,6 +19,12 @@ const SearchBar = () => {
 
   const handleChange = (e) => {
     setSearchKeyword(e.target.value);
+<<<<<<< HEAD
+=======
+    if (e.key === "Enter") {
+      handleSubmit(onSubmit)();
+    }
+>>>>>>> 18c6fe627afc0fb84919cd0497558e663e693883
   };
 
   const handleDelete = () => {
