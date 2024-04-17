@@ -19,13 +19,15 @@ const SearchBar = () => {
 
   const handleChange = (e) => {
     setSearchKeyword(e.target.value);
+<<<<<<< HEAD
+=======
     if (e.key === "Enter") {
       handleSubmit(onSubmit)();
     }
+>>>>>>> 18c6fe627afc0fb84919cd0497558e663e693883
   };
 
   const handleDelete = () => {
-    console.log("clicked");
     setSearchKeyword("");
   };
 
@@ -57,18 +59,11 @@ const SearchBar = () => {
               <div className="flex w-full">
                 <SearchIcon width="24" height="24" color="black" />
                 <input
-                  {...register("query", {
-                    required: {
-                      value: true,
-                      message: "뉴스레터 브랜드명, 키워드 검색",
-                    },
-                  })}
-                  type="text"
-                  value={searchKeyword}
+                  {...register("query")}
                   onChange={handleChange}
-                  maxLength="12"
-                  className="w-full"
                   placeholder="뉴스레터 브랜드명, 키워드 검색"
+                  value={searchKeyword}
+                  className="w-full"
                 />
               </div>
               {searchKeyword !== "" && (
@@ -86,6 +81,7 @@ const SearchBar = () => {
       </form>
     </div>
   );
+  a;
 };
 
 export default SearchBar;
