@@ -3,8 +3,10 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { browseAllPageAtom } from "service/atoms/atoms";
 import { browseOptionsAtom } from "service/atoms/atoms";
-import { days } from "constants/days";
+
 import Reload from "shared/Reload";
+
+import { days } from "constants/days";
 
 const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
   const router = useRouter();
@@ -32,11 +34,11 @@ const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
   };
 
   return (
-    <div className="w-full h-full justify-between bg-beige-100">
-      <div className="w-full h-full px-5 pt-7 pb-14 flex flex-col justify-between items-end">
-        <div className="flex flex-col gap-y-10 items-end">
+    <div className="flex flex-col w-full h-full items-center justify-between bg-beige-100">
+      <div className="sm:w-full md:w-full xl:w-[80%] h-full px-5 pt-7 pb-14 flex flex-col justify-between items-end">
+        <div className="w-full flex flex-col gap-y-10 items-end">
           <Reload />
-          <div className="flex flex-col  items-center">
+          <div className="w-full flex flex-col items-center">
             <Image
               src="/images/empty_today_300.png"
               alt="사용자 정보와 관련된 일러스트"

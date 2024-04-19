@@ -1,76 +1,44 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 
-import { useRecoilValue } from "recoil";
-import { authSelector } from "service/atoms/selectors";
-
-import { useForm } from "react-hook-form";
+import SearchBar from "components/pages/search/SearchBar";
+import CloseIcon from "icons/close_off.svg";
 
 const Search = () => {
-  const [component, setComponent] = useState("searchQuery");
-  const isAuthenticated = useRecoilValue(authSelector);
-
-  const { register, handleSubmit, watch, setFocus } = useForm({});
-  const query = watch("query");
   const router = useRouter();
-
-  const onSubmit = () => {
-    router.push({
-      pathname: "/search/authSearchResult",
-
-      // pathname: isAuthenticated
-      //   ? "/search/authSearchResult"
-      //   : "/search/unAuthSearchResult",
-      // TODO: pathname 기획 방향에 따라 추후 수정가능성 있음
-      query: { query },
-    });
+  const data = {
+    updatedAt: "2024-10-31",
+    keywordList: [
+      { id: 1, keyword: "뉴독" },
+      { id: 2, keyword: "데일리바이트" },
+      { id: 3, keyword: "트렌드" },
+      { id: 4, keyword: "콘텐츠" },
+      { id: 5, keyword: "재테크" },
+      { id: 6, keyword: "IT" },
+    ],
   };
-
-  const components = {
-    searchQuery: (
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="h-full flex flex-col justify-between"
-      >
-        <div className="grid gap-y-7">
-          <div className="grid gap-y-2">
-            <input
-              {...register("query", {
-                required: {
-                  value: true,
-                  message: "뉴스레터 브랜드명, 키워드 검색",
-                },
-              })}
-              maxLength="12"
-              placeholder="뉴스레터 브랜드명, 키워드 검색"
-              className="rounded-lg p-4 single-16-m focus:inputFocused-border input-border"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  handleSubmit(onSubmit)();
-                }
-              }}
-            />
-          </div>
-        </div>
-      </form>
-    ),
-  };
-
-  useEffect(() => {
-    setFocus("query");
-  }, [setFocus]);
 
   return (
-    <div className="w-full h-screen">
-      <div className="flex">
+    <div className="w-full h-screen flex flex-col items-center">
+      <div className="w-full flex items-center gap-x-4">
         <div className="w-10 h-10 bg-beige-100"></div>
-
-        <div>{components[component]}</div>
+        <SearchBar />
+        <button className="w-10 h-10" onClick={() => router.back()}>
+          <CloseIcon width="24" height="24" />
+        </button>
       </div>
-      <div>
-        <div>test items</div>
-        <div>popular items</div>
+      <div className="w-full xl:w-[768px]">
+        <div className="flex justify-between pb-4 border-b my-4">
+          <div>인기 검색어</div>
+          <div>{data.updatedAt} 업데이트</div>
+        </div>
+        <ol className="grid grid-rows-3 grid-flow-col gap-4">
+          {data.keywordList.map(({ id, keyword }) => (
+            <li key={id} className="flex gap-x-2">
+              <span>{id}</span>
+              <span>{keyword}</span>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
   );

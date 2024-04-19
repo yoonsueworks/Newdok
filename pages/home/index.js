@@ -84,7 +84,7 @@ const Home = () => {
     <>
       <CalendarContext.Provider value={calendarContextValues}>
         <div className="h-full w-full flex flex-col overflow-auto">
-          <ToolBar />
+          {!calendarOpen && <ToolBar />}
           {isLoading ? (
             <Loading />
           ) : (

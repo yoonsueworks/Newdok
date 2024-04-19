@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { userDatasAtom, userResearchAtom,infoChangeSuccessAtom } from "service/atoms/atoms";
+import {
+  userDatasAtom,
+  userResearchAtom,
+  infoChangeSuccessAtom,
+} from "service/atoms/atoms";
 import { useModifyIndustry } from "service/hooks/user";
 import LocalStorage from "public/utils/LocalStorage";
 
-import AppBar from "shared/AppBar";
-import Background2 from "shared/Background2";
 import IndustryDropDown from "shared/IndustryDropDown";
+import Background2 from "shared/Background2";
+import AppBar from "shared/AppBar";
 
 const ModifyIndustry = () => {
   const router = useRouter();
   const [userDatas, setUserDatas] = useRecoilState(userDatasAtom);
   const [userResearch, setUserResearch] = useRecoilState(userResearchAtom);
-  const [infoChangeSuccess, setInfoChangeSuccess] =
-    useRecoilState(infoChangeSuccessAtom);
-
-
+  const [infoChangeSuccess, setInfoChangeSuccess] = useRecoilState(
+    infoChangeSuccessAtom
+  );
 
   const { mutate } = useModifyIndustry();
 
@@ -27,7 +29,7 @@ const ModifyIndustry = () => {
       onSuccess: (data) => {
         setUserDatas(data);
         LocalStorage.setItem("NDuserDatas", data);
-        setInfoChangeSuccess("industryChanged")
+        setInfoChangeSuccess("industryChanged");
         router.push("/userPage/myInfo");
       },
       onError: () => {

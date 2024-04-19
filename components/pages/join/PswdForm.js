@@ -51,7 +51,7 @@ const PswdForm = () => {
       : setPasswordCheck(replacedInputValue);
   };
 
-  const inputDivStyle = `w-full flex justify-between items-center rounded-lg p-4 input-border focus-within:inputFocused-border `;
+  const inputDivStyle = `w-full flex justify-between items-center rounded-lg p-4 mt-2 input-border focus-within:inputFocused-border `;
 
   return (
     <form
@@ -59,7 +59,7 @@ const PswdForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-y-8">
-        <div className="flex flex-col gap-y-2">
+        <div className="flex flex-col">
           <InputLabel htmlFor="password" text="비밀번호" />
           <div
             className={
@@ -92,9 +92,11 @@ const PswdForm = () => {
             />
             <PasswordChild setInputType={setPwVisible} type={pwVisible} />
           </div>
-          <p className="text-error single-12-m">{getErrorMessage()}</p>
+          {password && (
+            <p className="text-error single-12-m pt-2">{getErrorMessage()}</p>
+          )}
         </div>
-        <div className="flex flex-col gap-y-2">
+        <div className="flex flex-col">
           <InputLabel htmlFor="passwordCheck" text="비밀번호 확인" />
           <div
             className={
@@ -127,16 +129,13 @@ const PswdForm = () => {
               type={pwCheckVisible}
             />
           </div>
-          <p className="text-error single-12-m">{getCheckErrorMessage()}</p>
+          {passwordCheck && (
+            <p className="text-error single-12-m pt-2">
+              {getCheckErrorMessage()}
+            </p>
+          )}
         </div>
       </div>
-      <button
-        type="submit"
-        className="mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-        disabled={conditionControl.btnDisabled}
-      >
-        다음
-      </button>
     </form>
   );
 };

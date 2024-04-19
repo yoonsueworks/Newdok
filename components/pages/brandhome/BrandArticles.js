@@ -1,17 +1,16 @@
 import { useRouter } from "next/router";
+
 import BrandArticle from "./BrandArticle";
 
 const BrandArticles = ({ data }) => {
   const router = useRouter();
-  const containerCSS = "pb-8 bg-purple-700 h-full px-5";
-  const listCSS = "flex flex-col gap-y-2.5";
 
   return (
     <div className="w-full h-full">
-      <div className={containerCSS}>
+      <div className="pb-8 bg-purple-700 h-full px-5">
         <div className="overflow-scroll">
           {data.length > 0 ? (
-            <ul className={listCSS}>
+            <ul className="flex flex-col gap-y-2.5">
               {data.map((el) => {
                 return (
                   <BrandArticle
