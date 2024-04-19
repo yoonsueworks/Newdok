@@ -8,6 +8,7 @@ const BottomTextButtons = () => {
   const TEXT_BUTTONS = [
     { id: 1, text: "ID/PW 찾기", func: () => route("/findAccount") },
     { id: 2, text: "회원가입", func: () => route("/join") },
+    { id: 3, text: "비회원으로 이용하기", func: () => route("/home") },
   ];
 
   return (

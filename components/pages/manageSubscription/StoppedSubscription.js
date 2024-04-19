@@ -5,16 +5,13 @@ import { useUserSubscriptionList } from "service/hooks/user";
 import Loading from "shared/Loading";
 import ListItem from "components/pages/manageSubscription/ListItem";
 
-const StoppedSubscription = () => {
-  const { data, isLoading } = useUserSubscriptionList();
+const StoppedSubscription = ({data}) => {
   const router = useRouter();
   //   TODO: 추후 중지된 구독 리스트로 변경 예정
 
   return (
     <div className="w-full h-fit bg-beige-100 pb-9">
-      {isLoading ? (
-        <Loading />
-      ) : data?.length > 0 ? (
+      {data?.length > 0 ? (
         <div className="px-5 mt-8 w-full h-fit">
           <div className="w-fit grid gap-y-1 mb-7 ">
             <div className="multiple-24-b text-neutralgray-900">

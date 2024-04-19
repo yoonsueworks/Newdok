@@ -32,9 +32,9 @@ const Nav = () => {
   return (
     <div className="sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-6 xl:px-12 xl:flex xl:flex-col bg-white elevation-2-top pt-3.5 pb-5 gap-y-12">
       <Image
-        src="/images/Newdok_Logo-Horizontal_300.png"
+        src="/images/rebranding/Logo_hor_BK.png"
         alt="newdok"
-        width="106"
+        width="112"
         height="24"
         className="mt-2 xl:block md:hidden sm:hidden xs:hidden"
       />

@@ -169,57 +169,85 @@
 
   /* ver 3.0 */
   .display-l {
-    /* Display Medium */
-    font-size: 45px;
-    line-height: 54px; /* 120% */
+    /* Display Large */
+    font-family: Spoqa Han Sans Neo;
+    font-size: 56px;
+    font-weight: 500;
+    line-height: 64px;
+    letter-spacing: -0.02em;
   }
 
   .display-m {
-    /* Display Large */
-    font-size: 57px;
-    line-height: 64px; /* 112.281% */
+    /* Display Medium */
+    font-family: Spoqa Han Sans Neo;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 48px;
+    letter-spacing: -0.02em;
   }
 
   .display-s {
     /* Display Small */
+    font-family: Spoqa Han Sans Neo;
     font-size: 36px;
-    line-height: 44px; /* 122.222% */
+    font-weight: 500;
+    line-height: 42px;
+    letter-spacing: -0.02em;
   }
 
   .headline-l {
     /* Headline Large */
+    font-family: Spoqa Han Sans Neo;
     font-size: 32px;
-    line-height: 42px; /* 131.25% */
+    font-weight: 500;
+    line-height: 38px;
+    letter-spacing: -0.02em;
+    text-align: left;
   }
 
   .headline-m {
     /* Headline Medium */
+    font-family: Spoqa Han Sans Neo;
     font-size: 28px;
-    line-height: 38px; /* 135.714% */
+    font-weight: 500;
+    line-height: 34px;
+    letter-spacing: -0.02em;
   }
 
   .headline-s {
     /* Headline Small */
+    font-family: Spoqa Han Sans Neo;
     font-size: 24px;
-    line-height: 32px; /* 133.333% */
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: -0.02em;
   }
 
   .title-l {
     /* Title Large */
-    font-size: 22px;
-    line-height: 28px; /* 127.273% */
+    font-family: Spoqa Han Sans Neo;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: -0.02em;
   }
 
   .title-m {
     /* Title Medium */
+    font-family: Spoqa Han Sans Neo;
     font-size: 18px;
-    line-height: 26px; /* 144.444% */
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: -0.02em;
   }
 
   .title-s {
     /* Title Small */
+    font-family: Spoqa Han Sans Neo;
     font-size: 16px;
-    line-height: 24px; /* 150% */
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.02em;
   }
 
   .body-l {
