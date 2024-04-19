@@ -106,7 +106,7 @@ const Phone = () => {
   }, [isCountdownActive, seconds]);
 
   return (
-    <>
+    <div className="xl:w-full md:w-full md:flex md:flex-col">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar
@@ -212,7 +212,7 @@ const Phone = () => {
           </button>
         </form>
       </Background>
-    </>
+    </div>
   );
 };
 
