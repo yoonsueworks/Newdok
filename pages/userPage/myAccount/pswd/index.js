@@ -76,7 +76,7 @@ const Pswd = () => {
   const inputDivStyle = `w-full flex justify-between items-center bg-white rounded-lg p-4 input-border focus-within:inputFocused-border `;
 
   return (
-    <>
+    <div className="xl:w-full md:w-full md:flex md:flex-col">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar
@@ -218,7 +218,7 @@ const Pswd = () => {
           </button>
         </form>
       </Background>
-    </>
+    </div>
   );
 };
 
