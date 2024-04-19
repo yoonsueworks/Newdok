@@ -4,7 +4,7 @@ import AppBar from "shared/AppBar";
 
 import { NotionRenderer } from "react-notion";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await fetch(
     "https://notion-api.splitbee.io/v1/page/82ef5aea46d84623b7b19bb951b6043c?pvs=4"
   ).then((res) => res.json());
