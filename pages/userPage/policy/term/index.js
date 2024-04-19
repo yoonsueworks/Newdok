@@ -17,13 +17,13 @@ export async function getStaticProps() {
 }
 
 const Term = ({ blockMap }) => (
-  <>
+  <div className="xl:w-full md:w-full md:flex md:flex-col">
     <div className="relative w-full">
       <div className="absolute w-full">
         <AppBar
           iconl={true}
           shadow={true}
-          textl="개인정보 처리방침"
+          textl="서비스 이용 약관"
           iconr={false}
           func={() => history.back()}
         />
@@ -32,7 +32,7 @@ const Term = ({ blockMap }) => (
     <div className="w-full h-full overflow-scroll p-5 pt-24">
       <NotionRenderer blockMap={blockMap} />
     </div>
-  </>
+  </div>
 );
 
 export default Term;
