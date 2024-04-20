@@ -35,7 +35,7 @@ const FindAccount = () => {
           );
         })}
       </div>
-      <div className="h-full py-14 px-5 bg-whit xl:w-[768px] xl:px-28">
+      <div className="w-full h-full py-14 px-5 bg-whit xl:w-[768px] xl:px-28  ">
         {Components[clickedTab - 1].comp}
       </div>
     </div>

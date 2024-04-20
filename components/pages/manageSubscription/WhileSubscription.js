@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 import { useUserSubscriptionList } from "service/hooks/user";
 import { SubscribeListContext } from "context/SubscribeListContext";
 
-import ListItem from "components/pages/userPage/subscriptionList/ListItem";
+import ListItem from "components/pages/ManageSubscription/ListItem";
 import MessageModal from "shared/MessageModal";
 import Loading from "shared/Loading";
 
 const WhileSubscription = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { currentBrand,setCurrentBrand } = useContext(SubscribeListContext);
+  const { currentBrand, setCurrentBrand } = useContext(SubscribeListContext);
 
   const { data, isLoading } = useUserSubscriptionList();
   const router = useRouter();
