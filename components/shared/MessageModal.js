@@ -68,18 +68,6 @@ const MessageModal = ({
                     })}
                   </div>
                 </div>
-
-                {/* {button.length > 0 && (
-                  <div className="mt-5">
-                    <button
-                      type="button"
-                      onClick={closeModal}
-                      className="w-full h-fit p-4 rounded-xl single-20-b hover:bg-purple-500 active:bg-purple-800 text-white bg-purple-700 transition-colors duration-300"
-                    >
-                      {button[0]}
-                    </button>
-                  </div>
-                )} */}
                 {button}
               </Dialog.Panel>
             </Transition.Child>
@@ -91,43 +79,3 @@ const MessageModal = ({
 };
 
 export default MessageModal;
-
-// const MessageModal = ({title, info, components, children}) => {
-//   return (
-//     <>
-//       <div className="bg-white rounded-2xl flex flex-col gap-y-5 w-full h-fit p-8">
-//         <h6 className="single-24-b">{title}</h6>
-//         <div className="multiple-18-sb">
-//           입력하신 번호로 이미 가입된 계정이 있어요.
-//           <br />한 번호로 최대 3개의 계정을 만들 수 있어요.
-//         </div>
-//         <div className="bg-neutralgray-50 rounded-2xl w-full h-20">
-//           {data?.map((el) => {
-//             return (
-//               <>
-//                 <div key={el.id}>{el.loginId.replace(/^..../, "****")}</div>
-//                 <br />
-//               </>
-//             );
-//           })}
-//         </div>
-//         <div className="flex gap-x-2">
-//           <button
-//             type="submit"
-//             className="w-full p-4 rounded-xl shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 bg-white single-20-b transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100"
-//           >
-//             계속 진행하기
-//           </button>
-//           <button
-//             onClick={() => router.push("/login")}
-//             className="w-full p-4 rounded-xl text-white bg-purple-700 single-20-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-//           >
-//             로그인
-//           </button>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default MessageModal;

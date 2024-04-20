@@ -1,11 +1,19 @@
+import { useContext } from "react";
 import Image from "next/image";
 import Clock from "icons/time_off.svg";
 import BrandName from "shared/BrandName";
 import PublicationCycle from "shared/PublicationCycle";
+import { SubscribeListContext } from "context/SubscribeListContext";
 
-const ListItem = ({ subscriptionList, menuClicked }) => {
+const ListItem = ({ subscriptionList, menuClicked, onClick }) => {
+  const { setCurrentBrand } = useContext(SubscribeListContext);
   const cardCSS =
     "w-full h-fit contentbox-border p-5 flex items-center justify-between";
+
+  const clickButton = (brandName) => {
+    setCurrentBrand(brandName);
+    onClick();
+  };
 
   return (
     <ul className="grid gap-y-2.5">
@@ -34,7 +42,10 @@ const ListItem = ({ subscriptionList, menuClicked }) => {
                 <PublicationCycle publicationCycle={publicationCycle} />
               </div>
             </div>
-            <button className="text-purple-400">
+            <button
+              className="text-purple-400"
+              onClick={() => clickButton(brandName)}
+            >
               {menuClicked === 0 ? "구독 중지" : "구독 재개"}
             </button>
           </li>

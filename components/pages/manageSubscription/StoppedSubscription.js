@@ -1,13 +1,21 @@
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUserSubscriptionList } from "service/hooks/user";
+
 import ListItem from "components/pages/userPage/subscriptionList/ListItem";
 import Loading from "shared/Loading";
 
 const StoppedSubscription = () => {
   const { data, isLoading } = useUserSubscriptionList();
+  const [currentBrand, setCurrentBrand] = useState(undefined);
   const router = useRouter();
+
   //   TODO: 추후 중지된 구독 리스트로 변경 예정
+
+  const subscribeContinue = () => {
+    console.log("추후 재개요청 삽입 예정");
+  };
 
   return (
     <div className="w-full h-fit bg-beige-100 pb-9">
@@ -23,7 +31,11 @@ const StoppedSubscription = () => {
               구독을 재개하면 다시 아티클을 받아볼 수 있어요.
             </div>
           </div>
-          <ListItem subscriptionList={data} menuClicked={1} />
+          <ListItem
+            subscriptionList={data}
+            menuClicked={1}
+            onClick={subscribeContinue}
+          />
         </div>
       ) : (
         <div className=" w-full h-full flex flex-col justify-between items-center px-5 pb-28 pt-44">
