@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useUserSubscriptionList } from "service/hooks/user";
 import { SubscribeListContext } from "context/SubscribeListContext";
 
-import ListItem from "components/pages/ManageSubscription/ListItem";
+import ListItem from "components/pages/manageSubscription/ListItem";
 import MessageModal from "shared/MessageModal";
 import Loading from "shared/Loading";
 
