@@ -7,7 +7,7 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
     "h-full w-2/4 flex justify-center items-center single-20-b text-purple-700 border-b-2 border-purple-700";
 
   const unClickedCss =
-    "h-full w-2/4 flex justify-center items-center single-20-m text-neutralgray-900 border-b-2 border-white";
+    "h-full w-2/4 flex justify-center items-center single-20-m text-neutralgray-900 border-b-2 border-white hover:border-b-2 hover:border-purple-50";
 
   return (
     <>
@@ -22,7 +22,7 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
                     id={id}
                     className={`${
                       clickedId === id ? clickedCSS : unClickedCss
-                    } transition-all duration-300`}
+                    } transition-all duration-300 hover:bg-purple-50 `}
                     onClick={(e) => changeTab(e.target.id)}
                   >
                     {name}
