@@ -19,8 +19,8 @@ export default function Card({ datas }) {
       <div id={S.gradient} className="w-full h-[150px]">
         <Image
           id={S.size}
-          width="0"
-          height="0"
+          width="578"
+          height="310"
           sizes="100vw"
           style={{ width: "100%", height: "auto" }}
           responsive="true"
@@ -30,7 +30,7 @@ export default function Card({ datas }) {
       </div>
       <div className="h-full p-5 flex flex-col justify-between">
         <div className="grid gap-y-3">
-          <h6 className="single-18-sb">{brandName}</h6>
+          <div className="single-18-sb">{brandName}</div>
           <p className="multiple-14-m">{firstDescription}</p>
         </div>
         <Tags tags={interests} />
