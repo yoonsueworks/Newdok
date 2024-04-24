@@ -9,7 +9,7 @@ import SearchIcon from "icons/search_off.svg";
 
 const SearchButton = ({ clickSearchBtn }) => {
   return (
-    <button onClick={clickSearchBtn} className="w-fit h-fit">
+    <button onClick={clickSearchBtn} className="w-fit h-fit" name="검색">
       <SearchIcon
         width="32"
         height="32"

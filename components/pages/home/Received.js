@@ -24,11 +24,11 @@ const Received = () => {
           <span>{articleLength}개의 아티클이 도착했어요.</span>
           <Reload />
         </div>
-        <div className="grid gap-y-2.5 pb-6">
+        <ul className="grid gap-y-2.5 pb-6">
           {receivedArticleList?.map((article, id) => {
             return <Article key={id} article={article} />;
           })}
-        </div>
+        </ul>
       </div>
     </div>
   );
