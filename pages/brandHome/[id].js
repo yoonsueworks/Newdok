@@ -13,7 +13,7 @@ import ToastPopUp from "shared/ToastPopUp";
 import Loading from "shared/Loading";
 import Nav from "shared/Nav";
 
-import CloseIcon from "icons/close_off.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
 import LocalStorage from "public/utils/LocalStorage";

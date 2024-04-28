@@ -4,7 +4,7 @@ import { SignUpContext } from "context/SignUpContext";
 import { Listbox } from "@headlessui/react";
 
 import InputLabel from "shared/InputLabel";
-import ArrowIcon from "icons/arrow_down_off.svg";
+import ArrowIcon from "icons/ver1.0/arrow_down_off.svg";
 import { nicknameErrorMessage } from "constants/join";
 
 const PersonalInfoForm = () => {

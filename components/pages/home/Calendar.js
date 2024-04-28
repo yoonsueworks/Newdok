@@ -11,9 +11,9 @@ import {
 } from "service/hooks/newsletters";
 
 import ToolBar from "components/pages/home/ToolBar";
-import PrevIcon from "icons/arrow_left_off.svg";
-import NextIcon from "icons/arrow_right_off.svg";
-import RefreshIcon from "icons/refresh_off.svg";
+import PrevIcon from "icons/ver1.0/arrow_left_off.svg";
+import NextIcon from "icons/ver1.0/arrow_right_off.svg";
+import RefreshIcon from "icons/ver1.0/refresh_off.svg";
 
 import { CalendarContext } from "context/CalendarContext";
 import Calendar from "react-calendar";

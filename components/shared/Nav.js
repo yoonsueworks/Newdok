@@ -4,16 +4,16 @@ import { useRouter } from "next/router";
 import { atom, useRecoilState } from "recoil";
 import { userCurrentPlaceAtom } from "service/atoms/atoms";
 
-import BrowseOff from "icons/browse_off.svg";
-import BrowseOn from "icons/browse_on.svg";
-import MailBoxOff from "icons/mail_box_off.svg";
-import MailBoxOn from "icons/mail_box_on.svg";
-import HomeOff from "icons/home_off.svg";
-import HomeOn from "icons/home_on.svg";
-import BookmarkOff from "icons/bookmark_off.svg";
-import BookmarkOn from "icons/bookmark_on.svg";
-import ProfileOff from "icons/profile_off.svg";
-import ProfileOn from "icons/profile_on.svg";
+import BrowseOff from "icons/ver1.0/browse_off.svg";
+import BrowseOn from "icons/ver1.0/browse_on.svg";
+import MailBoxOff from "icons/ver1.0/mail_box_off.svg";
+import MailBoxOn from "icons/ver1.0/mail_box_on.svg";
+import HomeOff from "icons/ver1.0/home_off.svg";
+import HomeOn from "icons/ver1.0/home_on.svg";
+import BookmarkOff from "icons/ver1.0/bookmark_off.svg";
+import BookmarkOn from "icons/ver1.0/bookmark_on.svg";
+import ProfileOff from "icons/ver1.0/profile_off.svg";
+import ProfileOn from "icons/ver1.0/profile_on.svg";
 
 const Nav = () => {
   const router = useRouter();

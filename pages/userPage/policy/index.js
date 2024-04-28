@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
-import Background from "shared/Background";
-import ArrowRight from "icons/arrow_right_off.svg";
+
 import AppBar from "shared/AppBar";
+import Background from "shared/Background";
+import ArrowRight from "icons/ver1.0/arrow_right_off.svg";
+
 import { policy_menus } from "constants/userPage";
 
 const Policy = () => {

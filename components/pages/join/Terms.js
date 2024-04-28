@@ -6,7 +6,7 @@ import { SignUpContext } from "context/SignUpContext";
 import { useSignUp } from "service/hooks/user";
 import { userDatasAtom } from "service/atoms/atoms";
 
-import ArrowRight from "icons/arrow_right_off.svg";
+import ArrowRight from "icons/ver1.0/arrow_right_off.svg";
 
 const Terms = () => {
   const { userInfo, setUserInfo } = useContext(SignUpContext);

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Image from "next/image";
-import Clock from "icons/time_off.svg";
+import Clock from "icons/ver1.0/time_off.svg";
 import BrandName from "shared/BrandName";
 import PublicationCycle from "shared/PublicationCycle";
 import { SubscribeListContext } from "context/SubscribeListContext";
