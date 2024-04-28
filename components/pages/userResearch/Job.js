@@ -2,7 +2,7 @@ import { useState, Fragment, useEffect, useRef, useContext } from "react";
 import { GlobalContext } from "pages/_app";
 import { Listbox, Transition } from "@headlessui/react";
 import { industries } from "constants/industries";
-import ArrowIcon from "icons/arrow_down_off.svg";
+import ArrowIcon from "icons/ver1.0/arrow_down_off.svg";
 
 export default function Job() {
   const [selected, setSelected] = useState(false);

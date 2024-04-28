@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import ArrowRight from "icons/arrow_right_off.svg";
+import ArrowRight from "icons/ver1.0/arrow_right_off.svg";
 
 import { userPage_menus } from "constants/userPage";
 

@@ -1,4 +1,4 @@
-import ArrowIcon from "icons/arrow_down_off.svg";
+import ArrowIcon from "icons/ver1.0/arrow_down_off.svg";
 import { Disclosure } from "@headlessui/react";
 
 const QuestionsDisclosure = ({
