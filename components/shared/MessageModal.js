@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { useRouter } from "next/router";
 
-import CloseIcon from "icons/close_off.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
 import { Dialog, Transition } from "@headlessui/react";
 
 const MessageModal = ({
