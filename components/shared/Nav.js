@@ -36,14 +36,16 @@ const Nav = () => {
         alt="newdok"
         width="106"
         height="24"
-        className="mt-2 xl:block md:hidden sm:hidden xs:hidden"
+        className="mt-2 xl:block md:hidden sm:hidden xs:hidden cursor-pointer"
+        onClick={() => router.push("/home")}
       />
       <Image
         src="/images/newdok_logo_symbol.png"
         alt="newdok"
         width="40"
         height="40"
-        className="mt-2 xl:hidden md:block sm:hidden xs:hidden"
+        className="mt-2 xl:hidden md:block sm:hidden xs:hidden cursor-pointer"
+        onClick={() => router.push("/home")}
       />
       <ul className="flex justify-between xs:px-5 sm:px-5 md:flex md:flex-col md:gap-y-8 xl:items-start xl:flex xl:flex-col xl:gap-y-8">
         {NAV_MENUS.map((menu) => {
