@@ -41,15 +41,7 @@ function MyApp({ Component, pageProps }) {
         <Layout>
           <GlobalContext.Provider value={value}>
             <HeadComp />
-            {(router.pathname.includes("home") ||
-              router.pathname === "/browseAll") && <GNB />}
-
             <Component {...pageProps} />
-
-            {(router.pathname.includes("home") ||
-              router.pathname === "/userPage" ||
-              router.pathname === "/browseAll") && <Nav />}
-            {/* "articleRead", "brandHome"은 각각 [id].js에서 관리 */}
           </GlobalContext.Provider>
         </Layout>
         <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />

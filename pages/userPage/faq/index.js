@@ -1,18 +1,16 @@
 import { useState } from "react";
+
 import Background from "shared/Background";
-import QuestionsDisclosure from "components/pages/userPage/faq/QuestionsDisclosure";
-import { faqList } from "constants/faqList";
 import AppBar from "shared/AppBar";
+import QuestionsDisclosure from "components/pages/userPage/faq/QuestionsDisclosure";
+
+import { faqList } from "constants/faqList";
 
 const Faq = () => {
   const [openDisclosureId, setOpenDisclosureId] = useState(null);
 
-  const containerCSS = "flex flex-col pt-8 gap-y-8 pb-14 scroll-smooth";
-  const categoryCSS = "text-purple-700 single-18-b";
-  const questionWrapperCSS = "grid gap-y-2.5";
-
   return (
-    <>
+    <div className="md:w-full md:flex md:flex-col">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar
@@ -26,13 +24,15 @@ const Faq = () => {
       </div>
       <Background>
         <div className="pt-14 overflow-scroll">
-          <div className={containerCSS}>
+          <div className="flex flex-col pt-8 gap-y-8 pb-14 scroll-smooth">
             {faqList.map((category) => {
               return (
                 <ul key={category.id}>
                   <li className="grid gap-y-4">
-                    <strong className={categoryCSS}>{category.name}</strong>
-                    <ul className={questionWrapperCSS}>
+                    <strong className="text-purple-700 single-18-b">
+                      {category.name}
+                    </strong>
+                    <ul className="grid gap-y-2.5">
                       <QuestionsDisclosure
                         category={category}
                         setOpenDisclosureId={setOpenDisclosureId}
@@ -46,7 +46,7 @@ const Faq = () => {
           </div>
         </div>
       </Background>
-    </>
+    </div>
   );
 };
 

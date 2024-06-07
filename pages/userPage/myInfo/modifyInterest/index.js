@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { userDatasAtom,infoChangeSuccessAtom } from "service/atoms/atoms";
+import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
+import { useModifyInterests } from "service/hooks/user";
 
 import Background2 from "shared/Background2";
 import AppBar from "shared/AppBar";
 
-import { useModifyInterests } from "service/hooks/user";
 import { interests } from "constants/interests";
 
 const ModifyInterest = () => {
@@ -119,5 +119,3 @@ const ModifyInterest = () => {
   );
 };
 export default ModifyInterest;
-
-// TODO: style

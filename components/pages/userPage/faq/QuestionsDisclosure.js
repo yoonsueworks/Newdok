@@ -6,13 +6,8 @@ const QuestionsDisclosure = ({
   setOpenDisclosureId,
   openDisclosureId,
 }) => {
-  const questionBoxCss = "p-4 contentbox-border";
-  const questionCSS =
-    "w-full text-neutralgray-900 multiple-16-sb flex justify-between gap-x-4 text-left";
-
   const handleOpenBtnClick = (id) => {
     const isOpened = openDisclosureId === id;
-
     if (isOpened) {
       setOpenDisclosureId(null);
     }
@@ -27,10 +22,10 @@ const QuestionsDisclosure = ({
         return (
           <Disclosure key={question.id}>
             {({ open }) => (
-              <li className={questionBoxCss}>
+              <li className="p-4 contentbox-border">
                 {/* 질문 영역 */}
                 <Disclosure.Button
-                  className={questionCSS}
+                  className="w-full text-neutralgray-900 multiple-16-sb flex justify-between gap-x-4 text-left"
                   onClick={() => handleOpenBtnClick(question.id)}
                 >
                   <span className="w-fit">{question.question}</span>

@@ -8,39 +8,28 @@ import TimeIcon from "icons/time_off.svg";
 
 const BrandInfo = ({ data, setOpen, controlModal }) => {
   const {
-    brandId,
     brandName,
     interests,
     detailDescription,
     publicationCycle,
     imageUrl,
     isSubscribed,
-    subscribeCheck,
-    subscribeUrl,
   } = data;
 
   const [userDatas] = useRecoilState(userDatasAtom);
 
-  const containerCSS = "w-full h-fit grid py-8 px-5 gap-y-6";
-  const infosCSS = "grid gap-y-5";
-  const profileCSS = "flex gap-x-5";
-  const profileWrapperCSS = "flex flex-col gap-y-4";
-  const h6titleCSS = "single-24-b text-purple-700 mb-2";
-  const dateCSS = "single-14-m flex items-center gap-x-1";
-  const descriptionCSS = "multiple-16-m";
-
   const clickSubscribeBtn = () => {
-    // unAuthorized
+    /* unAuthorized */
     if (!userDatas?.nickname) {
       controlModal(true);
       return;
     }
-    // authorized & subscribed
+    /* authorized & subscribed */
     if (isSubscribed === "CHECK") {
       controlModal(true);
       return;
     }
-    // authorized
+    /* authorized */
     if (userDatas?.nickname) {
       setOpen();
     }
@@ -49,9 +38,9 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
   return (
     <div className="bg-beige-100 sticky top-0">
       <BrandInfoBar name={data.brandName} />
-      <div className={containerCSS}>
-        <div className={infosCSS}>
-          <div className={profileCSS}>
+      <div className="w-full h-fit grid py-8 px-5 gap-y-6">
+        <div className="grid gap-y-5">
+          <div className="flex gap-x-5">
             <div className="w-[100px] h-[100px] rounded-full flex-shrink-0 contentbox-border relative border border-neutralgray-200 flex justify-center items-center">
               <Image
                 alt={brandName}
@@ -72,18 +61,20 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
                 <div className="text-white single-16-b z-10">구독 확인 중</div>
               )}
             </div>
-            <div className={profileWrapperCSS}>
+            <div className="flex flex-col gap-y-4">
               <Tags tags={interests} usage="brand" />
               <div>
-                <h6 className={h6titleCSS}>{brandName}</h6>
-                <div className={dateCSS}>
+                <h6 className="single-24-b text-purple-700 mb-2">
+                  {brandName}
+                </h6>
+                <div className="single-14-m flex items-center gap-x-1">
                   <TimeIcon width="16" height="16" stroke="#171414" />
                   {publicationCycle}
                 </div>
               </div>
             </div>
           </div>
-          <div className={descriptionCSS}>{detailDescription}</div>
+          <div className="multiple-16-m">{detailDescription}</div>
         </div>
         <button
           type="button"

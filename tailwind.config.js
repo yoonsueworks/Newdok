@@ -8,6 +8,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      xs: { min: "1px", max: "359px" },
+      sm: { min: "360px", max: "767px" },
+      md: { min: "768px", max: "1279px" },
+      xl: "1280px",
+    },
     extend: {
       spacing: {
         0: "0",
@@ -89,6 +95,9 @@ module.exports = {
         error: "#EA0730",
         success: "#16892C",
         information: "#0079D0",
+      },
+      zIndex: {
+        100: "100",
       },
     },
   },

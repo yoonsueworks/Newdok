@@ -37,6 +37,24 @@ const PhoneForm = () => {
 
   const timeout = seconds === 0;
   const authChecked = Number(authNumber) !== code;
+  const timerViewModeSetting =
+    Math.floor(seconds / 60)
+      .toString()
+      .padStart(2, "0") +
+    ":" +
+    (seconds % 60).toString().padStart(2, "0");
+
+  const responsiveText = {
+    phoneTextElement:
+      authCount === 1
+        ? phoneTextElement.authSendBtn
+        : authCount < 4
+        ? phoneTextElement.reAuthSendBtn
+        : phoneTextElement.redirectSignup,
+    isPhoneAuthRequested:
+      isPhoneAuthRequested && phoneErrorMessage.authRequested,
+    timer: timeout ? phoneTextElement.timeoutBtn : timerViewModeSetting,
+  };
 
   /* 페이지 제출 */
   const onSubmit = (data) => {
@@ -81,23 +99,30 @@ const PhoneForm = () => {
     setIsCountdownActive(true);
   };
 
-  const handleActions = () => {
+  const handleAuthRequestCountAction = () => {
     setIsPhoneAuthRequested(true);
     setAuthCount((prev) => prev + 1);
   };
 
   const handlePhoneAuth = (e) => {
     e.preventDefault();
-    handleActions();
+    handleAuthRequestCountAction();
     handleTimer();
     handleQueries();
   };
 
-  const clickContinue = () => {
-    setIsModalOpen(false);
-    authorize();
-    setContinueProcess(true);
+  /* 아래 두 함수: 계정이 1개 이상인 경우 모달용 함수*/
+  const clickJoinProcessContinue = (e, idInfos) => {
+    if (Number(e.target.id) === 1 && idInfos < 3) setIsModalOpen(false);
+    if (Number(e.target.id) === 1 && idInfos >= 3) router.push("/findAccount");
+    else {
+      setIsModalOpen(false);
+      authorize();
+      setContinueProcess(true);
+    }
   };
+
+  const clickLogin = () => router.push("/login");
 
   /* 인증번호 인풋 메시지 세팅을 위한 유효성 검사 */
   const validatePhoneNumber = () => {
@@ -114,13 +139,11 @@ const PhoneForm = () => {
 
   useEffect(() => {
     let countdownInterval;
-
     if (isCountdownActive && seconds > 0) {
       countdownInterval = setInterval(() => {
         setSeconds((prevSeconds) => prevSeconds - 1);
       }, 1000);
     }
-
     return () => {
       clearInterval(countdownInterval);
     };
@@ -132,7 +155,7 @@ const PhoneForm = () => {
 
   return (
     <form
-      className="h-full overflow-scroll w-full flex flex-col justify-between"
+      className="h-full overflow-scroll w-full flex flex-col"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-y-8">
@@ -169,15 +192,11 @@ const PhoneForm = () => {
               }w-fit p-4 shrink-0 rounded-xl single-20-b cursor-pointer disabled:bg-neutralgray-500 disabled:cursor-default disabled:text-white disabled:border-0 transition-colors duration-300 `}
               onClick={handlePhoneAuth}
             >
-              {authCount === 1
-                ? phoneTextElement.authSendBtn
-                : authCount < 4
-                ? phoneTextElement.reAuthSendBtn
-                : phoneTextElement.redirectSignup}
+              {responsiveText.phoneTextElement}
             </button>
           </div>
           <p className="text-neutralgray-500 single-12-m">
-            {isPhoneAuthRequested && phoneErrorMessage.authRequested}
+            {responsiveText.isPhoneAuthRequested}
           </p>
         </div>
         {isPhoneAuthRequested && continueProcess && (
@@ -205,13 +224,7 @@ const PhoneForm = () => {
                     timeout ? "text-error" : "text-information"
                   }`}
                 >
-                  {timeout
-                    ? phoneTextElement.timeoutBtn
-                    : `${Math.floor(seconds / 60)
-                        .toString()
-                        .padStart(2, "0")}:${(seconds % 60)
-                        .toString()
-                        .padStart(2, "0")}`}
+                  {responsiveText.timer}
                 </span>
               )}
             </div>
@@ -223,7 +236,6 @@ const PhoneForm = () => {
                   ? "text-error"
                   : "text-neutralgray-500"
               }`}
-              //
             >
               {validatePhoneNumber()}
             </p>
@@ -232,7 +244,9 @@ const PhoneForm = () => {
       </div>
       <button
         type="submit"
-        className="mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
+        className={`mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800 ${
+          authCount === 1 && "hidden"
+        }`}
         disabled={authNumber.length !== 6}
       >
         다음
@@ -240,9 +254,8 @@ const PhoneForm = () => {
       <MessageModal
         isOpen={isModalOpen}
         controlModal={setIsModalOpen}
-        title="중복 계정 안내"
+        title="이미 가입된 정보입니다."
         info={[
-          "입력하신 번호로 이미 가입된 계정이 있어요.",
           "한 번호로 최대 3개의 계정을 만들 수 있어요.",
           <div
             key={3}
@@ -266,30 +279,20 @@ const PhoneForm = () => {
         ]}
         button={
           <div className="flex gap-x-2 mt-5" key={1}>
-            {data?.length >= 3 ? (
-              <button
-                onClick={() => router.push("/login")}
-                className="w-full p-4 rounded-xl text-white bg-purple-700 single-20-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-              >
-                로그인
-              </button>
-            ) : (
-              <>
-                <button
-                  type="submit"
-                  className={`w-full p-4 rounded-xl single-20-b ${"transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100 bg-white text-purple-700 shadow-[inset_0_0px_0px_1px_#674188]"}`}
-                  onClick={clickContinue}
-                >
-                  계속 진행하기
-                </button>
-                <button
-                  onClick={() => router.push("/login")}
-                  className="w-full p-4 rounded-xl text-white bg-purple-700 single-20-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
-                >
-                  로그인
-                </button>
-              </>
-            )}
+            <button
+              type="button"
+              id={1}
+              className={`w-full p-4 rounded-xl single-20-b ${"transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100 bg-white text-purple-700 shadow-[inset_0_0px_0px_1px_#674188]"}`}
+              onClick={(e) => clickJoinProcessContinue(e, data?.length)}
+            >
+              {data?.length >= 3 ? "ID/PW 찾기" : "계속 진행하기"}
+            </button>
+            <button
+              onClick={clickLogin}
+              className="w-full p-4 rounded-xl text-white bg-purple-700 single-20-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
+            >
+              로그인
+            </button>
           </div>
         }
       />

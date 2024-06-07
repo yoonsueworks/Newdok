@@ -2,7 +2,7 @@ import AppBar from "shared/AppBar";
 
 const Feedback = () => {
   return (
-    <div>
+    <div className="md:w-full md:flex md:flex-col">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar
