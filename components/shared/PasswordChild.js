@@ -1,5 +1,5 @@
-import ViewIconOn from "icons/view_on.svg";
-import ViewIconOff from "icons/view_off.svg";
+import ViewIconOn from "icons/ver1.0/view_on.svg";
+import ViewIconOff from "icons/ver1.0/view_off.svg";
 
 const PasswordChild = ({ setInputType, type }) => {
   const props = {

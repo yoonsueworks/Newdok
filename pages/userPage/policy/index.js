@@ -1,13 +1,15 @@
 import { useRouter } from "next/router";
-import Background from "shared/Background";
-import ArrowRight from "icons/arrow_right_off.svg";
+
 import AppBar from "shared/AppBar";
+import Background from "shared/Background";
+import ArrowRight from "icons/ver1.0/arrow_right_off.svg";
+
 import { policy_menus } from "constants/userPage";
 
 const Policy = () => {
   const router = useRouter();
   return (
-    <div className="md:w-full md:flex md:flex-col">
+    <div className="xl:w-full md:w-full md:flex md:flex-col">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar

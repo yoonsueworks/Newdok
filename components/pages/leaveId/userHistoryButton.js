@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Button from "shared/Button";
 
 const UserHistoryButton = ({ setProcess }) => {
   const [service, setService] = useState(false);

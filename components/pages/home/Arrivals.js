@@ -42,9 +42,9 @@ const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
             <Image
               src="/images/empty_today_300.png"
               alt="사용자 정보와 관련된 일러스트"
+              loading="lazy"
               width={500}
               height={300}
-              priority
             />
             <div className="multiple-20-b mb-1 mt-5">
               {isDaySelected ? "오늘 " : selectedDateString}

@@ -41,7 +41,7 @@ function ListedItem({ datas }) {
         <div className="flex flex-col gap-y-4">
           <div className="grid gap-y-3">
             <div className="flex items-center gap-x-2  mb-1">
-              <h4 className="single-18-sb">{brandName}</h4>
+              <div className="single-18-sb">{brandName}</div>
               {isSubscribed === "CONFIRMED" && (
                 <div className="p-1 bg-purple-400 rounded-full w-fit h-fit text-white single-12-sb">
                   구독 중

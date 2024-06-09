@@ -3,13 +3,18 @@ import { useRouter } from "next/router";
 
 import { CalendarContext } from "../../../context/CalendarContext";
 
-import Calendar from "icons/calendar_off.svg";
-import CloseIcon from "icons/close_off.svg";
-import SearchIcon from "icons/search_off.svg";
+import Calendar from "icons/ver1.0/calendar_off.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
+import SearchIcon from "icons/ver1.0/search_off.svg";
 
 const SearchButton = ({ clickSearchBtn }) => {
   return (
-    <button onClick={clickSearchBtn} className="w-fit h-fit">
+    <button
+      onClick={clickSearchBtn}
+      className="w-fit h-fit"
+      id="검색"
+      aria-label="검색"
+    >
       <SearchIcon
         width="32"
         height="32"

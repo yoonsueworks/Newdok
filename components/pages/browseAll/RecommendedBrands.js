@@ -3,7 +3,6 @@ import { useEffect, useState, useMemo } from "react";
 import NotRecommended from "components/pages/browseAll/NotRecommended";
 import Unauthorized from "components/pages/browseAll/Unauthorized";
 import Authorized from "components/pages/browseAll/Authorized";
-import CustomizedErrorComp from "shared/error/500";
 import Loading from "shared/Loading";
 
 import LocalStorage from "public/utils/LocalStorage";
@@ -55,8 +54,6 @@ const RecommendedLetters = ({ statusCode, data, isLoading }) => {
         <Loading />
       ) : statusCode === 400 ? (
         <NotRecommended />
-      ) : statusCode === 500 ? (
-        <CustomizedErrorComp />
       ) : (
         <Authorized
           shuffledArray={shuffledArray}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Refresh from "icons/refresh_off.svg";
+import Refresh from "icons/ver1.0/refresh_off.svg";
 import { useMonthlyArticles } from "service/hooks/newsletters";
 
 const Reload = () => {

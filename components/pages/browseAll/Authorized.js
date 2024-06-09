@@ -4,7 +4,7 @@ import CustomizedCards from "components/pages/browseAll/CustomizedCards";
 import Nickname from "shared/Nickname";
 import Lists from "shared/Lists";
 
-import RefreshIcon from "icons/refresh_off.svg";
+import RefreshIcon from "icons/ver1.0/refresh_off.svg";
 
 const Authorized = ({ shuffledArray, shuffleUnion, intersectionArr }) => {
   const [rotation, setRotation] = useState(0);
