@@ -6,8 +6,8 @@ import { calendarOpenAtom, calendarAtom } from "service/atoms/atoms";
 // import { CalendarContext } from "../../context/CalendarContext";
 
 import Calendar from "icons/calendar_off.svg";
-import CloseIcon from "icons/close_off.svg";
-import SearchIcon from "icons/search_off.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
+import SearchIcon from "icons/ver1.0/search_off.svg";
 
 const SearchButton = ({ clickSearchBtn }) => {
   return (

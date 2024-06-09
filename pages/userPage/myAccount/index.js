@@ -12,8 +12,8 @@ import Background2 from "shared/Background2";
 import ToastPopUp from "shared/ToastPopUp";
 import ButtonText from "shared/ButtonText";
 import AppBar from "shared/AppBar";
-import ArrowRight from "icons/arrow_right_off.svg";
-import LogOut from "icons/logout_off.svg";
+import ArrowRight from "icons/ver1.0/arrow_right_off.svg";
+import LogOut from "icons/ver1.0/logout_off.svg";
 
 import { myaccount_menus } from "constants/userPage";
 
