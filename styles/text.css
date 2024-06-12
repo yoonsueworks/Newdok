@@ -1,290 +1,200 @@
 @tailwind utilities;
 
 @variants {
-  /* ver 2.0 */
-  /* line height, letter-spacing */
-
-  .single-32-b,
-  .single-32-sb,
-  .single-30-b,
-  .single-30-sb,
-  .single-24-b,
-  .single-24-sb,
-  .single-24-m,
-  .single-20-b,
-  .single-20-sb,
-  .single-20-m,
-  .single-18-b,
-  .single-18-sb,
-  .single-18-m,
-  .single-16-b,
-  .single-16-sb,
-  .single-16-m,
-  .single-14-sb,
-  .single-14-m,
-  .single-12-sb,
-  .single-12-m {
-    line-height: 100%;
-    letter-spacing: -1%;
-  }
-
-  .multiple-32-b,
-  .multiple-32-sb,
-  .multiple-30-b,
-  .multiple-30-sb,
-  .multiple-24-b,
-  .multiple-24-sb,
-  .multiple-24-m,
-  .multiple-20-b,
-  .multiple-20-sb,
-  .multiple-20-m,
-  .multiple-18-b,
-  .multiple-18-sb,
-  .multiple-18-m,
-  .multiple-16-b,
-  .multiple-16-sb,
-  .multiple-16-m,
-  .multiple-14-sb,
-  .multiple-14-m,
-  .multiple-12-sb,
-  .multiple-12-m {
-    line-height: 150%;
-    letter-spacing: -1%;
-  }
-
-  /* font weight */
-
-  .single-32-b,
-  .single-30-b,
-  .single-24-b,
-  .single-20-b,
-  .single-18-b,
-  .single-16-b,
-  .multiple-32-b,
-  .multiple-30-b,
-  .multiple-24-b,
-  .multiple-20-b,
-  .multiple-18-b,
-  .multiple-16-b {
-    font-weight: 700;
-  }
-
-  .single-32-sb,
-  .single-30-sb,
-  .single-24-sb,
-  .single-20-sb,
-  .single-18-sb,
-  .single-16-sb,
-  .single-14-sb,
-  .single-12-sb,
-  .multiple-32-sb,
-  .multiple-30-sb,
-  .multiple-24-sb,
-  .multiple-20-sb,
-  .multiple-18-sb,
-  .multiple-16-sb,
-  .multiple-14-sb,
-  .multiple-12-sb {
-    font-weight: 600;
-  }
-
-  .single-24-m,
-  .single-20-m,
-  .single-18-m,
-  .single-16-m,
-  .single-14-m,
-  .multiple-24-m,
-  .multiple-20-m,
-  .multiple-18-m,
-  .multiple-16-m,
-  .multiple-14-m {
-    font-weight: 500;
-  }
-
-  /* font size */
-
-  .single-32-b,
-  .single-32-sb,
-  .multiple-32-b,
-  .multiple-32-sb {
-    font-size: 32px;
-  }
-
-  .single-30-b,
-  .single-30-sb,
-  .multiple-30-b,
-  .multiple-30-sb {
-    @apply text-3xl;
-  }
-
-  .single-24-b,
-  .single-24-sb,
-  .single-24-m,
-  .multiple-24-b,
-  .multiple-24-sb,
-  .multiple-24-m {
-    @apply text-2xl;
-  }
-
-  .single-20-b,
-  .single-20-sb,
-  .single-20-m,
-  .multiple-20-b,
-  .multiple-20-sb,
-  .multiple-20-m {
-    @apply text-xl;
-  }
-
-  .single-18-b,
-  .single-18-sb,
-  .single-18-m,
-  .multiple-18-b,
-  .multiple-18-sb,
-  .multiple-18-m {
-    @apply text-lg;
-  }
-
-  .single-16-b,
-  .single-16-sb,
-  .single-16-m,
-  .multiple-16-b,
-  .multiple-16-sb,
-  .multiple-16-m {
-    @apply text-base;
-  }
-
-  .single-14-sb,
-  .single-14-m,
-  .multiple-14-sb,
-  .multiple-14-m {
-    @apply text-sm;
-  }
-
-  .single-12-sb,
-  .single-12-m,
-  .multiple-12-sb,
-  .multiple-12-m {
-    @apply text-xs;
-  }
-
   /* ver 3.0 */
   .display-l {
-    /* Display Medium */
-    font-size: 45px;
-    line-height: 54px; /* 120% */
+    /* Display Large */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 64px; /* 114.286% */
+    letter-spacing: -1.12px;
   }
 
   .display-m {
-    /* Display Large */
-    font-size: 57px;
-    line-height: 64px; /* 112.281% */
+    /* Display Medium */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 48px; /* 120% */
+    letter-spacing: -0.8px;
   }
 
   .display-s {
     /* Display Small */
+    font-family: "Spoqa Han Sans Neo";
     font-size: 36px;
-    line-height: 44px; /* 122.222% */
+    font-style: normal;
+    font-weight: 500;
+    line-height: 42px; /* 116.667% */
+    letter-spacing: -0.72px;
   }
 
   .headline-l {
     /* Headline Large */
-    font-size: 32px;
-    line-height: 42px; /* 131.25% */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px; /* 128.571% */
+    letter-spacing: -0.56px;
   }
 
   .headline-m {
     /* Headline Medium */
-    font-size: 28px;
-    line-height: 38px; /* 135.714% */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px; /* 145.455% */
+    letter-spacing: -0.44px;
   }
 
   .headline-s {
-    /* Headline Small */
-    font-size: 24px;
-    line-height: 32px; /* 133.333% */
+    /* Headine Small */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 133.333% */
+    letter-spacing: -0.45px;
   }
 
   .title-l {
     /* Title Large */
-    font-size: 22px;
-    line-height: 28px; /* 127.273% */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 133.333% */
+    letter-spacing: -0.6px;
   }
 
   .title-m {
     /* Title Medium */
+    font-family: "Spoqa Han Sans Neo";
     font-size: 18px;
-    line-height: 26px; /* 144.444% */
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px; /* 155.556% */
+    letter-spacing: -0.45px;
   }
 
   .title-s {
     /* Title Small */
+    font-family: "Spoqa Han Sans Neo";
     font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
     line-height: 24px; /* 150% */
+    letter-spacing: -0.4px;
   }
 
   .body-l {
     /* Body Large */
-    font-size: 16px;
-    line-height: 24px; /* 150% */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px; /* 144.444% */
+    letter-spacing: -0.45px;
   }
 
   .body-m {
     /* Body Medium */
-    font-size: 14px;
-    line-height: 20px; /* 142.857% */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.4px;
   }
 
   .body-s {
     /* Body Small */
-    font-size: 12px;
-    line-height: 16px; /* 133.333% */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.35px;
   }
 
   .label-l {
     /* Label Large */
-    font-size: 14px;
-    line-height: 20px; /* 142.857% */
-  }
-
-  .label-m {
-    /* Label Medium */
+    font-family: "Spoqa Han Sans Neo";
     font-size: 12px;
-    line-height: 16px; /* 133.333% */
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 150% */
+    letter-spacing: -0.3px;
   }
 
   .label-s {
     /* Label Small */
+    font-family: "Spoqa Han Sans Neo";
     font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
     line-height: 16px; /* 145.455% */
+    letter-spacing: -0.275px;
   }
 
-  .display-l,
-  .display-m,
-  .display-s,
-  .headline-l,
-  .headline-m,
-  .headline-s,
-  .title-l,
-  .title-m,
-  .title-s,
-  .body-l,
-  .body-m,
-  .body-s,
-  .label-l,
-  .label-m,
-  .label-s {
-    font-family: Pretendard;
+  .label-s-02 {
+    /* Label Small(M) */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 11px;
     font-style: normal;
     font-weight: 500;
+    line-height: 16px; /* 145.455% */
+    letter-spacing: -0.44px;
   }
 
-  .display-l,
-  .display-m,
-  .display-s,
-  .headline-l,
-  .headline-m,
-  .headline-s,
-  .title-l {
-    letter-spacing: -1%;
+  .input-01 {
+    /* Input box */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.35px;
+  }
+  .input-02 {
+    /* Input box_02 */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.4px;
+  }
+  .button-01 {
+    /* Button_01 */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26px; /* 144.444% */
+    letter-spacing: -0.45px;
+  }
+  .button-02 {
+    /* Button_02 */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.4px;
+  }
+  .button-03 {
+    /* Button_03 */
+    font-family: "Spoqa Han Sans Neo";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px; /* 142.857% */
+    letter-spacing: -0.35px;
   }
 }
