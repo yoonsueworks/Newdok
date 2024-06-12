@@ -8,7 +8,7 @@ import FiltersFooter from "./FiltersFooter";
 import FilterChips from "./FilterChips";
 import Filters from "./Filters";
 import Lists from "shared/Lists";
-import CloseIcon from "icons/close_off.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
 
 import { BottomSheet } from "react-spring-bottom-sheet";
 

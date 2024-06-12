@@ -4,7 +4,7 @@ import { GlobalContext } from "../../../pages/_app";
 import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
 
-import CloseIcon from "icons/close_off.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
 import ToastPopUp from "shared/ToastPopUp";
 import BrandList from "./BrandList";
 

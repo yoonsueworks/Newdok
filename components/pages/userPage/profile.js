@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import MessageModal from "shared/MessageModal";
 import Nickname from "shared/Nickname";
 
-import QuestionMarkIcon from "icons/question_mark_off.svg";
-import SettingIcon from "icons/setting_off.svg";
-import CopyIcon from "icons/copy_off.svg";
-import ListIcon from "icons/list_off.svg";
+import QuestionMarkIcon from "icons/ver1.0/question_mark_off.svg";
+import SettingIcon from "icons/ver1.0/setting_off.svg";
+import CopyIcon from "icons/ver1.0/copy_off.svg";
+import ListIcon from "icons/ver1.0/list_off.svg";
 
 const Profile = ({ email, copyClipboard }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

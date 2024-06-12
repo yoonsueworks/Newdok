@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
 import SearchBar from "components/pages/search/SearchBar";
-import CloseIcon from "icons/close_off.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
 
 const Search = () => {
   const router = useRouter();

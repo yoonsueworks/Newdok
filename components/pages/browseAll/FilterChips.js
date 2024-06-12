@@ -3,9 +3,9 @@ import { useRecoilState, useResetRecoilState } from "recoil";
 import { browseOptionsAtom } from "service/atoms/atoms";
 
 import FilterChip from "components/pages/browseAll/FilterChip";
-import FilterOffIcon from "icons/filter_off.svg";
-import AlignIcon from "icons/align_off.svg";
-import Refresh from "icons/refresh_off.svg";
+import FilterOffIcon from "icons/ver1.0/filter_off.svg";
+import AlignIcon from "icons/ver1.0/align_off.svg";
+import Refresh from "icons/ver1.0/refresh_off.svg";
 
 const FilterChips = ({ func, sortOption }) => {
   const [rotation, setRotation] = useState(0);

@@ -1,4 +1,4 @@
-import Clock from "icons/time_off.svg";
+import Clock from "icons/ver1.0/time_off.svg";
 
 const PublicationCycle = ({ publicationCycle }) => {
   return (

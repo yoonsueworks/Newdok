@@ -1,4 +1,4 @@
-import BackIcon from "icons/back_off.svg";
+import BackIcon from "icons/ver1.0/back_off.svg";
 
 const BrandInfoBar = ({ name }) => {
   return (
