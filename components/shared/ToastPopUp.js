@@ -1,4 +1,4 @@
-import Copied from "icons/check_off.svg";
+import Copied from "icons/ver1.0/check_off.svg";
 
 const ToastPopUp = ({ toastMessage, isVisible }) => {
   const opacityCSS = isVisible ? "opacity-100" : "opacity-0";

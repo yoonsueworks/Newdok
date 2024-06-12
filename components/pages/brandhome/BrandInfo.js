@@ -3,8 +3,8 @@ import { useRecoilState } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
 
 import BrandInfoBar from "shared/BrandInfoBar";
+import TimeIcon from "icons/ver1.0/time_off.svg";
 import Tags from "shared/Tags";
-import TimeIcon from "icons/time_off.svg";
 
 const BrandInfo = ({ data, setOpen, controlModal }) => {
   const {

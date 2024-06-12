@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { authSelector } from "service/atoms/selectors";
 
-import SearchIcon from "icons/search_off.svg";
-import CloseIcon from "icons/close_off.svg";
+import SearchIcon from "icons/ver1.0/search_off.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
 
 import { useForm } from "react-hook-form";
 

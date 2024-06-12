@@ -6,7 +6,7 @@ import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
 import Background2 from "shared/Background2";
 import ToastPopUp from "shared/ToastPopUp";
 import AppBar from "shared/AppBar";
-import SettingIcon from "icons/setting_off.svg";
+import SettingIcon from "icons/ver1.0/setting_off.svg";
 
 import { industries } from "constants/industries";
 import { interests } from "constants/interests";
