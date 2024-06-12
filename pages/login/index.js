@@ -67,7 +67,7 @@ const SignIn = () => {
         <div className="flex flex-col gap-y-16 content-between items-center h-full w-full">
           <Image src="/images/logo-3.0.svg" alt="" width="200" height="45" />
           <form
-            className="flex flex-col w-full sm:justify-between md:justify-start xl:justify-start gap-y-8 w-full h-full"
+            className="flex flex-col w-full sm:justify-between md:justify-start xl:justify-start gap-y-14 w-full h-full"
             onSubmit={handleSubmit(onSubmit)}
             onKeyDown={handleEnterKeyPress}
           >
@@ -128,7 +128,7 @@ const SignIn = () => {
               <button
                 type="submit"
                 disabled={!userInfo.loginId || !userInfo.password}
-                className="h-fit w-full p-4 mb-8 disabled:text-neutralgray-400 text-white bg-blue-600 rounded-xl focus:outline-none disabled:bg-neutralgray-200 button-03 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
+                className="h-fit w-full p-4 mb-3 disabled:text-neutralgray-400 text-white bg-blue-600 rounded-xl focus:outline-none disabled:bg-neutralgray-200 button-03 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
               >
                 로그인
               </button>
