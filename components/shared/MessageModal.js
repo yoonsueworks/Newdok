@@ -52,7 +52,7 @@ const MessageModal = ({
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="single-24-b text-neutralgray-900 mb-5 flex justify-between"
+                  className="title-s text-neutralgray-900 mb-2 flex justify-between"
                 >
                   <div>{title}</div>
                   {title !== "중복 계정 안내" && (
@@ -62,7 +62,7 @@ const MessageModal = ({
                   )}
                 </Dialog.Title>
                 <div className="mt-2">
-                  <div className="multiple-18-sb text-neutralgray-900">
+                  <div className="body-s text-neutralgray-900">
                     {info.map((sentence, id) => {
                       return <div key={id}>{sentence}</div>;
                     })}
