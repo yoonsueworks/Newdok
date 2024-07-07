@@ -96,15 +96,6 @@ const NAV_MENUS = [
   },
 
   {
-    id: 2,
-    name_kr: "구독관리",
-    name_eng: MENU_NAMES.MANAGESUBSCRIPTION,
-    state_on: <MailBoxOn width="32" height="32" />,
-    state_off: <MailBoxOff width="32" height="32" />,
-    path: "/manageSubscription",
-  },
-
-  {
     id: 3,
     name_kr: "홈",
     name_eng: MENU_NAMES.HOME,
@@ -112,14 +103,7 @@ const NAV_MENUS = [
     state_off: <HomeOff width="32" height="32" />,
     path: "/home",
   },
-  {
-    id: 4,
-    name_kr: "북마크함",
-    name_eng: MENU_NAMES.BOOKMARK,
-    state_on: <BookmarkOn width="32" height="32" />,
-    state_off: <BookmarkOff width="32" height="32" />,
-    path: "/bookmark",
-  },
+
   {
     id: 5,
     name_kr: "마이페이지",

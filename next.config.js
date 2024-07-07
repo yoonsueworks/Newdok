@@ -2,7 +2,7 @@ module.exports = {
   reactStrictMode: false,
   // image
   images: {
-    domains: ["pincock.shop", "newdok.shop", "oh-lolly-day.com"],
+    domains: ["pincock.store", "newdok.store", "oh-lolly-day.com"],
   },
   // svgr
   webpack: (config) => {
