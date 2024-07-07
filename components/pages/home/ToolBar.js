@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import { CalendarContext } from "../../../context/CalendarContext";
 
-import Calendar from "icons/ver1.0/calendar_off.svg";
+import Calendar from "icons/ver3.0/Line Calendar.svg";
 import CloseIcon from "icons/ver1.0/close_off.svg";
 import SearchIcon from "icons/ver1.0/search_off.svg";
 
@@ -18,7 +18,7 @@ const SearchButton = ({ clickSearchBtn }) => {
       <SearchIcon
         width="32"
         height="32"
-        color="white"
+        color="#333333"
         className="cursor-pointer"
       />
     </button>
@@ -39,7 +39,7 @@ const ToolBar = () => {
   };
 
   return (
-    <div className="w-full px-5 py-2.5 bg-purple-400 text-white single-20-b xl:px-36 z-[100]">
+    <div className="w-full px-5 py-2.5 bg-white text-neutralgray-800 single-20-b xl:px-36 z-[100]">
       <div className="h-11 flex flex-row justify-between items-center">
         <span>{fullActiveDate || dateLocaleKr}</span>
 
@@ -47,9 +47,9 @@ const ToolBar = () => {
           <div className="flex gap-x-2">
             <CloseIcon
               className="cursor-pointer"
-              color="white"
               width="32"
               height="32"
+              color="#333333"
               onClick={handleCalendar}
             />
             <SearchButton clickSearchBtn={clickSearchBtn} />
@@ -59,6 +59,8 @@ const ToolBar = () => {
             <Calendar
               width="32"
               height="32"
+              stroke="#333333"
+              color="#333333"
               className="cursor-pointer"
               onClick={handleCalendar}
             />
