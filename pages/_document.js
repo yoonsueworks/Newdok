@@ -9,7 +9,7 @@ export default function Document() {
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.7/dist/web/static/pretendard-gov-dynamic-subset.css"
       />
       <meta
-        charset="utf-8"
+        charSet="utf-8"
         name="description"
         content="맞춤형 뉴스레터 추천 서비스 뉴독"
       />

@@ -4,16 +4,16 @@ import { useRouter } from "next/router";
 import { atom, useRecoilState } from "recoil";
 import { userCurrentPlaceAtom } from "service/atoms/atoms";
 
-import BrowseOff from "icons/ver1.0/browse_off.svg";
-import BrowseOn from "icons/ver1.0/browse_on.svg";
-import MailBoxOff from "icons/ver1.0/mail_box_off.svg";
-import MailBoxOn from "icons/ver1.0/mail_box_on.svg";
-import HomeOff from "icons/ver1.0/home_off.svg";
-import HomeOn from "icons/ver1.0/home_on.svg";
-import BookmarkOff from "icons/ver1.0/bookmark_off.svg";
-import BookmarkOn from "icons/ver1.0/bookmark_on.svg";
-import ProfileOff from "icons/ver1.0/profile_off.svg";
-import ProfileOn from "icons/ver1.0/profile_on.svg";
+import BrowseOff from "icons/ver3.0/Line Newsletter.svg";
+import BrowseOn from "icons/ver3.0/Fill Newsletter.svg";
+import MailBoxOff from "icons/ver3.0/Line Mailbox.svg";
+import MailBoxOn from "icons/ver3.0/Fill Mailbox.svg";
+import HomeOff from "icons/ver3.0/Line Home.svg";
+import HomeOn from "icons/ver3.0/Fill Home.svg";
+import BookmarkOff from "icons/ver3.0/Line Bookmark.svg";
+import BookmarkOn from "icons/ver3.0/Fill Bookmark.svg";
+import ProfileOff from "icons/ver3.0/Line User.svg";
+import ProfileOn from "icons/ver3.0/Fill User.svg";
 
 const Nav = () => {
   const router = useRouter();
@@ -38,15 +38,20 @@ const Nav = () => {
             alt="newdok"
             width="106"
             height="56"
-            className="mt-2 xl:block sm:hidden xs:hidden"
+            className="mt-2 xl:block sm:hidden xs:hidden cursor-pointer"
+            onClick={() => router.push("/")}
           />
         </div>
-        <div className="sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-6 xl:px-12 xl:flex xl:flex-col xl:h-full xs:elevation-2-top sm:elevation-2-top pt-3.5 pb-5 gap-y-12 bg-white">
-          <div className="flex justify-between xs:px-5 sm:px-5 md:flex md:flex-col md:gap-y-8 xl:items-start xl:flex xl:flex-col xl:gap-y-8">
+        <div className="sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-2 md:py-3 xl:w-[200px] xl:px-2 xl:flex xl:flex-col xl:h-full xs:elevation-2-top sm:elevation-2-top pt-3 pb-6 gap-y-12 bg-white">
+          <div className="flex justify-between xs:px-5 sm:px-5 md:flex md:flex-col md:gap-y-8 xl:items-start xl:flex xl:flex-col xl:gap-y-4">
             {NAV_MENUS.map((menu) => {
               return (
                 <li
-                  className="list-none text-center flex flex-col xl:flex-row xl:gap-x-2 gap-y-1 justify-center align-center items-center single-12-m"
+                  className={`md:w-[60px] md:h-[70px] xl:h-[48px] xl:w-full xl:p-3.5 list-none text-center flex flex-col xl:flex-row xl:gap-x-2 gap-y-1 md:justify-center align-center items-center single-12-m rounded-xl ${
+                    menu.path === userCurrentPlace
+                      ? "md:bg-blue-50 xl:bg-blue-50"
+                      : "bg-transparent"
+                  }`}
                   key={menu.id}
                   onClick={() => clickMenu(menu)}
                 >
@@ -56,9 +61,9 @@ const Nav = () => {
                       : menu.state_off}
                   </div>
                   <span
-                    className={`shrink-0 w-fit break-keep ${
+                    className={`shrink-0 w-fit break-keep xs:label-s sm:label-s md:label-s xl:body-s ${
                       menu.path === userCurrentPlace
-                        ? "text-purple-700 font-bold"
+                        ? "text-blue-600 font-bold"
                         : "text-warmgray-100 "
                     }`}
                   >
@@ -89,8 +94,8 @@ const NAV_MENUS = [
     id: 1,
     name_kr: "둘러보기",
     name_eng: MENU_NAMES.BROWSEALL,
-    state_on: <BrowseOn width="32" height="32" />,
-    state_off: <BrowseOff width="32" height="32" />,
+    state_on: <BrowseOn width="28" height="28" />,
+    state_off: <BrowseOff width="28" height="28" />,
     path: "/browseAll",
   },
 
@@ -98,8 +103,8 @@ const NAV_MENUS = [
     id: 2,
     name_kr: "구독관리",
     name_eng: MENU_NAMES.MANAGESUBSCRIPTION,
-    state_on: <MailBoxOn width="32" height="32" />,
-    state_off: <MailBoxOff width="32" height="32" />,
+    state_on: <MailBoxOn width="28" height="28" />,
+    state_off: <MailBoxOff width="28" height="28" />,
     path: "/manageSubscription",
   },
 
@@ -107,24 +112,24 @@ const NAV_MENUS = [
     id: 3,
     name_kr: "홈",
     name_eng: MENU_NAMES.HOME,
-    state_on: <HomeOn width="32" height="32" />,
-    state_off: <HomeOff width="32" height="32" />,
+    state_on: <HomeOn width="28" height="28" />,
+    state_off: <HomeOff width="28" height="28" />,
     path: "/home",
   },
   {
     id: 4,
     name_kr: "북마크함",
     name_eng: MENU_NAMES.BOOKMARK,
-    state_on: <BookmarkOn width="32" height="32" />,
-    state_off: <BookmarkOff width="32" height="32" />,
+    state_on: <BookmarkOn width="28" height="28" />,
+    state_off: <BookmarkOff width="28" height="28" />,
     path: "/bookmark",
   },
   {
     id: 5,
     name_kr: "마이페이지",
     name_eng: MENU_NAMES.USERPAGE,
-    state_on: <ProfileOn width="32" height="32" />,
-    state_off: <ProfileOff width="32" height="32" />,
+    state_on: <ProfileOn width="28" height="28" />,
+    state_off: <ProfileOff width="28" height="28" />,
     path: "/userPage",
   },
 ];
