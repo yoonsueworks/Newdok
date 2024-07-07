@@ -1,4 +1,4 @@
-const BASE_URL = "https://newdok.shop";
+const BASE_URL = "https://newdok.store";
 
 const API = {
   login: `${BASE_URL}/users/login`,
