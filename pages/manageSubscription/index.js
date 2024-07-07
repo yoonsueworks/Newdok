@@ -29,7 +29,7 @@ const ManageSubscription = () => {
 
   return (
     <SubscribeListContext.Provider value={subscribeListContextValues}>
-      <div className="w-full h-full bg-beige-100 overflow-scroll">
+      <div className="w-full h-full bg-neutralgray-200 overflow-scroll">
         <div className="px-5 mt-14 flex items-center justify-between gap-x-2.5">
           {renderButton(0, "구독 중")}
           {renderButton(1, "구독 중지")}

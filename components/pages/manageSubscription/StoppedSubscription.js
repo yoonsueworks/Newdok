@@ -18,7 +18,7 @@ const StoppedSubscription = () => {
   };
 
   return (
-    <div className="w-full h-fit bg-beige-100 pb-9">
+    <div className="w-full h-fit bg-neutralgray-200 pb-9">
       {isLoading ? (
         <Loading />
       ) : data?.length > 0 ? (

@@ -34,7 +34,7 @@ const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full items-center justify-between bg-beige-100">
+    <div className="flex flex-col w-full h-full items-center justify-between bg-neutralgray-200">
       <div className="sm:w-full md:w-full xl:w-[80%] h-full px-5 pt-7 pb-14 flex flex-col justify-between items-end">
         <div className="w-full flex flex-col gap-y-10 items-end">
           <Reload />

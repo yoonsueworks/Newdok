@@ -24,7 +24,7 @@ const UserPage = () => {
   }, []);
 
   return (
-    <div className="w-full h-full flex flex-col justify-between bg-beige-100">
+    <div className="w-full h-full flex flex-col justify-between bg-neutralgray-200">
       <div className="w-full flex flex-col items-center">
         <Profile
           email={userDatas.subscribeEmail}
