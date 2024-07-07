@@ -6,7 +6,7 @@ const SignUpLayout = ({ description, forms, step, setStep }) => {
 
   return (
     <>
-      <div className="w-full flex flex-col xl:items-center xl:justify-center h-screen overflow-scroll">
+      <div className="w-full flex flex-col xl:items-center xl:justify-center h-screen overflow-scroll bg-white">
         <div
           className={`w-full xl:w-[768px] pt-14 pb-8 xl:px-28 md:px-10 sm:px-5 xs:px-5`}
         >
