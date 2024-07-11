@@ -39,8 +39,8 @@ const ToolBar = () => {
   };
 
   return (
-    <div className="w-full px-5 py-2.5 bg-white text-neutralgray-800 title-s xl:px-5 xl:py-4 z-[100]">
-      <div className="h-[24px] flex flex-row justify-between items-center align-center">
+    <div className="w-full px-5 py-2.5 bg-white text-neutralgray-800 title-s xl:px-5 py-4 md:h-14 z-[100]">
+      <div className="h-6 flex flex-row justify-between items-center align-center m-auto">
         <span>{fullActiveDate || dateLocaleKr}</span>
 
         {calendarOpen ? (

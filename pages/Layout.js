@@ -6,6 +6,9 @@ export default function Layout({ children }) {
   const router = useRouter();
   return (
     <div className="flex xs:w-full xs:flex-col sm:flex-col md:flex-row-reverse xl:flex-row-reverse justify-between h-screen overflow-scroll bg-neutralgray-200">
+      <div className="xl:hidden md:hidden">
+        <GNB />
+      </div>
       {children}
       {(router.pathname.includes("home") ||
         router.pathname === "/userPage" ||

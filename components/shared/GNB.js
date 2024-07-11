@@ -2,13 +2,16 @@ import Image from "next/image";
 
 const GNB = () => {
   return (
-    <Image
-      src="/images/GNB.png"
-      width="430"
-      height="100"
-      alt="Newdok 로고 이미지"
-      priority
-    />
+
+      <Image
+        src="/images/Newdok_Logo-Horizontal_300.png"
+        alt="newdok"
+        width="106"
+        height="56"
+        className="xl:mt-2 xl:block cursor-pointer"
+        onClick={() => router.push("/")}
+      />
+    
   );
 };
 

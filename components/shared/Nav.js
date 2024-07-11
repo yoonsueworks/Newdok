@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { atom, useRecoilState } from "recoil";
 import { userCurrentPlaceAtom } from "service/atoms/atoms";
 
+import GNB from "./GNB";
 import BrowseOff from "icons/ver3.0/Line Newsletter.svg";
 import BrowseOn from "icons/ver3.0/Fill Newsletter.svg";
 import MailBoxOff from "icons/ver3.0/Line Mailbox.svg";
@@ -32,15 +33,8 @@ const Nav = () => {
   return (
     <>
       <div className="flex-col">
-        <div className="h-16 w-[120px] xl:w-full flex justify-center items-center bg-white sm:hidden xs:hidden">
-          <Image
-            src="/images/Newdok_Logo-Horizontal_300.png"
-            alt="newdok"
-            width="106"
-            height="56"
-            className="mt-2 xl:block sm:hidden xs:hidden cursor-pointer"
-            onClick={() => router.push("/")}
-          />
+        <div className="xl:h-16 w-[120px] xl:w-full md:h-14 flex justify-center items-center bg-white sm:hidden xs:hidden">
+          <GNB />
         </div>
         <div className="sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-2 md:py-3 xl:w-[200px] xl:px-2 xl:flex xl:flex-col xl:h-full xs:elevation-2-top sm:elevation-2-top pt-3 pb-6 gap-y-12 bg-white">
           <div className="flex justify-between xs:px-5 sm:px-5 md:flex md:flex-col md:gap-y-8 xl:items-start xl:flex xl:flex-col xl:gap-y-4">

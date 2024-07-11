@@ -10,11 +10,19 @@ module.exports = {
   theme: {
     screens: {
       xs: { min: "1px", max: "359px" },
+      ts: { min: "360px", max: "500px" },
       sm: { min: "360px", max: "767px" },
       md: { min: "768px", max: "1279px" },
       xl: "1280px",
     },
     extend: {
+      truncate: {
+        lines: {
+          1: "1",
+          2: "2",
+          3: "3",
+        },
+      },
       spacing: {
         0: "0",
         px: "1px",
