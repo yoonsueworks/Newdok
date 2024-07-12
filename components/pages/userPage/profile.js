@@ -60,6 +60,7 @@ const Profile = ({ email, copyClipboard }) => {
           isOpen={isModalOpen}
           controlModal={setIsModalOpen}
           title="구독 이메일"
+          titleSize="m"
           info={[
             "회원가입 시 자동으로 생성되는 뉴스레터 구독을 위한 이메일 주소예요.",
             <div

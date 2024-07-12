@@ -36,7 +36,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
   };
 
   return (
-    <div className="bg-beige-100 sticky top-0">
+    <div className="bg-neutralgray-300 sticky top-0">
       <BrandInfoBar name={data.brandName} />
       <div className="w-full h-fit grid py-8 px-5 gap-y-6">
         <div className="grid gap-y-5">
@@ -89,7 +89,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
             : "구독 중"}
         </button>
       </div>
-      <div className="text-white single-18-b bg-purple-700 w-full pt-8 px-5 pb-4">
+      <div className="text-white single-18-b bg-neutralgray-200 w-full pt-8 px-5 pb-4">
         지난 아티클 보기
       </div>
     </div>

@@ -18,13 +18,13 @@ const Received = () => {
   const articleLength = receivedArticleList?.length;
 
   return (
-    <div className="flex justify-center w-full h-full px-5 bg-beige-100 overflow-scroll">
-      <div className="flex flex-col w-full h-full sm:w-full md:w-full xl:px-28 bg-beige-100 overflow-scroll">
-        <div className="flex w-full flex justify-between items-center pt-7 pb-6 single-20-b text-neutralgray-900">
+    <div className="flex justify-center w-full h-full md:pr-8 sm:px-5 xs:px-5 bg-neutralgray-50 overflow-scroll">
+      <div className="flex flex-col w-full h-full sm:w-full md:w-full xl:px-10 bg-neutralgray-50 overflow-scroll">
+        <div className="flex w-full flex justify-between items-center pt-7 pb-6 headline-s text-neutralgray-800">
           <span>{articleLength}개의 아티클이 도착했어요.</span>
           <Reload />
         </div>
-        <ul className="grid gap-y-2.5 pb-6">
+        <ul className="grid xl:grid-cols-2 xl:gap-x-3 gap-y-2.5 pb-6">
           {receivedArticleList?.map((article, id) => {
             return <Article key={id} article={article} />;
           })}

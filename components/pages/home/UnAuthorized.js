@@ -3,7 +3,7 @@ import SingupButtons from "shared/SignupButtons";
 
 const UnAuthorized = () => {
   return (
-    <div className="w-full h-full justify-between bg-beige-100">
+    <div className="w-full h-full justify-between bg-neutralgray-200">
       <div className="w-full h-full flex flex-col  px-5 py-14 justify-between">
         <div className="flex flex-col items-center">
           <Image

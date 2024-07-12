@@ -75,7 +75,7 @@ const ArrivedBrand = ({ brandInfo, handleSubscribeClick }) => {
               id < 3 && (
                 <li
                   key={interest.id}
-                  className="rounded-lg bg-beige-100 text-purple-700 single-12-m p-2 h-fit shrink-0"
+                  className="rounded-lg neutralgray-200beige-100 text-purple-700 single-12-m p-2 h-fit shrink-0"
                 >
                   {interest.name}
                 </li>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Refresh from "icons/ver1.0/refresh_off.svg";
+import Refresh from "icons/ver3.0/Line Reload.svg";
 import { useMonthlyArticles } from "service/hooks/newsletters";
 
 const Reload = () => {
@@ -15,18 +15,19 @@ const Reload = () => {
 
   return (
     <div
-      className="w-fit flex gap-x-1 items-center single-14-m text-neutralgray-900 cursor-pointer"
+      className="w-fit flex gap-x-1 label-l text-blue-600 cursor-pointer"
       onClick={clickRefresh}
     >
-      새로고침
       <Refresh
-        width="20"
-        height="20"
+        width="14"
+        height="14"
+        stroke="#2866D3"
         style={{
           transform: `rotate(${rotation}deg)`,
         }}
         className={`transition-all duration-500`}
       />
+      새로고침
     </div>
   );
 };

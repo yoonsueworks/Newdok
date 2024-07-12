@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import Image from "next/image";
-import Clock from "icons/ver1.0/time_off.svg";
+
 import BrandName from "shared/BrandName";
 import PublicationCycle from "shared/PublicationCycle";
 import { SubscribeListContext } from "context/SubscribeListContext";
 
-const ListItem = ({ subscriptionList, menuClicked, onClick }) => {
+const ListItem = ({ subscriptionList, menuClicked, onClick, mode }) => {
   const { setCurrentBrand } = useContext(SubscribeListContext);
   const cardCSS =
-    "w-full h-fit contentbox-border p-5 flex items-center justify-between";
+    "w-full h-fit contentbox-border px-5 py-4 flex items-center justify-between";
 
   const clickButton = (brandName) => {
     setCurrentBrand(brandName);
@@ -16,12 +16,12 @@ const ListItem = ({ subscriptionList, menuClicked, onClick }) => {
   };
 
   return (
-    <ul className="grid gap-y-2.5">
+    <ul className="grid gap-y-2">
       {subscriptionList.map(({ id, brandName, imageUrl, publicationCycle }) => {
         return (
           <li key={id} className={cardCSS}>
-            <div className="flex items-center gap-x-4">
-              <div className="w-[48px] h-[48px] rounded-full flex-shrink-0 contentbox-border relative border border-neutralgray-200 flex justify-center items-center">
+            <div className="flex items-center gap-x-3">
+              <div className="w-12 h-12 rounded-xl flex-shrink-0 relative border border-warmgray-30">
                 <Image
                   alt={brandName}
                   src={imageUrl}
@@ -33,7 +33,7 @@ const ListItem = ({ subscriptionList, menuClicked, onClick }) => {
                   blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcNGFlPQAGEwJcG4PRAwAAAABJRU5ErkJggg=="
                   style={{
                     objectFit: "cover",
-                    borderRadius: 50,
+                    borderRadius: 11,
                   }}
                 />
               </div>
@@ -43,7 +43,11 @@ const ListItem = ({ subscriptionList, menuClicked, onClick }) => {
               </div>
             </div>
             <button
-              className="text-purple-400"
+              className={`rounded-lg px-4 py-2 border border-blue-600 button-03 ${
+                mode === "continue"
+                  ? "text-white bg-blue-400"
+                  : "text-blue-600  bg-blue-50"
+              }`}
               onClick={() => clickButton(brandName)}
             >
               {menuClicked === 0 ? "구독 중지" : "구독 재개"}

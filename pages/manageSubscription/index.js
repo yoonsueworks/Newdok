@@ -17,10 +17,10 @@ const ManageSubscription = () => {
     <button
       key={index}
       onClick={() => setMenuClicked(index)}
-      className={`w-full text-purple-700 rounded-xl p-3.5 single-18-sb duration-300 ${
+      className={`w-full rounded-full input-01 duration-300 ${
         menuClicked === index
-          ? "bg-purple-700 active:bg-purple-800 hover:bg-purple-400 text-white"
-          : "bg-white selectedchip-border hover:bg-purple-50"
+          ? "bg-blue-600 active:bg-blue-700 hover:bg-blue-500 text-white p-3.5"
+          : "bg-neutralgray-200 py-3.5 text-neutralgray-700"
       }`}
     >
       {text}
@@ -29,12 +29,18 @@ const ManageSubscription = () => {
 
   return (
     <SubscribeListContext.Provider value={subscribeListContextValues}>
-      <div className="w-full h-full bg-beige-100 overflow-scroll">
-        <div className="px-5 mt-14 flex items-center justify-between gap-x-2.5">
-          {renderButton(0, "구독 중")}
-          {renderButton(1, "구독 중지")}
+      <div className="w-full h-full flex flex-col">
+        <div className="w-full bg-white flex items-center px-5 py-4">
+          내 구독
+          {/* TODO: 추후 검색 비회원 로그인 아이콘 추가 예정 */}
         </div>
-        {menuClicked === 0 ? <WhileSubscription /> : <StoppedSubscription />}
+        <div className="w-full h-full bg-neutralgray-50 overflow-scroll">
+          <div className="xs:mx-5 sm:mx-5 md:mr-7 xl:mx-20 mt-4 mb-5 p-1 flex items-center justify-between bg-neutralgray-200 rounded-full">
+            {renderButton(0, "구독 중")}
+            {renderButton(1, "구독 중지")}
+          </div>
+          {menuClicked === 0 ? <WhileSubscription /> : <StoppedSubscription />}
+        </div>
       </div>
     </SubscribeListContext.Provider>
   );

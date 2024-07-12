@@ -20,7 +20,7 @@ const Search = () => {
   return (
     <div className="w-full h-screen flex flex-col items-center">
       <div className="w-full flex items-center gap-x-4">
-        <div className="w-10 h-10 bg-beige-100"></div>
+        <div className="w-10 h-10 bg-neutralgray-200"></div>
         <SearchBar />
         <button className="w-10 h-10" onClick={() => router.back()}>
           <CloseIcon width="24" height="24" />

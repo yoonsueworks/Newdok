@@ -7,7 +7,7 @@ const BrandArticles = ({ data }) => {
 
   return (
     <div className="w-full h-full">
-      <div className="pb-8 bg-purple-700 h-full px-5">
+      <div className="pb-8 bg-neutralgray-200 h-full px-5">
         <div className="overflow-scroll">
           {data.length > 0 ? (
             <ul className="flex flex-col gap-y-2.5">
