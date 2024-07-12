@@ -36,7 +36,7 @@ const Nav = () => {
         <div className="xl:h-16 w-[120px] xl:w-full md:h-14 flex justify-center items-center bg-white sm:hidden xs:hidden">
           <GNB />
         </div>
-        <div className="sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-2 md:py-3 xl:w-[200px] xl:px-2 xl:flex xl:flex-col xl:h-full xs:elevation-2-top sm:elevation-2-top pt-3 pb-6 gap-y-12 bg-white">
+        <div className="sm:h-fit sm:sticky sm:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-3 md:py-3 xl:w-[200px] xl:px-2 xl:flex xl:flex-col xl:h-full xs:elevation-2-top sm:elevation-2-top pt-3 pb-6 gap-y-12 bg-white">
           <div className="flex justify-between xs:px-5 sm:px-5 md:flex md:flex-col md:gap-y-8 xl:items-start xl:flex xl:flex-col xl:gap-y-4">
             {NAV_MENUS.map((menu) => {
               return (
@@ -57,7 +57,7 @@ const Nav = () => {
                   <span
                     className={`shrink-0 w-fit break-keep xs:label-s sm:label-s md:label-s xl:body-s ${
                       menu.path === userCurrentPlace
-                        ? "text-blue-600 font-bold"
+                        ? "text-blue-600"
                         : "text-warmgray-100 "
                     }`}
                   >
