@@ -34,35 +34,38 @@ const Arrivals = ({ today, activeDate, dateLocaleKr }) => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full items-center justify-between bg-neutralgray-200">
-      <div className="sm:w-full md:w-full xl:w-[80%] h-full px-5 pt-7 pb-14 flex flex-col justify-between items-end">
-        <div className="w-full flex flex-col gap-y-10 items-end">
+    <div className="flex flex-col w-full h-full items-center justify-between bg-neutralgray-50">
+      <div className="sm:w-full md:w-full xl:w-[70%] h-full xl:px-5 sm:px-5 xs:px-5 md:pr-8 pt-7 pb-14 flex flex-col items-center">
+        <div className="w-full flex flex-col gap-y-12 items-end">
           <Reload />
           <div className="w-full flex flex-col items-center">
             <Image
-              src="/images/empty_today_300.png"
+              src="/images/empty_mailbox_300.png"
               alt="사용자 정보와 관련된 일러스트"
               loading="lazy"
               width={500}
-              height={300}
+              height={280}
             />
-            <div className="multiple-20-b mb-1 mt-5">
-              {isDaySelected ? "오늘 " : selectedDateString}
-              도착한 아티클이 없어요.
-            </div>
-            <div className="multiple-16-m mb-1">
-              <span>구독 신청 이후 수신된 아티클만 볼 수 있어요.</span>
-            </div>
           </div>
         </div>
-
-        <button
-          type="button"
-          onClick={handleGotoBtnClick}
-          className="w-full h-fit p-4 rounded-xl single-20-b hover:bg-purple-50 active:bg-purple-100 text-purple-700 bg-white selectedchip-border  transition-colors duration-300"
-        >{`${
-          isDaySelected ? today : selectedDay
-        }에 발행되는 뉴스레터 보기`}</button>
+        <div className="w-full flex flex-col gap-y-6">
+          <div className="flex flex-col justify-center items-center gap-y-">
+            <span className="button-02">
+              {isDaySelected ? "오늘 " : selectedDateString}
+              도착한 아티클이 없어요.
+            </span>
+            <span className="body-s">
+              구독 신청 이후 수신된 아티클만 볼 수 있어요.
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={handleGotoBtnClick}
+            className="w-full h-fit p-4 rounded-xl button-03 hover:bg-blue-500 active:bg-blue-700 bg-blue-600 text-white transition-colors duration-300"
+          >{`${
+            isDaySelected ? today : selectedDay
+          }에 발행되는 뉴스레터 보기`}</button>
+        </div>
       </div>
     </div>
   );
