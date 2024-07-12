@@ -88,6 +88,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
       isOpen={isModalOpen}
       controlModal={setIsModalOpen}
       title="휴대폰 번호 확인"
+      titleSize="s"
       info={[
         "가입되지 않은 휴대폰 번호입니다.",
         <div

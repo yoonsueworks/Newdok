@@ -118,6 +118,7 @@ const BrandHome = () => {
             isOpen={isModalOpen}
             controlModal={setIsModalOpen}
             title={isLoggedIn ? "구독 확인하기" : "회원가입 안내"}
+            titleSize="m"
             info={isLoggedIn ? authInfoMessage : notAuthInfoMessage}
             button={
               <div className="mt-5">

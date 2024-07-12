@@ -275,6 +275,7 @@ const PhoneForm = () => {
         isOpen={isModalOpen}
         controlModal={setIsModalOpen}
         title="이미 가입된 정보입니다."
+        titleSize="s"
         info={[
           "입력하신 번호로 이미 가입된 계정이 있어요.",
           "한 번호로 최대 3개의 계정을 만들 수 있어요.",
