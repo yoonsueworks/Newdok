@@ -13,7 +13,7 @@ const Bookmark = ({
   const router = useRouter();
   return (
     <div
-      className="border border-neutralgray-200 px-4 py-5 rounded-xl bg-white flex grid grid-y-3"
+      className="border border-neutralgray-200 px-4 py-5 rounded-xl bg-white flex grid grid-y-3 cursor-pointer"
       key={brandId}
       onClick={() => router.push(`/articleRead/${articleId}`)}
     >
