@@ -32,3 +32,8 @@
   /* background-image:url(assets/img/swiper-left.png); */
 /* left: -20px; */
 /* } */
+
+.bookmarkUserInterestSwiper {
+  width: 100%;
+  background-color: #674188;
+}

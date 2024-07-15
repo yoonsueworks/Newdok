@@ -116,7 +116,7 @@ const NAV_MENUS = [
     name_eng: MENU_NAMES.BOOKMARK,
     state_on: <BookmarkOn width="28" height="28" />,
     state_off: <BookmarkOff width="28" height="28" />,
-    path: "/bookmark",
+    path: "/bookmarks",
   },
   {
     id: 5,
