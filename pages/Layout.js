@@ -13,7 +13,7 @@ export default function Layout({ children }) {
       {(router.pathname.includes("home") ||
         router.pathname === "/userPage" ||
         router.pathname === "/browseAll" ||
-        router.pathname === "/bookmark" ||
+        router.pathname === "/bookmarks" ||
         router.pathname === "/manageSubscription" ||
         router.pathname.includes("brandHome") ||
         router.pathname.includes("articleRead") ||

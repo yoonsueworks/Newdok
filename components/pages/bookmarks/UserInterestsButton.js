@@ -7,37 +7,33 @@ import { Pagination, Navigation } from "swiper";
 
 const UserInterestsButton = ({ userInterests }) => {
   return (
-    <div className="flex">
-      <div className="icon-arrow-long-right review-swiper-button-prev">
-        이전으로\◀️
-      </div>
+    <div className="flex justify-items-start">
+      <div className="icon-arrow-long-right review-swiper-button-prev">◀️</div>
 
       <Swiper
         slidesPerView={"auto"}
         centeredSlides={false}
-        spaceBetween={30}
+        spaceBetween={4}
         navigation={{
           nextEl: ".review-swiper-button-next",
           prevEl: ".review-swiper-button-prev",
         }}
         //   pagination={pagination}
         modules={[Navigation, Pagination]}
-        className="mySwiper"
+        className="bookmarkUserInterestSwiper"
       >
         <div className="overflow-scroll flex gap-x-2 shrink">
           {[{ id: 0, name: "전체" }, ...userInterests].map((el) => (
             <SwiperSlide
               key={el.id}
-              className={`w-fit border border-black break-keep`}
+              className={`w-fit border border-neutralgray-400 rounded-full px-2.5 py-1.5 break-keep`}
             >
               {el.name}
             </SwiperSlide>
           ))}
         </div>
       </Swiper>
-      <div className="icon-arrow-long-left review-swiper-button-next">
-        다음으로\▶️
-      </div>
+      <div className="icon-arrow-long-left review-swiper-button-next">▶️</div>
     </div>
   );
 };
