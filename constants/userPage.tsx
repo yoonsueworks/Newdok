@@ -1,5 +1,8 @@
-export const userPage_menus = [
+export const userPage_menus_service = [
   { id: 1, name: "계정 관리", path: "/userPage/myAccount" },
+];
+
+export const userPage_menus_customer = [
   { id: 2, name: "FAQ", path: "/userPage/faq" },
   { id: 3, name: "서비스 피드백", path: "/userPage/feedback" },
   { id: 4, name: "약관 및 정책", path: "/userPage/policy" },
