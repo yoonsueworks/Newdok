@@ -1,13 +1,9 @@
-import Image from "next/image";
-import { useRouter } from "next/router";
-import Topbar from "./Topbar";
-
 export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
   const clickedCSS =
-    "h-full w-2/4 flex justify-center items-center single-20-b text-purple-700 border-b-2 border-purple-700";
+    "h-full w-2/4 flex justify-center items-center input-01 text-blue-600 border-b-2 border-blue-600";
 
   const unClickedCss =
-    "h-full w-2/4 flex justify-center items-center single-20-m text-neutralgray-900 border-b-2 border-white hover:border-b-2 hover:border-purple-50";
+    "h-full w-2/4 flex justify-center items-center body-s text-blue-200 border-b border-blue-100 hover:border-b-1 hover:border-blue-300 hover:text-blue-300";
 
   return (
     <>
@@ -22,7 +18,7 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
                     id={id}
                     className={`${
                       clickedId === id ? clickedCSS : unClickedCss
-                    } transition-all duration-300 hover:bg-purple-50 `}
+                    } transition-all duration-300 hover:bg-blue-50 `}
                     onClick={(e) => changeTab(e.target.id)}
                   >
                     {name}
@@ -36,14 +32,3 @@ export default function Header({ clickedTab, changeTab, tabs, clickedId }) {
     </>
   );
 }
-
-const TABNAMES = [
-  {
-    id: 1,
-    name: "추천 뉴스레터",
-  },
-  {
-    id: 2,
-    name: "모든 뉴스레터",
-  },
-];

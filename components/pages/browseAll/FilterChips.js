@@ -3,9 +3,9 @@ import { useRecoilState, useResetRecoilState } from "recoil";
 import { browseOptionsAtom } from "service/atoms/atoms";
 
 import FilterChip from "components/pages/browseAll/FilterChip";
-import FilterOffIcon from "icons/ver1.0/filter_off.svg";
-import AlignIcon from "icons/ver1.0/align_off.svg";
-import Refresh from "icons/ver1.0/refresh_off.svg";
+import FilterOffIcon from "icons/ver3.0/Line Down2.svg";
+import AlignIcon from "icons/ver3.0/Line Arrow Transfer2.svg";
+import Refresh from "icons/ver3.0/Line Reload.svg";
 
 const FilterChips = ({ func, sortOption }) => {
   const [rotation, setRotation] = useState(0);
@@ -18,7 +18,7 @@ const FilterChips = ({ func, sortOption }) => {
 
   return (
     <div className="flex justify-between items-center pb-4 gap-x-4">
-      <div className="flex gap-x-1 overflow-scroll">
+      <div className="flex gap-x-1.5 overflow-scroll">
         {FILTERS.map(({ id, text, name }) => {
           return id === 1 ? (
             <FilterChip
@@ -28,7 +28,7 @@ const FilterChips = ({ func, sortOption }) => {
               state={false}
               open={() => func(id)}
             >
-              <AlignIcon width="16" height="16" fill="#171414" />
+              <AlignIcon width="12" height="12" stroke="#555555" />
             </FilterChip>
           ) : (
             <FilterChip
@@ -47,30 +47,33 @@ const FilterChips = ({ func, sortOption }) => {
               <FilterOffIcon
                 width="16"
                 height="16"
-                fill={browseOptions[name].length !== 0 ? "white" : "#171414"}
+                stroke={
+                  browseOptions[name].length !== 0 ? "#2866D3" : "#555555"
+                }
               />
             </FilterChip>
           );
         })}
       </div>
       <button
-        className="flex gap-x-1 items-center single-14-sb cursor-pointer shrink-0"
+        className="flex gap-x-1 label-l cursor-pointer shrink-0 text-blue-600"
         onClick={() => {
           clickRefresh();
           resetBrowseOptions();
         }}
         type="button"
       >
-        <span>초기화</span>
         <Refresh
-          width="20"
-          height="20"
+          width="14"
+          height="14"
           style={{
             transform: `rotate(${rotation}deg)`,
           }}
+          stroke="#2866D3"
           className={`transition-all duration-500`}
           onClick={clickRefresh}
         />
+        <span>초기화</span>
       </button>
     </div>
   );

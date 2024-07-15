@@ -15,10 +15,10 @@ const Filter = ({ text, type, id, func, browseOptions }) => {
       name={type}
       className={`${type === "days" ? "w-full" : "w-fit"} ${
         isSelected || id === browseOptions[0]
-          ? "bg-purple-400 selectedchip-border text-white hover:bg-purple-600 hover:text-white hover:selectedchip-border"
-          : "bg-white input-border text-neutralgray-900 hover:bg-purple-50 hover:text-neutralgray-900 hover:input-border"
+          ? "text-blue-600 selectedchip-border hover:bg-blue-50 hover:selectedchip-border"
+          : "bg-white unselectedchip-border text-neutralgray-700 hover:bg-blue-50 hover:text-neutralgray-700 hover:unselectedchip-border"
       }
-      p-4 rounded-2xl text-center whitespace-nowrap transition-colors duration-300 cursor-pointer `}
+      px-4 py-2 rounded-full text-center whitespace-nowrap transition-colors duration-300 cursor-pointer `}
       onClick={func}
     >
       {text}
@@ -53,7 +53,7 @@ const Filters = ({ handleDismiss }) => {
       {FilterTypes.map(({ id, constants, type, title }) => {
         return (
           <div className="grid gap-y-4" key={id}>
-            <span className="single-18-b text-purple-700">{title}</span>
+            <span className="input-02 text-neutralgray-700">{title}</span>
             <div
               className={
                 type === "industries"

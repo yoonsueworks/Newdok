@@ -43,7 +43,7 @@ export default function BrowseAll() {
   }, [isError, newsletterRecommend.error]);
 
   return (
-    <div className="h-full w-full flex flex-col overflow-auto bg-neutralgray-200">
+    <div className="h-full w-full flex flex-col overflow-auto bg-neutralgray-50">
       <Header
         tabs={TABS}
         changeTab={changeTab}
