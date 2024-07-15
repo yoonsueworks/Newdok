@@ -68,7 +68,7 @@ const BrandHome = () => {
     <>
       {data ? (
         <>
-          <div className="w-full h-full bg-purple-700 flex flex-col justify-between relative overflow-scroll">
+          <div className="w-full h-full flex flex-col justify-between relative overflow-scroll">
             <BrandInfo
               data={data}
               setOpen={handleSubscribeClick}
@@ -118,7 +118,7 @@ const BrandHome = () => {
             isOpen={isModalOpen}
             controlModal={setIsModalOpen}
             title={isLoggedIn ? "구독 확인하기" : "회원가입 안내"}
-            titleSize="m"
+            
             info={isLoggedIn ? authInfoMessage : notAuthInfoMessage}
             button={
               <div className="mt-5">

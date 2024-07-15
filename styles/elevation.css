@@ -10,4 +10,7 @@
   .elevation-1-bottom {
     box-shadow: 0px 2px 4px 0px rgba(23, 20, 20, 0.15);
   }
+  .elevation-2-bottom {
+    box-shadow: 0px 4px 8px 0px rgba(25, 25, 25, 0.1);
+  }
 }
