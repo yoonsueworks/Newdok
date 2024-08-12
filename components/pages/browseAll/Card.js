@@ -14,9 +14,9 @@ export default function Card({ datas }) {
     <div
       onClick={() => router.push(`/brandHome/${id}`)}
       id={S.card}
-      className="h-[307px] w-[320px] inline-block bg-white flex flex-col contentbox-border cursor-pointer"
+      className="h-[270px] w-[292px] inline-block bg-white flex flex-col contentbox-border cursor-pointer"
     >
-      <div id={S.gradient} className="w-full h-[150px]">
+      <div id={S.gradient} className="w-full h-[150px] ">
         <Image
           id={S.size}
           width="578"
@@ -28,10 +28,10 @@ export default function Card({ datas }) {
           src={imageUrl}
         />
       </div>
-      <div className="h-full p-5 flex flex-col justify-between">
-        <div className="grid gap-y-3">
-          <div className="single-18-sb">{brandName}</div>
-          <p className="multiple-14-m">{firstDescription}</p>
+      <div className="h-full py-4 px-5 flex flex-col justify-between">
+        <div className="grid gap-y-2">
+          <div className="button-01 text-neutralgray-900">{brandName}</div>
+          <p className="body-s text-neutralgray-700">{firstDescription}</p>
         </div>
         <Tags tags={interests} />
       </div>

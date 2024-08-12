@@ -42,7 +42,7 @@ const Nav = () => {
               return (
                 <li
                   className={`md:w-[60px] md:h-[70px] xl:h-[48px] xl:w-full xl:p-3.5 list-none text-center flex flex-col xl:flex-row xl:gap-x-2 gap-y-1 md:justify-center align-center items-center single-12-m rounded-xl ${
-                    menu.path === userCurrentPlace
+                    userCurrentPlace.includes(menu.path)
                       ? "md:bg-blue-50 xl:bg-blue-50"
                       : "bg-transparent"
                   }`}
@@ -50,13 +50,13 @@ const Nav = () => {
                   onClick={() => clickMenu(menu)}
                 >
                   <div>
-                    {menu.path === userCurrentPlace
+                    {userCurrentPlace.includes(menu.path)
                       ? menu.state_on
                       : menu.state_off}
                   </div>
                   <span
                     className={`shrink-0 w-fit break-keep xs:label-s sm:label-s md:label-s xl:body-s ${
-                      menu.path === userCurrentPlace
+                      userCurrentPlace.includes(menu.path)
                         ? "text-blue-600"
                         : "text-warmgray-100 "
                     }`}

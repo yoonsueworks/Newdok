@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { Mousewheel } from "swiper";
+import { Pagination } from "swiper/modules";
 
 import Card from "./Card";
 import S from "./CardSwiper.module.scss";
@@ -38,10 +38,8 @@ export default function Cards({ datas }) {
         slidesPerView={"auto"}
         spaceBetween={16}
         speed={5000}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Mousewheel]}
+        pagination={true}
+        modules={[Pagination]}
         className={`mySwiper ${S.swiper} px-5`}
       >
         {datas?.length > 0 &&

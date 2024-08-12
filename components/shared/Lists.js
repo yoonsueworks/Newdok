@@ -62,7 +62,7 @@ function ListedItem({ datas }) {
 export default function Lists({ datas }) {
   return (
     <>
-      <ul className="grid gap-y-2.5 xl:grid-cols-2 xl:gap-x-2.5">
+      <ul className="grid gap-y-2.5 xl:gap-x-2.5">
         {datas?.length > 1 &&
           datas?.map((data) => {
             return <ListedItem key={data.id || data.brandId} datas={data} />;

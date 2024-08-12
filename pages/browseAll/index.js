@@ -35,6 +35,7 @@ export default function BrowseAll() {
     },
     { id: 2, name: "모든 뉴스레터", comp: <EveryBrands /> },
   ];
+  const tabComponent = TABS[clickedId - 1].comp;
 
   useEffect(() => {
     if (isError) {
@@ -51,7 +52,7 @@ export default function BrowseAll() {
         clickedId={clickedId}
       />
 
-      <Background3>{TABS[clickedId - 1].comp}</Background3>
+    {tabComponent}
     </div>
   );
 }

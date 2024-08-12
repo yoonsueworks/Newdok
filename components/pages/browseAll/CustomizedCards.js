@@ -1,7 +1,11 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { Pagination, Navigation } from "swiper";
 
 import Card from "./Card";
 import S from "./CardSwiper.module.scss";
@@ -17,8 +21,11 @@ export default function CustomizedCards({ datas }) {
         slidesPerView={"auto"}
         spaceBetween={16}
         grabCursor={true}
-        speed={700}
-        className={`mySwiper ${S.swiper} h-[307px]`}
+        speed={1000}
+        pagination={true}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className={`mySwiper ${S.swiper}`}
       >
         {datas?.length > 0 &&
           randomDatas?.map((data) => (

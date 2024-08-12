@@ -8,16 +8,18 @@ import {
 } from "constants/userPage";
 
 const Menus = () => {
-  const router = useRouter();
-
   return (
     <div className="w-full h-fit flex flex-col items-center justify-center">
       <div className="w-full grid">
-        <div className="bg-white px-5 py-2 mt-3">서비스</div>
+        <div className="bg-white px-5 py-2 mt-3 body-s text-neutralgray-700">
+          서비스
+        </div>
         {userPage_menus_service.map((menu) => {
           return <Menu menu={menu} />;
         })}
-        <div className="bg-white px-5 py-2 mt-3">고객센터</div>
+        <div className="bg-white px-5 py-2 mt-3 body-s text-neutralgray-700">
+          고객센터
+        </div>
         {userPage_menus_customer.map((menu) => {
           return <Menu menu={menu} />;
         })}
@@ -32,10 +34,11 @@ const Menus = () => {
 export default Menus;
 
 const Menu = ({ menu }) => {
+  const router = useRouter();
   return (
     <div
       key={menu.id}
-      className="w-full h-fit flex justify-between items-center p-5 bg-white single-18-b cursor-pointer"
+      className="w-full h-fit flex justify-between items-center p-5 bg-white input-02 cursor-pointer text-neutralgray-800"
       onClick={() => {
         router.push(menu.path);
       }}
