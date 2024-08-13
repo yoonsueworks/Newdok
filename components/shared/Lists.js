@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Tags from "./Tags";
-import { useEffect } from "react";
 
 function ListedItem({ datas }) {
   const router = useRouter();
