@@ -15,13 +15,13 @@ const Menus = () => {
           서비스
         </div>
         {userPage_menus_service.map((menu) => {
-          return <Menu menu={menu} />;
+          return <Menu menu={menu} key={menu.id} />;
         })}
         <div className="bg-white px-5 py-2 mt-3 body-s text-neutralgray-700">
           고객센터
         </div>
         {userPage_menus_customer.map((menu) => {
-          return <Menu menu={menu} />;
+          return <Menu menu={menu} key={menu.id} />;
         })}
         <div className="w-full flex justify-between items-center bg-warmgray-30 p-5 single-18-b">
           버전 <span className="block single-14-m">v3.0.0</span>
