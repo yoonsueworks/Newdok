@@ -9,7 +9,7 @@ export default function Home() {
   const isAuthenticated = useRecoilValue(authSelector);
 
   useEffect(() => {
-    router.push(isAuthenticated ? "/home" : "/introduction");
+    router.push("/home");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

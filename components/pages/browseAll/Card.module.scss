@@ -1,15 +1,10 @@
-#gradient {
-    border-radius: 8px 8px 0px 0px;
-    Background: linear-gradient(180deg, rgba(103, 65, 136, 0.8) 0%, rgba(195, 172, 208, 0.8) 100%);
-}
-
 #card {
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 
 #size {
-    height: 150px !important;
-    border-radius: 8px 8px 0px 0px;
-    mix-blend-mode: multiply;
+    height: 128px !important;
+    border-radius: 9px 9px 0px 0px;
+    border: 1px solid #ebebeb;
 }

@@ -35,6 +35,7 @@ export default function BrowseAll() {
     },
     { id: 2, name: "모든 뉴스레터", comp: <EveryBrands /> },
   ];
+  const tabComponent = TABS[clickedId - 1].comp;
 
   useEffect(() => {
     if (isError) {
@@ -43,7 +44,7 @@ export default function BrowseAll() {
   }, [isError, newsletterRecommend.error]);
 
   return (
-    <div className="h-full w-full flex flex-col overflow-auto bg-neutralgray-200">
+    <div className="h-full w-full flex flex-col overflow-auto bg-neutralgray-50">
       <Header
         tabs={TABS}
         changeTab={changeTab}
@@ -51,7 +52,7 @@ export default function BrowseAll() {
         clickedId={clickedId}
       />
 
-      <Background3>{TABS[clickedId - 1].comp}</Background3>
+    {tabComponent}
     </div>
   );
 }

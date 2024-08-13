@@ -3,7 +3,7 @@ export default function SelectButton(props) {
 
   const clickedCSS =
     isClicked?.includes(id) === true
-      ? "text-white bg-purple-400 selectedchip-border hover:bg-purple-300 "
+      ? "text-white bg-blue-600 selectedchip-border hover:bg-purple-300 "
       : "text-neutralgray-900 bg-white input-border hover:bg-purple-50 ";
 
   return (

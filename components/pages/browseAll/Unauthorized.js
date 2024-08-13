@@ -7,7 +7,7 @@ const UnAuthorized = () => {
       <div className="w-full h-full flex flex-col gap-y-[57px] px-5 py-14 justify-between">
         <div className="flex flex-col items-center">
           <Image
-            src="/images/signup_300.png"
+            src="/images/empty_mailbox_300.png"
             alt="사용자 정보와 관련된 일러스트"
             width={500}
             height={300}

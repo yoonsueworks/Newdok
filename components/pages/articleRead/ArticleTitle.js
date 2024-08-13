@@ -3,9 +3,9 @@ import { useDateEdit } from "public/hooks/useDateEdit";
 const ArticleTitle = ({ data }) => {
   const formattedDate = useDateEdit(data?.date);
   return (
-    <div className="w-full h-fit absolute bg-purple-700 z-10 p-4 flex flex-col gap-y-2">
-      <div className="multiple-18-b text-white">{data.articleTitle}</div>
-      <div className="single-12-m text-beige-100">{formattedDate}</div>
+    <div className="w-full h-fit absolute bg-white z-10 p-4 flex flex-col gap-y-1 border-b border-neutralgray-300">
+      <div className="title-s text-neutralgray-800">{data.articleTitle}</div>
+      <div className="body-s text-neutralgray-600">{formattedDate}</div>
     </div>
   );
 };
