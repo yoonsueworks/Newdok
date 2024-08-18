@@ -264,7 +264,7 @@ const PhoneForm = () => {
       </div>
       <button
         type="submit"
-        className={`mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800 ${
+        className={`mt-16 p-5 text-white bg-blue-600 rounded-xl focus:outline-none disabled:bg-neutralgray-200 disabled:text-neutralgray-400 text-sm font-bold transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700 ${
           authCount === 1 && "hidden"
         }`}
         disabled={authNumber.length !== 6}
@@ -304,7 +304,7 @@ const PhoneForm = () => {
             <button
               type="button"
               id={1}
-              className={`w-full p-4 rounded-xl button-03 ${"transition-colors duration-300 hover:bg-blue-50 active:bg-blue-100 bg-white text-neutralgray-700 shadow-[inset_0_0px_0px_1px_#EBEBEB]"}`}
+              className={`w-full p-4 rounded-xl button-03 transition-colors duration-300 hover:bg-blue-50 active:bg-blue-100 bg-white text-neutralgray-700 shadow-[inset_0_0px_0px_1px_#EBEBEB]`}
               onClick={(e) => clickJoinProcessContinue(e, data?.length)}
             >
               {data?.length >= 3 ? "ID/PW 찾기" : "계속 진행하기"}

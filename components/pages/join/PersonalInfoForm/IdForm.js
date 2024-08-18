@@ -97,7 +97,7 @@ const IdForm = () => {
             })}
             maxLength="12"
             placeholder={idPlaceholderText.placeholder}
-            className={`w-full rounded-lg p-4 single-16-m focus:inputFocused-border ${
+            className={`w-full rounded-xl p-4 input-01 focus:inputFocused-border ${
               conditionControl.isVacant
                 ? "input-border"
                 : !conditionControl.containsLowercase ||
@@ -115,7 +115,7 @@ const IdForm = () => {
             type="button"
             disabled={!loginId}
             onClick={handleIdCheck}
-            className="w-fit h-fit shrink-0 bg-purple-700 text-white hover:bg-purple-500 p-4 shrink-0 rounded-xl single-20-b cursor-pointer transition-colors duration-300  disabled:bg-neutralgray-500 disabled:cursor-default disabled:text-white disabled:border-0"
+            className="w-fit h-fit shrink-0 text-white bg-blue-600 rounded-xl focus:outline-none disabled:bg-neutralgray-200 disabled:text-neutralgray-400 text-sm font-bold transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700 p-4 shrink-0 rounded-xl cursor-pointer transition-colors duration-300 disabled:cursor-default disabled:border-0"
           >
             중복 확인
           </button>
@@ -128,7 +128,7 @@ const IdForm = () => {
                 : !isChecked
                 ? "text-error"
                 : "text-neutralgray-500"
-            } single-12-m pt-2`}
+            } label-s pt-2`}
           >
             {getErrorMessage()}
           </p>

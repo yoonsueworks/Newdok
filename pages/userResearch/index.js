@@ -7,7 +7,7 @@ import { useResearchQuery } from "public/hooks/UserResearch";
 import { GlobalContext } from "pages/_app";
 
 import ArrivedBrands from "components/pages/userResearch/ArrivedBrands";
-import Interest from "components/pages/userResearch/Interest";
+import IndustryInterest from "components/pages/userResearch/IndustryInterest";
 import UserResearchLayout from "./steps/UserResearchLayout";
 import IndustryDropDown from "shared/IndustryDropDown";
 
@@ -28,31 +28,9 @@ export default function UserResearch() {
   const value = useContext(GlobalContext);
 
   const comps = {
-    1: (
-      <div className="w-full">
-        <Image
-          src="/images/signup_300_2.png"
-          alt="뉴독 일러스트"
-          width={500}
-          height={500}
-          loading="lazy"
-        />
-      </div>
-    ),
-    2: (
-      <div className="w-full">
-        <Image
-          src="/images/signup_300.png"
-          alt="사용자 정보와 관련된 일러스트"
-          width={500}
-          height={500}
-          loading="lazy"
-        />
-      </div>
-    ),
-    3: <IndustryDropDown />,
-    4: <Interest />,
-    5: <ArrivedBrands />,
+    1: <></>,
+    2: <IndustryInterest />,
+    4: <ArrivedBrands />,
   };
 
   const handleProgress = (condition) => {

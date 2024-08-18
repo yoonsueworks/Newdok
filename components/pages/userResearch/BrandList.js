@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PublicationCycle from "shared/PublicationCycle";
 import BrandName from "shared/BrandName";
+import Tags from "../../shared/Tags";
 
 const BrandList = ({ data, handleSubscribeClick }) => {
   return (
@@ -35,9 +36,9 @@ const ArrivedBrand = ({ brandInfo, handleSubscribeClick }) => {
   } = brandInfo;
   return (
     <li className="grid w-full h-fit">
-      <div className="bg-beige-50 border border-neutralgray-200 p-5 flex justify-between h-fit rounded-t-lg">
+      <div className="bg-neutralgray-50 border border-neutralgray-200 p-5 flex justify-between h-fit rounded-t-xl">
         <div className="flex gap-x-4 items-center">
-          <div className="w-[48px] h-[48px] rounded-full flex-shrink-0 contentbox-border relative border border-neutralgray-200 flex justify-center items-center">
+          <div className="w-[48px] h-[48px] rounded-xl flex-shrink-0 contentbox-border relative border border-neutralgray-200 flex justify-center items-center">
             <Image
               alt={brandName}
               src={imageUrl}
@@ -49,7 +50,7 @@ const ArrivedBrand = ({ brandInfo, handleSubscribeClick }) => {
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcNGFlPQAGEwJcG4PRAwAAAABJRU5ErkJggg=="
               style={{
                 objectFit: "cover",
-                borderRadius: 50,
+                borderRadius: 11,
               }}
             />
           </div>
@@ -62,26 +63,15 @@ const ArrivedBrand = ({ brandInfo, handleSubscribeClick }) => {
           type="button"
           id={id}
           onClick={handleSubscribeClick}
-          className="p-3.5 h-fit rounded-[10px] bg-purple-700 hover:bg-purple-500 active:bg-purple-800 single-18-b text-white cursor-pointer transition-colors duration-300"
+          className="px-5 py-2 h-fit rounded-lg bg-blue-600 hover:bg-blue-500 active:bg-blue-700 button-03 text-white cursor-pointer transition-colors duration-300"
         >
           구독하기
         </button>
       </div>
-      <div className="w-full grid bg-white border-b border-l border-r border-neutralgray-200 inset-x-0 p-5 gap-y-3 rounded-b-lg">
-        <p className="single-14-m text-neutralgray-900">{secondDescription}</p>
+      <div className="w-full grid bg-white border-b border-l border-r border-neutralgray-200 inset-x-0 p-5 gap-y-3 rounded-b-xl">
+        <p className="body-s text-neutralgray-900">{secondDescription}</p>
         <ul className="flex gap-x-2 flex-wrap">
-          {interests.map((interest, id) => {
-            return (
-              id < 3 && (
-                <li
-                  key={interest.id}
-                  className="rounded-lg neutralgray-200beige-100 text-purple-700 single-12-m p-2 h-fit shrink-0"
-                >
-                  {interest.name}
-                </li>
-              )
-            );
-          })}
+          <Tags tags={interests} />
         </ul>
       </div>
     </li>

@@ -51,7 +51,7 @@ const PswdForm = () => {
       : setPasswordCheck(replacedInputValue);
   };
 
-  const inputDivStyle = `w-full flex justify-between items-center rounded-lg p-4 mt-2 input-border focus-within:inputFocused-border `;
+  const inputDivStyle = `w-full flex justify-between items-center rounded-xl p-4 mt-2 input-border focus-within:inputFocused-border `;
 
   return (
     <form
@@ -82,7 +82,7 @@ const PswdForm = () => {
               })}
               maxLength="12"
               placeholder={pswdText.pswd}
-              className="single-16-m h-full w-full"
+              className="input-01 h-full w-full"
               type={pwVisible ? "text" : "password"}
               onChange={handleInputChange}
               onPaste={() => {
@@ -93,7 +93,7 @@ const PswdForm = () => {
             <PasswordChild setInputType={setPwVisible} type={pwVisible} />
           </div>
           {password && (
-            <p className="text-error single-12-m pt-2">{getErrorMessage()}</p>
+            <p className="text-error label-s pt-2">{getErrorMessage()}</p>
           )}
         </div>
         <div className="flex flex-col">
@@ -116,7 +116,7 @@ const PswdForm = () => {
               })}
               maxLength="12"
               placeholder={pswdText.pswd}
-              className="single-16-m h-full w-full"
+              className="input-01 h-full w-full"
               type={pwCheckVisible ? "text" : "password"}
               onChange={handleInputChange}
               onPaste={() => {
@@ -130,9 +130,7 @@ const PswdForm = () => {
             />
           </div>
           {passwordCheck && (
-            <p className="text-error single-12-m pt-2">
-              {getCheckErrorMessage()}
-            </p>
+            <p className="text-error label-s pt-2">{getCheckErrorMessage()}</p>
           )}
         </div>
       </div>
