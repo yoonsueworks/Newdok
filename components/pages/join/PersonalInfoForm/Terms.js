@@ -62,8 +62,8 @@ const Terms = () => {
 
   return (
     <div className="h-full overflow-scroll w-full flex flex-col justify-between">
-      <div className="flex flex-col gap-y-[14px]">
-        <div className="flex justify-between border-b border-purple-200 pb-4">
+      <div className="flex flex-col gap-y-[16px]">
+        <div className="flex justify-between">
           <div className="flex items-center gap-x-2">
             <input
               type="checkbox"
@@ -75,11 +75,11 @@ const Terms = () => {
               }}
             />
             <label id="check1" htmlFor="check1"></label>
-            <span className="single-20-b text-purple-700">전체 약관 동의</span>
+            <span className="title-s text-neutralgray-700">전체 약관 동의</span>
           </div>
         </div>
         <ul>
-          <li className="flex justify-between py-3.5">
+          <li className="flex justify-between mb-3">
             <div className="flex items-center gap-x-2">
               <input
                 type="checkbox"
@@ -88,12 +88,12 @@ const Terms = () => {
                 onChange={() => setAge((prev) => !prev)}
               />
               <label id="check2" htmlFor="check2"></label>
-              <span className="single-16-m text-neutralgray-900">
+              <span className="body-s text-neutralgray-700">
                 만 14세 이상 확인 (필수)
               </span>
             </div>
           </li>
-          <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
+          <li className="flex justify-between mb-3 body-s text-neutralgray-700">
             <div className="flex items-center gap-x-2">
               <input
                 type="checkbox"
@@ -112,7 +112,7 @@ const Terms = () => {
               onClick={openLink}
             />
           </li>
-          <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
+          <li className="flex justify-between mb-3 body-s text-neutralgray-700">
             <div className="flex items-center gap-x-2">
               <input
                 type="checkbox"
@@ -131,7 +131,7 @@ const Terms = () => {
               onClick={openLink}
             />
           </li>
-          <li className="flex justify-between py-3.5 single-16-m text-neutralgray-900">
+          <li className="flex justify-between mb-3 text-neutralgray-700">
             <div className="flex items-center gap-x-2">
               <input
                 type="checkbox"
@@ -147,7 +147,7 @@ const Terms = () => {
       </div>
       <button
         type="submit"
-        className="mt-16 p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
+        className="mt-8 mb-14 p-4 text-white bg-blue-600 rounded-xl focus:outline-none disabled:bg-neutralgray-200 disabled:text-neutralgray-400 button-03 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
         disabled={!(age && service && privacy)}
         onClick={submitUserInfo}
       >

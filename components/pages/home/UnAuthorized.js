@@ -8,6 +8,8 @@ import New from "./Unauthorized/New";
 import Subscribe from "./Unauthorized/Subscribe";
 import Footer from "./Unauthorized/Footer";
 
+
+
 const UnAuthorized = () => {
   return (
     <div className="w-full h-full justify-between bg-neutralgray-50 overflow-auto">
