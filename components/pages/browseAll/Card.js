@@ -8,7 +8,7 @@ export default function Card({ datas }) {
 
   if (!datas) return;
 
-  const { id, brandName, firstDescription, imageUrl, interests } = datas;
+  const { id, brandName, firstDescription, shortDescription, imageUrl, interests } = datas;
 
   return (
     <div
@@ -31,7 +31,7 @@ export default function Card({ datas }) {
       <div className="h-full py-4 px-5 flex flex-col justify-between">
         <div className="grid gap-y-2">
           <div className="button-01 text-neutralgray-900">{brandName}</div>
-          <p className="body-s text-neutralgray-700">{firstDescription}</p>
+          <p className="body-s text-neutralgray-700">{firstDescription || shortDescription}</p>
         </div>
         <Tags tags={interests} />
       </div>
