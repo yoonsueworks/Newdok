@@ -5,7 +5,6 @@ const FilterChip = ({ children, text, state, open, id }) => {
   const activatedMode = "selectedchip-border text-blue-600 ";
   const modeControl =
     id === 1 ? defaultMode : state ? activatedMode : defaultMode;
-  console.log(text);
 
   return (
     <button className="group rounded-full shrink-0" onClick={open}>
