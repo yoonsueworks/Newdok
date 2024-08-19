@@ -1,9 +1,12 @@
 function Tag({ tag, usage }) {
-  const bgColorCSS = usage === "brand" ? "bg-beige-50" : "bg-blue-50 ";
+  const bgColorCSS =
+    usage === "brand"
+      ? "bg-[#1e1e1e]/40 border-neutralgray-300 text-white"
+      : "bg-blue-50 border-blue-600 text-blue-600";
 
   return (
     <div
-      className={`px-2.5 py-1 text-blue-600 w-fit label-s rounded-full border border-blue-600 ${bgColorCSS}`}
+      className={`px-2.5 py-1 w-fit label-s rounded-full border ${bgColorCSS}`}
     >
       {tag}
     </div>

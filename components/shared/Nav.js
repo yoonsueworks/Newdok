@@ -88,7 +88,7 @@ const NAV_MENUS = [
     id: 1,
     name_kr: "둘러보기",
     name_eng: MENU_NAMES.BROWSEALL,
-    state_on: <BrowseOn width="28" height="28" />,
+    state_on: <BrowseOn width="28" height="28" stroke="#CCDFFF" />,
     state_off: <BrowseOff width="28" height="28" />,
     path: "/browseAll",
   },
