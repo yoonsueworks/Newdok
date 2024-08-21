@@ -8,13 +8,20 @@ const SingupButtons = () => {
       <button
         type="button"
         onClick={() => router.push("/join")}
-        className="w-full h-fit p-5 rounded-[14px] single-24-b hover:bg-purple-500 active:bg-purple-800 text-white bg-purple-700 transition-colors duration-300"
+        className="w-full h-fit p-4 rounded-xl button-03 hover:bg-blue-500 active:bg-blue-700 text-white bg-blue-600 transition-colors duration-300"
       >
         회원가입
       </button>
       <div className="flex items-center gap-x-2">
-        <span className="inline-block single-14-m">이미 계정이 있나요?</span>
-        <ButtonText text="로그인" func={() => router.push("/login")} />
+        <span className="inline-block body-s text-neutralgray-700">
+          이미 계정이 있나요?
+        </span>
+        <span
+          className="inline-block body-s underline text-blue-600"
+          onClick={() => router.push("/login")}
+        >
+          로그인
+        </span>
       </div>
     </div>
   );

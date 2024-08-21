@@ -9,7 +9,7 @@ import { policy_menus } from "constants/userPage";
 const Policy = () => {
   const router = useRouter();
   return (
-    <div className="xl:w-full md:w-full md:flex md:flex-col">
+    <div className="xl:w-full md:w-full md:flex md:flex-col h-full">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar

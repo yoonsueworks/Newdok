@@ -28,7 +28,7 @@ const MyAccount = () => {
   );
   const router = useRouter();
   const buttonCSS =
-    "w-full h-fit flex justify-between items-center contentbox-border p-5 single-18-b cursor-pointer";
+    "w-full h-fit flex justify-between items-center py-4 single-18-b cursor-pointer";
 
   const routeTo = (path) => {
     router.push(path);
@@ -62,16 +62,10 @@ const MyAccount = () => {
     <Background2>
       <div className="h-full relative w-full">
         <div className="absolute top-0 w-full">
-          <AppBar
-            iconl={true}
-            shadow={true}
-            textl="계정 관리"
-            iconr={false}
-            func={() => router.push("/userPage")}
-          />
+          <AppBar iconl={true} shadow={false} textl="계정 관리" iconr={false} />
         </div>
-        <div className="pt-24 h-full flex flex-col justify-between items-center pb-14">
-          <div className="gap-y-2.5 grid w-full px-5 ">
+        <div className="pt-[64px] h-full flex flex-col justify-between items-center pb-14">
+          <div className="grid w-full px-7 pt-6 ">
             {myaccount_menus.map(({ id, name, path }) => {
               return (
                 <div
@@ -82,11 +76,7 @@ const MyAccount = () => {
                   }}
                 >
                   {name}
-                  {id !== 3 ? (
-                    <ArrowRight width="24" height="24" />
-                  ) : (
-                    <LogOut width="24" height="24" />
-                  )}
+                  {id !== 3 && <ArrowRight width="24" height="24" />}
                 </div>
               );
             })}
@@ -110,17 +100,26 @@ const MyAccount = () => {
       <MessageModal
         isOpen={isModalOpen}
         controlModal={() => setIsModalOpen(false)}
-        title="로그아웃"
+        title="로그아웃 할까요?"
         titleSize="m"
-        info={["로그아웃할까요?"]}
+        info={[]}
         button={
-          <button
-            type="submit"
-            className="w-full p-4 rounded-xl shadow-[inset_0_0px_0px_1px_#674188] text-purple-700 bg-white single-20-b transition-colors duration-300 hover:bg-purple-50 active:bg-purple-100 mt-5"
-            onClick={handleLogOut}
-          >
-            확인
-          </button>
+          <div className="flex gap-x-2">
+            <button
+              type="submit"
+              className="w-full p-[14px] rounded-xl border border-neutralgray-200 text-neutralgray-700 bg-white button-03 transition-colors duration-300 hover:bg-blue-50 active:bg-blue-50 mt-5"
+              onClick={handleLogOut}
+            >
+              확인
+            </button>
+            <button
+              type="submit"
+              className="w-full p-[14px] rounded-xl bg-blue-600 text-white button-03 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700 mt-5"
+              onClick={handleLogOut}
+            >
+              취소
+            </button>
+          </div>
         }
       />
     </Background2>
