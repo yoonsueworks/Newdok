@@ -7,8 +7,8 @@ import { userDatasAtom, infoChangeSuccessAtom } from "service/atoms/atoms";
 import PasswordChild from "shared/PasswordChild";
 import Background from "shared/Background";
 import InputLabel from "shared/InputLabel";
-import Button from "shared/Button";
 import AppBar from "shared/AppBar";
+import LockIcon from "icons/ver3.0/Line Lock.svg";
 
 import { pswdText, pswdErrorMessage } from "constants/join";
 import { validation } from "constants/validation";
@@ -27,6 +27,10 @@ const Pswd = () => {
   const [prevPswdVisible, setPrevPswdVisible] = useState(false);
   const [pswdVisible, setPswdVisible] = useState(false);
   const [pswdCheckVisible, setPswdCheckVisible] = useState(false);
+
+  const [isInput1Focused, setIsInput1Focused] = useState(false);
+  const [isInput2Focused, setIsInput2Focused] = useState(false);
+  const [isInput3Focused, setIsInput3Focused] = useState(false);
 
   const passwordValidation = validation.password;
 
@@ -73,7 +77,28 @@ const Pswd = () => {
     if (error) alert("에러가 발생하였습니다.");
   };
 
-  const inputDivStyle = `w-full flex justify-between items-center bg-white rounded-lg p-4 input-border focus-within:inputFocused-border `;
+  const handleInputFocus = (id) => {
+    if (id === 1) setIsInput1Focused(true);
+    if (id === 2) setIsInput2Focused(true);
+    if (id === 3) setIsInput3Focused(true);
+  };
+
+  const handleInputBlur = (id) => {
+    if (id === 1) setIsInput1Focused(false);
+    if (id === 2) setIsInput2Focused(false);
+    if (id === 3) setIsInput3Focused(false);
+  };
+
+  const getErrorMessage = () => {
+    if (conditionControl.pswdLengthShort) return pswdErrorMessage.error_length;
+    if (!conditionControl.pswdTest) return pswdErrorMessage.error_combination;
+  };
+
+  const getErrorCheckMessage = () => {
+    if (!conditionControl.pswdCheckTest) return pswdErrorMessage.error_match;
+  };
+
+  const inputDivStyle = `w-full flex justify-between items-center bg-transparent rounded-xl p-4 input-border focus-within:inputFocused-border `;
 
   return (
     <div className="xl:w-full md:w-full md:flex md:flex-col h-full">
@@ -81,10 +106,9 @@ const Pswd = () => {
         <div className="absolute w-full">
           <AppBar
             iconl={true}
-            shadow={true}
+            shadow={false}
             textl="비밀번호 변경"
             iconr={false}
-            func={() => router.push("/userPage/myAccount")}
           />
         </div>
       </div>
@@ -102,30 +126,47 @@ const Pswd = () => {
                   inputDivStyle +
                   (conditionControl.prevLengthShort ||
                   (prevPswd !== null && !conditionControl.prevPswdTest)
-                    ? "inputError-border"
-                    : "input-border")
+                    ? "inputError-border bg-[#FFF2F4]"
+                    : "input-border bg-transparent")
                 }
               >
-                <input
-                  {...register("prevPswd", {
-                    required: {
-                      value: true,
-                      message: "현재 비밀번호를 입력해주세요.",
-                    },
-                    pattern: {
-                      value: passwordValidation,
-                    },
-                  })}
-                  maxLength="12"
-                  placeholder="현재 비밀번호 입력"
-                  className="single-16-m h-full w-full"
-                  type={prevPswdVisible ? "text" : "password"}
-                  onChange={handleInputChange}
-                  onPaste={() => {
-                    return false;
-                  }}
-                  id="password"
-                />
+                <div className="flex gap-x-2">
+                  <LockIcon
+                    width="20"
+                    height="20"
+                    className={`stroke-neutralgray-600 ${
+                      isInput1Focused
+                        ? "stroke-neutralgray-800"
+                        : conditionControl.prevLengthShort ||
+                          (prevPswd !== null && !conditionControl.prevPswdTest)
+                        ? "stroke-[#EA0730]"
+                        : "stroke-neutralgray-600"
+                    }`}
+                  />
+
+                  <input
+                    {...register("prevPswd", {
+                      required: {
+                        value: true,
+                        message: "현재 비밀번호를 입력해주세요.",
+                      },
+                      pattern: {
+                        value: passwordValidation,
+                      },
+                    })}
+                    maxLength="12"
+                    placeholder="현재 비밀번호 입력"
+                    className="input-01 h-full w-full bg-transparent bg-transparent"
+                    type={prevPswdVisible ? "text" : "password"}
+                    onChange={handleInputChange}
+                    onPaste={() => {
+                      return false;
+                    }}
+                    id="password1"
+                    onFocus={() => handleInputFocus(1)}
+                    onBlur={() => handleInputBlur(1)}
+                  />
+                </div>
                 <PasswordChild
                   setInputType={setPrevPswdVisible}
                   type={prevPswdVisible}
@@ -140,35 +181,54 @@ const Pswd = () => {
                   inputDivStyle +
                   (conditionControl.pswdLengthShort ||
                   (pswd !== null && !conditionControl.pswdTest)
-                    ? "inputError-border"
+                    ? "inputError-border bg-[#FFF2F4]"
                     : "input-border")
                 }
               >
-                <input
-                  {...register("pswd", {
-                    required: {
-                      value: true,
-                      message: "새 비밀번호를 입력해주세요.",
-                    },
-                    pattern: {
-                      value: passwordValidation,
-                    },
-                  })}
-                  maxLength="12"
-                  placeholder="8자 이상, 영문/숫자 조합"
-                  className="single-16-m h-full w-full"
-                  type={pswdVisible ? "text" : "password"}
-                  onChange={handleInputChange}
-                  onPaste={() => {
-                    return false;
-                  }}
-                  id="password"
-                />
+                <div className="flex gap-x-2">
+                  <LockIcon
+                    width="20"
+                    height="20"
+                    className={`stroke-neutralgray-600 ${
+                      isInput2Focused
+                        ? "stroke-neutralgray-800"
+                        : conditionControl.pswdLengthShort ||
+                          (pswd !== null && !conditionControl.pswdTest)
+                        ? "stroke-[#EA0730]"
+                        : "stroke-neutralgray-600"
+                    }`}
+                  />
+                  <input
+                    {...register("pswd", {
+                      required: {
+                        value: true,
+                        message: "새 비밀번호를 입력해주세요.",
+                      },
+                      pattern: {
+                        value: passwordValidation,
+                      },
+                    })}
+                    maxLength="12"
+                    placeholder="8자 이상, 영문/숫자 조합"
+                    className="input-01 h-full w-full bg-transparent"
+                    type={pswdVisible ? "text" : "password"}
+                    onChange={handleInputChange}
+                    onPaste={() => {
+                      return false;
+                    }}
+                    id="password2"
+                    onFocus={() => handleInputFocus(2)}
+                    onBlur={() => handleInputBlur(2)}
+                  />
+                </div>
                 <PasswordChild
                   setInputType={setPswdVisible}
                   type={pswdVisible}
                 />
               </div>
+              {pswd && (
+                <p className="text-error label-s pt-2">{getErrorMessage()}</p>
+              )}
             </div>
             {/* 새 비밀번호 확인:  세번째 input */}
             <div className="grid gap-y-2">
@@ -178,40 +238,62 @@ const Pswd = () => {
                   inputDivStyle +
                   (conditionControl.pswdCheckLengthShort ||
                   (pswdCheck !== null && !conditionControl.pswdCheckTest)
-                    ? "inputError-border"
+                    ? "inputError-border bg-[#FFF2F4]"
                     : "input-border")
                 }
               >
-                <input
-                  {...register("pswdCheck", {
-                    required: {
-                      value: true,
-                      message: "새 비밀번호를 확인해주세요.",
-                    },
-                    pattern: {
-                      value: passwordValidation,
-                    },
-                  })}
-                  maxLength="12"
-                  placeholder="8자 이상, 영문/숫자 조합"
-                  className="single-16-m h-full w-full"
-                  type={pswdCheckVisible ? "text" : "password"}
-                  onChange={handleInputChange}
-                  onPaste={() => {
-                    return false;
-                  }}
-                  id="password"
-                />
+                <div className="flex gap-x-2">
+                  <LockIcon
+                    width="20"
+                    height="20"
+                    className={`stroke-neutralgray-600 ${
+                      isInput3Focused
+                        ? "stroke-neutralgray-800"
+                        : conditionControl.pswdCheckLengthShort ||
+                          (pswdCheck !== null &&
+                            !conditionControl.pswdCheckTest)
+                        ? "stroke-[#EA0730]"
+                        : "stroke-neutralgray-600"
+                    }`}
+                  />
+                  <input
+                    {...register("pswdCheck", {
+                      required: {
+                        value: true,
+                        message: "새 비밀번호를 확인해주세요.",
+                      },
+                      pattern: {
+                        value: passwordValidation,
+                      },
+                    })}
+                    maxLength="12"
+                    placeholder="8자 이상, 영문/숫자 조합"
+                    className="input-01 h-full w-full bg-transparent"
+                    type={pswdCheckVisible ? "text" : "password"}
+                    onChange={handleInputChange}
+                    onPaste={() => {
+                      return false;
+                    }}
+                    id="password3"
+                    onFocus={() => handleInputFocus(3)}
+                    onBlur={() => handleInputBlur(3)}
+                  />
+                </div>
                 <PasswordChild
                   setInputType={setPswdCheckVisible}
                   type={pswdCheckVisible}
                 />
               </div>
+              {pswdCheck && (
+                <p className="text-error label-s pt-2">
+                  {getErrorCheckMessage()}
+                </p>
+              )}
             </div>
           </div>
           <button
             type="submit"
-            className="w-full h-fit p-5 rounded-2xl bg-purple-700 single-24-b text-white active:bg-purple-800 hover:bg-purple-500 transition-colors duration-300 disabled:bg-neutralgray-500"
+            className="w-full h-fit p-4 rounded-xl bg-blue-600 button-03 default:text-white active:bg-blue-700 hover:bg-blue-500 transition-colors duration-300 disabled:bg-neutralgray-200 disabled:text-neutralgray-400"
             disabled={conditionControl.btnDisabled}
           >
             변경 하기

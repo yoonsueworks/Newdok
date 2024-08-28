@@ -209,7 +209,7 @@ const PhoneForm = () => {
                 authCount === 1
                   ? "bg-blue-600 text-white hover:bg-blue-700 "
                   : "bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 active:bg-blue-100 "
-              }w-[84px] py-2 shrink-0 rounded-xl single-20-b cursor-pointer disabled:bg-neutralgray-500 disabled:cursor-default disabled:text-white disabled:border-0 transition-colors duration-300 `}
+              }w-[84px] py-2 shrink-0 rounded-xl input-01 cursor-pointer disabled:bg-neutralgray-500 disabled:cursor-default disabled:text-white disabled:border-0 transition-colors duration-300 `}
               onClick={handlePhoneAuth}
             >
               {responsiveText.phoneTextElement}

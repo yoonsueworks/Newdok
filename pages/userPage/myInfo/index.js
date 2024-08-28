@@ -60,15 +60,14 @@ const MyInfo = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar
             iconl={true}
-            shadow={true}
+            shadow={false}
             textl="프로필 편집"
             iconr={false}
-            func={() => router.push("/userPage")}
           />
         </div>
       </div>
