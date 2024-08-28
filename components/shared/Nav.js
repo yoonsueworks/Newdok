@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { atom, useRecoilState } from "recoil";
+import { atom, useRecoilState, useRecoilValue } from "recoil";
 import { userCurrentPlaceAtom } from "service/atoms/atoms";
+import { userDatasAtom } from "service/atoms/atoms";
 
 import GNB from "./GNB";
 import BrowseOff from "icons/ver3.0/Line Newsletter.svg";
@@ -18,6 +19,7 @@ import ProfileOn from "icons/ver3.0/Fill User.svg";
 
 const Nav = () => {
   const router = useRouter();
+  const userDatas = useRecoilValue(userDatasAtom);
   const [userCurrentPlace, setUserCurrentPlace] =
     useRecoilState(userCurrentPlaceAtom);
 

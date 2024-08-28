@@ -44,10 +44,9 @@ const ModifyIndustry = () => {
         <div className="absolute w-full">
           <AppBar
             iconl={true}
-            shadow={true}
+            shadow={false}
             textl="종사 산업 변경"
             iconr={false}
-            func={() => router.push("/userPage/myInfo")}
           />
         </div>
       </div>

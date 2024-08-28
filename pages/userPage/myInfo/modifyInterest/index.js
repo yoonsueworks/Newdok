@@ -64,10 +64,9 @@ const ModifyInterest = () => {
         <div className="absolute w-full">
           <AppBar
             iconl={true}
-            shadow={true}
+            shadow={false}
             textl="관심사 변경"
             iconr={false}
-            func={() => router.push("/userPage/myInfo")}
           />
         </div>
       </div>

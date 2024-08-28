@@ -15,10 +15,9 @@ const Faq = () => {
         <div className="absolute w-full">
           <AppBar
             iconl={true}
-            shadow={true}
+            shadow={false}
             textl="FAQ"
             iconr={false}
-            func={() => history.back()}
           />
         </div>
       </div>

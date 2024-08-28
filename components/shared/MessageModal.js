@@ -58,11 +58,12 @@ const MessageModal = ({
                   } text-neutralgray-900 mb-2 flex justify-between`}
                 >
                   <div>{title}</div>
-                  {title !== "중복 계정 안내" && (
-                    <button type="button" onClick={() => controlModal(false)}>
-                      <CloseIcon width="24" height="24" />
-                    </button>
-                  )}
+                  {title !== "중복 계정 안내" ||
+                    (title !== "로그아웃 할까요?" && (
+                      <button type="button" onClick={() => controlModal(false)}>
+                        <CloseIcon width="24" height="24" />
+                      </button>
+                    ))}
                 </Dialog.Title>
                 <div className="mt-2">
                   <div

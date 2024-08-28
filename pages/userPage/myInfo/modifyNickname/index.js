@@ -68,10 +68,9 @@ const ModifyNickname = () => {
         <div className="absolute w-full">
           <AppBar
             iconl={true}
-            shadow={true}
+            shadow={false}
             textl="닉네임 변경"
             iconr={false}
-            func={() => router.push("/userPage/myInfo")}
           />
         </div>
       </div>
