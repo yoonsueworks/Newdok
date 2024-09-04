@@ -60,10 +60,9 @@ const PhoneForm = () => {
   };
 
   /* 페이지 제출 */
-  const onSubmit = (data) => {
+  const submitPhoneNumber = (data) => {
     if (!authChecked) {
-      const { authorization, ...formData } = data;
-      setUserInfo({ ...userInfo, ...formData });
+      setUserInfo({ ...userInfo, phoneNumber: phoneNumber });
       setStep((prev) => prev + 1);
     } else {
       return;
@@ -116,8 +115,8 @@ const PhoneForm = () => {
 
   /* 아래 두 함수: 계정이 1개 이상인 경우 모달용 함수*/
   const clickJoinProcessContinue = (e, idInfos) => {
-    if (Number(e.target.id) === 1 && idInfos < 3) setIsModalOpen(false);
-    if (Number(e.target.id) === 1 && idInfos >= 3) router.push("/findAccount");
+    if (Number(e.target.id) === 1 && idInfos < 5) setIsModalOpen(false);
+    if (Number(e.target.id) === 1 && idInfos >= 5) router.push("/findAccount");
     else {
       setIsModalOpen(false);
       authorize();
@@ -165,10 +164,7 @@ const PhoneForm = () => {
   }, [data]);
 
   return (
-    <form
-      className="h-full overflow-scroll w-full flex flex-col"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="h-full overflow-scroll w-full flex flex-col">
       <div className="flex flex-col gap-y-8">
         <div className="flex flex-col gap-y-2">
           <InputLabel htmlFor="phoneNumber" text="휴대폰 번호" />
@@ -268,6 +264,7 @@ const PhoneForm = () => {
           authCount === 1 && "hidden"
         }`}
         disabled={authNumber.length !== 6}
+        onClick={submitPhoneNumber}
       >
         다음
       </button>

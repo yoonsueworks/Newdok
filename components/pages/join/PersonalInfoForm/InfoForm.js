@@ -9,7 +9,8 @@ import { nicknameErrorMessage } from "constants/join";
 
 const InfoForm = () => {
   const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);
-  const { register, handleSubmit, control, watch, setValue } = useForm({});
+  const { register, handleSubmit, control, watch, setValue, getValues } =
+    useForm({});
   const gender = watch("gender");
 
   const [nickname, setNickname] = useState("");
@@ -65,6 +66,15 @@ const InfoForm = () => {
     };
   }, [birthYearRef]);
 
+  useEffect(() => {
+    setUserInfo({
+      ...userInfo,
+      birthYear: birthYear?.toString(),
+      nickname: nickname,
+      gender: getValues("gender"),
+    });
+  }, [birthYear, nickname, gender]);
+
   return (
     <form
       className="h-fit w-full flex flex-col justify-between"
@@ -112,6 +122,7 @@ const InfoForm = () => {
                 value={field.value}
                 onChange={(value) => {
                   field.onChange(value);
+                  setBirthYear(value);
                   setClickArea(false);
                 }}
               >
