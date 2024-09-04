@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SignUpContext } from "context/SignUpContext";
 
@@ -53,6 +53,14 @@ const PswdForm = () => {
 
   const inputDivStyle = `w-full flex justify-between items-center rounded-lg p-4 mt-2 input-border focus-within:inputFocused-border `;
 
+  useEffect(() => {
+    if (!conditionControl.match)
+      setUserInfo({
+        ...userInfo,
+        password: password,
+      });
+  }, [password, passwordCheck]);
+      
   return (
     <form
       className="h-full overflow-scroll w-full flex flex-col justify-between"

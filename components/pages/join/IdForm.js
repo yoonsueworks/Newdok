@@ -7,8 +7,8 @@ import InputLabel from "shared/InputLabel";
 import { idErrorMessage, idPlaceholderText } from "constants/join";
 
 const IdForm = () => {
-  const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);
-  const { register, handleSubmit } = useForm({});
+  const { setUserInfo, userInfo } = useContext(SignUpContext);
+  const { register } = useForm({});
 
   const [loginId, setLoginId] = useState("");
   const [loginIdExist, setLoginIdExist] = useState(null);
@@ -16,18 +16,12 @@ const IdForm = () => {
 
   const { refetch, data, error, isError } = useCheckLoginId(loginId);
 
-  /* 페이지 제출 */
-  const onSubmit = (data) => {
-    if (isError) {
-      setUserInfo({ ...userInfo, ...data });
-      setStep((prev) => prev + 1);
-    } else return;
-  };
-
   /* ID 중복 확인 */
   const handleIdCheck = async () => {
     await refetch();
     setLoginIdExist(data);
+
+    if (isError) setUserInfo({ ...userInfo, loginId: loginId });
   };
 
   /* id 입력값 제어 : 특수문자 차단, 대문자 소문자로 교체 */
@@ -83,10 +77,7 @@ const IdForm = () => {
   };
 
   return (
-    <form
-      className="h-full overflow-scroll w-full flex flex-col"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="h-full overflow-scroll w-full flex flex-col">
       <div className="flex flex-col">
         <InputLabel htmlFor="loginId" text="아이디" />
         <div className="flex gap-x-2 pt-2">
