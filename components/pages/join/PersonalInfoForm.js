@@ -77,8 +77,6 @@ const PersonalInfoForm = () => {
     };
   }, [birthYearRef]);
 
-  console.log(userInfo);
-
   return (
     <form
       className="h-fit w-full flex flex-col justify-between"
