@@ -8,6 +8,7 @@ import {
   getNewsletterBrandUnauth,
   getBrandRead,
   getMonthlyArticles,
+  getDailyArticles,
 } from "../api/neswletter";
 
 const token = LocalStorage.getItem("NDtoken");
@@ -63,6 +64,19 @@ export const useBrandRead = (params) => {
       return data;
     },
     retry: 0,
+  });
+};
+
+export const useDailyArticles = (params) => {
+  return useQuery({
+    queryKey: ["useDailyArticles", params],
+    queryFn: () => token && getDailyArticles(params),
+    onSuccess: (data) => {
+      return data;
+    },
+    retry: 0,
+    refetchInterval: 60 * 2 * 1000,
+    staleTime: 60 * 2 * 1000,
   });
 };
 

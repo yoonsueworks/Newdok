@@ -55,7 +55,23 @@ export const getBrandRead = async (params) => {
 
 /* 월간 데이터 조회 (회원) */
 export const getMonthlyArticles = async (params) => {
-  const { data } = await axios.get(`articles?publicationMonth=${params}`, {
+  if (!params || !params.year || !params.month) {
+    return;
+  }
+  // TODO: params undefined인 채로 전달되는 이슈 근본적 해결
+
+  const { data } = await axios.get(
+    `articles?year=${params.year}&publicationMonth=${params.month}`,
+    {
+      headers: headers,
+    }
+  );
+  return data;
+};
+
+/* 일간 수신 뉴스레터 조회 (회원) */
+export const getDailyArticles = async () => {
+  const { data } = await axios.get(`/articles/today`, {
     headers: headers,
   });
   return data;

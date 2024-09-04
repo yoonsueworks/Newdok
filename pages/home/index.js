@@ -32,7 +32,18 @@ const Home = () => {
 
   const date = new Date();
   const thisMonth = date.getMonth() + 1;
-  const { data, isLoading } = useMonthlyArticles(thisMonth);
+  const thisYear = date.getFullYear();
+  const dateSetting = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
+  const { data, isLoading, refetch } = useMonthlyArticles({
+    year: thisYear,
+    month: thisMonth,
+  });
 
   const calendarContextValues = {
     setCalendarOpen: setCalendarOpen,
@@ -53,31 +64,28 @@ const Home = () => {
     // 과거 날짜의 뉴스레터 확인하고 다시 돌아왔을 경우
     if (String(dateValue).substring(0, 15) !== String(date).substring(0, 15)) {
       const savedDate = new Date(String(dateValue));
-      const currentDate = savedDate.toLocaleDateString(undefined, {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
+      const currentDate = savedDate.toLocaleDateString(undefined, dateSetting);
       setDateLocaleKr(currentDate);
       setFullActiveDate(currentDate);
       setActiveDate(savedDate.getDate());
       setActiveMonth(savedDate.getMonth() + 1);
       setActiveStartDate(new Date(String(dateValue)));
+      refetch({
+        year: savedDate.getFullYear(),
+        month: savedDate.getMonth() + 1,
+      });
+      if (data) {
+        setMonthlyArticles(data.data);
+      }
     } else {
       // 오늘 날짜, 최초 홈에 접근
-      const currentDate = new Date().toLocaleDateString(undefined, {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
+      const currentDate = new Date().toLocaleDateString(undefined, dateSetting);
       setDateLocaleKr(currentDate);
       setFullActiveDate(currentDate);
       setActiveDate(new Date().getDate());
       setActiveMonth(new Date().getMonth() + 1);
       if (data) {
-        setMonthlyArticles(data);
+        setMonthlyArticles(data.data);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
