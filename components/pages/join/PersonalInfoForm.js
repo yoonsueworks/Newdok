@@ -9,7 +9,8 @@ import { nicknameErrorMessage } from "constants/join";
 
 const PersonalInfoForm = () => {
   const { setUserInfo, userInfo, setStep } = useContext(SignUpContext);
-  const { register, handleSubmit, control, watch, setValue } = useForm({});
+  const { register, handleSubmit, control, watch, setValue, getValues } =
+    useForm({});
   const gender = watch("gender");
 
   const [nickname, setNickname] = useState("");
@@ -48,6 +49,17 @@ const PersonalInfoForm = () => {
   }, []);
 
   useEffect(() => {
+    setUserInfo({
+      ...userInfo,
+      nickname: nickname,
+      gender: getValues("gender"),
+      birthYear: birthYear?.toString(),
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nickname, birthYear, isGenderSelected]);
+
+  useEffect(() => {
     // 출생연도 리스트박스 영역 밖에서 클릭 시 발생하는 이벤트
     function handleFocus(e) {
       if (
@@ -64,6 +76,8 @@ const PersonalInfoForm = () => {
       document.removeEventListener("mouseup", handleFocus);
     };
   }, [birthYearRef]);
+
+  console.log(userInfo);
 
   return (
     <form
@@ -112,6 +126,7 @@ const PersonalInfoForm = () => {
                 value={field.value}
                 onChange={(value) => {
                   field.onChange(value);
+                  setBirthYear(value);
                   setClickArea(false);
                 }}
               >

@@ -13,6 +13,8 @@ const Join = () => {
   const [step, setStep] = useState(1);
   const [userInfo, setUserInfo] = useState({});
 
+  console.log(userInfo, "userinfo");
+
   const value = {
     step: step,
     setStep: setStep,
