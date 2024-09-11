@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { monthlyArticlesAtom } from "service/atoms/atoms";
-import { useUserSubscriptionList } from "service/hooks/user";
+import { useUserSubscriptionList } from "service/hooks/newsletters";
 
 import NoSubscription from "./NoSubsciption";
 import Arrivals from "./Arrivals";
@@ -17,6 +17,7 @@ const Articles = () => {
   const { data } = useUserSubscriptionList();
   const today = dateLocaleKr.split(" ")[3];
 
+  console.log(monthlyArticles);
   const articleLength = monthlyArticles?.filter(
     (item) => item.publishDate === activeDate
   )[0]?.receivedArticleList?.length;

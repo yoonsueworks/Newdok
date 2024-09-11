@@ -1,6 +1,9 @@
 import { useContext, useState } from "react";
 import Image from "next/image";
-import { useUserSubscriptionList } from "service/hooks/user";
+import {
+  useUserSubscriptionList,
+  usePauseSubscription,
+} from "service/hooks/newsletters";
 import { SubscribeListContext } from "context/SubscribeListContext";
 
 import ListItem from "components/pages/manageSubscription/ListItem";
@@ -12,6 +15,7 @@ const WhileSubscription = () => {
   const { currentBrand, setCurrentBrand } = useContext(SubscribeListContext);
 
   const { data, isLoading } = useUserSubscriptionList();
+  // const { isSuccess, refetch } = usePauseSubscription();
 
   const openModal = () => setIsModalOpen(true);
 
@@ -56,6 +60,7 @@ const WhileSubscription = () => {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         currentBrand={currentBrand}
+        refetch={() => refetch()}
       />
     </div>
   );
@@ -68,7 +73,7 @@ const Modal = ({ isModalOpen, setIsModalOpen, currentBrand }) => {
     <MessageModal
       isOpen={isModalOpen}
       controlModal={setIsModalOpen}
-      title={`${currentBrand} 구독 중지`}
+      title={`${currentBrand.brandName} 구독 중지`}
       titleSize="m"
       info={[
         "구독을 중지하면 더이상",
@@ -92,7 +97,7 @@ const Modal = ({ isModalOpen, setIsModalOpen, currentBrand }) => {
           <button
             type="submit"
             className="w-full p-4 rounded-xl text-white bg-blue-600 button-02 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
-            onClick={() => console.log("추후 구독중지 요청 연결 예정")}
+            // onClick={() => refetch(currentBrand.id)}
           >
             구독 중지
           </button>

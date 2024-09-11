@@ -77,7 +77,7 @@ const Home = () => {
       setActiveDate(new Date().getDate());
       setActiveMonth(new Date().getMonth() + 1);
       if (data) {
-        setMonthlyArticles(data);
+        setMonthlyArticles(data.data);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
