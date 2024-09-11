@@ -6,6 +6,11 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 
 const UserInterestsButton = ({ userInterests }) => {
+  const bookmarkInterests = userInterests.data;
+  if (!userInterests.isLoading && userInterests.isSuccess) {
+    bookmarkInterests?.unshift({ id: 0, name: "전체" });
+  }
+
   return (
     <div className="flex justify-items-start">
       <div className="icon-arrow-long-right review-swiper-button-prev">◀️</div>
@@ -23,14 +28,15 @@ const UserInterestsButton = ({ userInterests }) => {
         className="bookmarkUserInterestSwiper"
       >
         <div className="overflow-scroll flex gap-x-2 shrink">
-          {[{ id: 0, name: "전체" }, ...userInterests].map((el) => (
-            <SwiperSlide
-              key={el.id}
-              className={`w-fit border border-neutralgray-400 rounded-full px-2.5 py-1.5 break-keep`}
-            >
-              {el.name}
-            </SwiperSlide>
-          ))}
+          {bookmarkInterests?.length !== 0 &&
+            bookmarkInterests?.map((el) => (
+              <SwiperSlide
+                key={el.id}
+                className={`w-fit border border-neutralgray-400 rounded-full px-2.5 py-1.5 break-keep`}
+              >
+                {el.name}
+              </SwiperSlide>
+            ))}
         </div>
       </Swiper>
       <div className="icon-arrow-long-left review-swiper-button-next">▶️</div>

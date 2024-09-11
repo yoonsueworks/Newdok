@@ -17,7 +17,6 @@ const Articles = () => {
   const { data } = useUserSubscriptionList();
   const today = dateLocaleKr.split(" ")[3];
 
-  console.log(monthlyArticles);
   const articleLength = monthlyArticles?.filter(
     (item) => item.publishDate === activeDate
   )[0]?.receivedArticleList?.length;
