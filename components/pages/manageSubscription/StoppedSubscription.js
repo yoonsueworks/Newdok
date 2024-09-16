@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useUserSubscriptionList } from "service/hooks/user";
+import { useUserPausedSubscriptionList } from "service/hooks/newsletters";
 
 import ListItem from "components/pages/manageSubscription/ListItem";
 import Loading from "shared/Loading";
 
 const StoppedSubscription = () => {
-  const { data, isLoading } = useUserSubscriptionList();
+  const { data, isLoading } = useUserPausedSubscriptionList();
   const [currentBrand, setCurrentBrand] = useState(undefined);
   //   TODO: 추후 중지된 구독 리스트로 변경 예정
 

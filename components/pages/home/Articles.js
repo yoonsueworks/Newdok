@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { monthlyArticlesAtom } from "service/atoms/atoms";
-import { useUserSubscriptionList } from "service/hooks/user";
+import { useUserSubscriptionList } from "service/hooks/newsletters";
 
 import NoSubscription from "./NoSubsciption";
 import Arrivals from "./Arrivals";

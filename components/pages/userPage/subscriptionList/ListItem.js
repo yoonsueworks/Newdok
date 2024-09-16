@@ -10,8 +10,8 @@ const ListItem = ({ subscriptionList, menuClicked, onClick }) => {
   const cardCSS =
     "w-full h-fit contentbox-border p-5 flex items-center justify-between";
 
-  const clickButton = (brandName) => {
-    setCurrentBrand(brandName);
+  const clickPauseSubscriptionButton = (params) => {
+    setCurrentBrand(params);
     onClick();
   };
 
@@ -44,7 +44,9 @@ const ListItem = ({ subscriptionList, menuClicked, onClick }) => {
             </div>
             <button
               className="text-purple-400"
-              onClick={() => clickButton(brandName)}
+              onClick={() =>
+                clickPauseSubscriptionButton({ brandName: brandName, id: id })
+              }
             >
               {menuClicked === 0 ? "구독 중지" : "구독 재개"}
             </button>
