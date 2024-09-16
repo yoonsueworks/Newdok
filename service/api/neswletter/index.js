@@ -76,3 +76,11 @@ export const getDailyArticles = async () => {
   });
   return data;
 };
+
+/* 구독 리스트 보기 */
+export const getSubscriptionList = async () => {
+  const { data } = await axios.get(`/newsletters/subscription/active`, {
+    headers: headers,
+  });
+  return data;
+};

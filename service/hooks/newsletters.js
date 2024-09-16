@@ -9,6 +9,7 @@ import {
   getBrandRead,
   getMonthlyArticles,
   getDailyArticles,
+  getSubscriptionList,
 } from "../api/neswletter";
 
 const token = LocalStorage.getItem("NDtoken");
@@ -114,5 +115,16 @@ export const useMonthlyArticlesOnClickNext = (params) => {
     },
     enabled: false,
     retry: 0,
+  });
+};
+
+export const useUserSubscriptionList = () => {
+  return useQuery({
+    queryKey: "getSubscriptionList",
+    queryFn: () => token && getSubscriptionList(),
+    onSuccess: (data) => {
+      return data;
+    },
+    retry: 3,
   });
 };

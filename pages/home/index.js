@@ -10,6 +10,7 @@ import Loading from "shared/Loading";
 
 import LocalStorage from "public/utils/LocalStorage";
 import { useMonthlyArticles } from "service/hooks/newsletters";
+
 import {
   monthlyArticlesAtom,
   monthValueAtom,

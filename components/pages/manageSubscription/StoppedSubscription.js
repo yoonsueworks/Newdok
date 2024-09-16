@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useUserSubscriptionList } from "service/hooks/user";
+import { useUserSubscriptionList } from "service/hooks/newsletters";
 
 import ListItem from "components/pages/manageSubscription/ListItem";
 import Loading from "shared/Loading";

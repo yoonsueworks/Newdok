@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import Image from "next/image";
-import { useUserSubscriptionList } from "service/hooks/user";
+import { useUserSubscriptionList } from "service/hooks/newsletters";
 import { SubscribeListContext } from "context/SubscribeListContext";
 
 import ListItem from "components/pages/manageSubscription/ListItem";
