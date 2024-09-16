@@ -6,21 +6,21 @@ import SortModal from "components/pages/bookmarks/SortModal";
 import Months from "components/pages/bookmarks/Months";
 import Title from "components/pages/bookmarks/Title";
 
+import {
+  useGetBookmarkInterest,
+  useGetBookmarkList,
+} from "service/hooks/articles";
+
 const Bookmarks = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [sortMode, setSortMode] = useState({ id: 1, name: "추가순" });
 
-  const userInterests = [
-    { id: 1, name: "경제 정치" },
-    { id: 2, name: "비즈니스" },
-    { id: 3, name: "과학 기술" },
-    { id: 4, name: "트렌드" },
-    { id: 5, name: "재테크" },
-    { id: 6, name: "콘텐츠" },
-    { id: 7, name: "미술 디자인" },
-  ];
+  const bookmarkInterests = useGetBookmarkInterest();
+  const bookmarkList = useGetBookmarkList();
 
-  const data = {
+  TODO: console.log(bookmarkList);
+
+  const datas = {
     totalAmount: 32, // 총 32개
     bookmarkForMonth: [
       {
@@ -59,14 +59,14 @@ const Bookmarks = () => {
   return (
     <div className="w-full h-full">
       <Title />
-      <UserInterestsButton userInterests={userInterests} />
+      <UserInterestsButton userInterests={bookmarkInterests} />
       <div className="px-7">
         <TotalSort
-          totalAmount={data.totalAmount}
+          totalAmount={datas.totalAmount}
           setIsModalOpen={setIsModalOpen}
           sortMode={sortMode}
         />
-        <Months bookmarks={data.bookmarkForMonth} />
+        <Months bookmarks={datas.bookmarkForMonth} />
       </div>
       <SortModal
         isModalOpen={isModalOpen}

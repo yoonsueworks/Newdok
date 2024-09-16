@@ -10,8 +10,8 @@ const ListItem = ({ subscriptionList, menuClicked, onClick, mode }) => {
   const cardCSS =
     "w-full h-fit contentbox-border px-5 py-4 flex items-center justify-between";
 
-  const clickButton = (brandName) => {
-    setCurrentBrand(brandName);
+  const clickPauseSubscriptionButton = (params) => {
+    setCurrentBrand(params);
     onClick();
   };
 
@@ -48,7 +48,9 @@ const ListItem = ({ subscriptionList, menuClicked, onClick, mode }) => {
                   ? "text-white bg-blue-400"
                   : "text-blue-600  bg-blue-50"
               }`}
-              onClick={() => clickButton(brandName)}
+              onClick={() =>
+                clickPauseSubscriptionButton({ brandName: brandName, id: id })
+              }
             >
               {menuClicked === 0 ? "구독 중지" : "구독 재개"}
             </button>

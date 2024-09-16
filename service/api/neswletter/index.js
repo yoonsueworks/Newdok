@@ -84,3 +84,34 @@ export const getSubscriptionList = async () => {
   });
   return data;
 };
+
+/* 구독 리스트 보기 */
+export const getSubscriptionList = async () => {
+  const { data } = await axios.get(`/newsletters/subscription/active`, {
+    headers: headers,
+  });
+  return data;
+};
+
+/* 구독중지 중인 리스트 보기 */
+export const getPausedSubscriptionList = async () => {
+  const { data } = await axios.get(`/newsletters/subscription/paused`, {
+    headers: headers,
+  });
+  return data;
+};
+
+/* 구독 중지 */
+export const pauseSubscription = async () => {
+  const { data } = await axios.get(`/newsletters/subscription/pause`, {
+    headers: headers,
+  });
+  return data;
+};
+/* 구독 재개 */
+export const resumeSubscription = async () => {
+  const { data } = await axios.get(`/newsletters/subscription/resume`, {
+    headers: headers,
+  });
+  return data;
+};
