@@ -15,9 +15,10 @@ const WhileSubscription = () => {
   const { currentBrand, setCurrentBrand } = useContext(SubscribeListContext);
 
   const { data, isLoading } = useUserSubscriptionList();
-  // const { isSuccess, refetch } = usePauseSubscription();
+  const { mutate: mutationFn } = usePauseSubscription();
 
   const openModal = () => setIsModalOpen(true);
+  console.log(mutationFn);
 
   return (
     <div className="w-full h-fit bg-neutralgray-50 pb-9">
@@ -60,7 +61,7 @@ const WhileSubscription = () => {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         currentBrand={currentBrand}
-        refetch={() => refetch()}
+        mutationFn={mutationFn}
       />
     </div>
   );
@@ -68,7 +69,7 @@ const WhileSubscription = () => {
 
 export default WhileSubscription;
 
-const Modal = ({ isModalOpen, setIsModalOpen, currentBrand }) => {
+const Modal = ({ isModalOpen, setIsModalOpen, currentBrand, mutationFn }) => {
   return (
     <MessageModal
       isOpen={isModalOpen}
@@ -97,7 +98,7 @@ const Modal = ({ isModalOpen, setIsModalOpen, currentBrand }) => {
           <button
             type="submit"
             className="w-full p-4 rounded-xl text-white bg-blue-600 button-02 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
-            // onClick={() => refetch(currentBrand.id)}
+            onClick={() => mutationFn({ id: currentBrand.id })}
           >
             구독 중지
           </button>

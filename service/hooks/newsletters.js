@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import LocalStorage from "public/utils/LocalStorage";
 import {
   getRecommend,
@@ -116,6 +116,54 @@ export const useMonthlyArticlesOnClickNext = (params) => {
       return data;
     },
     enabled: false,
+    retry: 0,
+  });
+};
+
+/* 구독 리스트 보기 */
+export const useUserSubscriptionList = () => {
+  return useQuery({
+    queryKey: "useUserSubscriptionList",
+    queryFn: () => getSubscriptionList(),
+    onSuccess: (data) => {
+      return data;
+    },
+    retry: 0,
+  });
+};
+
+/* 구독중지 중인 리스트 보기 */
+export const useUserPausedSubscriptionList = () => {
+  return useQuery({
+    queryKey: "usePauseSubscription",
+    queryFn: () => getPausedSubscriptionList(),
+    onSuccess: (data) => {
+      return data;
+    },
+    retry: 0,
+  });
+};
+
+/* 구독 중지 */
+export const usePauseSubscription = (params) => {
+  return useMutation({
+    queryKey: ["usePauseSubscription", params],
+    mutationFn: () => pauseSubscription(params),
+    onSuccess: (data) => {
+      return data;
+    },
+    retry: 0,
+  });
+};
+
+/* 구독 재개 */
+export const useResumeSubscription = (params) => {
+  return useQuery({
+    queryKey: ["useResumeSubscription", params],
+    mutationFn: () => resumeSubscriptionList(params),
+    onSuccess: (data) => {
+      return data;
+    },
     retry: 0,
   });
 };
