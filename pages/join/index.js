@@ -8,7 +8,7 @@ import PhoneForm from "components/pages/join/PhoneForm";
 import SignUpLayout from "./layout";
 
 const Join = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [userInfo, setUserInfo] = useState({});
 
   const value = {
