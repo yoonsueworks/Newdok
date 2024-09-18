@@ -30,7 +30,15 @@ export const getBookmarkInterest = async () => {
 
 /* 북마크한 뉴스레터 조회 */
 export const getBookmarkList = async (params) => {
-  const { data } = await axios.get(`/articles/bookmark/${params}`, {
+  const { data } = await axios.get(`/articles/bookmark?${params}`, {
+    headers: headers,
+  });
+  return data.data;
+};
+
+/* 북마크 추가/삭제 */
+export const postBookmark = async (params) => {
+  const { data } = await axios.post(`/articles/bookmark`, params, {
     headers: headers,
   });
   return data;
