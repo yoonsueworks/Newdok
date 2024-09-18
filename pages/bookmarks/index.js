@@ -24,7 +24,11 @@ const Bookmarks = () => {
   return (
     <div className="w-full h-full">
       <Title />
-      <UserInterestsButton userInterests={bookmarkInterests} />
+      <UserInterestsButton
+        userInterests={bookmarkInterests}
+        setInterest={setInterest}
+        interest={interest}
+      />
       <div className="px-7">
         {!isLoading && (
           <>

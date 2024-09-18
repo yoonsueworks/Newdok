@@ -1,19 +1,17 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import ArrowLeftIcon from "icons/ver3.0/bookmark_arrow_left.svg";
+import ArrowRightIcon from "icons/ver3.0/bookmark_arrow_right.svg";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper";
 
-const UserInterestsButton = ({ userInterests }) => {
+const UserInterestsButton = ({ userInterests, setInterest, interest }) => {
   const bookmarkInterests = userInterests.data;
-  // if (!userInterests.isLoading && userInterests.isSuccess) {
-  //   bookmarkInterests?.unshift({ id: 0, name: "전체" });
-  // }
 
   return (
     <div className="flex justify-items-start">
-      <div className="icon-arrow-long-right review-swiper-button-prev">◀️</div>
+      <ArrowLeftIcon className="icon-arrow-long-right review-swiper-button-prev" />
 
       <Swiper
         slidesPerView={"auto"}
@@ -23,14 +21,16 @@ const UserInterestsButton = ({ userInterests }) => {
           nextEl: ".review-swiper-button-next",
           prevEl: ".review-swiper-button-prev",
         }}
-        //   pagination={pagination}
-        modules={[Navigation, Pagination]}
         className="bookmarkUserInterestSwiper"
       >
         <div className="overflow-scroll flex gap-x-2 shrink">
           <SwiperSlide
             key={0}
-            className={`w-fit border border-neutralgray-400 rounded-full px-2.5 py-1.5 break-keep`}
+            className={`${
+              interest === 0
+                ? "bg-blue-600 text-white"
+                : "bg-transparent border border-neutralgray-400 "
+            } w-fit rounded-full px-2.5 py-1.5 break-keep text-xs`}
           >
             전체
           </SwiperSlide>
@@ -38,14 +38,19 @@ const UserInterestsButton = ({ userInterests }) => {
             bookmarkInterests?.map((el) => (
               <SwiperSlide
                 key={el.id}
-                className={`w-fit border border-neutralgray-400 rounded-full px-2.5 py-1.5 break-keep`}
+                className={`${
+                  interest === el.id
+                    ? "bg-blue-600 text-white"
+                    : "bg-transparent border border-neutralgray-400 "
+                } w-fit rounded-full px-2.5 py-1.5 break-keep text-xs`}
+                onClick={() => setInterest(el.id)}
               >
                 {el.name}
               </SwiperSlide>
             ))}
         </div>
       </Swiper>
-      <div className="icon-arrow-long-left review-swiper-button-next">▶️</div>
+      <ArrowRightIcon className="icon-arrow-long-left review-swiper-button-next" />
     </div>
   );
 };
