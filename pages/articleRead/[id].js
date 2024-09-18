@@ -5,7 +5,6 @@ import ArticleTitle from "components/pages/articleRead/ArticleTitle";
 import BrandInfoBar from "components/pages/articleRead/BrandInfoBar";
 import Background2 from "shared/Background2";
 import Loading from "shared/Loading";
-import Nav from "shared/Nav";
 
 const ArticleRead = () => {
   const router = useRouter();
@@ -16,7 +15,7 @@ const ArticleRead = () => {
     <div className="w-full h-full relative">
       {data ? (
         <>
-          <BrandInfoBar name={data.brandName} />
+          <BrandInfoBar articleInfo={data} />
           <div className="w-full h-full overflow-scroll relative">
             <ArticleTitle data={data} />
             {data && (

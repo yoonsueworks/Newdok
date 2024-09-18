@@ -7,9 +7,9 @@ import { Pagination, Navigation } from "swiper";
 
 const UserInterestsButton = ({ userInterests }) => {
   const bookmarkInterests = userInterests.data;
-  if (!userInterests.isLoading && userInterests.isSuccess) {
-    bookmarkInterests?.unshift({ id: 0, name: "전체" });
-  }
+  // if (!userInterests.isLoading && userInterests.isSuccess) {
+  //   bookmarkInterests?.unshift({ id: 0, name: "전체" });
+  // }
 
   return (
     <div className="flex justify-items-start">
@@ -28,6 +28,12 @@ const UserInterestsButton = ({ userInterests }) => {
         className="bookmarkUserInterestSwiper"
       >
         <div className="overflow-scroll flex gap-x-2 shrink">
+          <SwiperSlide
+            key={0}
+            className={`w-fit border border-neutralgray-400 rounded-full px-2.5 py-1.5 break-keep`}
+          >
+            전체
+          </SwiperSlide>
           {bookmarkInterests?.length !== 0 &&
             bookmarkInterests?.map((el) => (
               <SwiperSlide
