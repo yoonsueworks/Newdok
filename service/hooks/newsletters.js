@@ -135,7 +135,7 @@ export const useUserSubscriptionList = () => {
 /* 구독중지 중인 리스트 보기 */
 export const useUserPausedSubscriptionList = () => {
   return useQuery({
-    queryKey: "usePauseSubscription",
+    queryKey: "getPausedSubscriptionList",
     queryFn: () => getPausedSubscriptionList(),
     onSuccess: (data) => {
       return data;

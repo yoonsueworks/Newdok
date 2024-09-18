@@ -15,10 +15,11 @@ const WhileSubscription = () => {
   const { currentBrand, setCurrentBrand } = useContext(SubscribeListContext);
 
   const { data, isLoading } = useUserSubscriptionList();
-  const { mutate: mutationFn } = usePauseSubscription();
+  const { mutate: mutationFn } = usePauseSubscription(
+    JSON.stringify({ id: currentBrand.id })
+  );
 
   const openModal = () => setIsModalOpen(true);
-  console.log(mutationFn);
 
   return (
     <div className="w-full h-fit bg-neutralgray-50 pb-9">
