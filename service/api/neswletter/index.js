@@ -58,7 +58,6 @@ export const getMonthlyArticles = async (params) => {
   if (!params || !params.year || !params.month) {
     return;
   }
-  // TODO: params undefined인 채로 전달되는 이슈 근본적 해결
 
   const { data } = await axios.get(
     `articles?year=${params.year}&publicationMonth=${params.month}`,

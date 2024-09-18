@@ -98,7 +98,10 @@ const Modal = ({ isModalOpen, setIsModalOpen, currentBrand, mutationFn }) => {
           <button
             type="submit"
             className="w-full p-4 rounded-xl text-white bg-blue-600 button-02 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
-            onClick={() => mutationFn({ id: currentBrand.id })}
+            onClick={() => {
+              mutationFn({ id: currentBrand.id });
+              // TODO: 요청 500에러 해결 및 body값 확인하기
+            }}
           >
             구독 중지
           </button>

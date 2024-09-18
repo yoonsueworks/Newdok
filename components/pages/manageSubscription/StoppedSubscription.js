@@ -1,17 +1,20 @@
 import { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useUserPausedSubscriptionList } from "service/hooks/newsletters";
+import {
+  useUserPausedSubscriptionList,
+  useResumeSubscription,
+} from "service/hooks/newsletters";
 
 import ListItem from "components/pages/manageSubscription/ListItem";
 import Loading from "shared/Loading";
 
 const StoppedSubscription = () => {
-  const { data, isLoading } = useUserPausedSubscriptionList();
   const [currentBrand, setCurrentBrand] = useState(undefined);
-  //   TODO: 추후 중지된 구독 리스트로 변경 예정
+  const { data, isLoading } = useUserPausedSubscriptionList();
+  const { mutate: mutationFn } = useResumeSubscription();
 
   const subscribeContinue = () => {
+    //   TODO: 구독 재개 기능 구현, 1.모달 2.요청
     console.log("추후 재개요청 삽입 예정");
   };
 

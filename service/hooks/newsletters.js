@@ -158,7 +158,7 @@ export const usePauseSubscription = (params) => {
 
 /* 구독 재개 */
 export const useResumeSubscription = (params) => {
-  return useQuery({
+  return useMutation({
     queryKey: ["useResumeSubscription", params],
     mutationFn: () => resumeSubscriptionList(params),
     onSuccess: (data) => {
