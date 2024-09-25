@@ -11,7 +11,7 @@ import {
   getSubscriptionList,
   getPausedSubscriptionList,
   pauseSubscription,
-  resumeSubscriptionList,
+  resumeSubscription,
 } from "../api/neswletter";
 
 const token = LocalStorage.getItem("NDtoken");
@@ -147,7 +147,7 @@ export const useUserPausedSubscriptionList = () => {
 /* 구독 중지 */
 export const usePauseSubscription = (params) => {
   return useMutation({
-    queryKey: ["usePauseSubscription", params],
+    mutationKey: ["usePauseSubscription", params],
     mutationFn: () => pauseSubscription(params),
     onSuccess: (data) => {
       return data;
@@ -159,8 +159,8 @@ export const usePauseSubscription = (params) => {
 /* 구독 재개 */
 export const useResumeSubscription = (params) => {
   return useMutation({
-    queryKey: ["useResumeSubscription", params],
-    mutationFn: () => resumeSubscriptionList(params),
+    mutationKey: ["useResumeSubscription"],
+    mutationFn: () => resumeSubscription(params),
     onSuccess: (data) => {
       return data;
     },

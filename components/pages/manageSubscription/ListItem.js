@@ -5,7 +5,13 @@ import BrandName from "shared/BrandName";
 import PublicationCycle from "shared/PublicationCycle";
 import { SubscribeListContext } from "context/SubscribeListContext";
 
-const ListItem = ({ subscriptionList, menuClicked, onClick, mode }) => {
+const ListItem = ({
+  subscriptionList,
+  menuClicked,
+  onClick,
+  mode,
+  refetch,
+}) => {
   const { setCurrentBrand } = useContext(SubscribeListContext);
   const cardCSS =
     "w-full h-fit contentbox-border px-5 py-4 flex items-center justify-between";

@@ -1,22 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Image from "next/image";
 import {
   useUserPausedSubscriptionList,
   useResumeSubscription,
 } from "service/hooks/newsletters";
-
+import { SubscribeListContext } from "context/SubscribeListContext";
 import ListItem from "components/pages/manageSubscription/ListItem";
 import Loading from "shared/Loading";
 
 const StoppedSubscription = () => {
-  const [currentBrand, setCurrentBrand] = useState(undefined);
-  const { data, isLoading } = useUserPausedSubscriptionList();
-  const { mutate: mutationFn } = useResumeSubscription();
-
-  const subscribeContinue = () => {
-    //   TODO: 구독 재개 기능 구현, 1.모달 2.요청
-    console.log("추후 재개요청 삽입 예정");
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { currentBrand, setCurrentBrand } = useContext(SubscribeListContext);
+  const { data, isLoading, refetch } = useUserPausedSubscriptionList();
+  const { mutate: mutationFn } = useResumeSubscription(
+    JSON.stringify({ newsletterId: currentBrand?.id })
+  );
 
   return (
     <div className="w-full h-fit bg-neutralgray-50 pb-9">
@@ -36,7 +34,8 @@ const StoppedSubscription = () => {
             mode="continue"
             subscriptionList={data}
             menuClicked={1}
-            onClick={subscribeContinue}
+            onClick={mutationFn}
+            refetch={refetch}
           />
         </div>
       ) : (

@@ -14,12 +14,17 @@ const WhileSubscription = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { currentBrand, setCurrentBrand } = useContext(SubscribeListContext);
 
-  const { data, isLoading } = useUserSubscriptionList();
+  const { data, isLoading, refetch } = useUserSubscriptionList();
   const { mutate: mutationFn } = usePauseSubscription(
-    JSON.stringify({ id: currentBrand.id })
+    JSON.stringify({ newsletterId: currentBrand.id })
   );
 
   const openModal = () => setIsModalOpen(true);
+  const clickStopSubscriptionButton = () => {
+    mutationFn();
+    setIsModalOpen(false);
+    refetch();
+  };
 
   return (
     <div className="w-full h-fit bg-neutralgray-50 pb-9">
@@ -62,7 +67,7 @@ const WhileSubscription = () => {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         currentBrand={currentBrand}
-        mutationFn={mutationFn}
+        mutationFn={clickStopSubscriptionButton}
       />
     </div>
   );
@@ -99,10 +104,7 @@ const Modal = ({ isModalOpen, setIsModalOpen, currentBrand, mutationFn }) => {
           <button
             type="submit"
             className="w-full p-4 rounded-xl text-white bg-blue-600 button-02 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
-            onClick={() => {
-              mutationFn({ id: currentBrand.id });
-              // TODO: 요청 500에러 해결 및 body값 확인하기
-            }}
+            onClick={mutationFn}
           >
             구독 중지
           </button>

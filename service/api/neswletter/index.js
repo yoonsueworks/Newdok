@@ -104,7 +104,7 @@ export const pauseSubscription = async (params) => {
   return data;
 };
 /* 구독 재개 */
-export const resumeSubscription = async () => {
+export const resumeSubscription = async (params) => {
   const { data } = await axios.patch(
     `/newsletters/subscription/resume`,
     params,
