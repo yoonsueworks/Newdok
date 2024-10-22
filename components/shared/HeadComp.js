@@ -5,23 +5,7 @@ export default function HeadComp() {
   return (
     <Head>
       <title>{title}</title>
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/android-icon-36x36.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/android-icon-48x48.png"
-      />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
       <link rel="manifest" href="/site.webmanifest" />
       <meta property="og:image" content="/images/og-image.png" />
       <meta property="og:title" name="title" content={title} />
