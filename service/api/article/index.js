@@ -10,10 +10,9 @@ const headers = {
 
 /* 월별 아티클 조회 */
 export const articles = async (params) => {
-  const { data } = await axios.get(`/articles?publicationMonth=${params}`, {
-    headers: headers,
-  });
-  return data;
+  await axios.get(
+    `/articles?year=${params.year}&publicationMonth=${params.month}`
+  );
 };
 
 /* 아티클 읽기 */

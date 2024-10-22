@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useRecoilState } from "recoil";
 import { monthlyArticlesAtom } from "service/atoms/atoms";
 import { useUserSubscriptionList } from "service/hooks/newsletters";

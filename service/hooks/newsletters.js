@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import LocalStorage from "public/utils/LocalStorage";
 import {
   getRecommend,
@@ -11,7 +11,7 @@ import {
   getSubscriptionList,
   getPausedSubscriptionList,
   pauseSubscription,
-  resumeSubscriptionList,
+  resumeSubscription,
 } from "../api/neswletter";
 
 const token = LocalStorage.getItem("NDtoken");
@@ -70,6 +70,19 @@ export const useBrandRead = (params) => {
   });
 };
 
+export const useDailyArticles = (params) => {
+  return useQuery({
+    queryKey: ["useDailyArticles", params],
+    queryFn: () => token && getDailyArticles(params),
+    onSuccess: (data) => {
+      return data;
+    },
+    retry: 0,
+    refetchInterval: 60 * 2 * 1000,
+    staleTime: 60 * 2 * 1000,
+  });
+};
+
 export const useMonthlyArticles = (params) => {
   return useQuery({
     queryKey: ["useMonthlyArticles", params],
@@ -107,35 +120,50 @@ export const useMonthlyArticlesOnClickNext = (params) => {
   });
 };
 
+/* 구독 리스트 보기 */
 export const useUserSubscriptionList = () => {
   return useQuery({
-    queryKey: "getSubscriptionList",
-    queryFn: () => token && getSubscriptionList(),
+    queryKey: "useUserSubscriptionList",
+    queryFn: () => getSubscriptionList(),
     onSuccess: (data) => {
       return data;
     },
-    retry: 3,
+    retry: 0,
   });
 };
 
+/* 구독중지 중인 리스트 보기 */
 export const useUserPausedSubscriptionList = () => {
   return useQuery({
-    queryKey: "getSubscriptionList",
-    queryFn: () => token && getPausedSubscriptionList(),
+    queryKey: "getPausedSubscriptionList",
+    queryFn: () => getPausedSubscriptionList(),
     onSuccess: (data) => {
       return data;
     },
-    retry: 3,
+    retry: 0,
   });
 };
 
+/* 구독 중지 */
 export const usePauseSubscription = (params) => {
-  return useQuery({
-    queryKey: ["getSubscriptionList", params],
-    queryFn: () => token && pauseSubscription(params),
+  return useMutation({
+    mutationKey: ["usePauseSubscription", params],
+    mutationFn: () => pauseSubscription(params),
     onSuccess: (data) => {
       return data;
     },
-    retry: 3,
+    retry: 0,
+  });
+};
+
+/* 구독 재개 */
+export const useResumeSubscription = (params) => {
+  return useMutation({
+    mutationKey: ["useResumeSubscription"],
+    mutationFn: () => resumeSubscription(params),
+    onSuccess: (data) => {
+      return data;
+    },
+    retry: 0,
   });
 };

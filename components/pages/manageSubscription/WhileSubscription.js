@@ -14,10 +14,17 @@ const WhileSubscription = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { currentBrand, setCurrentBrand } = useContext(SubscribeListContext);
 
-  const { data, isLoading } = useUserSubscriptionList();
-  // const { isSuccess, refetch } = usePauseSubscription();
+  const { data, isLoading, refetch } = useUserSubscriptionList();
+  const { mutate: mutationFn } = usePauseSubscription(
+    JSON.stringify({ newsletterId: currentBrand.id })
+  );
 
   const openModal = () => setIsModalOpen(true);
+  const clickStopSubscriptionButton = () => {
+    mutationFn();
+    setIsModalOpen(false);
+    refetch();
+  };
 
   return (
     <div className="w-full h-fit bg-neutralgray-50 pb-9">
@@ -60,7 +67,7 @@ const WhileSubscription = () => {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         currentBrand={currentBrand}
-        refetch={() => refetch()}
+        mutationFn={clickStopSubscriptionButton}
       />
     </div>
   );
@@ -68,7 +75,7 @@ const WhileSubscription = () => {
 
 export default WhileSubscription;
 
-const Modal = ({ isModalOpen, setIsModalOpen, currentBrand }) => {
+const Modal = ({ isModalOpen, setIsModalOpen, currentBrand, mutationFn }) => {
   return (
     <MessageModal
       isOpen={isModalOpen}
@@ -97,7 +104,7 @@ const Modal = ({ isModalOpen, setIsModalOpen, currentBrand }) => {
           <button
             type="submit"
             className="w-full p-4 rounded-xl text-white bg-blue-600 button-02 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
-            // onClick={() => refetch(currentBrand.id)}
+            onClick={mutationFn}
           >
             구독 중지
           </button>

@@ -1,19 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useUserPausedSubscriptionList } from "service/hooks/newsletters";
-
+import {
+  useUserPausedSubscriptionList,
+  useResumeSubscription,
+} from "service/hooks/newsletters";
+import { SubscribeListContext } from "context/SubscribeListContext";
 import ListItem from "components/pages/manageSubscription/ListItem";
 import Loading from "shared/Loading";
 
 const StoppedSubscription = () => {
-  const { data, isLoading } = useUserPausedSubscriptionList();
-  const [currentBrand, setCurrentBrand] = useState(undefined);
-  //   TODO: 추후 중지된 구독 리스트로 변경 예정
-
-  const subscribeContinue = () => {
-    console.log("추후 재개요청 삽입 예정");
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { currentBrand, setCurrentBrand } = useContext(SubscribeListContext);
+  const { data, isLoading, refetch } = useUserPausedSubscriptionList();
+  const { mutate: mutationFn } = useResumeSubscription(
+    JSON.stringify({ newsletterId: currentBrand?.id })
+  );
 
   return (
     <div className="w-full h-fit bg-neutralgray-50 pb-9">
@@ -33,7 +34,8 @@ const StoppedSubscription = () => {
             mode="continue"
             subscriptionList={data}
             menuClicked={1}
-            onClick={subscribeContinue}
+            onClick={mutationFn}
+            refetch={refetch}
           />
         </div>
       ) : (

@@ -55,7 +55,22 @@ export const getBrandRead = async (params) => {
 
 /* 월간 데이터 조회 (회원) */
 export const getMonthlyArticles = async (params) => {
-  const { data } = await axios.get(`articles?publicationMonth=${params}`, {
+  if (!params || !params.year || !params.month) {
+    return;
+  }
+
+  const { data } = await axios.get(
+    `articles?year=${params.year}&publicationMonth=${params.month}`,
+    {
+      headers: headers,
+    }
+  );
+  return data;
+};
+
+/* 일간 수신 뉴스레터 조회 (회원) */
+export const getDailyArticles = async () => {
+  const { data } = await axios.get(`/articles/today`, {
     headers: headers,
   });
   return data;
@@ -78,16 +93,24 @@ export const getPausedSubscriptionList = async () => {
 };
 
 /* 구독 중지 */
-export const pauseSubscription = async () => {
-  const { data } = await axios.get(`/newsletters/subscription/pause`, {
-    headers: headers,
-  });
+export const pauseSubscription = async (params) => {
+  const { data } = await axios.patch(
+    `/newsletters/subscription/pause`,
+    params,
+    {
+      headers: headers,
+    }
+  );
   return data;
 };
 /* 구독 재개 */
-export const resumeSubscription = async () => {
-  const { data } = await axios.get(`/newsletters/subscription/resume`, {
-    headers: headers,
-  });
+export const resumeSubscription = async (params) => {
+  const { data } = await axios.patch(
+    `/newsletters/subscription/resume`,
+    params,
+    {
+      headers: headers,
+    }
+  );
   return data;
 };
