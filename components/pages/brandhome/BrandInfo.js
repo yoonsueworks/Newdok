@@ -5,7 +5,7 @@ import { userDatasAtom } from "service/atoms/atoms";
 import TimeIcon from "icons/ver1.0/time_off.svg";
 import Tags from "shared/Tags";
 
-const BrandInfo = ({ data, setOpen, controlModal }) => {
+const BrandInfo = ({ data, setOpen, controlModal, resumeSubscription }) => {
   const {
     brandName,
     interests,
@@ -17,18 +17,36 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
 
   const [userDatas] = useRecoilState(userDatasAtom);
 
+  const [initial, check, paused, confirmed] = [
+    isSubscribed === "INITIAL",
+    isSubscribed === "CHECK",
+    isSubscribed === "PAUSED",
+    isSubscribed === "CONFIRMED",
+  ];
+
   const clickSubscribeBtn = () => {
     /* unAuthorized */
     if (!userDatas?.nickname) {
       controlModal(true);
       return;
     }
-    /* authorized & subscribed */
-    if (isSubscribed === "CHECK") {
+    /* authorized & subscribed & not checked : 구독 확인 */
+    if (check) {
       controlModal(true);
       return;
     }
-    /* authorized */
+    /* authorized & paused : 구독 재개 */
+    if (paused) {
+      resumeSubscription();
+      window.location.reload();
+      return;
+    }
+    /* authorized & confirmed : 구독 중지 */
+    if (confirmed) {
+      controlModal(true);
+      return;
+    }
+    /* authorized & not subscribed */
     if (userDatas?.nickname) {
       setOpen();
     }
@@ -52,9 +70,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
                 loading="lazy"
                 placeholder="blur"
                 className={
-                  isSubscribed === "CHECK"
-                    ? "brightness-50 xl:rounded-xl"
-                    : "xl:rounded-xl"
+                  check ? "brightness-50 xl:rounded-xl" : "xl:rounded-xl"
                 }
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNcNGFlPQAGEwJcG4PRAwAAAABJRU5ErkJggg=="
                 style={{
@@ -63,7 +79,7 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
                   boxShadow: "0px 4px 8px 0px rgba(25, 25, 25, 0.10)",
                 }}
               />
-              {isSubscribed === "CHECK" && (
+              {check && (
                 <div className="text-white single-16-b z-10">구독 확인 중</div>
               )}
             </div>
@@ -81,13 +97,22 @@ const BrandInfo = ({ data, setOpen, controlModal }) => {
             <button
               type="button"
               onClick={clickSubscribeBtn}
-              disabled={isSubscribed === "CONFIRMED"}
-              className={`xs:w-[84px] xs:h-9 w-[120px] h-12 rounded-xl text-white input-02 bg-blue-600 active:bg-purple-800 hover:bg-purple-400 disabled:bg-neutralgray-500 transition-colors duration-300 `}
+              className={`xs:w-[84px] xs:h-9 w-[120px] h-12 rounded-xl input-02 active:bg-blue-700 transition-colors duration-300 ${
+                !userDatas?.nickname || initial || check
+                  ? "bg-blue-600 text-white"
+                  : paused
+                  ? "bg-blue-400 text-white border border-blue-600"
+                  : "bg-white text-blue-600 border border-blue-600 hover:bg-blue-50"
+              }`}
             >
-              {!userDatas?.nickname || isSubscribed === "INITIAL"
+              {!userDatas?.nickname || initial
                 ? "구독하기"
-                : isSubscribed === "CHECK"
+                : check
                 ? "구독 확인하기"
+                : paused
+                ? "구독 재개"
+                : confirmed
+                ? "구독 중지"
                 : "구독 중"}
             </button>
           </div>
