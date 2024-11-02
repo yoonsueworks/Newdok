@@ -64,7 +64,7 @@ const ToolBar = () => {
                 height="32"
                 onClick={handleCalendar}
               />
-              <SearchButton clickSearchBtn={clickSearchBtn} />
+              <SearchButton />
             </div>
           ) : (
             <div className="flex gap-x-2">
@@ -74,7 +74,7 @@ const ToolBar = () => {
                 className="cursor-pointer"
                 onClick={handleCalendar}
               />
-              <SearchButton clickSearchBtn={clickSearchBtn} />
+              <SearchButton />
             </div>
           )}
         </div>
