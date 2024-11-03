@@ -1,12 +1,11 @@
-import { useRouter } from "next/router";
+import SearchButton from "shared/SearchButton";
 
 const Title = () => {
-  const router = useRouter();
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="w-full bg-white flex justify-between items-center px-5 py-4">
         <h6>북마크함</h6>
-        <div onClick={() => router.push("/search")}>검색</div>
+        <SearchButton />
       </div>
     </div>
   );

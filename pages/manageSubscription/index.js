@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import WhileSubscription from "components/pages/manageSubscription/WhileSubscription";
 import StoppedSubscription from "components/pages/manageSubscription/StoppedSubscription";
+import SearchButton from "shared/SearchButton";
+
 import { SubscribeListContext } from "context/SubscribeListContext";
 
 const ManageSubscription = () => {
@@ -30,9 +32,10 @@ const ManageSubscription = () => {
   return (
     <SubscribeListContext.Provider value={subscribeListContextValues}>
       <div className="w-full h-full flex flex-col">
-        <div className="w-full bg-white flex items-center px-5 py-4">
-          내 구독
+        <div className="w-full bg-white flex items-center justify-between px-5 py-4">
+          <div>내 구독</div>
           {/* TODO: 추후 검색 비회원 로그인 아이콘 추가 예정 */}
+          <SearchButton />
         </div>
         <div className="w-full h-full bg-neutralgray-50 overflow-scroll">
           <div className="xs:mx-5 sm:mx-5 md:mr-7 xl:mx-20 mt-4 mb-5 p-1 flex items-center justify-between bg-neutralgray-200 rounded-full">
