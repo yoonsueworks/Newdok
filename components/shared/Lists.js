@@ -15,6 +15,13 @@ function ListedItem({ datas }) {
     isSubscribed,
   } = datas;
 
+  const [initial, check, paused, confirmed] = [
+    isSubscribed === "INITIAL",
+    isSubscribed === "CHECK",
+    isSubscribed === "PAUSED",
+    isSubscribed === "CONFIRMED",
+  ];
+
   return (
     <li
       className="bg-white p-5 h-max w-full border border-neutralgray-200 rounded-xl cursor-pointer"
@@ -41,10 +48,16 @@ function ListedItem({ datas }) {
           <div className="grid gap-y-1">
             <div className="flex items-center gap-x-2  mb-1">
               <div className="button-02">{brandName}</div>
-              {isSubscribed === "CONFIRMED" && (
+              {confirmed ? (
                 <div className="px-1.5 py-1 bg-blue-600 rounded-full text-white label-s">
                   구독 중
                 </div>
+              ) : paused ? (
+                <div className="px-1.5 py-1 bg-white rounded-full text-neutralgray-600 border border-neutralgray-600 label-s">
+                  구독 중지
+                </div>
+              ) : (
+                ""
               )}
             </div>
             <div className="text-[13px] font-normal break-keep w-full">
