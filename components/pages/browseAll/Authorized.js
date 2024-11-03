@@ -4,7 +4,7 @@ import CustomizedCards from "components/pages/browseAll/CustomizedCards";
 import Nickname from "shared/Nickname";
 import Lists from "shared/Lists";
 
-import RefreshIcon from "icons/ver1.0/refresh_off.svg";
+import RefreshIcon from "icons/ver3.0/Line Reload.svg";
 
 const Authorized = ({ shuffledArray, shuffleUnion, intersectionArr }) => {
   const [rotation, setRotation] = useState(0);
@@ -15,7 +15,7 @@ const Authorized = ({ shuffledArray, shuffleUnion, intersectionArr }) => {
   return (
     <>
       <div className="scroll-smooth">
-        <h1 className="multiple-20-b pt-8 pb-4 w-max pl-5">
+        <h1 className="headline-s pt-8 pb-4 w-max pl-5">
           <Nickname />
           님을 위한 <br /> 맞춤형 뉴스레터가 도착했어요!
         </h1>
@@ -23,7 +23,7 @@ const Authorized = ({ shuffledArray, shuffleUnion, intersectionArr }) => {
       </div>
       <div className="grid gap-y-4 px-5 scroll-smooth pb-7">
         <div className="flex justify-between items-center pt-14">
-          <h1 className="single-20-b">이런 뉴스레터는 어때요?</h1>
+          <h1 className="title-s">이런 뉴스레터는 어때요?</h1>
           <button
             className="flex gap-x-1 items-center"
             onClick={() => {
@@ -31,15 +31,16 @@ const Authorized = ({ shuffledArray, shuffleUnion, intersectionArr }) => {
               shuffleUnion();
             }}
           >
-            <span className="single-14-sb text-neutralgray-900">새로고침</span>
             <RefreshIcon
-              width="20"
-              height="20"
+              width="14"
+              height="14"
+              stroke="#2866D3"
               style={{
                 transform: `rotate(${rotation}deg)`,
               }}
               className={`transition-all duration-500`}
             />
+            <span className="label-l text-blue-600">새로고침</span>
           </button>
         </div>
         <Lists datas={shuffledArray} />
