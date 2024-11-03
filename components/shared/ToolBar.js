@@ -45,7 +45,7 @@ const ToolBar = () => {
       >
         <div>
           <Image
-            src="/images/Newdok_Logo-Horizontal_300.png"
+            src="/images/logo_gnb.png"
             alt="newdok"
             width="106"
             height="24"

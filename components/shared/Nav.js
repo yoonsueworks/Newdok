@@ -35,7 +35,8 @@ const Nav = () => {
   return (
     <>
       <div className="flex-col">
-        <div className="xl:h-16 w-[120px] xl:w-full md:h-14 flex justify-center items-center bg-white sm:hidden xs:hidden">
+        <div className="xl:h-16 md:w-[120px] xl:w-full md:h-14 flex justify-center items-center bg-white sm:hidden xs:hidden">
+          {/* xl, md의 GNB 관리, sm,xs은 Layout에서 관리 */}
           <GNB />
         </div>
         <div className="sm:h-fit sm:sticky sm:bottom-0 xs:sticky xs:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-3 md:py-3 xl:w-[200px] xl:px-2 xl:flex xl:flex-col xl:h-full xs:elevation-2-top sm:elevation-2-top pt-3 pb-6 gap-y-12 bg-white">
