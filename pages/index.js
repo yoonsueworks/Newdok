@@ -8,10 +8,10 @@ export default function Home() {
   const router = useRouter();
   const isAuthenticated = useRecoilValue(authSelector);
 
-  useEffect(() => {
-    router.push(isAuthenticated ? "/home" : "/introduction");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   router.push(isAuthenticated ? "/home" : "/introduction");
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <>
@@ -26,6 +26,9 @@ export default function Home() {
             priority
             required
           />
+          <div className="mt-10 flex justify-center items-center text-center single-24-sb leading-10">
+            더욱 새로워진 뉴독을 <br />곧 만나보세요
+          </div>
         </div>
       </div>
     </>
