@@ -108,7 +108,7 @@ module.exports = {
         "blue-800": "#093A8F",
         "blue-900": "#052B6C",
 
-        "neutralgray-50": "#FAFAFA",
+        "neutralgray-50": "#F5F5F7",
         "neutralgray-100": "#F5F5F5",
         "neutralgray-200": "#EBEBEB",
         "neutralgray-300": "#DADADA",
