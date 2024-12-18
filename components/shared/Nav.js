@@ -39,12 +39,12 @@ const Nav = () => {
           {/* xl, md의 GNB 관리, sm,xs은 Layout에서 관리 */}
           <GNB />
         </div>
-        <div className="sm:h-fit sm:sticky sm:bottom-0 xs:sticky xs:bottom-0 md:w-fit md:h-full md:flex md:flex-col md:px-3 md:py-3 xl:w-[200px] xl:px-2 xl:flex xl:flex-col xl:h-full xs:elevation-2-top sm:elevation-2-top pt-3 pb-6 gap-y-12 bg-white">
+        <div className="sm:h-fit sm:sticky sm:bottom-0 xs:sticky xs:bottom-0 md:w-[120px] md:h-full md:flex md:flex-col md:px-3 md:py-3 xl:w-[200px] xl:px-2 xl:flex xl:flex-col xl:h-full xs:elevation-2-top sm:elevation-2-top pt-3 pb-6 gap-y-12 bg-white">
           <div className="flex justify-between xs:px-5 sm:px-5 md:flex md:flex-col md:gap-y-8 xl:items-start xl:flex xl:flex-col xl:gap-y-4">
             {NAV_MENUS.map((menu) => {
               return (
                 <li
-                  className={`md:w-[60px] md:h-[70px] xl:h-[48px] xl:w-full xl:p-3.5 list-none text-center flex flex-col xl:flex-row xl:gap-x-2 gap-y-1 md:justify-center align-center items-center single-12-m rounded-xl ${
+                  className={`md:w-full md:h-[70px] xl:h-[48px] xl:w-full xl:p-3.5 list-none text-center flex flex-col xl:flex-row xl:gap-x-2 gap-y-1 md:justify-center align-center items-center single-12-m rounded-xl ${
                     userCurrentPlace.includes(menu.path)
                       ? "md:bg-blue-50 xl:bg-blue-50"
                       : "bg-transparent"
