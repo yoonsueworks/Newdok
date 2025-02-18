@@ -38,7 +38,7 @@ const ManageSubscription = () => {
           <SearchButton />
         </div>
         <div className="w-full h-full bg-neutralgray-50 overflow-scroll">
-          <div className="xs:mx-5 sm:mx-5 md:mr-7 xl:mx-20 mt-4 mb-5 p-1 flex items-center justify-between bg-neutralgray-200 rounded-full">
+          <div className="xs:mx-5 sm:mx-5 md:mx-7 xl:mx-20 mt-4 mb-5 p-1 flex items-center justify-between bg-neutralgray-200 rounded-full">
             {renderButton(0, "구독 중")}
             {renderButton(1, "구독 중지")}
           </div>
