@@ -7,40 +7,41 @@ const NoSubscription = () => {
   const router = useRouter();
   return (
     <>
-      <Background>
-        <div className="w-full h-full  pt-7 pb-14 flex flex-col justify-between items-end">
-          <div className="flex flex-col gap-y-10 items-end">
+      <div className="flex flex-col w-full h-full items-center justify-between bg-neutralgray-50">
+        <div className="sm:w-full md:w-full xl:w-[70%] h-full xl:px-5 sm:px-5 xs:px-5 md:pr-8 pt-7 pb-14 flex flex-col items-center">
+          <div className="flex flex-col gap-y-12 items-end">
             <Reload />
             <div className="flex flex-col items-center">
               <Image
-                src="/images/empty_subscribe_300.png"
+                src="/images/empty_subscribe_280.png"
                 alt="구독함이 빈 일러스트"
                 width={500}
-                height={300}
+                height={280}
                 priority
               />
-              <div className="multiple-20-b mb-1 mt-5">
-                아직 구독 중인 뉴스레터가 없어요.
-              </div>
-              <div className="multiple-16-m mb-1 text-center">
-                <span>
-                  뉴스레터를 구독하면 발행일에 맞춰
-                  <br />
-                  여기로 배달해 드려요.
-                </span>
-              </div>
             </div>
           </div>
-
-          <button
-            type="button"
-            onClick={() => router.push("/browseAll")}
-            className="w-full h-fit p-4 rounded-xl single-20-b hover:bg-purple-50 active:bg-purple-100 text-purple-700 bg-white selectedchip-border  transition-colors duration-300"
-          >
-            내게 필요한 뉴스레터 추천받기
-          </button>
+          <div className="w-full flex flex-col gap-y-6">
+            <div className="flex flex-col justify-center items-center gap-y-1">
+              <span className="button-02">
+                아직 구독 중인 뉴스레터가 없어요.
+              </span>
+              <span className="body-s text-center">
+                뉴스레터를 구독하면 발행일에 맞춰
+                <br />
+                여기로 배달해 드려요.
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => router.push("/browseAll")}
+              className="w-full h-fit p-4 rounded-xl button-03 hover:bg-blue-500 active:bg-blue-700 bg-blue-600 text-white transition-colors duration-300"
+            >
+              내게 필요한 뉴스레터 추천받기
+            </button>
+          </div>
         </div>
-      </Background>
+      </div>
     </>
   );
 };

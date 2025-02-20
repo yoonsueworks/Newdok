@@ -3,22 +3,31 @@
 @variants {
   .contentbox-border {
     border-radius: 8px;
-    box-shadow: 0 0 0 1px inset #cac5c4;
+    box-shadow: 0 0 0 1px inset #ebebeb;
     background: #fff;
   }
   .border-none {
     box-shadow: 0 0 0 0px inset;
   }
+  .unselectedchip-border {
+    box-shadow: 0 0 0 1px inset #c0c0c0;
+  }
   .selectedchip-border {
-    box-shadow: 0 0 0 1px inset #674188;
+    box-shadow: 0 0 0 1px inset #2866d3;
+  }
+  .hoverchip-border {
+    box-shadow: 0 0 0 1px inset ##9cbefb;
   }
   .inputFocused-border {
-    box-shadow: 0 0 0 2px inset #bf9ece;
+    box-shadow: 0 0 0 1.2px inset #2866d3;
   }
   .input-border {
-    box-shadow: 0 0 0 1px inset #cac5c4;
+    box-shadow: 0 0 0 1px inset #ebebeb;
   }
   .inputError-border {
     box-shadow: 0 0 0 1px inset #ea0730;
+  }
+  .inputError-fill {
+    background-color: #fff2f4;
   }
 }

@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 
 import RecommendedBrands from "components/pages/browseAll/RecommendedBrands";
 import EveryBrands from "components/pages/browseAll/EveryBrands";
-import Background3 from "shared/Background3";
+import SearchButton from "shared/SearchButton";
 import Header from "shared/Header";
 
 import { useNewslettersRecommended } from "service/hooks/newsletters";
@@ -35,6 +35,7 @@ export default function BrowseAll() {
     },
     { id: 2, name: "모든 뉴스레터", comp: <EveryBrands /> },
   ];
+  const tabComponent = TABS[clickedId - 1].comp;
 
   useEffect(() => {
     if (isError) {
@@ -43,7 +44,11 @@ export default function BrowseAll() {
   }, [isError, newsletterRecommend.error]);
 
   return (
-    <div className="h-full w-full flex flex-col overflow-auto bg-beige-100">
+    <div className="h-full w-full flex flex-col overflow-auto bg-neutralgray-50">
+      <div className="w-full bg-white flex justify-between items-center px-5 py-4">
+        <h6>둘러보기</h6>
+        <SearchButton />
+      </div>
       <Header
         tabs={TABS}
         changeTab={changeTab}
@@ -51,7 +56,7 @@ export default function BrowseAll() {
         clickedId={clickedId}
       />
 
-      <Background3>{TABS[clickedId - 1].comp}</Background3>
+      {tabComponent}
     </div>
   );
 }

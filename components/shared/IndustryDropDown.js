@@ -7,7 +7,7 @@ import { userDatasAtom, userResearchAtom } from "service/atoms/atoms";
 
 import { Listbox, Transition } from "@headlessui/react";
 import { industries } from "constants/industries";
-import ArrowIcon from "icons/arrow_down_off.svg";
+import ArrowIcon from "icons/ver1.0/arrow_down_off.svg";
 
 export default function IndustryDropDown() {
   const [selected, setSelected] = useState(false);

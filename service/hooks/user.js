@@ -7,7 +7,6 @@ import {
   getCheckPhoneNumber,
   postAuthSms,
   patchResetPassword,
-  getSubscriptionList,
   getUserResearch,
   modifyNickname,
   modifyIndustry,
@@ -96,17 +95,6 @@ export const useGetUserResearch = (params) => {
     onError: (error) => {
       return error;
     },
-  });
-};
-
-export const useUserSubscriptionList = () => {
-  return useQuery({
-    queryKey: "getSubscriptionList",
-    queryFn: () => token && getSubscriptionList(),
-    onSuccess: (data) => {
-      return data;
-    },
-    retry: 3,
   });
 };
 

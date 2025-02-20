@@ -59,14 +59,6 @@ export const getUserResearch = async (params) => {
   return data;
 };
 
-/* 구독 리스트 보기 */
-export const getSubscriptionList = async () => {
-  const { data } = await axios.get(`/users/mypage/subscription`, {
-    headers: headers,
-  });
-  return data;
-};
-
 /* 구독 닉네임 변경 */
 export const modifyNickname = async (params) => {
   const { data } = await axios.patch(
@@ -88,7 +80,6 @@ export const modifyIndustry = async (params) => {
       headers: headers,
     }
   );
-  console.log(headers);
   return data;
 };
 

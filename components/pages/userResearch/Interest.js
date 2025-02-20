@@ -40,39 +40,11 @@ export default function Interest() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInterests]);
 
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    const gradientElement = gradientRef.current;
-
-    const handleScroll = () => {
-      const isAtBottom =
-        scrollContainer.scrollHeight - scrollContainer.scrollTop ===
-        scrollContainer.clientHeight;
-
-      if (isAtBottom) {
-        gradientElement.style.display = "none";
-      } else {
-        gradientElement.style.display = "block";
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    };
-
-    scrollContainer.addEventListener("scroll", handleScroll);
-
-    return () => {
-      scrollContainer.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <>
       <div
-        className="fixed absolute w-full h-12 bottom-[-1px] bg-gradient-to-b from-white to-transparent transform rotate-180"
-        ref={gradientRef}
-      ></div>
-      <div
         id="onboardInterestsBox"
-        className="w-full grid grid-cols-2 gap-4 overflow-auto"
+        className="w-full grid xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-x-2 gap-y-3 overflow-auto"
         ref={scrollContainerRef}
       >
         {interests.map(({ id, name }) => {

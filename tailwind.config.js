@@ -10,11 +10,19 @@ module.exports = {
   theme: {
     screens: {
       xs: { min: "1px", max: "359px" },
+      ts: { min: "360px", max: "500px" },
       sm: { min: "360px", max: "767px" },
       md: { min: "768px", max: "1279px" },
       xl: "1280px",
     },
     extend: {
+      truncate: {
+        lines: {
+          1: "1",
+          2: "2",
+          3: "3",
+        },
+      },
       spacing: {
         0: "0",
         px: "1px",
@@ -58,8 +66,8 @@ module.exports = {
         "beige-50": "#FFFBF5",
         "beige-100": "#F7EFE5",
 
-        "purple-50": "#EFE7F2",
-        "purple-100": "#D8C4E1",
+        // "purple-50": "#EFE7F2",
+        // "purple-100": "#D8C4E1",
         "purple-200": "#BF9ECE",
         "purple-300": "#A67AB9",
         "purple-400": "#9362A9",
@@ -80,21 +88,36 @@ module.exports = {
         "warmgray-90": "#272525",
         "warmgray-100": "#171414",
 
-        "neutralgray-50": "#F7F3F2",
-        "neutralgray-100": "#E5E0DF",
-        "neutralgray-200": "#CAC5C4",
-        "neutralgray-300": "#ADA8A8",
-        "neutralgray-400": "#8F8B8B",
-        "neutralgray-500": "#726E6E",
-        "neutralgray-600": "#565151",
-        "neutralgray-700": "#3C3838",
-        "neutralgray-800": "#272525",
-        "neutralgray-900": "#171414",
-
         warning: "#FFB802",
         error: "#EA0730",
         success: "#16892C",
         information: "#0079D0",
+
+        /* Rebranding 0417 */
+        "purple-50": "#FCEEFF",
+        "purple-100": "#F5CDFF",
+
+        "blue-50": "#ECF3FF",
+        "blue-100": "#CCDFFF",
+        "blue-200": "#9CBEFB",
+        "blue-300": "#7DA8F3",
+        "blue-400": "#5E91EB",
+        "blue-500": "#407AE0",
+        "blue-600": "#2866D3",
+        "blue-700": "#1654C0",
+        "blue-800": "#093A8F",
+        "blue-900": "#052B6C",
+
+        "neutralgray-50": "#F5F5F7",
+        "neutralgray-100": "#F5F5F5",
+        "neutralgray-200": "#EBEBEB",
+        "neutralgray-300": "#DADADA",
+        "neutralgray-400": "#C0C0C0",
+        "neutralgray-500": "#AEAEAE",
+        "neutralgray-600": "#999999",
+        "neutralgray-700": "#666666",
+        "neutralgray-800": "#333333",
+        "neutralgray-900": "#191919",
       },
       zIndex: {
         100: "100",

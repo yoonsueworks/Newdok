@@ -2,6 +2,8 @@ import GuideTextB2S1 from "shared/GuideTextB2S1";
 import { useRecoilValue } from "recoil";
 import { userDatasAtom } from "service/atoms/atoms";
 import { useUserSubscriptionList } from "service/hooks/user";
+
+
 const UserHistory = () => {
   const { nickname } = useRecoilValue(userDatasAtom);
   const { data, isLoading, isError } = useUserSubscriptionList();

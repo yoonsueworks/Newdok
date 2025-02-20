@@ -10,39 +10,25 @@ const Faq = () => {
   const [openDisclosureId, setOpenDisclosureId] = useState(null);
 
   return (
-    <div className="md:w-full md:flex md:flex-col">
+    <div className="xl:w-full md:w-full md:flex md:flex-col">
       <div className="relative w-full">
         <div className="absolute w-full">
           <AppBar
             iconl={true}
-            shadow={true}
+            shadow={false}
             textl="FAQ"
             iconr={false}
-            func={() => history.back()}
           />
         </div>
       </div>
       <Background>
         <div className="pt-14 overflow-scroll">
-          <div className="flex flex-col pt-8 gap-y-8 pb-14 scroll-smooth">
-            {faqList.map((category) => {
-              return (
-                <ul key={category.id}>
-                  <li className="grid gap-y-4">
-                    <strong className="text-purple-700 single-18-b">
-                      {category.name}
-                    </strong>
-                    <ul className="grid gap-y-2.5">
-                      <QuestionsDisclosure
-                        category={category}
-                        setOpenDisclosureId={setOpenDisclosureId}
-                        openDisclosureId={openDisclosureId}
-                      />
-                    </ul>
-                  </li>
-                </ul>
-              );
-            })}
+          <div className="flex flex-col pt-8 gap-y-3 pb-14 scroll-smooth">
+            <QuestionsDisclosure
+              category={faqList}
+              setOpenDisclosureId={setOpenDisclosureId}
+              openDisclosureId={openDisclosureId}
+            />
           </div>
         </div>
       </Background>

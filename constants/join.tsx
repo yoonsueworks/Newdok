@@ -1,6 +1,6 @@
 /* 구성 요소 */
 export const phoneTextElement = {
-  phoneNumberPh: "'-' 없이 입력",
+  phoneNumberPh: "- 구분 없이 입력",
   authNumberPh: "6자리 숫자 입력",
   timeoutBtn: "만료됨",
   authSendBtn: "인증 요청",
@@ -19,7 +19,7 @@ export const pswdText = {
 
 /* 에러 메시지 */
 export const phoneErrorMessage = {
-  authRequested: "재전송은 3회까지 가능해요.",
+  authRequested: "재전송은 3회까지만 가능해요.",
   default: "문자가 오지 않는다면 재전송 버튼을 눌러주세요.",
   error_timeout: "인증번호를 재전송해 주세요.",
   error_failed: "인증번호를 다시 확인해주세요.",

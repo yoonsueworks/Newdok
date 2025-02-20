@@ -10,25 +10,26 @@ const NotRecommended = () => {
 
   return (
     <>
-      <div className="w-full h-full flex flex-col justify-between pb-14 px-5 pt-24 items-center">
-        <div className="flex flex-col justify-center items-center">
+      <div className="w-full h-full flex flex-col pb-14 px-5 pt-24 items-center">
+        <div className="flex flex-col justify-center items-center pb-6">
           <Image
-            src="/images/signup_300.png"
+            src="/images/Sign_up.png"
             alt="추천 뉴스레터 일러스트"
-            width="298"
-            height="252"
+            width="280"
+            height="280"
           />
-          <div className="text-center multiple-20-b">
-            종사 산업과 관심사를 등록하면
-            <br />
-            <Nickname />
-            님을 위한 뉴스레터를 찾아드려요!
+          <div className="text-center">
+            <div className="title-s mb-1">프로필을 등록해주세요</div>
+            <div className="body-s w-[223px] break-keep text-neutralgray-700">
+              <Nickname />
+              님을 위한 뉴스레터를 찾아드려요!
+            </div>
           </div>
         </div>
         <button
           type="button"
           onClick={routeToUserResearch}
-          className="w-full h-fit p-4 rounded-xl single-20-b hover:bg-purple-50 active:bg-purple-100 text-purple-700 bg-white selectedchip-border  transition-colors duration-300"
+          className="w-[80%] xl:w-[70%] h-fit p-4 rounded-xl button-03 hover:bg-blue-500 active:bg-blue-700 text-white bg-blue-600 transition-colors duration-300"
         >
           등록하러 가기
         </button>

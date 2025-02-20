@@ -1,28 +1,36 @@
-import Image from "next/image";
-import SingupButtons from "shared/SignupButtons";
+import Find from "./Unauthorized/Find";
+import CurrentInViral from "./Unauthorized/CurrentInViral";
+import Image1 from "./Unauthorized/Image1";
+import Image2 from "./Unauthorized/Image2";
+import Image3 from "./Unauthorized/Image3";
+import Meet from "./Unauthorized/Meet";
+import New from "./Unauthorized/New";
+import Subscribe from "./Unauthorized/Subscribe";
+import Footer from "./Unauthorized/Footer";
+
+
 
 const UnAuthorized = () => {
   return (
-    <div className="w-full h-full justify-between bg-beige-100">
-      <div className="w-full h-full flex flex-col  px-5 py-14 justify-between">
-        <div className="flex flex-col items-center">
-          <Image
-            src="/images/onboarding_300_3.png"
-            alt="사용자 정보와 관련된 일러스트"
-            width={500}
-            height={300}
-            priority
-          />
-          <div className="multiple-20-b mb-1 text-center">
-            <span className="block">회원이 되면 간편하게</span>
-            <span className="block">뉴스레터를 모아볼 수 있어요!</span>
-          </div>
-          <div className="multiple-16-m mb-1">
-            <span>발행일에 맞춰 뉴스레터를 이곳으로 배달해 드려요.</span>
-          </div>
-        </div>
-        <SingupButtons />
-      </div>
+    <div className="w-full h-full justify-between bg-neutralgray-50 overflow-auto">
+      {/* 1 */}
+      <Find />
+      {/* 2 */}
+      <CurrentInViral />
+      {/* 3 */}
+      <Image1 />
+      {/* 4 */}
+      <Image2 />
+      {/* 5 */}
+      <Image3 />
+      {/* 6 */}
+      <Meet />
+      {/* 7 */}
+      <New />
+      {/* 8 */}
+      <Subscribe />
+      {/* 9 */}
+      <Footer />
     </div>
   );
 };

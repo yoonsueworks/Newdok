@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
 import SearchBar from "components/pages/search/SearchBar";
-import CloseIcon from "icons/close_off.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
 
 const Search = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const Search = () => {
   return (
     <div className="w-full h-screen flex flex-col items-center">
       <div className="w-full flex items-center gap-x-4">
-        <div className="w-10 h-10 bg-beige-100"></div>
+        <div className="w-10 h-10 bg-neutralgray-200"></div>
         <SearchBar />
         <button className="w-10 h-10" onClick={() => router.back()}>
           <CloseIcon width="24" height="24" />

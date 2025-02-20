@@ -2,10 +2,9 @@ import { useBrandRead } from "service/hooks/newsletters";
 import { useRouter } from "next/router";
 
 import ArticleTitle from "components/pages/articleRead/ArticleTitle";
-import BrandInfoBar from "shared/BrandInfoBar";
+import BrandInfoBar from "components/pages/articleRead/BrandInfoBar";
 import Background2 from "shared/Background2";
 import Loading from "shared/Loading";
-import Nav from "shared/Nav";
 
 const ArticleRead = () => {
   const router = useRouter();
@@ -16,9 +15,9 @@ const ArticleRead = () => {
     <div className="w-full h-full relative">
       {data ? (
         <>
-          <BrandInfoBar name={data.brandName} />
-          <ArticleTitle data={data} />
-          <div className="w-full h-full overflow-scroll pt-[79px] relative">
+          <BrandInfoBar articleInfo={data} />
+          <div className="w-full h-full overflow-scroll relative">
+            <ArticleTitle data={data} />
             {data && (
               <div dangerouslySetInnerHTML={{ __html: data.articleHTML }}></div>
             )}

@@ -64,10 +64,9 @@ const ModifyInterest = () => {
         <div className="absolute w-full">
           <AppBar
             iconl={true}
-            shadow={true}
+            shadow={false}
             textl="관심사 변경"
             iconr={false}
-            func={() => router.push("/userPage/myInfo")}
           />
         </div>
       </div>
@@ -108,7 +107,7 @@ const ModifyInterest = () => {
             <button
               type="submit"
               disabled={submitBtnCondition}
-              className="p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
+              className="p-5 text-white bg-blue-600 rounded-xl focus:outline-none disabled:text-neutralgray-400 disabled:bg-neutralgray-200 button-03 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
             >
               변경하기
             </button>

@@ -1,6 +1,6 @@
 const InputLabel = ({ htmlFor, text }) => {
   return (
-    <label htmlFor={htmlFor} className="single-14-m text-purple-700">
+    <label htmlFor={htmlFor} className="input-02 text-neutralgray-800 px-1">
       {text}
     </label>
   );

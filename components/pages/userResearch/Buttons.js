@@ -39,14 +39,13 @@ const Buttons = ({ infos }) => {
   };
 
   return (
-    <div className="px-5">
+    <div className="">
       {infos?.id === 2 ? (
         <Button
           mode="default"
           text="시작하기"
           state={true}
           size="big"
-          // func={testfunc}
           func={clickNext}
         />
       ) : infos?.id === 3 ? (

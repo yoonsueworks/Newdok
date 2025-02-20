@@ -2,7 +2,17 @@ module.exports = {
   reactStrictMode: false,
   // image
   images: {
-    domains: ["pincock.store", "newdok.store", "oh-lolly-day.com"],
+    domains: [
+      "pincock.store",
+      "newdok.store",
+      "newdok.shop",
+      "oh-lolly-day.com",
+    ],
+  },
+  //lang
+  i18n: {
+    locales: ["kr"],
+    defaultLocale: "kr",
   },
   // svgr
   webpack: (config) => {

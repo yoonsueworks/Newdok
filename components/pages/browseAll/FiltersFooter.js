@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Refresh from "icons/refresh_off.svg";
+import Refresh from "icons/ver3.0/Line Reload.svg";
 import { useResetRecoilState } from "recoil";
 import { browseOptionsAtom } from "service/atoms/atoms";
 const FiltersFooter = ({ onApply }) => {
@@ -12,27 +12,27 @@ const FiltersFooter = ({ onApply }) => {
   };
 
   return (
-    <div className="w-full flex gap-x-4 px-5 pb-14 pt-8">
+    <div className="w-full flex gap-x-3.5 px-5 pb-14 pt-8">
       <button
-        className="w-full text-center flex gap-x-1 justify-center single-18-b items-center"
+        className="w-fit text-center flex gap-x-1 justify-center title-s items-center text-blue-600 shrink-0"
         type="button"
         onClick={() => {
           resetBrowseOptions();
           clickRefresh();
         }}
       >
-        <div>재설정</div>
         <Refresh
-          width="24"
-          height="24"
+          width="16"
+          height="16"
           style={{
             transform: `rotate(${rotation}deg)`,
           }}
           className={`transition-all duration-500`}
         />
+        <div className="mt-1">재설정</div>
       </button>
       <button
-        className="w-full text-center p-5 single-24-b bg-purple-700 rounded-2xl text-white"
+        className="w-full text-center p-5 single-24-b bg-blue-600 rounded-xl text-white"
         onClick={onApply}
       >
         적용하기

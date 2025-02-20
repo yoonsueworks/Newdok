@@ -1,63 +1,46 @@
 import { useContext } from "react";
-import { useRouter } from "next/router";
 
 import { CalendarContext } from "../../../context/CalendarContext";
+import SearchButton from "shared/SearchButton";
 
-import Calendar from "icons/calendar_off.svg";
-import CloseIcon from "icons/close_off.svg";
-import SearchIcon from "icons/search_off.svg";
-
-const SearchButton = ({ clickSearchBtn }) => {
-  return (
-    <button onClick={clickSearchBtn} className="w-fit h-fit">
-      <SearchIcon
-        width="32"
-        height="32"
-        color="white"
-        className="cursor-pointer"
-      />
-    </button>
-  );
-};
+import Calendar from "icons/ver3.0/Line Calendar.svg";
+import CloseIcon from "icons/ver1.0/close_off.svg";
 
 const ToolBar = () => {
   const value = useContext(CalendarContext);
   const { dateLocaleKr, calendarOpen, setCalendarOpen, fullActiveDate } = value;
-  const router = useRouter();
 
   const handleCalendar = () => {
     setCalendarOpen((prev) => !prev);
   };
 
-  const clickSearchBtn = () => {
-    router.push("/search");
-  };
-
   return (
-    <div className="w-full px-5 py-2.5 bg-purple-400 text-white single-20-b xl:px-36 z-[100]">
-      <div className="h-11 flex flex-row justify-between items-center">
+    <div className="w-full px-5 py-2.5 bg-white text-neutralgray-800 title-s xl:px-5 py-4 md:h-14 z-[100]">
+      <div className="h-6 flex flex-row justify-between items-center align-center m-auto">
         <span>{fullActiveDate || dateLocaleKr}</span>
 
         {calendarOpen ? (
-          <div className="flex gap-x-2">
+          <div className="flex gap-x-4">
             <CloseIcon
               className="cursor-pointer"
-              color="white"
-              width="32"
-              height="32"
+              width="20"
+              height="20"
+              color="#333333"
               onClick={handleCalendar}
             />
-            <SearchButton clickSearchBtn={clickSearchBtn} />
+            <SearchButton />
           </div>
         ) : (
-          <div className="flex gap-x-2">
+          <div className="flex gap-x-4">
             <Calendar
-              width="32"
-              height="32"
+              width="20"
+              height="20"
+              stroke="#333333"
+              color="#333333"
               className="cursor-pointer"
               onClick={handleCalendar}
             />
-            <SearchButton clickSearchBtn={clickSearchBtn} />
+            <SearchButton />
           </div>
         )}
       </div>

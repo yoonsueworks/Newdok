@@ -11,9 +11,9 @@ import {
 } from "service/hooks/newsletters";
 
 import ToolBar from "components/pages/home/ToolBar";
-import PrevIcon from "icons/arrow_left_off.svg";
-import NextIcon from "icons/arrow_right_off.svg";
-import RefreshIcon from "icons/refresh_off.svg";
+import PrevIcon from "icons/ver1.0/arrow_left_off.svg";
+import NextIcon from "icons/ver1.0/arrow_right_off.svg";
+import RefreshIcon from "icons/ver1.0/refresh_off.svg";
 
 import { CalendarContext } from "context/CalendarContext";
 import Calendar from "react-calendar";
@@ -34,6 +34,8 @@ export default function ReactCalendar() {
   const today = new Date();
   const todayDate = today.getDate();
   const currentMonth = today.getMonth() + 1;
+  const [clickCount, setClickCount] = useState(0);
+  const [temporalYear, setTemporalYear] = useState(today.getFullYear());
 
   const futureMonthCondition =
     `${today.getFullYear()}.${currentMonth}` ===
@@ -50,8 +52,14 @@ export default function ReactCalendar() {
   const newActiveMonthPrev = yearlyCondition === 0 ? 12 : activeMonth - 1;
   const newActiveMonthNext = yearlyCondition === 11 ? 1 : activeMonth + 1;
 
-  const prevRequest = useMonthlyArticlesOnClickPrev(newActiveMonthPrev);
-  const nextRequest = useMonthlyArticlesOnClickNext(newActiveMonthNext);
+  const prevRequest = useMonthlyArticlesOnClickPrev({
+    year: 2024,
+    month: newActiveMonthPrev,
+  });
+  const nextRequest = useMonthlyArticlesOnClickNext({
+    year: 2024,
+    month: newActiveMonthNext,
+  });
 
   /* 미래 날짜(일, 월) 클릭 방지 */
   const isDateDisabled = (date) => {
@@ -78,9 +86,10 @@ export default function ReactCalendar() {
 
   /* < 버튼 클릭 시 */
   const clickPrevBtn = async () => {
+    setClickCount(clickCount - 1);
     const { data } = await prevRequest.refetch(newActiveMonthPrev);
-    setArticles(data);
-    setMonthlyArticles(data);
+    setArticles(data.data);
+    setMonthlyArticles(data.data);
     setActiveMonth(newActiveMonthPrev);
     setActiveDate(null); // 미리 선택된 날짜 없음
     onChange(calculateMonth("prev"));
@@ -90,13 +99,30 @@ export default function ReactCalendar() {
   const clickNextBtn = async () => {
     if (futureMonthCondition) return;
 
+    setClickCount(clickCount + 1);
     const { data } = await nextRequest.refetch(newActiveMonthNext);
-    setArticles(data);
-    setMonthlyArticles(data);
+    setArticles(data.data);
+    setMonthlyArticles(data.data);
     setActiveMonth(newActiveMonthNext);
     setActiveDate(null); // 미리 선택된 날짜 없음
     onChange(calculateMonth("next"));
   };
+
+  const sellectedYearInt = parseInt(fullActiveDate.split(" ")[0]);
+  const sellectedMonthInt = parseInt(fullActiveDate.split(" ")[1]);
+
+  console.log(activeMonth);
+  console.log(
+    sellectedMonthInt,
+    clickCount,
+    sellectedMonthInt + clickCount < 1
+      ? sellectedYearInt - 1
+      : sellectedMonthInt + clickCount <= 0
+      ? sellectedYearInt + 1
+      : sellectedYearInt,
+    Math.abs(clickCount) - sellectedMonthInt > 11 && "minus 1"
+    // TODO: minus 1 에 해당하는 함수가 카운트에서 연도만큼 12를 빼고 다시 카운트 하게끔, 계속 마이너스 내려가지 않게끔 하기
+  );
 
   const tileClassName = ({ date }) => {
     if (date.getDate() === activeDate) {

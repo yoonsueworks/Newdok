@@ -208,7 +208,7 @@ label#check5::before {
   width: 20px;
   height: 20px;
   margin-right: 0;
-  border: 2px solid #674188;
+  border: 1px solid #dadada;
   transition: 0.15s ease-in-out;
 }
 
@@ -223,7 +223,7 @@ input#check5 + label#check5:before {
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 2px solid #674188;
+  border: 1px solid #dadada;
   border-radius: 4px;
   vertical-align: middle;
   transition: 0.15s ease-in-out;
@@ -237,8 +237,8 @@ input#check5 + label#check5:hover::before {
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 2px solid #674188;
-  background-color: #efe7f2;
+  border: 1px solid #dadada;
+  background-color: white;
   border-radius: 4px;
   vertical-align: middle;
   transition: 0.15s ease-in-out;
@@ -251,9 +251,9 @@ input#check3:checked + label#check3:before,
 input#check4:checked + label#check4:before,
 input#check5:checked + label#check5:before {
   /* content: url("/public/assets/check_for_checkbox.svg"); */
-  background-color: #674188;
-  border: 2px solid #674188;
-  background-image: url("/assets/check_for_checkbox.svg");
+  background-color: #2866d3;
+  border: 1px solid #5e91eb;
+  background-image: url("/assets/ver3.0/Check.svg");
   background-repeat: no-repeat;
   background-position: 50%;
   transition: 0.15s ease-in-out;

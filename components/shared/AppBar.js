@@ -1,4 +1,4 @@
-import BackIcon from "icons/back_off.svg";
+import LogoIcon from "icons/ver3.0/ver3.0_logo.svg";
 import { useRouter } from "next/router";
 
 const AppBar = ({ iconl, textl, iconr, func, shadow }) => {
@@ -8,23 +8,25 @@ const AppBar = ({ iconl, textl, iconr, func, shadow }) => {
 
   return (
     <div
-      className={`w-full h-fit flex justify-between items-center p-2.5 ${shadowCSS} bg-white z-1`}
+      className={`w-full h-14 flex justify-between items-center p-5 ${shadowCSS} bg-white z-1 `}
     >
-      <div className="flex h-fit items-center gap-x-4 shrink-0">
-        <button
-          type="button"
-          className="flex h-11 p-1.5 shrink-0 items-center"
+      <div className="flex h-fit items-center gap-x-4 shrink-0 w-full sm:justify-between xs:justify-between">
+        <div
+          className="sm:block xs:block md:hidden xl:hidden flex shrink-0 items-center "
           onClick={func}
         >
-          {iconl && <BackIcon width="24" height="24" className="shrink-0" />}
-        </button>
-        <div className="shrink-0 single-20-b w-fit">{textl}</div>
+          {iconl && <LogoIcon width="16" height="16" />}
+        </div>
+        <div className="shrink-0 title-s w-fit flex items-center h-fit">
+          {textl}
+        </div>
+        <div className="sm:block xs:block md:hidden xl:hidden w-4 h-4"></div>
       </div>
       <div className="w-fit h-fit">
         {iconr && (
           <button
             type="button"
-            className="single-16-m p-1.5 h-full"
+            className="single-16-m h-full"
             onClick={() => router.push("/home")}
           >
             <span className="border-b border-neutralgray-900 text-neutralgray-900">

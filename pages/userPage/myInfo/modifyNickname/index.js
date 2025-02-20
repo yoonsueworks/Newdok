@@ -6,7 +6,7 @@ import { useModifyNickname } from "service/hooks/user";
 import LocalStorage from "public/utils/LocalStorage";
 
 import Background2 from "shared/Background2";
-import InputLabel from "shared/InputLabel";
+import InputLabel2 from "shared/InputLabel2";
 import AppBar from "shared/AppBar";
 
 import { nicknameErrorMessage } from "constants/join";
@@ -44,20 +44,23 @@ const ModifyNickname = () => {
   const conditionControl = {
     specialsIncluded: specials.test(nickname),
     sameWithPreviousNickname: userDatas.nickname === nickname,
-    nicknameInput: conditionControl.sameWithPreviousNickname
-      ? "inputError-border"
-      : !nickname || (nickname && conditionControl.specialsIncluded)
-      ? "input-border"
-      : "",
+    nicknameInput:
+      userDatas.nickname === nickname
+        ? "inputError-border"
+        : !nickname || (nickname && specials.test(nickname))
+        ? "input-border"
+        : "",
   };
 
   const getErrorMessage = () => {
-    if (!nickname) return nicknameErrorMessage.error_nickname;
+    if (!nickname) return nicknameErrorMessage.modify_nickname;
     if (nickname && !conditionControl.specialsIncluded)
       return nicknameErrorMessage.error_nickname;
     if (conditionControl.sameWithPreviousNickname)
       return "동일한 닉네임으로 변경할 수 없습니다.";
   };
+
+  console.log(nickname);
 
   return (
     <div className="pb-16 w-full h-full">
@@ -65,21 +68,20 @@ const ModifyNickname = () => {
         <div className="absolute w-full">
           <AppBar
             iconl={true}
-            shadow={true}
+            shadow={false}
             textl="닉네임 변경"
             iconr={false}
-            func={() => router.push("/userPage/myInfo")}
           />
         </div>
       </div>
       <Background2>
         <div className="w-full h-full my-16 pb-14 pt-8 px-5">
           <form
-            className="w-full h-full flex flex-col justify-between"
+            className="w-full h-full flex flex-col gap-y-12"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col gap-y-2">
-              <InputLabel htmlFor="nickname" text="닉네임" />
+              <InputLabel2 htmlFor="nickname" text="닉네임" />
               <input
                 {...register("nickname", {
                   required: true,
@@ -87,22 +89,24 @@ const ModifyNickname = () => {
                 })}
                 maxLength="12"
                 placeholder={userDatas.nickname}
-                className={`rounded-lg p-4 single-16-m input-border placeholder:text-neutralgray-900 focus:inputFocused-border
+                className={`rounded-xl p-4 input-01 input-border placeholder:text-neutralgray-800 focus:inputFocused-border bg-transparent 
                 ${
-                  conditionControl.sameWithPreviousNickname
-                    ? "inputError-border"
-                    : !nickname ||
-                      (nickname && conditionControl.specialsIncluded)
-                    ? "input-border"
+                  !nickname
+                    ? ""
+                    : nickname && conditionControl.sameWithPreviousNickname
+                    ? "inputError-border focus:inputError-border"
+                    : !nickname || !conditionControl.specialsIncluded
+                    ? "inputError-border focus:inputError-border"
                     : ""
                 }`}
                 id="nickname"
               />
               <p
-                className={`single-12-m ${
-                  conditionControl.sameWithPreviousNickname
+                className={`label-s ${
+                  conditionControl.sameWithPreviousNickname ||
+                  !conditionControl.specialsIncluded
                     ? "text-error"
-                    : "text-neutralgray-500"
+                    : "text-neutralgray-700"
                 }`}
               >
                 {getErrorMessage()}
@@ -110,7 +114,7 @@ const ModifyNickname = () => {
             </div>
             <button
               type="submit"
-              className="p-5 text-white bg-purple-700 rounded-[14px] focus:outline-none disabled:bg-neutralgray-500 single-24-b transition-colors duration-300 hover:bg-purple-500 active:bg-purple-800"
+              className="p-5 text-white bg-blue-600 rounded-xl focus:outline-none disabled:text-neutralgray-400 disabled:bg-neutralgray-200 button-03 transition-colors duration-300 hover:bg-blue-500 active:bg-blue-700"
               disabled={
                 nickname?.length < 1 ||
                 conditionControl.sameWithPreviousNickname

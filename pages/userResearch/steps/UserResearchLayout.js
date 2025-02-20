@@ -18,25 +18,19 @@ export default function UserResearchLayout({ infos, comp }) {
   const conditionFifthPage = page === 5;
 
   return (
-    <div className="w-full h-full pb-14 flex flex-col content-between">
-      <div className="flex flex-col h-full bg-white">
-        <div className="elevation-1-bottom">
-          <AppBar
-            iconl={
-              !conditionFirstPage && !conditionSecondPage && !conditionFifthPage
-            }
-            textl={""}
-            iconr={conditionFirstPage || conditionSecondPage}
-            func={handlePageBtn}
-          />
-        </div>
+    <div className="w-full h-full pb-14 flex flex-col content-between bg-white">
+      <div className="flex flex-col bg-white items-center">
         {page > 2 && <ProgressBar type="userResearch" />}
-        <div className={`mt-14 px-5 h-full ${page !== 1 && "mb-14"}`}>
+        <div
+          className={`mt-14 h-full md:w-[600px] xl:w-[600px] w-full ${
+            page !== 1 && "mb-14"
+          }`}
+        >
           <Texts infos={infos} className="mb-7" />
           {comp}
+          <Buttons infos={infos} />
         </div>
       </div>
-      <Buttons infos={infos} />
     </div>
   );
 }
