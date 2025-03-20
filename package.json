@@ -2,7 +2,6 @@
   "name": "newdoks",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://newdok.vercel.app/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
